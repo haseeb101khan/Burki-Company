@@ -30,8 +30,9 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
+# env files — secrets never get committed, but the template does
 .env*
+!.env.example
 
 # vercel
 .vercel
@@ -39,3 +40,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Raw client media: the originals the prepare scripts read from.
+# Build INPUT, not web assets — 2GB of camera files and untranscoded video that
+# must never reach the repo or a deployment. `public/` is what gets served; the
+# processed output the site actually uses is committed under public/images and
+# public/videos. Keep these locally (or in cloud storage) to re-run the scripts.
+/source-media/

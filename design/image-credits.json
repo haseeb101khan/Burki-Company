@@ -1,0 +1,353 @@
+[
+  {
+    "slot": "band-about",
+    "id": "eKY6_9W_iqY",
+    "photographer": "Troy Mortier",
+    "photographerUrl": "https://unsplash.com/@troyscanon",
+    "source": "https://unsplash.com/photos/eKY6_9W_iqY",
+    "alt": "A teal excavator dumping soil into a yellow dump truck at a construction site",
+    "license": "Unsplash License (free)"
+  },
+  {
+    "slot": "band-cta",
+    "id": "X1uzqfMWC1I",
+    "photographer": "Hasan Tayyar Besik",
+    "photographerUrl": "https://unsplash.com/@hasantayyar",
+    "source": "https://unsplash.com/photos/X1uzqfMWC1I",
+    "alt": "Construction cranes against a hazy, overcast sky",
+    "license": "Unsplash License (free)"
+  },
+  {
+    "slot": "band-parts",
+    "id": "h3pVxOIpnzk",
+    "photographer": "Lance Chang",
+    "photographerUrl": "https://unsplash.com/@carmendis",
+    "source": "https://unsplash.com/photos/h3pVxOIpnzk",
+    "alt": "a large warehouse filled with lots of shelves",
+    "license": "Unsplash License (free)"
+  },
+  {
+    "slot": "band-support",
+    "id": "lx8CooX66ms",
+    "photographer": "ThisisEngineering",
+    "photographerUrl": "https://unsplash.com/@thisisengineering",
+    "source": "https://unsplash.com/photos/lx8CooX66ms",
+    "alt": "green and brown metal tool",
+    "license": "Unsplash License (free)"
+  },
+  {
+    "slot": "cat-attachments",
+    "query": "excavator bucket attachment",
+    "id": "WoZs8gGyQBY",
+    "photographer": "Gerold Hinzen",
+    "photographerUrl": "https://unsplash.com/@geroldhinzen",
+    "source": "https://unsplash.com/photos/WoZs8gGyQBY",
+    "alt": "yellow and black excavator on rocky ground"
+  },
+  {
+    "slot": "cat-backhoe-loaders",
+    "query": "backhoe loader",
+    "id": "N1LBcqLP9ec",
+    "photographer": "Zac Edmonds",
+    "photographerUrl": "https://unsplash.com/@zacedmo",
+    "source": "https://unsplash.com/photos/N1LBcqLP9ec",
+    "alt": "yellow and black heavy equipment on brown field during daytime"
+  },
+  {
+    "slot": "cat-bulldozers",
+    "id": "iP_1B6_ntZU",
+    "photographer": "Gregorio Nuti",
+    "photographerUrl": "https://unsplash.com/@gregorionuti",
+    "source": "https://unsplash.com/photos/iP_1B6_ntZU",
+    "alt": "a bulldozer is parked on a dirt road",
+    "license": "Unsplash License (free)"
+  },
+  {
+    "slot": "cat-concrete-pumps",
+    "id": "pcpreuSOiQs",
+    "photographer": "Vong Vathanak",
+    "photographerUrl": "https://unsplash.com/@vathanakphotos",
+    "source": "https://unsplash.com/photos/pcpreuSOiQs",
+    "alt": "An orange concrete pump truck parked on a city street",
+    "license": "Unsplash License (free)"
+  },
+  {
+    "slot": "cat-cranes",
+    "query": "mobile crane construction",
+    "id": "XvNPUh6fWVk",
+    "photographer": "Guillaume TECHER",
+    "photographerUrl": "https://unsplash.com/@guillaume_t",
+    "source": "https://unsplash.com/photos/XvNPUh6fWVk",
+    "alt": "person sitting on tower at daytime"
+  },
+  {
+    "slot": "cat-dump-trucks",
+    "id": "Evss0Whf5OI",
+    "photographer": "omid roshan",
+    "photographerUrl": "https://unsplash.com/@oommiidd",
+    "source": "https://unsplash.com/photos/Evss0Whf5OI",
+    "alt": "A yellow Caterpillar haul truck driving on a dusty road near rocky mountains",
+    "license": "Unsplash License (free)"
+  },
+  {
+    "slot": "cat-excavators",
+    "query": "excavator digging",
+    "id": "NWByxwVN-J0",
+    "photographer": "Artyom Korshunov",
+    "photographerUrl": "https://unsplash.com/@korart",
+    "source": "https://unsplash.com/photos/NWByxwVN-J0",
+    "alt": "yellow and white excavator on rocky mountain during daytime"
+  },
+  {
+    "slot": "cat-forklifts",
+    "id": "F2C_mSrb6iM",
+    "photographer": "Bernd 📷 Dittrich",
+    "photographerUrl": "https://unsplash.com/@hdbernd",
+    "source": "https://unsplash.com/photos/F2C_mSrb6iM",
+    "alt": "a forklift driving through a warehouse filled with pallets",
+    "license": "Unsplash License (free)"
+  },
+  {
+    "slot": "cat-graders",
+    "query": "motor grader road",
+    "id": "E5pSapSZe1I",
+    "photographer": "Evan Porter",
+    "photographerUrl": "https://unsplash.com/@evanporter",
+    "source": "https://unsplash.com/photos/E5pSapSZe1I",
+    "alt": "Yellow john deere road grader on a gravel road"
+  },
+  {
+    "slot": "cat-mixer-trucks",
+    "id": "ITqFnikK1VU",
+    "photographer": "Troy Mortier",
+    "photographerUrl": "https://unsplash.com/@troyscanon",
+    "source": "https://unsplash.com/photos/ITqFnikK1VU",
+    "alt": "a man standing next to a green and white truck",
+    "license": "Unsplash License (free)"
+  },
+  {
+    "slot": "cat-rollers",
+    "id": "3cTpEK08lwg",
+    "photographer": "Ray Shrewsberry",
+    "photographerUrl": "https://unsplash.com/@ray12119",
+    "source": "https://unsplash.com/photos/3cTpEK08lwg",
+    "alt": "a yellow and red construction vehicle parked on a dirt field",
+    "license": "Unsplash License (free)"
+  },
+  {
+    "slot": "cat-wheel-loaders",
+    "query": "wheel loader front end loader",
+    "id": "BMWTHHv61lg",
+    "photographer": "John Kakuk",
+    "photographerUrl": "https://unsplash.com/@lensatic",
+    "source": "https://unsplash.com/photos/BMWTHHv61lg",
+    "alt": "A large loader kicks up dust in the dirt"
+  },
+  {
+    "slot": "eq-lx-650",
+    "id": "AB_TBnAjjTg",
+    "photographer": "Chandler Cruttenden",
+    "photographerUrl": "https://unsplash.com/@chanphoto",
+    "source": "https://unsplash.com/photos/AB_TBnAjjTg",
+    "alt": "Skid steer loader moving dirt in a wooded area",
+    "license": "Unsplash License (free)"
+  },
+  {
+    "slot": "eq-lx-926",
+    "query": "yellow wheel loader machine",
+    "id": "d93Lw7RCnu0",
+    "photographer": "Sergej *****",
+    "photographerUrl": "https://unsplash.com/@skstrannik",
+    "source": "https://unsplash.com/photos/d93Lw7RCnu0",
+    "alt": "Yellow front loader moving snow"
+  },
+  {
+    "slot": "eq-lx-930",
+    "id": "XM642V2dLA4",
+    "photographer": "Bermix Studio",
+    "photographerUrl": "https://unsplash.com/@bermixstudio",
+    "source": "https://unsplash.com/photos/XM642V2dLA4",
+    "alt": "a tractor that is sitting in the dirt",
+    "license": "Unsplash License (free)"
+  },
+  {
+    "slot": "eq-lx-936",
+    "id": "sQjJRVQDAFc",
+    "photographer": "Troy Mortier",
+    "photographerUrl": "https://unsplash.com/@troyscanon",
+    "source": "https://unsplash.com/photos/sQjJRVQDAFc",
+    "alt": "a large yellow construction vehicle driving down a dirt road",
+    "license": "Unsplash License (free)"
+  },
+  {
+    "slot": "eq-lx-950",
+    "id": "1MqTi2JjbYQ",
+    "photographer": "Sergej *****",
+    "photographerUrl": "https://unsplash.com/@skstrannik",
+    "source": "https://unsplash.com/photos/1MqTi2JjbYQ",
+    "alt": "Yellow loader scooping gravel into orange truck",
+    "license": "Unsplash License (free)"
+  },
+  {
+    "slot": "gal-lx-926-1",
+    "id": "puFgHWFtUzI",
+    "photographer": "Ted Balmer",
+    "photographerUrl": "https://unsplash.com/@midkiffaries",
+    "source": "https://unsplash.com/photos/puFgHWFtUzI",
+    "alt": "a tractor is parked in front of a construction site",
+    "license": "Unsplash License (free)"
+  },
+  {
+    "slot": "gal-lx-926-2",
+    "query": "loader bucket close up",
+    "id": "whoONEl094E",
+    "photographer": "josh A. D.",
+    "photographerUrl": "https://unsplash.com/@mista_j",
+    "source": "https://unsplash.com/photos/whoONEl094E",
+    "alt": "a yellow toy truck with a shovel on top of it"
+  },
+  {
+    "slot": "gal-lx-926-3",
+    "id": "he3gXybr_TM",
+    "photographer": "Taneti",
+    "photographerUrl": "https://unsplash.com/@taneti",
+    "source": "https://unsplash.com/photos/he3gXybr_TM",
+    "alt": "Close-up of a modern excavator cabin under blue sky",
+    "license": "Unsplash License (free)"
+  },
+  {
+    "slot": "gal-lx-926-4",
+    "query": "loader moving earth dirt",
+    "id": "3CrsLswxvxc",
+    "photographer": "Markus Kammermann",
+    "photographerUrl": "https://unsplash.com/@makabera",
+    "source": "https://unsplash.com/photos/3CrsLswxvxc",
+    "alt": "A yellow front-end loader moving sand on a construction site"
+  },
+  {
+    "slot": "hero-primary",
+    "id": "lmQAbuJX0VE",
+    "photographer": "Siwawut Phoophinyo",
+    "photographerUrl": "https://unsplash.com/@phoophinyo",
+    "source": "https://unsplash.com/photos/lmQAbuJX0VE",
+    "alt": "A large front-end loader sits at a construction site",
+    "license": "Unsplash License (free)"
+  },
+  {
+    "slot": "ind-construction",
+    "query": "building construction site crane",
+    "id": "VoI2jd75M6Q",
+    "photographer": "Frames For Your Heart",
+    "photographerUrl": "https://unsplash.com/@framesforyourheart",
+    "source": "https://unsplash.com/photos/VoI2jd75M6Q",
+    "alt": "yellow crane near building during daytime"
+  },
+  {
+    "slot": "ind-industrial-projects",
+    "id": "Qwc4DKBjqEU",
+    "photographer": "mos design",
+    "photographerUrl": "https://unsplash.com/@mosdesign",
+    "source": "https://unsplash.com/photos/Qwc4DKBjqEU",
+    "alt": "a large industrial factory with a lot of pipes",
+    "license": "Unsplash License (free)"
+  },
+  {
+    "slot": "ind-infrastructure",
+    "id": "PXVphfHy7_4",
+    "photographer": "viktor rejent",
+    "photographerUrl": "https://unsplash.com/@viktor_rejent",
+    "source": "https://unsplash.com/photos/PXVphfHy7_4",
+    "alt": "Massive bridge construction with cranes on a forested mountain",
+    "license": "Unsplash License (free)"
+  },
+  {
+    "slot": "ind-material-handling",
+    "id": "WdQevQ2nlh4",
+    "photographer": "Sorin Basangeac",
+    "photographerUrl": "https://unsplash.com/@sorinbasangeac",
+    "source": "https://unsplash.com/photos/WdQevQ2nlh4",
+    "alt": "Crane loads cargo containers onto a ship",
+    "license": "Unsplash License (free)"
+  },
+  {
+    "slot": "ind-mining-quarrying",
+    "id": "YG0qc-e6hgg",
+    "photographer": "MiningWatch Portugal",
+    "photographerUrl": "https://unsplash.com/@miningwatch_portugal",
+    "source": "https://unsplash.com/photos/YG0qc-e6hgg",
+    "alt": "a large truck driving down a dirt road",
+    "license": "Unsplash License (free)"
+  },
+  {
+    "slot": "ind-road-development",
+    "query": "highway road construction paving",
+    "id": "ZgmGq_eFmUs",
+    "photographer": "Jamar  Penny",
+    "photographerUrl": "https://unsplash.com/@pennypicsvideos",
+    "source": "https://unsplash.com/photos/ZgmGq_eFmUs",
+    "alt": "yellow Caterpillar excavator digging up dirt"
+  },
+  {
+    "slot": "part-electrical",
+    "id": "15rs3j7w7PE",
+    "photographer": "BHARAT VISHAWAKARMA",
+    "photographerUrl": "https://unsplash.com/@bharat05",
+    "source": "https://unsplash.com/photos/15rs3j7w7PE",
+    "alt": "A detailed view of a modern car engine bay",
+    "license": "Unsplash License (free)"
+  },
+  {
+    "slot": "part-engine",
+    "id": "UxSjzLtAKlY",
+    "photographer": "Michal Kučera",
+    "photographerUrl": "https://unsplash.com/@m_kucera_12",
+    "source": "https://unsplash.com/photos/UxSjzLtAKlY",
+    "alt": "Close-up of a detroit diesel engine",
+    "license": "Unsplash License (free)"
+  },
+  {
+    "slot": "part-filters",
+    "query": "oil filter engine part",
+    "id": "IwPT9tPchsA",
+    "photographer": "Rinald Rolle",
+    "photographerUrl": "https://unsplash.com/@anstoxx",
+    "source": "https://unsplash.com/photos/IwPT9tPchsA",
+    "alt": "a couple of bottles of motor oil sitting on the ground"
+  },
+  {
+    "slot": "part-hydraulic",
+    "id": "c6fX2hWhItI",
+    "photographer": "Guille B",
+    "photographerUrl": "https://unsplash.com/@guilleb",
+    "source": "https://unsplash.com/photos/c6fX2hWhItI",
+    "alt": "a machine with yellow hoses attached to it",
+    "license": "Unsplash License (free)"
+  },
+  {
+    "slot": "part-transmission",
+    "id": "hsPFuudRg5I",
+    "photographer": "Isis França",
+    "photographerUrl": "https://unsplash.com/@isisfra",
+    "source": "https://unsplash.com/photos/hsPFuudRg5I",
+    "alt": "close-up photography of black metal gears",
+    "license": "Unsplash License (free)"
+  },
+  {
+    "slot": "part-undercarriage",
+    "id": "gGOsp83w6CI",
+    "photographer": "Alexandr Popadin",
+    "photographerUrl": "https://unsplash.com/@irrabagon",
+    "source": "https://unsplash.com/photos/gGOsp83w6CI",
+    "alt": "Heavy machinery tracks on sandy ground",
+    "license": "Unsplash License (free)"
+  },
+  {
+    "slot": "part-wear-parts",
+    "id": "afRWvNkDyGo",
+    "photographer": "AO NURA",
+    "photographerUrl": "https://unsplash.com/@lafesta6720",
+    "source": "https://unsplash.com/photos/afRWvNkDyGo",
+    "alt": "Large excavator bucket on construction site dirt",
+    "license": "Unsplash License (free)"
+  }
+]

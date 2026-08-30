@@ -1,26 +1,170 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ==========================================================================
+   BURKI & COMPANY — DESIGN SYSTEM
+   Navy sampled directly from the client logo artwork (#002665).
+   Ratio target: ~70% white/neutral, ~20% navy, ~10% amber accent.
+   ========================================================================== */
+
+@theme {
+  /* ---- Brand navy ------------------------------------------------------ */
+  --color-navy-50:  #f2f6fc;
+  --color-navy-100: #e1eaf7;
+  --color-navy-200: #c2d3ec;
+  --color-navy-300: #93b0dc;
+  --color-navy-400: #4e7bc0;
+  --color-navy-500: #1e4fa3;
+  --color-navy-600: #0f3a87;
+  --color-navy-700: #002665; /* ← brand primary, from logo */
+  --color-navy-800: #001a47; /* ← dark sections / footer */
+  --color-navy-900: #00112e;
+  --color-navy-950: #000a1c;
+
+  /* ---- Accent: safety amber (the ~10%) --------------------------------- */
+  --color-amber-50:  #fff8ec;
+  --color-amber-100: #fdeccb;
+  --color-amber-200: #fbdda2;
+  --color-amber-300: #ffd180;
+  --color-amber-400: #ffc155;
+  --color-amber-500: #f5a623; /* ← accent primary */
+  --color-amber-600: #d9860c;
+  --color-amber-700: #a96608;
+
+  /* ---- Steel neutrals -------------------------------------------------- */
+  --color-steel-50:  #f7f9fc;
+  --color-steel-100: #eff2f7;
+  --color-steel-200: #e1e7f0;
+  --color-steel-300: #cbd4e1;
+  --color-steel-400: #9aa8bf;
+  --color-steel-500: #6f7f99;
+  --color-steel-600: #55647d;
+  --color-steel-700: #3e4c62;
+  --color-steel-800: #2a3548;
+  --color-steel-900: #18202f;
+
+  --color-ink: #0a1428;
+
+  /* ---- Typography ------------------------------------------------------ */
+  --font-display: var(--font-barlow-condensed), "Barlow Condensed", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), Inter, ui-sans-serif, system-ui, sans-serif;
+
+  --text-eyebrow: 0.6875rem;
+  --text-eyebrow--line-height: 1;
+  --text-eyebrow--letter-spacing: 0.2em;
+  --text-eyebrow--font-weight: 600;
+
+  --text-display-xl: clamp(2.75rem, 1.1rem + 6.2vw, 5.5rem);
+  --text-display-xl--line-height: 0.94;
+  --text-display-xl--letter-spacing: -0.015em;
+  --text-display-xl--font-weight: 700;
+
+  --text-display-lg: clamp(2.375rem, 1.2rem + 4.4vw, 4.5rem);
+  --text-display-lg--line-height: 0.96;
+  --text-display-lg--letter-spacing: -0.015em;
+  --text-display-lg--font-weight: 700;
+
+  --text-display-md: clamp(2rem, 1.2rem + 2.9vw, 3.5rem);
+  --text-display-md--line-height: 1;
+  --text-display-md--letter-spacing: -0.01em;
+  --text-display-md--font-weight: 700;
+
+  --text-display-sm: clamp(1.5rem, 1.15rem + 1.4vw, 2.125rem);
+  --text-display-sm--line-height: 1.05;
+  --text-display-sm--letter-spacing: -0.01em;
+  --text-display-sm--font-weight: 700;
+
+  /* ---- Radii: industrial = restrained ---------------------------------- */
+  --radius-card: 3px;
+
+  /* ---- Motion ---------------------------------------------------------- */
+  --ease-out-industrial: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  body {
+    background-color: #ffffff;
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    text-wrap: balance;
+  }
+
+  ::selection {
+    background-color: var(--color-amber-500);
+    color: var(--color-navy-900);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-amber-500);
+    outline-offset: 2px;
+  }
+
+  /* Respect reduced-motion for every scroll reveal / counter in the system */
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@utility eyebrow-rule {
+  /* Small amber tick that precedes section eyebrows */
+  &::before {
+    content: "";
+    display: inline-block;
+    width: 1.75rem;
+    height: 2px;
+    margin-right: 0.75rem;
+    vertical-align: middle;
+    background-color: var(--color-amber-500);
+  }
+}
+
+/* Carousel dot timer: fills the active dot over the slide interval.
+   Pauses via animation-play-state when the carousel is hovered. */
+@keyframes dot-fill {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+/* Partner logo strip: one continuous pass to the left.
+   The track holds the logo set TWICE, so translating exactly -50% lands the
+   copy where the original started and the loop is seamless. Percentages, not
+   pixels, so it holds at any number of logos or any viewport width. */
+@keyframes marquee-left {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* Anything that scrolls forever is a problem for vestibular disorders, and it
+   is decorative here — the same logos are on the About page in a static grid. */
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none !important;
+    transform: none !important;
+  }
+}
+
+@utility navy-depth {
+  /* One soft off-centre light source. Keeps large navy fields from reading as
+     flat colour without tipping into a gradient-heavy look. */
+  background-image: radial-gradient(
+    120% 110% at 12% -10%,
+    rgba(30, 79, 163, 0.30) 0%,
+    rgba(0, 26, 71, 0) 62%
+  );
 }

@@ -1,0 +1,311 @@
+import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { Footer } from "@/components/layout/Footer";
+import { Header } from "@/components/layout/Header";
+import { BrandIntroVideo } from "@/components/ui/BrandIntroVideo";
+import { ArrowRight, Button } from "@/components/ui/Button";
+import { EquipmentCard } from "@/components/ui/EquipmentCard";
+import { ChevronRightIcon } from "@/components/ui/Icons";
+import { Reveal } from "@/components/ui/Reveal";
+import { Container, Eyebrow, Section, SectionHeader } from "@/components/ui/Section";
+import {
+  getBrandBySlug,
+  getEquipment,
+  getEquipmentCategories,
+} from "@/lib/data";
+import { routes } from "@/lib/routes";
+import { cn } from "@/lib/utils";
+
+/**
+ * ONE BRAND'S CATALOGUE.
+ *
+ * The structure the client asked for: brand name and intro first, the machines
+ * below. This is the page a buyer lands on from the brand index, and the one a
+ * machine's detail page belongs to — which is why the detail URL is keyed on
+ * brand rather than category, so nobody falls out of the catalogue they came
+ * in through.
+ *
+ * The category chips narrow within the brand. Cutting the other way — every
+ * excavator across all brands — lives at /equipment/category/<slug>.
+ */
+
+type Props = {
+  params: Promise<{ brand: string }>;
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+};
+
+const one = (value: string | string[] | undefined): string | undefined =>
+  Array.isArray(value) ? value[0] : value;
+
+/*
+ * No generateStaticParams: this page reads `searchParams` for its category
+ * filter, which forces dynamic rendering. Declaring static params as well puts
+ * the route in both modes at once and every request fails with
+ * DYNAMIC_SERVER_USAGE.
+ */
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { brand: slug } = await params;
+  const brand = await getBrandBySlug(slug);
+  if (!brand) return { title: "Brand not found" };
+  return {
+    title: `${brand.name} Equipment`,
+    description:
+      brand.shortDescription ??
+      `The full ${brand.name} range supplied and supported by Burki & Company.`,
+  };
+}
+
+export default async function BrandCataloguePage({ params, searchParams }: Props) {
+  const { brand: slug } = await params;
+  const categorySlug = one((await searchParams).category);
+
+  const brand = await getBrandBySlug(slug);
+  if (!brand) notFound();
+
+  const [all, categories] = await Promise.all([
+    getEquipment({ brandSlug: slug }),
+    getEquipmentCategories(),
+  ]);
+
+  const machines = categorySlug
+    ? all.filter((m) => m.categorySlug === categorySlug)
+    : all;
+
+  /* How many of this brand's machines sit in each category, so the strip can
+     show a count where there is one and route elsewhere where there is not. */
+  const countsHere = all.reduce<Map<string, number>>(
+    (acc, m) => acc.set(m.categorySlug, (acc.get(m.categorySlug) ?? 0) + 1),
+    new Map(),
+  );
+
+  const href = (category?: string) =>
+    category ? `${routes.brand(slug)}?category=${category}` : routes.brand(slug);
+
+  const categoryName = (s: string) => categories.find((c) => c.slug === s)?.name;
+
+  return (
+    <>
+      <Header />
+      <main>
+        {/* -------------------------------------------------------- breadcrumb */}
+        <div className="border-b border-steel-200 bg-steel-50">
+          <Container>
+            <nav
+              aria-label="Breadcrumb"
+              className="flex items-center gap-2 py-3.5 text-[0.8125rem] text-steel-600"
+            >
+              <Link href="/" className="transition-colors hover:text-navy-700">
+                Home
+              </Link>
+              <ChevronRightIcon className="shrink-0 text-steel-400" />
+              <Link href={routes.equipment()} className="transition-colors hover:text-navy-700">
+                Equipment
+              </Link>
+              <ChevronRightIcon className="shrink-0 text-steel-400" />
+              <span className="font-medium text-navy-800">{brand.name}</span>
+            </nav>
+          </Container>
+        </div>
+
+        {/* ------------------------------------------- brand name and intro */}
+        {/* No bottom padding: the listings section directly below supplies the
+            gap. Two full-padding sections back to back left a dead band of
+            white between the intro and the catalogue. */}
+        <Section tone="light" spacing="tight" className="pb-0 md:pb-0">
+          <Container>
+            <div className="grid items-center gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.85fr)] lg:gap-12">
+              <div>
+                <SectionHeader
+                  eyebrow="Brand catalogue"
+                  title={brand.name}
+                  description={brand.shortDescription}
+                  action={
+                    <Button href={routes.quote()} size="sm">
+                      Request a quote
+                      <ArrowRight />
+                    </Button>
+                  }
+                />
+
+                <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 font-display text-[0.6875rem] font-semibold uppercase tracking-[0.16em] text-steel-500">
+                  {brand.countryOfOrigin ? <span>{brand.countryOfOrigin}</span> : null}
+                  {brand.manufacturerLegalName ? (
+                    <span>{brand.manufacturerLegalName}</span>
+                  ) : null}
+                  <span>
+                    {all.length} {all.length === 1 ? "model" : "models"}
+                  </span>
+                  {brand.website ? (
+                    <a
+                      href={brand.website}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      className="text-navy-700 transition-colors hover:text-amber-600"
+                    >
+                      Manufacturer site
+                    </a>
+                  ) : null}
+                </div>
+              </div>
+
+              {/*
+               * The introduction film where a brand has one, its photography
+               * otherwise, and nothing at all for the four brands with neither
+               * — the header simply runs full width there.
+               */}
+              {brand.showcaseVideoUrl ? (
+                <Reveal y={16}>
+                  <BrandIntroVideo
+                    src={brand.showcaseVideoUrl}
+                    poster={brand.showcaseImages[0] ?? null}
+                    brandName={brand.name}
+                  />
+                </Reveal>
+              ) : brand.showcaseImages[0] ? (
+                <Reveal y={16}>
+                  <div className="relative aspect-[16/10] overflow-hidden rounded-[3px] bg-steel-100">
+                    <Image
+                      src={brand.showcaseImages[0].src}
+                      alt={brand.showcaseImages[0].alt}
+                      fill
+                      priority
+                      sizes="(min-width: 1024px) 42vw, 100vw"
+                      className="object-cover"
+                    />
+                  </div>
+                </Reveal>
+              ) : null}
+            </div>
+          </Container>
+        </Section>
+
+        {/* --------------------------------------- categories + the listings */}
+        <Section tone="light" spacing="tight" className="pt-8 md:pt-10">
+          <Container>
+            <div className="grid gap-8 lg:grid-cols-[236px_minmax(0,1fr)] lg:gap-10">
+              {/*
+               * The category strip.
+               *
+               * Every category is listed, not only the ones this brand carries,
+               * because it doubles as the catalogue's navigation. A category the
+               * brand has machines in filters within the brand; one it does not
+               * links to the cross-brand listing for that class. Neither is a
+               * dead end, which is what a greyed-out row would have been.
+               */}
+              <aside className="lg:sticky lg:top-24 lg:self-start">
+                <h2 className="font-display text-[0.6875rem] font-semibold uppercase tracking-[0.16em] text-steel-500">
+                  Categories
+                </h2>
+
+                <ul className="mt-4 space-y-px overflow-hidden rounded-[3px] border border-steel-200">
+                  <li>
+                    <Link
+                      href={href()}
+                      aria-current={!categorySlug ? "true" : undefined}
+                      className={cn(
+                        "flex items-center justify-between gap-3 px-4 py-3 text-[0.875rem] font-medium transition-colors",
+                        !categorySlug
+                          ? "bg-navy-700 text-white"
+                          : "bg-white text-navy-800 hover:bg-navy-50",
+                      )}
+                    >
+                      <span>All {brand.name}</span>
+                      <span className="shrink-0 tabular-nums text-[0.75rem] opacity-70">
+                        {all.length}
+                      </span>
+                    </Link>
+                  </li>
+
+                  {categories.map((category) => {
+                    const count = countsHere.get(category.slug) ?? 0;
+                    const isActive = categorySlug === category.slug;
+                    const carried = count > 0;
+                    return (
+                      <li key={category.id}>
+                        <Link
+                          href={carried ? href(category.slug) : routes.category(category)}
+                          aria-current={isActive ? "true" : undefined}
+                          className={cn(
+                            "flex items-center justify-between gap-3 px-4 py-3 text-[0.875rem] transition-colors",
+                            isActive
+                              ? "bg-navy-700 font-medium text-white"
+                              : carried
+                                ? "bg-white font-medium text-navy-800 hover:bg-navy-50"
+                                : "bg-white text-steel-500 hover:bg-steel-50 hover:text-navy-700",
+                          )}
+                        >
+                          <span>{category.name}</span>
+                          {carried ? (
+                            <span className="shrink-0 tabular-nums text-[0.75rem] opacity-70">
+                              {count}
+                            </span>
+                          ) : (
+                            <ChevronRightIcon className="shrink-0 text-[0.85em] text-steel-300" />
+                          )}
+                        </Link>
+                      </li>
+                    );
+                  })}
+                </ul>
+
+                <div className="mt-5 rounded-[3px] border border-steel-200 bg-steel-50 p-4">
+                  <p className="font-display text-[0.6875rem] font-semibold uppercase tracking-[0.16em] text-navy-700">
+                    Need help choosing?
+                  </p>
+                  <p className="mt-2 text-[0.8125rem] leading-relaxed text-steel-600">
+                    Tell us the job and the site, and we will specify the machine.
+                  </p>
+                  <Button href={routes.quote()} size="sm" variant="outline" className="mt-4 w-full">
+                    Contact us
+                  </Button>
+                </div>
+              </aside>
+
+              <div>
+                {machines.length > 0 ? (
+                  <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+                    {machines.map((item, index) => (
+                      <Reveal key={item.id} delay={(index % 3) * 0.06} className="h-full">
+                        <EquipmentCard
+                          item={item}
+                          categoryLabel={categoryName(item.categorySlug)}
+                          className="h-full"
+                          priority={index < 3}
+                        />
+                      </Reveal>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="mx-auto max-w-lg py-8 text-center">
+                    <Eyebrow>Coming soon</Eyebrow>
+                    <h2 className="font-display mt-4 text-2xl font-bold uppercase text-navy-800">
+                      {brand.name} models are being catalogued
+                    </h2>
+                    <p className="mt-3 text-base leading-relaxed text-steel-600">
+                      We supply {brand.name} equipment and can quote against a
+                      specification today — the individual models are not on the
+                      site yet.
+                    </p>
+                    <div className="mt-7 flex flex-wrap justify-center gap-3">
+                      <Button href={routes.quote()}>
+                        Request a quote
+                        <ArrowRight />
+                      </Button>
+                      <Button href={routes.equipment()} variant="outline">
+                        All brands
+                      </Button>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          </Container>
+        </Section>
+      </main>
+      <Footer />
+    </>
+  );
+}
