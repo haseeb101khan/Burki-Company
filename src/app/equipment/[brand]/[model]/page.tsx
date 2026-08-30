@@ -5,6 +5,7 @@ import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { ArrowRight, Button } from "@/components/ui/Button";
 import { EquipmentGallery } from "@/components/ui/EquipmentGallery";
+import { FeatureAccordion } from "@/components/ui/FeatureAccordion";
 import { ChevronRightIcon } from "@/components/ui/Icons";
 import { Reveal } from "@/components/ui/Reveal";
 import { Container, Section, SectionHeader } from "@/components/ui/Section";
@@ -21,7 +22,6 @@ import {
   partToOrbitItem,
 } from "@/components/sections/orbitItem";
 import { routes } from "@/lib/routes";
-import { cn } from "@/lib/utils";
 
 type Props = { params: Promise<{ brand: string; model: string }> };
 
@@ -234,64 +234,22 @@ export default async function EquipmentDetailPage({ params }: Props) {
                 title="Built for the work"
               />
               {/*
-               * ONE ROW, NO BOXES.
+               * STRIPS, NOT COLUMNS.
                *
-               * This was a three-column grid of bordered cards, which with four
-               * features left an orphan sitting alone on a second row and read
-               * like a slide deck. It is now a single rank of columns divided by
-               * hairlines, each led by a large outlined numeral — the machine's
-               * case made as a sequence rather than as four identical tiles.
+               * This was a rank of numbered columns divided by hairlines. It
+               * read well across a desktop and turned into most of a screen per
+               * feature on a phone, so the buyer scrolled through four full
+               * paragraphs to reach the variants below.
                *
-               * The column count follows the content (three or four), so the row
-               * stays full either way instead of leaving a gap where a fifth
-               * card would go.
+               * Collapsed strips put the whole argument on one screen and open
+               * the one or two that matter — the same control as the
+               * specification table further up the page, which is the point:
+               * by the time the visitor reaches this they already know how it
+               * behaves.
                */}
-              <ol
-                className={cn(
-                  "mt-12 grid gap-y-10 border-t border-white/15 pt-10",
-                  "sm:grid-cols-2 sm:gap-x-10",
-                  item.features.length >= 4 ? "lg:grid-cols-4" : "lg:grid-cols-3",
-                )}
-              >
-                {item.features.map((f, i) => (
-                  <Reveal
-                    key={f.title}
-                    delay={i * 0.07}
-                    className={cn(
-                      "group relative sm:pl-10",
-                      /* A hairline between columns, never before the first in a
-                         row — otherwise the rule floats at the left edge. */
-                      "sm:before:absolute sm:before:inset-y-0 sm:before:left-0 sm:before:w-px sm:before:bg-white/15",
-                      "sm:[&:nth-child(2n+1)]:pl-0 sm:[&:nth-child(2n+1)]:before:hidden",
-                      item.features.length >= 4
-                        ? "lg:[&:nth-child(2n+1)]:pl-10 lg:[&:nth-child(2n+1)]:before:block lg:[&:nth-child(4n+1)]:pl-0 lg:[&:nth-child(4n+1)]:before:hidden"
-                        : "lg:[&:nth-child(2n+1)]:pl-10 lg:[&:nth-child(2n+1)]:before:block lg:[&:nth-child(3n+1)]:pl-0 lg:[&:nth-child(3n+1)]:before:hidden",
-                    )}
-                  >
-                    <li>
-                      {/* Outlined, not filled: the numeral is structure, not a
-                          thing to read before the heading. */}
-                      <span
-                        aria-hidden="true"
-                        className="font-display block text-[2.75rem] font-bold leading-none tracking-tight text-transparent transition-colors duration-500 [-webkit-text-stroke:1px_rgba(255,255,255,0.28)] group-hover:[-webkit-text-stroke-color:var(--color-amber-500,#f5a623)]"
-                      >
-                        {String(i + 1).padStart(2, "0")}
-                      </span>
-
-                      <h3 className="mt-5 text-base font-bold uppercase leading-tight tracking-tight text-white md:text-[1.0625rem]">
-                        {f.title}
-                      </h3>
-                      <span
-                        aria-hidden="true"
-                        className="mt-3 block h-px w-8 bg-amber-500 transition-all duration-500 group-hover:w-14"
-                      />
-                      <p className="mt-3.5 text-[0.875rem] leading-relaxed text-white/60">
-                        {f.description}
-                      </p>
-                    </li>
-                  </Reveal>
-                ))}
-              </ol>
+              <div className="mt-10 max-w-3xl">
+                <FeatureAccordion features={item.features} />
+              </div>
             </Container>
           </Section>
         ) : null}

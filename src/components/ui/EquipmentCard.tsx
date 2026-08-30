@@ -9,6 +9,16 @@ import { routes } from "@/lib/routes";
  * Equipment card used across the catalogue, homepage and industry pages.
  * The whole card is one link target.
  *
+ * THE MACHINE IS THE CARD.
+ *
+ * This carried a three-line summary and two key figures under the picture,
+ * which made the tile mostly text and left the cutout a band across the top.
+ * On the client's call the picture now takes the card and the text is the model
+ * name and the way in — a catalogue page is a visitor scanning a range for the
+ * shape of the machine they want, and they compare figures on the detail page
+ * once they have picked one. The summary and the highlights are still on that
+ * page; nothing was lost, it was moved to where it gets read.
+ *
  * TWO IMAGE TREATMENTS, PICKED FROM THE DATA.
  *
  * The client wants catalogue listings to show the studio cutout — the machine
@@ -24,18 +34,13 @@ import { routes } from "@/lib/routes";
  */
 export function EquipmentCard({
   item,
-  categoryLabel,
   className,
   priority = false,
 }: {
   item: Equipment;
-  categoryLabel?: string;
   className?: string;
   priority?: boolean;
 }) {
-  /* Two key figures are enough on a card; the rest belong on the detail page. */
-  const keyHighlights = item.highlights.slice(0, 2);
-
   const cutout = item.cutoutImage;
   const display = cutout ?? item.image;
 
@@ -55,7 +60,7 @@ export function EquipmentCard({
           ground to sit on. */}
       <div
         className={cn(
-          "relative aspect-[4/3] overflow-hidden",
+          "relative aspect-[5/4] overflow-hidden",
           cutout ? "bg-white" : "bg-steel-100",
         )}
       >
@@ -64,58 +69,33 @@ export function EquipmentCard({
           alt={display.alt}
           fill
           priority={priority}
-          sizes="(min-width: 1280px) 30vw, (min-width: 768px) 45vw, 100vw"
+          sizes="(min-width: 1280px) 25vw, (min-width: 768px) 33vw, 50vw"
           className={cn(
             "transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]",
+            /* Tight padding: with nothing else competing for the card, the
+               machine is allowed to fill its frame. */
             cutout
-              ? "object-contain object-bottom p-4 pb-[9%] drop-shadow-[0_14px_12px_rgba(0,17,46,0.13)] group-hover:scale-[1.05]"
+              ? "object-contain object-bottom p-2.5 pb-[7%] drop-shadow-[0_14px_12px_rgba(0,17,46,0.13)] group-hover:scale-[1.05]"
               : "object-cover group-hover:scale-[1.04]",
           )}
           style={display.focus ? { objectPosition: display.focus } : undefined}
         />
-        <div className="absolute left-0 top-0 bg-navy-800/90 px-3 py-1.5 font-display text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-white backdrop-blur-sm">
+        <div className="absolute left-0 top-0 bg-navy-800/90 px-2.5 py-1 font-display text-[0.625rem] font-semibold uppercase tracking-[0.14em] text-white backdrop-blur-sm md:px-3 md:py-1.5 md:text-[0.6875rem]">
           {item.brand}
         </div>
       </div>
 
-      <div className="flex flex-1 flex-col p-5 md:p-6">
-        {categoryLabel ? (
-          <p className="font-display text-[0.6875rem] font-semibold uppercase tracking-[0.16em] text-steel-500">
-            {categoryLabel}
-          </p>
-        ) : null}
-
-        <h3 className="mt-2 text-xl font-bold uppercase leading-tight tracking-tight text-navy-800 md:text-2xl">
+      {/* Sized to stay on one line in a two-up phone column — "View
+          specifications" wrapping under its own arrow was the tell that the old
+          card was built for a wider tile. */}
+      <div className="flex flex-1 flex-col gap-2 border-t border-steel-100 p-3.5 md:p-4">
+        <h3 className="text-base font-bold uppercase leading-tight tracking-tight text-navy-800 sm:text-lg md:text-xl">
           {item.model}
         </h3>
 
-        <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-steel-600">
-          {item.summary}
-        </p>
-
-        {keyHighlights.length > 0 ? (
-          <dl className="mt-5 grid gap-px overflow-hidden rounded-[2px] bg-steel-200 sm:grid-cols-2">
-            {keyHighlights.map((highlight) => (
-              <div key={highlight.label} className="bg-steel-50 px-3 py-2.5">
-                <dt className="text-[0.625rem] font-medium uppercase tracking-[0.1em] text-steel-500 line-clamp-2">
-                  {highlight.label}
-                </dt>
-                <dd className="mt-1 font-display text-sm sm:text-base font-semibold tabular-nums text-navy-700">
-                  {highlight.value}
-                  {highlight.unit ? (
-                    <span className="ml-1 text-xs font-medium text-steel-500">
-                      {highlight.unit}
-                    </span>
-                  ) : null}
-                </dd>
-              </div>
-            ))}
-          </dl>
-        ) : null}
-
-        <span className="mt-5 inline-flex items-center gap-2 font-display text-[0.8125rem] font-semibold uppercase tracking-[0.1em] text-navy-700 transition-colors group-hover:text-amber-600">
+        <span className="mt-auto inline-flex items-center gap-1.5 font-display text-[0.625rem] font-semibold uppercase tracking-[0.08em] text-navy-700 transition-colors group-hover:text-amber-600 sm:text-[0.6875rem] sm:tracking-[0.1em] md:text-[0.75rem]">
           View specifications
-          <ArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />
+          <ArrowRight className="shrink-0 transition-transform duration-300 group-hover:translate-x-1" />
         </span>
       </div>
     </Link>

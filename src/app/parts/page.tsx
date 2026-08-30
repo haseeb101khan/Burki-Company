@@ -54,7 +54,7 @@ export default async function PartsPage() {
 
         <Section tone="light" spacing="tight">
           <Container>
-            <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <ul className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">
               {categories.map((category, index) => {
                 const count = counts[category.slug] ?? 0;
                 return (
@@ -75,21 +75,25 @@ export default async function PartsPage() {
                             />
                           </div>
                         ) : null}
-                        <div className="flex flex-1 flex-col p-5 md:p-6">
+                        {/* Two to a row on a phone, so the description is cut
+                            at the narrowest width — at that column it is three
+                            or four words a line and reads as filler under the
+                            name it is meant to explain. */}
+                        <div className="flex flex-1 flex-col p-3.5 sm:p-5 md:p-6">
                           <div className="flex items-baseline justify-between gap-3">
-                            <h2 className="font-display text-xl font-bold uppercase leading-tight tracking-tight text-navy-800">
+                            <h2 className="font-display text-base font-bold uppercase leading-tight tracking-tight text-navy-800 sm:text-lg md:text-xl">
                               {category.name}
                             </h2>
                             <span className="shrink-0 tabular-nums text-[0.75rem] text-steel-500">
                               {count}
                             </span>
                           </div>
-                          <p className="mt-2 line-clamp-3 flex-1 text-sm leading-relaxed text-steel-600">
+                          <p className="mt-2 hidden line-clamp-3 flex-1 text-sm leading-relaxed text-steel-600 sm:block">
                             {category.description}
                           </p>
-                          <span className="mt-5 inline-flex items-center gap-2 font-display text-[0.8125rem] font-semibold uppercase tracking-[0.1em] text-navy-700 transition-colors group-hover:text-amber-600">
+                          <span className="mt-3 inline-flex items-center gap-1.5 font-display text-[0.6875rem] font-semibold uppercase tracking-[0.1em] text-navy-700 transition-colors group-hover:text-amber-600 sm:mt-5 sm:gap-2 sm:text-[0.8125rem]">
                             {count > 0 ? "Browse" : "Enquire"}
-                            <ArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />
+                            <ArrowRight className="shrink-0 transition-transform duration-300 group-hover:translate-x-1" />
                           </span>
                         </div>
                       </Link>

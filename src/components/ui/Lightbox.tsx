@@ -6,6 +6,7 @@ import { useCallback, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import type { ImageRef } from "@/lib/data";
 import { ChevronRightIcon, CloseIcon } from "@/components/ui/Icons";
+import { useAutoHideChrome } from "@/components/ui/useAutoHideChrome";
 import { cn } from "@/lib/utils";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -45,6 +46,10 @@ export function Lightbox({
   const reduceMotion = useReducedMotion();
   const panelRef = useRef<HTMLDivElement>(null);
   const count = images.length;
+  /* Full screen is where the arrows hurt most — the picture fills the display,
+     so a control pinned to the middle of each edge is guaranteed to be on top
+     of the machine. */
+  const { hold, release, surfaceProps, chromeClass } = useAutoHideChrome();
 
   const step = useCallback(
     (d: number) => onIndexChange(((index + d) % count + count) % count),
@@ -136,7 +141,11 @@ export function Lightbox({
           </button>
         </div>
 
-        <div className="relative min-h-0 flex-1" onClick={(e) => e.stopPropagation()}>
+        <div
+          className="relative min-h-0 flex-1"
+          onClick={(e) => e.stopPropagation()}
+          {...surfaceProps}
+        >
           <AnimatePresence initial={false} mode="popLayout">
             <motion.div
               key={current.src}
@@ -171,14 +180,22 @@ export function Lightbox({
                 <button
                   key={d}
                   type="button"
-                  onClick={() => step(d)}
+                  onClick={() => {
+                    step(d);
+                    /* Stepping is a reason to keep the controls a moment
+                       longer — the visitor is working through the set. */
+                    release();
+                  }}
+                  onFocus={hold}
                   aria-label={d < 0 ? "Previous image" : "Next image"}
                   className={cn(
-                    "absolute top-1/2 z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full transition-all active:scale-95",
+                    "absolute top-1/2 z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full",
+                    "transition-all duration-300 active:scale-95",
                     fit === "contain"
                       ? "bg-navy-800/90 text-white hover:bg-amber-500 hover:text-navy-900"
                       : "bg-white/12 text-white backdrop-blur-sm hover:bg-amber-500 hover:text-navy-900",
                     d < 0 ? "left-3 md:left-6" : "right-3 md:right-6",
+                    chromeClass,
                   )}
                 >
                   <ChevronRightIcon className={cn("text-xl", d < 0 && "rotate-180")} />

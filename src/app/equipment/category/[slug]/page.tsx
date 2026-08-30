@@ -168,15 +168,10 @@ export default async function CategoryPage({ params, searchParams }: Props) {
         <Section tone="light">
           <Container>
             {machines.length > 0 ? (
-              <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+              <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3 xl:grid-cols-4">
                 {machines.map((item, index) => (
                   <Reveal key={item.id} delay={(index % 3) * 0.06} className="h-full">
-                    <EquipmentCard
-                      item={item}
-                      categoryLabel={category.name}
-                      className="h-full"
-                      priority={index < 3}
-                    />
+                    <EquipmentCard item={item} className="h-full" priority={index < 4} />
                   </Reveal>
                 ))}
               </div>

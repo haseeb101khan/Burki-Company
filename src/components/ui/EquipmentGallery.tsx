@@ -5,6 +5,7 @@ import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { ChevronRightIcon, ExpandIcon, PlayIcon } from "@/components/ui/Icons";
 import { Lightbox } from "@/components/ui/Lightbox";
+import { useAutoHideChrome } from "@/components/ui/useAutoHideChrome";
 import type { ImageRef, VideoRef } from "@/lib/data";
 import { cn } from "@/lib/utils";
 
@@ -79,6 +80,9 @@ export function EquipmentGallery({
   const [dir, setDir] = useState(0);
   const reduceMotion = useReducedMotion();
   const frameRef = useRef<HTMLDivElement>(null);
+  /* The step arrows sit over the machine. They show themselves once, then
+     stand down until the pointer or a tap asks for them. */
+  const { hold, release, surfaceProps, chromeClass } = useAutoHideChrome();
 
   const count = slides.length;
 
@@ -191,6 +195,7 @@ export function EquipmentGallery({
               // Vertical panning stays with the page; only horizontal is ours.
               multiple && "touch-pan-y",
             )}
+            {...surfaceProps}
           >
             <AnimatePresence custom={dir} initial={false} mode="popLayout">
               <motion.div
@@ -235,7 +240,11 @@ export function EquipmentGallery({
                   <button
                     key={d}
                     type="button"
-                    onClick={() => step(d)}
+                    onClick={() => {
+                      step(d);
+                      release();
+                    }}
+                    onFocus={hold}
                     aria-label={d < 0 ? "Previous item" : "Next item"}
                     className={cn(
                       "absolute top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full",
@@ -243,6 +252,7 @@ export function EquipmentGallery({
                       "transition-all duration-300 hover:bg-amber-500 hover:text-navy-900 active:scale-95",
                       "md:h-11 md:w-11",
                       d < 0 ? "left-3 md:left-4" : "right-3 md:right-4",
+                      chromeClass,
                     )}
                   >
                     <ChevronRightIcon className={cn("text-lg", d < 0 && "rotate-180")} />
