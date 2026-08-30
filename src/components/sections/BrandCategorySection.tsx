@@ -23,7 +23,7 @@ export function BrandCategorySection({
   brand: { name: string };
   categories: any[];
   categorySlug: string | undefined;
-  countsHere: Map<string, number>;
+  countsHere: Record<string, number>;
   machines: any[];
   categoryName: (s: string) => string | undefined;
   href: (category?: string) => string;
@@ -77,7 +77,7 @@ export function BrandCategorySection({
                 </li>
 
                 {categories.map((category) => {
-                  const count = countsHere.get(category.slug) ?? 0;
+                  const count = countsHere[category.slug] ?? 0;
                   const isActive = categorySlug === category.slug;
                   const carried = count > 0;
                   return (
@@ -140,7 +140,7 @@ export function BrandCategorySection({
                 </Link>
 
                 {categories.map((category) => {
-                  const count = countsHere.get(category.slug) ?? 0;
+                  const count = countsHere[category.slug] ?? 0;
                   const isActive = categorySlug === category.slug;
                   const carried = count > 0;
                   return (

@@ -75,10 +75,11 @@ export default async function BrandCataloguePage({ params, searchParams }: Props
 
   /* How many of this brand's machines sit in each category, so the strip can
      show a count where there is one and route elsewhere where there is not. */
-  const countsHere = all.reduce<Map<string, number>>(
+  const countsMap = all.reduce<Map<string, number>>(
     (acc, m) => acc.set(m.categorySlug, (acc.get(m.categorySlug) ?? 0) + 1),
     new Map(),
   );
+  const countsHere = Object.fromEntries(countsMap);
 
   const href = (category?: string) =>
     category ? `${routes.brand(slug)}?category=${category}` : routes.brand(slug);
