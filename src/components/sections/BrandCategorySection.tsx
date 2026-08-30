@@ -16,8 +16,9 @@ export function BrandCategorySection({
   categorySlug,
   countsHere,
   machines,
-  categoryName,
-  href,
+  categoryNameMap,
+  categoryUrls,
+  brandUrl,
   all,
 }: {
   brand: { name: string };
@@ -25,8 +26,9 @@ export function BrandCategorySection({
   categorySlug: string | undefined;
   countsHere: Record<string, number>;
   machines: any[];
-  categoryName: (s: string) => string | undefined;
-  href: (category?: string) => string;
+  categoryNameMap: Record<string, string>;
+  categoryUrls: Record<string, string>;
+  brandUrl: string;
   all: any[];
 }) {
   const [open, setOpen] = useState(false);
@@ -60,7 +62,7 @@ export function BrandCategorySection({
               <ul className="mt-4 space-y-px overflow-hidden rounded-[3px] border border-steel-200">
                 <li>
                   <Link
-                    href={href()}
+                    href={brandUrl}
                     aria-current={!categorySlug ? "true" : undefined}
                     className={cn(
                       "flex items-center justify-between gap-3 px-4 py-3 text-[0.875rem] font-medium transition-colors",
@@ -83,7 +85,7 @@ export function BrandCategorySection({
                   return (
                     <li key={category.id}>
                       <Link
-                        href={carried ? href(category.slug) : routes.category(category)}
+                        href={categoryUrls[category.slug] || "#"}
                         aria-current={isActive ? "true" : undefined}
                         className={cn(
                           "flex items-center justify-between gap-3 px-4 py-3 text-[0.875rem] transition-colors",
@@ -125,7 +127,7 @@ export function BrandCategorySection({
             {open && (
               <div className="lg:hidden grid grid-cols-3 gap-2 bg-navy-700 text-white p-3 rounded-[3px] max-h-64 overflow-y-auto">
                 <Link
-                  href={href()}
+                  href={brandUrl}
                   onClick={() => setOpen(false)}
                   aria-current={!categorySlug ? "true" : undefined}
                   className={cn(
@@ -146,7 +148,7 @@ export function BrandCategorySection({
                   return (
                     <Link
                       key={category.id}
-                      href={carried ? href(category.slug) : routes.category(category)}
+                      href={categoryUrls[category.slug] || "#"}
                       onClick={() => setOpen(false)}
                       aria-current={isActive ? "true" : undefined}
                       className={cn(
@@ -175,7 +177,7 @@ export function BrandCategorySection({
                   <Reveal key={item.id} delay={(index % 3) * 0.06} className="h-full">
                     <EquipmentCard
                       item={item}
-                      categoryLabel={categoryName(item.categorySlug)}
+                      categoryLabel={categoryNameMap[item.categorySlug]}
                       className="h-full"
                       priority={index < 3}
                     />

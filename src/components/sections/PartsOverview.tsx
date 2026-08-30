@@ -25,7 +25,7 @@ export async function PartsOverview() {
           description="Whatever the component group, we supply the full range within it — identified from your machine model and serial."
         />
 
-        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-10 grid gap-4 grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {categories.map((category, index) => (
             <Reveal key={category.id} delay={(index % 4) * 0.06}>
               <Link

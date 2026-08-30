@@ -81,10 +81,20 @@ export default async function BrandCataloguePage({ params, searchParams }: Props
   );
   const countsHere = Object.fromEntries(countsMap);
 
-  const href = (category?: string) =>
-    category ? `${routes.brand(slug)}?category=${category}` : routes.brand(slug);
+  const categoryNameMap = Object.fromEntries(
+    categories.map((c) => [c.slug, c.name])
+  );
 
-  const categoryName = (s: string) => categories.find((c) => c.slug === s)?.name;
+  const categoryUrls = Object.fromEntries(
+    categories.map((c) => {
+      const count = countsHere[c.slug] ?? 0;
+      const url =
+        count > 0
+          ? `${routes.brand(slug)}?category=${c.slug}`
+          : routes.category(c);
+      return [c.slug, url];
+    })
+  );
 
   return (
     <>
@@ -189,8 +199,9 @@ export default async function BrandCataloguePage({ params, searchParams }: Props
           categorySlug={categorySlug}
           countsHere={countsHere}
           machines={machines}
-          categoryName={categoryName}
-          href={href}
+          categoryNameMap={categoryNameMap}
+          categoryUrls={categoryUrls}
+          brandUrl={routes.brand(slug)}
           all={all}
         />
       </main>
