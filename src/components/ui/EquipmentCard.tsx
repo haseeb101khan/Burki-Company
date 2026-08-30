@@ -94,13 +94,13 @@ export function EquipmentCard({
         </p>
 
         {keyHighlights.length > 0 ? (
-          <dl className="mt-5 grid grid-cols-2 gap-px overflow-hidden rounded-[2px] bg-steel-200">
+          <dl className="mt-5 grid gap-px overflow-hidden rounded-[2px] bg-steel-200 sm:grid-cols-2">
             {keyHighlights.map((highlight) => (
               <div key={highlight.label} className="bg-steel-50 px-3 py-2.5">
-                <dt className="text-[0.625rem] font-medium uppercase tracking-[0.1em] text-steel-500">
+                <dt className="text-[0.625rem] font-medium uppercase tracking-[0.1em] text-steel-500 line-clamp-2">
                   {highlight.label}
                 </dt>
-                <dd className="mt-1 font-display text-base font-semibold tabular-nums text-navy-700">
+                <dd className="mt-1 font-display text-sm sm:text-base font-semibold tabular-nums text-navy-700">
                   {highlight.value}
                   {highlight.unit ? (
                     <span className="ml-1 text-xs font-medium text-steel-500">

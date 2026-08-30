@@ -165,7 +165,7 @@ export function EquipmentGallery({
         aria-roledescription={multiple ? "carousel" : undefined}
         aria-label={multiple ? `${name} media, ${count} items` : undefined}
         className={cn(
-          "relative aspect-square sm:aspect-[4/3] lg:aspect-[16/11] overflow-hidden rounded-[3px] border border-steel-200",
+          "relative aspect-[3/2] sm:aspect-[4/3] lg:aspect-[16/11] overflow-hidden rounded-[3px] border border-steel-200",
           fit === "contain" ? "bg-white" : "bg-steel-50",
           // Vertical panning stays with the page; only horizontal is ours.
           multiple && "touch-pan-y",
