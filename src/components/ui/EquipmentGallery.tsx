@@ -28,6 +28,21 @@ type Slide = { key: string; image: ImageRef };
  * the scrubber and a play badge appeared among the stills with no warning. The
  * tabs also mean a machine with no film shows no film control at all, rather
  * than an empty affordance — eight of the eleven Xinyuan models have one.
+ *
+ * ---------------------------------------------------------------------------
+ * NOTHING IN HERE MAY BE WIDER THAN ITS OWN COLUMN.
+ *
+ * This component is rendered into a CSS grid cell, and a grid item's automatic
+ * minimum size is `auto` — it refuses to shrink below its content. A single
+ * negative margin (the thumbnail strip once bled `-mx-5` to the page gutter)
+ * therefore does not overhang: it widens the whole grid track past the
+ * viewport, the `w-full` frame follows it, and the phone gets a hugely
+ * magnified photograph over a page that scrolls sideways.
+ *
+ * So: no negative margins, no fixed pixel widths, `min-w-0` on the root, and
+ * every horizontal strip is its own scroll container (a scroller's automatic
+ * minimum size resolves to zero, which is what keeps the track honest).
+ * ---------------------------------------------------------------------------
  */
 export function EquipmentGallery({
   images,
@@ -99,9 +114,10 @@ export function EquipmentGallery({
   if (count === 0) return null;
   const current = slides[active] ?? slides[0];
   const multiple = count > 1;
+  const showFilm = mode === "video" && hasFilm;
 
   return (
-    <div className="w-full">
+    <div className="w-full min-w-0">
       {/* --------------------------------------------------------- the tabs */}
       {/* Only rendered when there is actually a film. A machine with none
           shows no control at all rather than a dead or disabled one. */}
@@ -137,10 +153,22 @@ export function EquipmentGallery({
         </div>
       ) : null}
 
-      {/* --------------------------------------------------------- media container */}
-      <div className="overflow-hidden rounded-[3px] border border-steel-200 bg-navy-950">
-        {/* --------------------------------------------------------- the film */}
-        {mode === "video" && hasFilm ? (
+      {/* ---------------------------------------------------- the media window
+       *
+       * One window, one shape. The film and the photographs share the same
+       * 16:9 box and the same border, so switching tabs swaps the content
+       * without the page reflowing around it.
+       */}
+      <div
+        className={cn(
+          "w-full min-w-0 overflow-hidden rounded-[3px] border border-steel-200",
+          showFilm ? "bg-navy-950" : fit === "contain" ? "bg-white" : "bg-steel-50",
+        )}
+      >
+        {showFilm ? (
+          /* `preload="none"` so a 10 MB film is not pulled on page load — it
+             downloads when the tab is opened and play is pressed. The poster
+             carries the frame until then. */
           <video
             key={films[0].src}
             src={films[0].src}
@@ -149,12 +177,9 @@ export function EquipmentGallery({
             playsInline
             preload="none"
             aria-label={`${films[0].title} — ${name}`}
-            className="aspect-video w-full bg-navy-950 object-contain"
+            className="block aspect-video w-full bg-navy-950 object-contain"
           />
-        ) : null}
-
-        {/* ------------------------------------------------------- main frame */}
-        {mode === "images" ? (
+        ) : (
           <div
             ref={frameRef}
             tabIndex={multiple ? 0 : -1}
@@ -162,92 +187,95 @@ export function EquipmentGallery({
             aria-roledescription={multiple ? "carousel" : undefined}
             aria-label={multiple ? `${name} media, ${count} items` : undefined}
             className={cn(
-              "relative aspect-video w-full overflow-hidden bg-navy-950",
+              "relative aspect-video w-full overflow-hidden",
               // Vertical panning stays with the page; only horizontal is ours.
               multiple && "touch-pan-y",
             )}
           >
-        <AnimatePresence custom={dir} initial={false} mode="popLayout">
-          <motion.div
-            key={current.key}
-            custom={dir}
-            className="absolute inset-0"
-            // A frame arrives from the side it is travelling from, so the
-            // gesture and the motion agree. Thumbnail jumps pass dir 0 and
-            // simply cross-fade, since there is no direction to honour.
-            initial={{ opacity: 0, x: reduceMotion ? 0 : dir * 48 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: reduceMotion ? 0 : dir * -48 }}
-            transition={{ duration: reduceMotion ? 0 : 0.4, ease: EASE }}
-            drag={multiple ? "x" : false}
-            dragConstraints={{ left: 0, right: 0 }}
-            dragElastic={0.12}
-            dragMomentum={false}
-            onDragEnd={(_, info) => {
-              if (Math.abs(info.offset.x) < SWIPE_PX) return;
-              step(info.offset.x < 0 ? 1 : -1);
-            }}
-          >
-            <Image
-              src={current.image.src}
-              alt={current.image.alt}
-              fill
-              sizes="(min-width: 1024px) 52vw, 100vw"
-              // Dragging an image fires the browser's native drag-and-drop,
-              // which cancels the pointer stream mid-swipe.
-              draggable={false}
-              className="pointer-events-none select-none w-full h-full object-cover"
-            />
-          </motion.div>
-        </AnimatePresence>
-
-        {multiple ? (
-          <>
-            {([-1, 1] as const).map((d) => (
-              <button
-                key={d}
-                type="button"
-                onClick={() => step(d)}
-                aria-label={d < 0 ? "Previous item" : "Next item"}
-                className={cn(
-                  "absolute top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full",
-                  "bg-white/90 text-navy-800 shadow-[0_6px_20px_-8px_rgba(0,17,46,0.6)] backdrop-blur-sm",
-                  "transition-all duration-300 hover:bg-amber-500 hover:text-navy-900 active:scale-95",
-                  "md:h-11 md:w-11",
-                  d < 0 ? "left-3 md:left-4" : "right-3 md:right-4",
-                )}
+            <AnimatePresence custom={dir} initial={false} mode="popLayout">
+              <motion.div
+                key={current.key}
+                custom={dir}
+                className="absolute inset-0"
+                // A frame arrives from the side it is travelling from, so the
+                // gesture and the motion agree. Thumbnail jumps pass dir 0 and
+                // simply cross-fade, since there is no direction to honour.
+                initial={{ opacity: 0, x: reduceMotion ? 0 : dir * 48 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: reduceMotion ? 0 : dir * -48 }}
+                transition={{ duration: reduceMotion ? 0 : 0.4, ease: EASE }}
+                drag={multiple ? "x" : false}
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={0.12}
+                dragMomentum={false}
+                onDragEnd={(_, info) => {
+                  if (Math.abs(info.offset.x) < SWIPE_PX) return;
+                  step(info.offset.x < 0 ? 1 : -1);
+                }}
               >
-                <ChevronRightIcon className={cn("text-lg", d < 0 && "rotate-180")} />
-              </button>
-            ))}
+                <Image
+                  src={current.image.src}
+                  alt={current.image.alt}
+                  fill
+                  sizes="(min-width: 1024px) 52vw, 100vw"
+                  // Dragging an image fires the browser's native drag-and-drop,
+                  // which cancels the pointer stream mid-swipe.
+                  draggable={false}
+                  className={cn(
+                    "pointer-events-none select-none",
+                    fit === "contain" ? "object-contain p-5" : "object-cover",
+                  )}
+                />
+              </motion.div>
+            </AnimatePresence>
 
-            <p
-              aria-hidden="true"
-              className="absolute right-3 bottom-3 z-10 rounded-[2px] bg-navy-900/75 px-2.5 py-1 font-display text-[0.6875rem] font-semibold tracking-[0.1em] text-white tabular-nums md:right-4 md:bottom-4"
+            {multiple ? (
+              <>
+                {([-1, 1] as const).map((d) => (
+                  <button
+                    key={d}
+                    type="button"
+                    onClick={() => step(d)}
+                    aria-label={d < 0 ? "Previous item" : "Next item"}
+                    className={cn(
+                      "absolute top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full",
+                      "bg-white/90 text-navy-800 shadow-[0_6px_20px_-8px_rgba(0,17,46,0.6)] backdrop-blur-sm",
+                      "transition-all duration-300 hover:bg-amber-500 hover:text-navy-900 active:scale-95",
+                      "md:h-11 md:w-11",
+                      d < 0 ? "left-3 md:left-4" : "right-3 md:right-4",
+                    )}
+                  >
+                    <ChevronRightIcon className={cn("text-lg", d < 0 && "rotate-180")} />
+                  </button>
+                ))}
+
+                <p
+                  aria-hidden="true"
+                  className="absolute right-3 bottom-3 z-10 rounded-[2px] bg-navy-900/75 px-2.5 py-1 font-display text-[0.6875rem] font-semibold tracking-[0.1em] text-white tabular-nums md:right-4 md:bottom-4"
+                >
+                  {active + 1} / {count}
+                </p>
+              </>
+            ) : null}
+
+            {/* Full screen. A button rather than making the frame itself
+                clickable: the frame is draggable, and a drag that ends inside
+                it would otherwise be read as a click and throw the visitor
+                into the lightbox every time they swiped. */}
+            <button
+              type="button"
+              onClick={() => setFullscreen(true)}
+              aria-label={`View ${name} photographs full screen`}
+              className={cn(
+                "absolute left-3 bottom-3 z-10 flex h-9 w-9 items-center justify-center rounded-full md:left-4 md:bottom-4",
+                "bg-navy-900/75 text-white backdrop-blur-sm transition-colors",
+                "hover:bg-amber-500 hover:text-navy-900 active:scale-95",
+              )}
             >
-              {active + 1} / {count}
-            </p>
-          </>
-        ) : null}
-
-          {/* Full screen. A button rather than making the frame itself clickable:
-              the frame is draggable, and a drag that ends inside it would
-              otherwise be read as a click and throw the visitor into the
-              lightbox every time they swiped. */}
-          <button
-            type="button"
-            onClick={() => setFullscreen(true)}
-            aria-label={`View ${name} photographs full screen`}
-            className={cn(
-              "absolute left-3 bottom-3 z-10 flex h-9 w-9 items-center justify-center rounded-full md:left-4 md:bottom-4",
-              "bg-navy-900/75 text-white backdrop-blur-sm transition-colors",
-              "hover:bg-amber-500 hover:text-navy-900 active:scale-95",
-            )}
-          >
-            <ExpandIcon className="text-base" />
-          </button>
+              <ExpandIcon className="text-base" />
+            </button>
           </div>
-        ) : null}
+        )}
       </div>
 
       {/* -------------------------------------------------------- thumbnails
@@ -258,21 +286,32 @@ export function EquipmentGallery({
        * that exists to sell on numbers. One scrolling row is the same control
        * at a fixed height, and behaves identically whether a machine has three
        * frames or twenty-five.
+       *
+       * The strip is hidden while the film is showing: it controls the
+       * photographs, and leaving it under a playing video offers a control that
+       * does not act on what is on screen.
        */}
-      {multiple ? (
-        <ul className="-mx-5 mt-3 flex snap-x snap-mandatory gap-2.5 overflow-x-auto px-5 pb-1">
+      {multiple && !showFilm ? (
+        <ul className="mt-3 flex w-full min-w-0 snap-x snap-mandatory gap-2 overflow-x-auto pb-1">
           {slides.map((slide, i) => {
             const thumb = slide.image;
             const label = `Show photo ${i + 1} of ${name}`;
             return (
-              <li key={slide.key} className="w-[19%] min-w-[74px] shrink-0 snap-start">
+              <li
+                key={slide.key}
+                /* Percentage basis, never a pixel width: four-and-a-bit
+                   thumbnails to a row at any viewport, and nothing that can
+                   out-measure the column it sits in. */
+                className="w-[22%] shrink-0 grow-0 basis-[22%] snap-start sm:w-[18%] sm:basis-[18%]"
+              >
                 <button
                   type="button"
                   onClick={() => go(i, i > active ? 1 : -1)}
                   aria-label={label}
                   aria-current={i === active}
                   className={cn(
-                    "relative aspect-square w-full overflow-hidden rounded-[2px] border transition-all duration-300",
+                    "relative block aspect-square w-full overflow-hidden rounded-[2px] border transition-all duration-300",
+                    fit === "contain" ? "bg-white" : "bg-steel-50",
                     i === active
                       ? "border-navy-700 ring-1 ring-navy-700"
                       : "border-steel-200 opacity-70 hover:opacity-100",
@@ -283,15 +322,15 @@ export function EquipmentGallery({
                     alt=""
                     aria-hidden="true"
                     fill
-                    sizes="120px"
-                    className="object-cover"
+                    sizes="140px"
+                    className={cn(fit === "contain" ? "object-contain p-1.5" : "object-cover")}
                   />
                 </button>
               </li>
             );
           })}
-          </ul>
-        ) : null}
+        </ul>
+      ) : null}
 
       {fullscreen ? (
         <Lightbox

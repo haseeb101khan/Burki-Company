@@ -113,7 +113,12 @@ export default async function EquipmentDetailPage({ params }: Props) {
         <Section tone="light" spacing="tight">
           <Container>
             <div className="grid gap-6 md:gap-10 md:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:gap-14">
-              <Reveal>
+              {/* `min-w-0` is load-bearing, not tidying. A grid item's automatic
+                  minimum size is its content, so without it anything inside the
+                  gallery that measures wider than the column widens the column
+                  itself — on a phone that put the whole track past the viewport
+                  and blew the photograph up to several screens wide. */}
+              <Reveal className="min-w-0">
                 <EquipmentGallery
                   images={item.gallery}
                   videos={item.videos}
