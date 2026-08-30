@@ -137,12 +137,10 @@ export function EquipmentGallery({
         </div>
       ) : null}
 
-      {/* --------------------------------------------------------- the film */}
-      {mode === "video" && hasFilm ? (
-        <div className="overflow-hidden rounded-[3px] border border-steel-200 bg-navy-950">
-          {/* `preload="none"` so a 10 MB film is not pulled on page load — it
-              downloads when the tab is opened and play is pressed. The poster
-              carries the frame until then. */}
+      {/* --------------------------------------------------------- media container */}
+      <div className="overflow-hidden rounded-[3px] border border-steel-200 bg-navy-950">
+        {/* --------------------------------------------------------- the film */}
+        {mode === "video" && hasFilm ? (
           <video
             key={films[0].src}
             src={films[0].src}
@@ -153,24 +151,22 @@ export function EquipmentGallery({
             aria-label={`${films[0].title} — ${name}`}
             className="aspect-video w-full bg-navy-950 object-contain"
           />
-        </div>
-      ) : null}
+        ) : null}
 
-      {/* ------------------------------------------------------- main frame */}
-      <div hidden={mode === "video"} className="w-full overflow-hidden">
-      <div
-        ref={frameRef}
-        tabIndex={multiple ? 0 : -1}
-        role={multiple ? "group" : undefined}
-        aria-roledescription={multiple ? "carousel" : undefined}
-        aria-label={multiple ? `${name} media, ${count} items` : undefined}
-        className={cn(
-          "relative aspect-[3/2] sm:aspect-[4/3] lg:aspect-[16/11] overflow-hidden rounded-[3px] border border-steel-200",
-          fit === "contain" ? "bg-white" : "bg-steel-50",
-          // Vertical panning stays with the page; only horizontal is ours.
-          multiple && "touch-pan-y",
-        )}
-      >
+        {/* ------------------------------------------------------- main frame */}
+        {mode === "images" ? (
+          <div
+            ref={frameRef}
+            tabIndex={multiple ? 0 : -1}
+            role={multiple ? "group" : undefined}
+            aria-roledescription={multiple ? "carousel" : undefined}
+            aria-label={multiple ? `${name} media, ${count} items` : undefined}
+            className={cn(
+              "relative aspect-video w-full overflow-hidden bg-navy-950",
+              // Vertical panning stays with the page; only horizontal is ours.
+              multiple && "touch-pan-y",
+            )}
+          >
         <AnimatePresence custom={dir} initial={false} mode="popLayout">
           <motion.div
             key={current.key}
@@ -200,10 +196,7 @@ export function EquipmentGallery({
               // Dragging an image fires the browser's native drag-and-drop,
               // which cancels the pointer stream mid-swipe.
               draggable={false}
-              className={cn(
-                "pointer-events-none select-none",
-                fit === "contain" ? "object-contain p-5" : "object-cover",
-              )}
+              className="pointer-events-none select-none w-full h-full object-cover"
             />
           </motion.div>
         </AnimatePresence>
@@ -237,22 +230,24 @@ export function EquipmentGallery({
           </>
         ) : null}
 
-        {/* Full screen. A button rather than making the frame itself clickable:
-            the frame is draggable, and a drag that ends inside it would
-            otherwise be read as a click and throw the visitor into the
-            lightbox every time they swiped. */}
-        <button
-          type="button"
-          onClick={() => setFullscreen(true)}
-          aria-label={`View ${name} photographs full screen`}
-          className={cn(
-            "absolute left-3 bottom-3 z-10 flex h-9 w-9 items-center justify-center rounded-full md:left-4 md:bottom-4",
-            "bg-navy-900/75 text-white backdrop-blur-sm transition-colors",
-            "hover:bg-amber-500 hover:text-navy-900 active:scale-95",
-          )}
-        >
-          <ExpandIcon className="text-base" />
-        </button>
+          {/* Full screen. A button rather than making the frame itself clickable:
+              the frame is draggable, and a drag that ends inside it would
+              otherwise be read as a click and throw the visitor into the
+              lightbox every time they swiped. */}
+          <button
+            type="button"
+            onClick={() => setFullscreen(true)}
+            aria-label={`View ${name} photographs full screen`}
+            className={cn(
+              "absolute left-3 bottom-3 z-10 flex h-9 w-9 items-center justify-center rounded-full md:left-4 md:bottom-4",
+              "bg-navy-900/75 text-white backdrop-blur-sm transition-colors",
+              "hover:bg-amber-500 hover:text-navy-900 active:scale-95",
+            )}
+          >
+            <ExpandIcon className="text-base" />
+          </button>
+          </div>
+        ) : null}
       </div>
 
       {/* -------------------------------------------------------- thumbnails
@@ -289,7 +284,7 @@ export function EquipmentGallery({
                     aria-hidden="true"
                     fill
                     sizes="120px"
-                    className={cn(fit === "contain" ? "object-contain p-1.5" : "object-cover")}
+                    className="object-cover"
                   />
                 </button>
               </li>
@@ -297,7 +292,6 @@ export function EquipmentGallery({
           })}
           </ul>
         ) : null}
-      </div>
 
       {fullscreen ? (
         <Lightbox
