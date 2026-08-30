@@ -65,7 +65,7 @@ export async function PartnerStrip() {
                   key={`${copy}-${partner.id}`}
                   className="flex shrink-0 items-center justify-center px-6 sm:px-8"
                 >
-                  <div className="relative h-[56px] w-[128px] sm:h-[62px] sm:w-[148px]">
+                  <div className="relative h-[40px] w-[90px] sm:h-[50px] sm:w-[120px] md:h-[56px] md:w-[128px] lg:h-[62px] lg:w-[148px]">
                     <Image
                       src={partner.logo!}
                       alt={copy === 0 ? partner.name : ""}

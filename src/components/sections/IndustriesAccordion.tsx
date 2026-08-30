@@ -52,7 +52,7 @@ export function IndustriesAccordion({ industries }: { industries: Industry[] }) 
 
             <span
               className={cn(
-                "mt-4 block text-display-md uppercase transition-colors duration-500",
+                "mt-4 block text-lg sm:text-2xl md:text-display-md uppercase transition-colors duration-500",
                 open ? "text-navy-800" : "text-white",
               )}
             >

@@ -206,7 +206,7 @@ export function FeaturedCarousel({ slides }: { slides: Banner[] }) {
                     "mt-5 uppercase text-white [text-shadow:0_2px_18px_rgba(0,10,28,0.55)]",
                     /* The film has to share the frame with its own titling, so
                      its headline is set two steps down from a still's. */
-                    slide.video ? "text-display-md" : "text-display-xl",
+                    slide.video ? "text-xl sm:text-2xl md:text-display-md" : "text-2xl sm:text-3xl md:text-display-xl",
                   )}
                 >
                   {slide.title}
@@ -221,17 +221,18 @@ export function FeaturedCarousel({ slides }: { slides: Banner[] }) {
 
               <div
                 className={cn(
-                  "flex flex-col gap-3 sm:flex-row sm:items-center",
-                  slide.video ? "mt-10" : "mt-8",
+                  "flex flex-col gap-2 sm:gap-3 sm:flex-row sm:items-center",
+                  slide.video ? "mt-8 sm:mt-10" : "mt-6 sm:mt-8",
                 )}
               >
-                <Button href={slide.primary.href} size="lg">
+                <Button href={slide.primary.href} size="sm" className="sm:size-lg">
                   {slide.primary.label}
                   <ArrowRight />
                 </Button>
                 <Button
                   href={slide.secondary.href}
-                  size="lg"
+                  size="sm"
+                  className="sm:size-lg"
                   variant="outlineLight"
                 >
                   {slide.secondary.label}
