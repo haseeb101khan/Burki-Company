@@ -265,7 +265,7 @@ export function EquipmentGallery({
        * frames or twenty-five.
        */}
       {multiple ? (
-        <ul className="-mx-1 mt-3 flex snap-x snap-mandatory gap-2.5 overflow-x-auto px-1 pb-1">
+        <ul className="mt-3 flex snap-x snap-mandatory gap-2.5 overflow-x-auto md:-mx-1 md:px-1 pb-1">
           {slides.map((slide, i) => {
             const thumb = slide.image;
             const label = `Show photo ${i + 1} of ${name}`;
