@@ -33,6 +33,22 @@ export const ExpandIcon = (p: IconProps) => (
   </Icon>
 );
 
+/** Loupe with a plus — "closer". */
+export const ZoomInIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <circle cx="11" cy="11" r="7" />
+    <path d="m20 20-3.6-3.6M11 8.4v5.2M8.4 11h5.2" />
+  </Icon>
+);
+
+/** Loupe with a minus — "back out". */
+export const ZoomOutIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <circle cx="11" cy="11" r="7" />
+    <path d="m20 20-3.6-3.6M8.4 11h5.2" />
+  </Icon>
+);
+
 export const MenuIcon = (p: IconProps) => (
   <Icon {...p}>
     <path d="M3 6h18M3 12h18M3 18h18" />

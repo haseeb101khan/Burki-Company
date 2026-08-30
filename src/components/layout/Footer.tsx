@@ -1,4 +1,3 @@
-import Link from "next/link";
 import {
   getEquipmentCategories,
   getIndustries,
@@ -12,38 +11,11 @@ import {
   PhoneIcon,
   socialIcons,
 } from "@/components/ui/Icons";
+import { FooterColumn } from "@/components/layout/FooterColumn";
 import { Logo } from "@/components/ui/Logo";
 import { Container } from "@/components/ui/Section";
 import { toDialString } from "@/lib/utils";
 import { routes } from "@/lib/routes";
-
-function FooterColumn({
-  title,
-  links,
-}: {
-  title: string;
-  links: { label: string; href: string }[];
-}) {
-  return (
-    <div>
-      <h3 className="font-display text-[0.6875rem] font-semibold uppercase tracking-[0.2em] text-amber-500">
-        {title}
-      </h3>
-      <ul className="mt-5 space-y-2.5">
-        {links.map((link) => (
-          <li key={`${title}-${link.href}-${link.label}`}>
-            <Link
-              href={link.href}
-              className="text-[0.875rem] text-white/60 transition-colors hover:text-white"
-            >
-              {link.label}
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
 
 export async function Footer() {
   const [site, categories, partCategories, industries] = await Promise.all([
@@ -58,7 +30,7 @@ export async function Footer() {
   return (
     <footer className="bg-navy-900 text-white">
       <Container className="py-16 md:py-20">
-        <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1fr] lg:gap-10">
+        <div className="grid gap-10 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
           {/* ------------------------------------------------ brand block */}
           <div className="max-w-sm">
             <Logo variant="white" height={38} />
@@ -122,30 +94,41 @@ export async function Footer() {
             </div>
           </div>
 
-          {/* ------------------------------------------------ link columns */}
-          <FooterColumn
-            title="Equipment"
-            links={[
-              ...categories.slice(0, 7).map((c) => ({
-                label: c.name,
-                href: routes.category(c),
-              })),
-              { label: "All equipment", href: routes.equipment() },
-            ]}
-          />
+          {/* ------------------------------------------------ link columns
+           *
+           * All four are siblings so they read as one run of strips while
+           * stacked. Industries and Company used to share a column, which as
+           * strips would have put a hairline between two of them and a gap
+           * between the other two.
+           *
+           * `lg:contents` dissolves this wrapper at the wide breakpoint, so the
+           * four become grid items of the footer grid itself and take the
+           * 1fr_1fr_1fr tracks — the layout the columns were designed for,
+           * without a second grid inside the first.
+           */}
+          <div className="border-t border-white/10 lg:contents lg:border-t-0">
+            <FooterColumn
+              title="Equipment"
+              links={[
+                ...categories.slice(0, 7).map((c) => ({
+                  label: c.name,
+                  href: routes.category(c),
+                })),
+                { label: "All equipment", href: routes.equipment() },
+              ]}
+            />
 
-          <FooterColumn
-            title="Parts"
-            links={[
-              ...partCategories.map((c) => ({
-                label: c.name,
-                href: `/parts/${c.slug}`,
-              })),
-              { label: "All parts", href: "/parts" },
-            ]}
-          />
+            <FooterColumn
+              title="Parts"
+              links={[
+                ...partCategories.map((c) => ({
+                  label: c.name,
+                  href: `/parts/${c.slug}`,
+                })),
+                { label: "All parts", href: "/parts" },
+              ]}
+            />
 
-          <div className="space-y-10">
             <FooterColumn
               title="Industries"
               links={industries.slice(0, 6).map((i) => ({
@@ -153,6 +136,7 @@ export async function Footer() {
                 href: `/industries/${i.slug}`,
               }))}
             />
+
             <FooterColumn
               title="Company"
               links={[
