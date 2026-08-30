@@ -35,5 +35,5 @@ export async function AboutIntro() {
     },
   ];
 
-  return <AboutIntroCards cards={cards} video={site.introVideo} />;
+  return <AboutIntroCards cards={cards} />;
 }

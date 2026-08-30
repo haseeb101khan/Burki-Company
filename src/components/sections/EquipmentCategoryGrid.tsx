@@ -37,10 +37,10 @@ export async function EquipmentCategoryGrid() {
         </Button>
       </div>
 
-      <div className="mt-6 grid grid-cols-4 gap-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6">
+      <div className="mt-6 grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
         {categories.map((category, index) => (
           <Reveal key={category.id} delay={(index % 6) * 0.04}>
-            <CategoryIconTile category={category} count={counts[category.slug]} />
+            <CategoryIconTile category={category} count={counts[category.slug]} compact />
           </Reveal>
         ))}
       </div>

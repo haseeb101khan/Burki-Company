@@ -6,17 +6,16 @@ import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { BrandIntroVideo } from "@/components/ui/BrandIntroVideo";
 import { ArrowRight, Button } from "@/components/ui/Button";
-import { EquipmentCard } from "@/components/ui/EquipmentCard";
 import { ChevronRightIcon } from "@/components/ui/Icons";
 import { Reveal } from "@/components/ui/Reveal";
-import { Container, Eyebrow, Section, SectionHeader } from "@/components/ui/Section";
+import { Container, Section, SectionHeader } from "@/components/ui/Section";
+import { BrandCategorySection } from "@/components/sections/BrandCategorySection";
 import {
   getBrandBySlug,
   getEquipment,
   getEquipmentCategories,
 } from "@/lib/data";
 import { routes } from "@/lib/routes";
-import { cn } from "@/lib/utils";
 
 /**
  * ONE BRAND'S CATALOGUE.
@@ -183,127 +182,16 @@ export default async function BrandCataloguePage({ params, searchParams }: Props
         </Section>
 
         {/* --------------------------------------- categories + the listings */}
-        <Section tone="light" spacing="tight" className="pt-8 md:pt-10">
-          <Container>
-            <div className="grid gap-8 lg:grid-cols-[236px_minmax(0,1fr)] lg:gap-10">
-              {/*
-               * The category strip.
-               *
-               * Every category is listed, not only the ones this brand carries,
-               * because it doubles as the catalogue's navigation. A category the
-               * brand has machines in filters within the brand; one it does not
-               * links to the cross-brand listing for that class. Neither is a
-               * dead end, which is what a greyed-out row would have been.
-               */}
-              <aside className="lg:sticky lg:top-24 lg:self-start">
-                <h2 className="font-display text-[0.6875rem] font-semibold uppercase tracking-[0.16em] text-steel-500">
-                  Categories
-                </h2>
-
-                <ul className="mt-4 space-y-px overflow-hidden rounded-[3px] border border-steel-200">
-                  <li>
-                    <Link
-                      href={href()}
-                      aria-current={!categorySlug ? "true" : undefined}
-                      className={cn(
-                        "flex items-center justify-between gap-3 px-4 py-3 text-[0.875rem] font-medium transition-colors",
-                        !categorySlug
-                          ? "bg-navy-700 text-white"
-                          : "bg-white text-navy-800 hover:bg-navy-50",
-                      )}
-                    >
-                      <span>All {brand.name}</span>
-                      <span className="shrink-0 tabular-nums text-[0.75rem] opacity-70">
-                        {all.length}
-                      </span>
-                    </Link>
-                  </li>
-
-                  {categories.map((category) => {
-                    const count = countsHere.get(category.slug) ?? 0;
-                    const isActive = categorySlug === category.slug;
-                    const carried = count > 0;
-                    return (
-                      <li key={category.id}>
-                        <Link
-                          href={carried ? href(category.slug) : routes.category(category)}
-                          aria-current={isActive ? "true" : undefined}
-                          className={cn(
-                            "flex items-center justify-between gap-3 px-4 py-3 text-[0.875rem] transition-colors",
-                            isActive
-                              ? "bg-navy-700 font-medium text-white"
-                              : carried
-                                ? "bg-white font-medium text-navy-800 hover:bg-navy-50"
-                                : "bg-white text-steel-500 hover:bg-steel-50 hover:text-navy-700",
-                          )}
-                        >
-                          <span>{category.name}</span>
-                          {carried ? (
-                            <span className="shrink-0 tabular-nums text-[0.75rem] opacity-70">
-                              {count}
-                            </span>
-                          ) : (
-                            <ChevronRightIcon className="shrink-0 text-[0.85em] text-steel-300" />
-                          )}
-                        </Link>
-                      </li>
-                    );
-                  })}
-                </ul>
-
-                <div className="mt-5 rounded-[3px] border border-steel-200 bg-steel-50 p-4">
-                  <p className="font-display text-[0.6875rem] font-semibold uppercase tracking-[0.16em] text-navy-700">
-                    Need help choosing?
-                  </p>
-                  <p className="mt-2 text-[0.8125rem] leading-relaxed text-steel-600">
-                    Tell us the job and the site, and we will specify the machine.
-                  </p>
-                  <Button href={routes.quote()} size="sm" variant="outline" className="mt-4 w-full">
-                    Contact us
-                  </Button>
-                </div>
-              </aside>
-
-              <div>
-                {machines.length > 0 ? (
-                  <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-                    {machines.map((item, index) => (
-                      <Reveal key={item.id} delay={(index % 3) * 0.06} className="h-full">
-                        <EquipmentCard
-                          item={item}
-                          categoryLabel={categoryName(item.categorySlug)}
-                          className="h-full"
-                          priority={index < 3}
-                        />
-                      </Reveal>
-                    ))}
-                  </div>
-                ) : (
-                  <div className="mx-auto max-w-lg py-8 text-center">
-                    <Eyebrow>Coming soon</Eyebrow>
-                    <h2 className="font-display mt-4 text-2xl font-bold uppercase text-navy-800">
-                      {brand.name} models are being catalogued
-                    </h2>
-                    <p className="mt-3 text-base leading-relaxed text-steel-600">
-                      We supply {brand.name} equipment and can quote against a
-                      specification today — the individual models are not on the
-                      site yet.
-                    </p>
-                    <div className="mt-7 flex flex-wrap justify-center gap-3">
-                      <Button href={routes.quote()}>
-                        Request a quote
-                        <ArrowRight />
-                      </Button>
-                      <Button href={routes.equipment()} variant="outline">
-                        All brands
-                      </Button>
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
-          </Container>
-        </Section>
+        <BrandCategorySection
+          brand={brand}
+          categories={categories}
+          categorySlug={categorySlug}
+          countsHere={countsHere}
+          machines={machines}
+          categoryName={categoryName}
+          href={href}
+          all={all}
+        />
       </main>
       <Footer />
     </>

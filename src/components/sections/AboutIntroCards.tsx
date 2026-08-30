@@ -27,10 +27,8 @@ const INTERVAL_MS = 5000;
  */
 export function AboutIntroCards({
   cards,
-  video,
 }: {
   cards: IntroCard[];
-  video: { src: string | null; poster: string };
 }) {
   const [index, setIndex] = useState(0);
   const reduceMotion = useReducedMotion();
@@ -56,7 +54,7 @@ export function AboutIntroCards({
   return (
     <section className="navy-depth bg-navy-800 text-white">
       <Container className="py-16 md:py-22">
-        <div className="grid gap-12 lg:grid-cols-[minmax(0,6fr)_minmax(0,5fr)] lg:items-center lg:gap-16">
+        <div className="grid gap-12 lg:gap-16">
           {/* --------------------------------------------------- rotating copy */}
           <div>
             <p className="eyebrow-rule font-display text-eyebrow uppercase text-amber-500">
@@ -156,45 +154,6 @@ export function AboutIntroCards({
             </div>
           </div>
 
-          {/* -------------------------------------------------------- video */}
-          <div>
-            <div className="relative aspect-video overflow-hidden rounded-[3px] border border-white/15 bg-navy-900">
-              {video.src ? (
-                <video
-                  controls
-                  preload="metadata"
-                  poster={video.poster}
-                  className="h-full w-full object-cover"
-                >
-                  <source src={video.src} type="video/mp4" />
-                </video>
-              ) : (
-                <>
-                  <Image
-                    src={video.poster}
-                    alt="Burki &amp; Company introduction"
-                    fill
-                    sizes="(min-width: 1024px) 42vw, 100vw"
-                    className="object-cover opacity-55"
-                  />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="flex h-16 w-16 items-center justify-center rounded-full border border-white/40 bg-navy-950/40 backdrop-blur-sm">
-                      <svg
-                        viewBox="0 0 24 24"
-                        aria-hidden="true"
-                        className="h-6 w-6 translate-x-[2px] fill-white"
-                      >
-                        <path d="M8 5.5v13l11-6.5-11-6.5z" />
-                      </svg>
-                    </span>
-                  </div>
-                </>
-              )}
-            </div>
-            <p className="mt-3 font-display text-[0.6875rem] font-semibold uppercase tracking-[0.16em] text-white/45">
-              Company introduction
-            </p>
-          </div>
         </div>
       </Container>
     </section>
