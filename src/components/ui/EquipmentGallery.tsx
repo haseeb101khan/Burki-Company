@@ -101,7 +101,7 @@ export function EquipmentGallery({
   const multiple = count > 1;
 
   return (
-    <div>
+    <div className="w-full">
       {/* --------------------------------------------------------- the tabs */}
       {/* Only rendered when there is actually a film. A machine with none
           shows no control at all rather than a dead or disabled one. */}
@@ -157,7 +157,7 @@ export function EquipmentGallery({
       ) : null}
 
       {/* ------------------------------------------------------- main frame */}
-      <div hidden={mode === "video"}>
+      <div hidden={mode === "video"} className="w-full overflow-hidden">
       <div
         ref={frameRef}
         tabIndex={multiple ? 0 : -1}
@@ -265,7 +265,7 @@ export function EquipmentGallery({
        * frames or twenty-five.
        */}
       {multiple ? (
-        <ul className="mt-3 flex snap-x snap-mandatory gap-2.5 overflow-x-auto md:-mx-1 md:px-1 pb-1">
+        <ul className="-mx-5 mt-3 flex snap-x snap-mandatory gap-2.5 overflow-x-auto px-5 pb-1">
           {slides.map((slide, i) => {
             const thumb = slide.image;
             const label = `Show photo ${i + 1} of ${name}`;
