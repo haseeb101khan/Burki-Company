@@ -98,7 +98,7 @@ export function FeaturedCarousel({ slides }: { slides: Banner[] }) {
             <motion.div
               className="absolute inset-0"
               initial={{ scale: 1 }}
-              animate={{ scale: slide.video ? 1 : 1.07 }}
+              animate={{ scale: slide.video ? 1 : 1.03 }}
               transition={{ duration: INTERVAL_MS / 1000 + 2, ease: "linear" }}
             >
               {/*

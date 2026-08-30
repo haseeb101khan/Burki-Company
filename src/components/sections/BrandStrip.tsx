@@ -62,7 +62,7 @@ function BrandMark({ brand }: { brand: Brand }) {
         alt={brand.name}
         fill
         sizes="(min-width: 1024px) 140px, 22vw"
-        className="object-contain opacity-70 transition-opacity duration-300 group-hover:opacity-0"
+        className="object-contain opacity-70 transition-opacity duration-300 group-hover:opacity-0 group-active:opacity-0 group-focus-visible:opacity-0"
       />
       <Image
         src={brand.logo.white}
@@ -70,7 +70,7 @@ function BrandMark({ brand }: { brand: Brand }) {
         aria-hidden="true"
         fill
         sizes="(min-width: 1024px) 140px, 22vw"
-        className="object-contain opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+        className="object-contain opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-active:opacity-100 group-focus-visible:opacity-100"
       />
     </span>
   );
