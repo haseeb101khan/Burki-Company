@@ -90,9 +90,9 @@ export async function BrandStrip() {
         {/* Six columns because there are six brands. An eight-column grid left
             two dead cells hanging off the end of the row. If the list grows,
             this is the number to change. */}
-        <ul className="grid grid-cols-2 gap-px bg-steel-200 sm:grid-cols-3 lg:grid-cols-6">
+        <ul className="flex overflow-x-auto gap-px bg-steel-200 lg:grid lg:grid-cols-6">
           {brands.map((brand, index) => (
-            <li key={brand.id}>
+            <li key={brand.id} className="min-w-[calc(100%/3)] sm:min-w-[calc(100%/3)] lg:min-w-auto">
               <Reveal delay={index * 0.04} y={10}>
                 {/* The strip was six inert boxes. Each cell now opens that
                     brand's catalogue, which is the only thing anyone would
@@ -100,7 +100,7 @@ export async function BrandStrip() {
                 <Link
                   href={routes.brand(brand)}
                   aria-label={`${brand.name} equipment`}
-                  className="group flex items-center justify-center bg-white px-2.5 py-4 transition-colors duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:bg-navy-800 md:px-4 md:py-5"
+                  className="group flex items-center justify-center bg-white px-2.5 py-4 transition-colors duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:bg-navy-800 md:px-4 md:py-5 h-full"
                 >
                   <BrandMark brand={brand} />
                 </Link>

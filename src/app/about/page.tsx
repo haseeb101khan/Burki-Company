@@ -147,7 +147,7 @@ export default async function AboutPage() {
               everything stacked in the right-hand column would have put the
               logos level with a paragraph that does not mention them.
             */}
-            <div className="grid gap-x-16 gap-y-12 lg:grid-cols-2">
+            <div className="grid gap-x-8 gap-y-8 md:gap-x-12 md:gap-y-10 md:grid-cols-2 lg:gap-x-16 lg:gap-y-12">
               <Reveal>
                 <p className="eyebrow-rule font-display text-eyebrow uppercase text-navy-700">
                   Our legacy

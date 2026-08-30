@@ -112,7 +112,7 @@ export default async function EquipmentDetailPage({ params }: Props) {
         {/* --------------------------------------------------- gallery + overview */}
         <Section tone="light" spacing="tight">
           <Container>
-            <div className="grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:gap-14">
+            <div className="grid gap-6 md:gap-10 md:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:gap-14">
               <Reveal>
                 <EquipmentGallery
                   images={item.gallery}
@@ -128,7 +128,7 @@ export default async function EquipmentDetailPage({ params }: Props) {
                   {item.series ? ` — ${item.series}` : ""}
                 </p>
 
-                <h1 className="mt-3 text-display-lg uppercase text-navy-800">{item.model}</h1>
+                <h1 className="mt-3 text-2xl sm:text-3xl md:text-display-lg uppercase text-navy-800">{item.model}</h1>
 
                 {item.tagline ? (
                   <p className="mt-2 font-display text-lg font-semibold uppercase tracking-[0.06em] text-steel-500">
