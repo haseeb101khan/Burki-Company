@@ -114,11 +114,16 @@ export default async function AboutPage() {
                   premises it is told from. Full width under both columns, so it
                   reads as the section's picture and not as an illustration to
                   one column. */}
+              {/* 16:9 at every width, not 21:9 on desktop. The photograph is
+                  1.94:1, so a 16:9 frame trims a few percent off each side and
+                  keeps the building's full height — the name across the parapet
+                  included. A 21:9 frame crops top and bottom instead, and the
+                  first thing it takes is the name. */}
               <BoxReveal className="mt-10 rounded-[3px] md:mt-14">
-                <div className="relative aspect-[16/9] w-full overflow-hidden rounded-[3px] bg-steel-100 md:aspect-[21/9]">
+                <div className="relative aspect-[16/9] w-full overflow-hidden rounded-[3px] bg-steel-100">
                   <Image
-                    src="/images/about/burki-main-building.webp"
-                    alt="The Burki & Company main building, with a LOAD-X wheel loader on the forecourt"
+                    src="/images/about/burki-group-hq.webp"
+                    alt="The Burki Group of Companies head office, a glass-fronted building carrying the group's name across its parapet"
                     fill
                     sizes="(min-width: 1400px) 1300px, 100vw"
                     className="object-cover"
