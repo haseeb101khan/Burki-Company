@@ -94,7 +94,10 @@ export function EquipmentCard({
       </div>
 
       <div className="flex flex-1 flex-col border-t border-steel-100 p-3.5 md:p-4">
-        <h3 className="text-base font-bold uppercase leading-tight tracking-tight text-navy-800 sm:text-lg md:text-xl">
+        {/* The model number is what a buyer is scanning the row for — "C65",
+            "LX-926" — so it is set at heading scale rather than at the size of
+            the copy underneath it. */}
+        <h3 className="text-xl font-bold uppercase leading-tight tracking-tight text-navy-800 sm:text-2xl md:text-3xl">
           {item.model}
         </h3>
 

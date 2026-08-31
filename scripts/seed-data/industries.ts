@@ -23,7 +23,7 @@ export const industries: Industry[] = [
       { title: "Uptime", description: "Parts availability that keeps a critical-path machine from stopping the pour." },
     ],
     recommendedCategorySlugs: ["excavators", "wheel-loaders", "backhoe-loaders", "cranes"],
-    recommendedEquipmentSlugs: ["lx-926", "lx-650"],
+    recommendedEquipmentSlugs: ["lx-926"],
     order: 1,
   },
   {
@@ -78,7 +78,7 @@ export const industries: Industry[] = [
       { title: "Field-replaceable wear parts", description: "Cutting edges, teeth and undercarriage changed on site rather than in a workshop." },
     ],
     recommendedCategorySlugs: ["wheel-loaders", "excavators", "dump-trucks", "bulldozers"],
-    recommendedEquipmentSlugs: ["lx-950", "lx-936"],
+    recommendedEquipmentSlugs: ["lx-936"],
     order: 4,
   },
   {
@@ -96,7 +96,7 @@ export const industries: Industry[] = [
       { title: "Attachment flexibility", description: "Forks, grapples and specialist tools changed quickly as the load changes." },
     ],
     recommendedCategorySlugs: ["forklifts", "wheel-loaders", "attachments"],
-    recommendedEquipmentSlugs: ["lx-650", "lx-926"],
+    recommendedEquipmentSlugs: ["lx-926"],
     order: 5,
   },
   {
@@ -114,7 +114,7 @@ export const industries: Industry[] = [
       { title: "Shutdown windows", description: "Reliability planned around fixed outage periods with no slack for breakdowns." },
     ],
     recommendedCategorySlugs: ["cranes", "forklifts", "excavators", "attachments"],
-    recommendedEquipmentSlugs: ["lx-650"],
+    recommendedEquipmentSlugs: ["lx-926"],
     order: 6,
   },
 ];

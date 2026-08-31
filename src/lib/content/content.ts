@@ -357,187 +357,6 @@ export const content: ContentSnapshot = {
   ],
   "equipment": [
     {
-      "id": "eq-lx-650",
-      "slug": "lx-650",
-      "model": "LX-650",
-      "name": "LX-650 Compact Wheel Loader",
-      "categorySlug": "wheel-loaders",
-      "brand": "LOAD-X",
-      "series": "LX Series",
-      "tagline": "Small footprint, full-size driveline",
-      "summary": "Compact, tight-turning loader for confined yards, batching plants and municipal work where a full-size machine cannot manoeuvre.",
-      "description": "The LX-650 is the entry point to the LX Series. It is built for sites where space, not tonnage, is the constraint: narrow yards, block factories and municipal depots. A short wheelbase and articulated steering let it work close to walls and stockpiles, while the same driveline architecture as the larger LX machines keeps parts commonality high across a mixed fleet.",
-      "image": {
-        "src": "/images/load-x/lx-650-cutout.webp",
-        "alt": "LOAD-X LX-650 compact wheel loader"
-      },
-      "cutoutImage": {
-        "src": "/images/load-x/lx-650-cutout.webp",
-        "alt": "LOAD-X LX-650 wheel loader, isolated on white"
-      },
-      "gallery": [
-        {
-          "src": "/brands/Load-x/lx650/lx-650-1.PNG",
-          "alt": "LOAD-X LX-650 compact wheel loader"
-        }
-      ],
-      "highlights": [
-        {
-          "label": "Operating weight",
-          "value": "5,200",
-          "unit": "kg"
-        },
-        {
-          "label": "Bucket capacity",
-          "value": "0.9",
-          "unit": "m³"
-        },
-        {
-          "label": "Rated load",
-          "value": "1,800",
-          "unit": "kg"
-        },
-        {
-          "label": "Engine power",
-          "value": "62",
-          "unit": "kW"
-        }
-      ],
-      "specs": [
-        {
-          "title": "Engine",
-          "specs": [
-            {
-              "label": "Engine model",
-              "value": "Yuchai YC4A85"
-            },
-            {
-              "label": "Rated power",
-              "value": "62",
-              "unit": "kW (83 hp)"
-            },
-            {
-              "label": "Rated speed",
-              "value": "2,200",
-              "unit": "rpm"
-            },
-            {
-              "label": "Displacement",
-              "value": "4.3",
-              "unit": "L"
-            },
-            {
-              "label": "Emission standard",
-              "value": "Stage II equivalent"
-            }
-          ]
-        },
-        {
-          "title": "Operating",
-          "specs": [
-            {
-              "label": "Operating weight",
-              "value": "5,200",
-              "unit": "kg"
-            },
-            {
-              "label": "Rated load",
-              "value": "1,800",
-              "unit": "kg"
-            },
-            {
-              "label": "Bucket capacity",
-              "value": "0.9",
-              "unit": "m³"
-            },
-            {
-              "label": "Breakout force",
-              "value": "52",
-              "unit": "kN"
-            },
-            {
-              "label": "Max travel speed",
-              "value": "28",
-              "unit": "km/h"
-            }
-          ]
-        },
-        {
-          "title": "Dimensions",
-          "specs": [
-            {
-              "label": "Overall length",
-              "value": "5,650",
-              "unit": "mm"
-            },
-            {
-              "label": "Overall width (bucket)",
-              "value": "2,080",
-              "unit": "mm"
-            },
-            {
-              "label": "Overall height (cab)",
-              "value": "2,850",
-              "unit": "mm"
-            },
-            {
-              "label": "Wheelbase",
-              "value": "2,150",
-              "unit": "mm"
-            },
-            {
-              "label": "Dump height",
-              "value": "2,650",
-              "unit": "mm"
-            }
-          ]
-        },
-        {
-          "title": "Capacities",
-          "specs": [
-            {
-              "label": "Fuel tank",
-              "value": "90",
-              "unit": "L"
-            },
-            {
-              "label": "Hydraulic tank",
-              "value": "70",
-              "unit": "L"
-            },
-            {
-              "label": "Tyre size",
-              "value": "16/70-20"
-            }
-          ]
-        }
-      ],
-      "features": [
-        {
-          "title": "Tight turning circle",
-          "description": "Articulated frame and short wheelbase let the machine work close in without repositioning."
-        },
-        {
-          "title": "Shared LX driveline",
-          "description": "Common filters and driveline parts with larger LX machines reduce what a mixed fleet needs to stock."
-        },
-        {
-          "title": "Quick-attach ready",
-          "description": "Standard coupler mounting accepts buckets, forks and grapples without workshop modification."
-        }
-      ],
-      "relatedEquipmentSlugs": [
-        "lx-926",
-        "lx-930"
-      ],
-      "isFeatured": false,
-      "isPlaceholder": true,
-      "order": 1,
-      "brandSlug": "load-x",
-      "categoryName": "Wheel Loaders",
-      "videos": []
-    },
-    {
       "id": "eq-lx-926",
       "slug": "lx-926",
       "model": "LX-926",
@@ -549,14 +368,18 @@ export const content: ContentSnapshot = {
       "summary": "A 4.5 tonne loader with a 1 m³ bucket, built for confined yards, block plants and municipal work where a full-size machine cannot turn.",
       "description": "The LX-926 is the compact machine in the LX Series. A 5,870 mm length and articulated steering let it work close to walls and stockpiles, while a 76 kW Huafeng diesel and 4WD driveline keep it loading rather than spinning. Supplied new, CE / BV / SGS certified with ROPS and FOPS structures.",
       "image": {
-        "src": "/brands/Load-x/lx926/lx-926-1.jpg",
-        "alt": "LOAD-X LX-926 wheel loader, side view"
+        "src": "/images/load-x/lx-926-cover.webp",
+        "alt": "LOAD-X LX-926 wheel loader on a forecourt, bucket lowered"
       },
       "cutoutImage": {
         "src": "/images/load-x/lx-926-cutout.webp",
         "alt": "LOAD-X LX-926 wheel loader, isolated on white"
       },
       "gallery": [
+        {
+          "src": "/images/load-x/lx-926-cover.webp",
+          "alt": "LOAD-X LX-926 wheel loader on a forecourt, bucket lowered"
+        },
         {
           "src": "/brands/Load-x/lx926/lx-926-1.jpg",
           "alt": "LOAD-X LX-926 wheel loader, side view"
@@ -783,8 +606,7 @@ export const content: ContentSnapshot = {
       ],
       "relatedEquipmentSlugs": [
         "lx-936",
-        "lx-930",
-        "lx-650"
+        "lx-930"
       ],
       "isFeatured": true,
       "isPlaceholder": false,
@@ -982,8 +804,7 @@ export const content: ContentSnapshot = {
       ],
       "relatedEquipmentSlugs": [
         "lx-926",
-        "lx-936",
-        "lx-950"
+        "lx-936"
       ],
       "isFeatured": false,
       "isPlaceholder": true,
@@ -1254,210 +1075,11 @@ export const content: ContentSnapshot = {
       ],
       "relatedEquipmentSlugs": [
         "lx-926",
-        "lx-930",
-        "lx-950"
+        "lx-930"
       ],
       "isFeatured": true,
       "isPlaceholder": false,
       "order": 4,
-      "brandSlug": "load-x",
-      "categoryName": "Wheel Loaders",
-      "videos": []
-    },
-    {
-      "id": "eq-lx-950",
-      "slug": "lx-950",
-      "model": "LX-950",
-      "name": "LX-950 Wheel Loader",
-      "categorySlug": "wheel-loaders",
-      "brand": "LOAD-X",
-      "series": "LX Series",
-      "tagline": "Built for tonnes per hour",
-      "summary": "The largest machine in the LX Series. 5.0 tonne rated load and a 3.0 m³ bucket for mining, quarrying and bulk terminals.",
-      "description": "The LX-950 is specified for operations measured in tonnes per hour: quarry loading, port bulk handling, mine site stockpiles. A 162 kW engine, 3.0 m³ bucket and heavy-duty axles carry sustained full-bucket work, while the larger cooling package and higher-capacity filtration are built around long shifts in dust and heat.",
-      "image": {
-        "src": "/images/load-x/lx-950-cutout.webp",
-        "alt": "LOAD-X LX-950 wheel loader"
-      },
-      "cutoutImage": {
-        "src": "/images/load-x/lx-950-cutout.webp",
-        "alt": "LOAD-X LX-950 wheel loader, isolated on white"
-      },
-      "gallery": [
-        {
-          "src": "/images/load-x/lx-950-cutout.webp",
-          "alt": "LOAD-X LX-950 wheel loader"
-        }
-      ],
-      "highlights": [
-        {
-          "label": "Operating weight",
-          "value": "17,200",
-          "unit": "kg"
-        },
-        {
-          "label": "Bucket capacity",
-          "value": "3.0",
-          "unit": "m³"
-        },
-        {
-          "label": "Rated load",
-          "value": "5,000",
-          "unit": "kg"
-        },
-        {
-          "label": "Engine power",
-          "value": "162",
-          "unit": "kW"
-        }
-      ],
-      "specs": [
-        {
-          "title": "Engine",
-          "specs": [
-            {
-              "label": "Engine model",
-              "value": "Weichai WD10G220E23"
-            },
-            {
-              "label": "Rated power",
-              "value": "162",
-              "unit": "kW (220 hp)"
-            },
-            {
-              "label": "Rated speed",
-              "value": "2,000",
-              "unit": "rpm"
-            },
-            {
-              "label": "Displacement",
-              "value": "9.7",
-              "unit": "L"
-            },
-            {
-              "label": "Emission standard",
-              "value": "Stage II equivalent"
-            }
-          ]
-        },
-        {
-          "title": "Operating",
-          "specs": [
-            {
-              "label": "Operating weight",
-              "value": "17,200",
-              "unit": "kg"
-            },
-            {
-              "label": "Rated load",
-              "value": "5,000",
-              "unit": "kg"
-            },
-            {
-              "label": "Bucket capacity",
-              "value": "3.0",
-              "unit": "m³"
-            },
-            {
-              "label": "Breakout force",
-              "value": "175",
-              "unit": "kN"
-            },
-            {
-              "label": "Static tipping load (full turn)",
-              "value": "11,800",
-              "unit": "kg"
-            },
-            {
-              "label": "Max travel speed",
-              "value": "38",
-              "unit": "km/h"
-            }
-          ]
-        },
-        {
-          "title": "Transmission and Axles",
-          "specs": [
-            {
-              "label": "Transmission",
-              "value": "Countershaft powershift"
-            },
-            {
-              "label": "Gears",
-              "value": "4 forward / 3 reverse"
-            },
-            {
-              "label": "Axles",
-              "value": "Heavy-duty, wet disc brakes"
-            }
-          ]
-        },
-        {
-          "title": "Dimensions",
-          "specs": [
-            {
-              "label": "Overall length",
-              "value": "8,180",
-              "unit": "mm"
-            },
-            {
-              "label": "Overall width (bucket)",
-              "value": "3,020",
-              "unit": "mm"
-            },
-            {
-              "label": "Overall height (cab)",
-              "value": "3,480",
-              "unit": "mm"
-            },
-            {
-              "label": "Dump height",
-              "value": "3,250",
-              "unit": "mm"
-            }
-          ]
-        },
-        {
-          "title": "Capacities",
-          "specs": [
-            {
-              "label": "Fuel tank",
-              "value": "300",
-              "unit": "L"
-            },
-            {
-              "label": "Hydraulic tank",
-              "value": "210",
-              "unit": "L"
-            },
-            {
-              "label": "Tyre size",
-              "value": "23.5-25"
-            }
-          ]
-        }
-      ],
-      "features": [
-        {
-          "title": "Bulk handling capacity",
-          "description": "3.0 m³ bucket sized to load standard haul trucks in fewer passes."
-        },
-        {
-          "title": "Heavy-duty axles",
-          "description": "Rated for sustained full-bucket operation on poor underfoot conditions."
-        },
-        {
-          "title": "High-capacity filtration",
-          "description": "Larger air and hydraulic filtration for long shifts in heavy dust."
-        }
-      ],
-      "relatedEquipmentSlugs": [
-        "lx-936",
-        "lx-930"
-      ],
-      "isFeatured": true,
-      "isPlaceholder": true,
-      "order": 5,
       "brandSlug": "load-x",
       "categoryName": "Wheel Loaders",
       "videos": []
@@ -5374,8 +4996,7 @@ export const content: ContentSnapshot = {
         }
       ],
       "compatibleEquipmentSlugs": [
-        "lx-936",
-        "lx-950"
+        "lx-936"
       ],
       "isPlaceholder": true,
       "order": 2,
@@ -5445,8 +5066,7 @@ export const content: ContentSnapshot = {
         }
       ],
       "compatibleEquipmentSlugs": [
-        "lx-926",
-        "lx-650"
+        "lx-926"
       ],
       "isPlaceholder": true,
       "order": 4,
@@ -5516,7 +5136,7 @@ export const content: ContentSnapshot = {
       ],
       "compatibleEquipmentSlugs": [
         "lx-926",
-        "lx-950"
+        "lx-936"
       ],
       "isPlaceholder": true,
       "order": 6,
@@ -5550,11 +5170,9 @@ export const content: ContentSnapshot = {
         }
       ],
       "compatibleEquipmentSlugs": [
-        "lx-650",
         "lx-926",
         "lx-930",
-        "lx-936",
-        "lx-950"
+        "lx-936"
       ],
       "isPlaceholder": true,
       "order": 7,
@@ -5588,7 +5206,6 @@ export const content: ContentSnapshot = {
         }
       ],
       "compatibleEquipmentSlugs": [
-        "lx-650",
         "lx-926",
         "lx-930"
       ],
@@ -5728,7 +5345,7 @@ export const content: ContentSnapshot = {
       ],
       "compatibleEquipmentSlugs": [
         "lx-926",
-        "lx-950"
+        "lx-936"
       ],
       "isPlaceholder": true,
       "order": 12,
@@ -6577,8 +6194,7 @@ export const content: ContentSnapshot = {
         "cranes"
       ],
       "recommendedEquipmentSlugs": [
-        "lx-926",
-        "lx-650"
+        "lx-926"
       ],
       "order": 1
     },
@@ -6688,7 +6304,6 @@ export const content: ContentSnapshot = {
         "bulldozers"
       ],
       "recommendedEquipmentSlugs": [
-        "lx-950",
         "lx-936"
       ],
       "order": 4
@@ -6723,7 +6338,6 @@ export const content: ContentSnapshot = {
         "attachments"
       ],
       "recommendedEquipmentSlugs": [
-        "lx-650",
         "lx-926"
       ],
       "order": 5
@@ -6759,7 +6373,7 @@ export const content: ContentSnapshot = {
         "attachments"
       ],
       "recommendedEquipmentSlugs": [
-        "lx-650"
+        "lx-926"
       ],
       "order": 6
     }

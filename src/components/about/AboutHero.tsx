@@ -49,32 +49,53 @@ export function AboutHero({
   title: string;
 }) {
   return (
-    <section className="relative isolate overflow-hidden bg-navy-950">
-      <motion.div
-        className="absolute inset-0"
-        initial={{ scale: 1.18 }}
-        animate={{ scale: 1 }}
-        transition={{ duration: 2.4, ease: [0.16, 1, 0.3, 1] }}
-      >
-        <Image
-          src={image.src}
-          alt={image.alt}
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover"
-          /* A 16:9 photograph in a portrait frame loses most of its width. The
-             focus point keeps what identifies the place — here the group's
-             name board — inside the crop on a phone. */
-          style={image.focus ? { objectPosition: image.focus } : undefined}
-        />
-      </motion.div>
+    <section className="relative isolate flex flex-col overflow-hidden bg-navy-950 md:block">
+      {/*
+       * THE PICTURE IS A BAND ON A PHONE, A BACKDROP FROM `md` UP.
+       *
+       * Same reasoning as the homepage banners: a 16:9 photograph covering a
+       * portrait frame keeps about a third of its width, and here that third
+       * was the office ceiling. Cropping to 95% rescued the name board but
+       * still threw away most of the room. As a 62vw band across the top,
+       * nearly all of the photograph survives and the title sits under it on
+       * the section's own navy, in the same order the banners now use —
+       * eyebrow, title, then the page.
+       *
+       * The band is a little taller than the banners' 54vw because this frame
+       * carries no buttons under it, and because the picture is 16:9 rather
+       * than 2.4:1 and so needs less width thrown away to fit.
+       */}
+      <div className="relative order-1 h-[62vw] w-full overflow-hidden md:absolute md:inset-0 md:order-none md:h-auto">
+        <motion.div
+          className="absolute inset-0"
+          initial={{ scale: 1.18 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 2.4, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <Image
+            src={image.src}
+            alt={image.alt}
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
+            /* Only meaningful from `md` up now. Below that the whole width is
+               in frame, so there is nothing for a focus point to rescue. */
+            style={image.focus ? { objectPosition: image.focus } : undefined}
+          />
+        </motion.div>
+
+        {/* On a phone, a short fade at the band's base so the photograph
+            resolves into the navy under it instead of stopping on an edge. */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(0,10,28,0)_60%,rgba(0,10,28,0.5)_86%,rgba(0,10,28,0.95)_100%)] md:hidden" />
+      </div>
 
       {/* Enough scrim for the title to hold at any crop, without burying the
-          premises the photograph is there to show. */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(0,10,28,0.9)_0%,rgba(0,10,28,0.5)_45%,rgba(0,10,28,0.32)_100%)]" />
+          premises the photograph is there to show. Not on a phone, where
+          nothing is written over the picture any more. */}
+      <div className="absolute inset-0 hidden bg-[linear-gradient(to_top,rgba(0,10,28,0.9)_0%,rgba(0,10,28,0.5)_45%,rgba(0,10,28,0.32)_100%)] md:block" />
 
-      <Container className="relative flex min-h-[86svh] flex-col justify-end pb-14 md:min-h-[92svh] md:pb-20">
+      <Container className="relative order-2 flex flex-col justify-end py-10 md:order-none md:min-h-[92svh] md:py-0 md:pb-20">
         {eyebrow ? (
           <motion.p
             className="eyebrow-rule font-display text-eyebrow uppercase text-amber-500"

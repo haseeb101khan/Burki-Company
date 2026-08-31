@@ -104,11 +104,34 @@ export function FeaturedCarousel({ slides }: { slides: Banner[] }) {
        * viewport is landscape and the crop is mild, it goes back to being the
        * full-bleed backdrop it was designed as.
        */}
-      <div className="relative md:min-h-[78svh]">
+      <div
+        className={cn(
+          "relative flex flex-col md:min-h-[78svh]",
+          /* On a desktop the picture and the controls are both out of flow, so
+             the heading and the actions are the only flex children and this
+             centres them exactly as the old single copy block did. A film puts
+             its copy at the top and its actions at the base instead, leaving
+             the middle of the frame to the footage. */
+          slide.video ? "md:justify-between" : "md:justify-center",
+        )}
+      >
+        {/*
+         * The picture sits BETWEEN the heading and the buttons on a phone —
+         * "Welcome / Burki & Company", the banner, then the two actions. The
+         * copy used to run under it in one block; splitting it puts the title
+         * on the navy above the picture where it reads first, and leaves the
+         * actions where a thumb reaches them.
+         *
+         * This wrapper exists to give the band a box. The slides cross-fade
+         * with `mode="sync"`, so both are mounted at once mid-transition; as
+         * flow children they would stack and double the band's height, so the
+         * frames stay absolute inside a wrapper that owns the height.
+         */}
+        <div className="relative order-2 h-[54vw] w-full md:absolute md:inset-0 md:order-none md:h-auto">
         <AnimatePresence initial={false} mode="sync">
           <motion.div
             key={slide.id}
-            className="absolute inset-x-0 top-0 h-[54vw] md:inset-0 md:h-auto"
+            className="absolute inset-0"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -191,75 +214,78 @@ export function FeaturedCarousel({ slides }: { slides: Banner[] }) {
             <div className="pointer-events-none absolute inset-x-0 bottom-0 hidden h-44 bg-gradient-to-t from-navy-950/70 to-transparent md:block" />
           </motion.div>
         </AnimatePresence>
+        </div>
 
-        {/* Content sits in normal flow so the section height follows the copy. */}
+        {/* ------------------------------------------------- heading (above) */}
         <Container
           className={cn(
-            "relative flex flex-col md:min-h-[78svh] md:py-24 lg:pl-20 lg:pr-20",
-            /* Clears the picture band on a phone, then reverts to the overlay's
-               own vertical rhythm once the picture is behind the copy again. */
-            "pt-[calc(54vw+2rem)] pb-7 md:pt-24 md:pb-24",
-            /* A film carries its own composition — and this one closes on a
-               centred logo. Its copy splits to the top and its actions to the
-               base, leaving the middle of the frame to the film. */
-            slide.video ? "md:pt-10" : "md:justify-center",
+            "relative order-1 w-full pt-10 pb-6 md:order-none md:pb-0 lg:pl-20 lg:pr-20",
+            slide.video ? "md:pt-10" : "md:pt-24",
           )}
         >
           <AnimatePresence mode="wait">
             <motion.div
               key={slide.id}
-              className={cn(
-                slide.video
-                  ? "flex w-full flex-1 flex-col justify-between"
-                  : "max-w-3xl",
-              )}
+              className={cn(slide.video ? "max-w-2xl" : "max-w-3xl")}
               initial={{ opacity: 0, y: reduceMotion ? 0 : 18 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: reduceMotion ? 0 : -12 }}
               transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
             >
-              <div className={cn(slide.video && "max-w-2xl")}>
-                <p className="eyebrow-rule font-display text-eyebrow uppercase text-amber-500">
-                  {slide.eyebrow}
-                </p>
+              <p className="eyebrow-rule font-display text-eyebrow uppercase text-amber-500">
+                {slide.eyebrow}
+              </p>
 
-                <h1
-                  className={cn(
-                    "mt-5 uppercase text-white [text-shadow:0_2px_18px_rgba(0,10,28,0.55)]",
-                    /* The film has to share the frame with its own titling, so
-                     its headline is set two steps down from a still's. */
-                    slide.video ? "text-xl sm:text-2xl md:text-display-md" : "text-2xl sm:text-3xl md:text-display-xl",
-                  )}
-                >
-                  {slide.title}
-                </h1>
-
-                {slide.video && slide.meta ? (
-                  <p className="mt-2 font-display text-[0.8125rem] font-semibold uppercase tracking-[0.2em] text-white/75 [text-shadow:0_1px_10px_rgba(0,10,28,0.65)]">
-                    {slide.meta}
-                  </p>
-                ) : null}
-              </div>
-
-              <div
+              <h1
                 className={cn(
-                  "flex flex-col gap-2 sm:gap-3 sm:flex-row sm:items-center",
-                  slide.video ? "mt-8 sm:mt-10" : "mt-6 sm:mt-8",
+                  "mt-5 uppercase text-white [text-shadow:0_2px_18px_rgba(0,10,28,0.55)]",
+                  /* The film has to share the frame with its own titling, so
+                     its headline is set two steps down from a still's. */
+                  slide.video
+                    ? "text-xl sm:text-2xl md:text-display-md"
+                    : "text-2xl sm:text-3xl md:text-display-xl",
                 )}
               >
-                <Button href={slide.primary.href} size="sm" className="sm:size-lg">
-                  {slide.primary.label}
-                  <ArrowRight />
-                </Button>
-                <Button
-                  href={slide.secondary.href}
-                  size="sm"
-                  className="sm:size-lg"
-                  variant="outlineLight"
-                >
-                  {slide.secondary.label}
-                </Button>
-              </div>
+                {slide.title}
+              </h1>
+
+              {slide.video && slide.meta ? (
+                <p className="mt-2 font-display text-[0.8125rem] font-semibold uppercase tracking-[0.2em] text-white/75 [text-shadow:0_1px_10px_rgba(0,10,28,0.65)]">
+                  {slide.meta}
+                </p>
+              ) : null}
+            </motion.div>
+          </AnimatePresence>
+        </Container>
+
+        {/* ------------------------------------------------- actions (below) */}
+        <Container
+          className={cn(
+            "relative order-3 w-full pt-6 pb-7 md:order-none md:pt-0 lg:pl-20 lg:pr-20",
+            slide.video ? "md:pb-24" : "md:pb-24",
+          )}
+        >
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={slide.id}
+              className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-3 md:mt-8"
+              initial={{ opacity: 0, y: reduceMotion ? 0 : 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: reduceMotion ? 0 : -12 }}
+              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <Button href={slide.primary.href} size="sm" className="sm:size-lg">
+                {slide.primary.label}
+                <ArrowRight />
+              </Button>
+              <Button
+                href={slide.secondary.href}
+                size="sm"
+                className="sm:size-lg"
+                variant="outlineLight"
+              >
+                {slide.secondary.label}
+              </Button>
             </motion.div>
           </AnimatePresence>
         </Container>
@@ -296,7 +322,7 @@ export function FeaturedCarousel({ slides }: { slides: Banner[] }) {
          * height of the frame now the picture has taken the top of it, so there
          * is nothing under them to sit over.
          */}
-        <Container className="pointer-events-none pb-8 md:absolute md:inset-x-0 md:bottom-0 md:pb-9">
+        <Container className="pointer-events-none order-4 pb-8 md:absolute md:inset-x-0 md:bottom-0 md:order-none md:pb-9">
           <div className="pointer-events-auto flex items-center justify-between gap-6 border-t border-white/15 pt-5">
             <ul className="flex items-center gap-2.5" aria-label="Choose slide">
               {slides.map((s, i) => (

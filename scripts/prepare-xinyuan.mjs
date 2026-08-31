@@ -120,12 +120,12 @@ export const ATTACHMENTS = [
  * They stand on the same platform in the same homepage section, so leaving them
  * on white would have made LOAD-X the one brand whose machines sat in boxes.
  */
+/* Three machines. The LX-650 and LX-950 were withdrawn — not available — so
+   their source art went with their records. */
 const LOADX = {
-  "lx-650": "public/brands/Load-x/lx650/lx-650-1.PNG",
   "lx-926": "public/brands/Load-x/lx926/lx-926-cutout.jpeg",
   "lx-930": "public/brands/Load-x/lx930/lx-930-cutout.jpeg",
   "lx-936": "public/brands/Load-x/lx936/lx-936-white-1.jpg",
-  "lx-950": "public/brands/Load-x/lx950/lx-950-cutout.jpeg",
 };
 
 async function normalise(input, output, maxWidth) {
