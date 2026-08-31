@@ -29,7 +29,7 @@ export const partCategories: PartCategory[] = [
     name: "Attachments",
     description:
       "Buckets, breakers, grapples, quick couplers and augers. What turns one machine into several, matched to the carrier it is going on.",
-    image: { src: "/images/cat-attachments.jpg", alt: "Excavator attachment on a working site" },
+    image: { src: "/images/cat-attachments.webp", alt: "Xinyuan 7 tonne hydraulic breaker attachment" },
     order: 0,
   },
   {

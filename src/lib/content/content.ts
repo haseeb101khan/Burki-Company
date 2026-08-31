@@ -259,8 +259,8 @@ export const content: ContentSnapshot = {
       "name": "Attachments",
       "description": "Buckets, breakers, grapples, quick couplers and ground-engaging tools that adapt a carrier to the job in front of it.",
       "image": {
-        "src": "/images/cat-attachments.jpg",
-        "alt": "Excavator fitted with a specialist attachment"
+        "src": "/images/cat-attachments.webp",
+        "alt": "Xinyuan 7 tonne hydraulic breaker attachment"
       },
       "order": 12
     }
@@ -272,8 +272,8 @@ export const content: ContentSnapshot = {
       "name": "Attachments",
       "description": "Buckets, breakers, grapples, quick couplers and augers. What turns one machine into several, matched to the carrier it is going on.",
       "image": {
-        "src": "/images/cat-attachments.jpg",
-        "alt": "Excavator attachment on a working site"
+        "src": "/images/cat-attachments.webp",
+        "alt": "Xinyuan 7 tonne hydraulic breaker attachment"
       },
       "order": 0
     },
@@ -368,18 +368,14 @@ export const content: ContentSnapshot = {
       "summary": "A 4.5 tonne loader with a 1 m³ bucket, built for confined yards, block plants and municipal work where a full-size machine cannot turn.",
       "description": "The LX-926 is the compact machine in the LX Series. A 5,870 mm length and articulated steering let it work close to walls and stockpiles, while a 76 kW Huafeng diesel and 4WD driveline keep it loading rather than spinning. Supplied new, CE / BV / SGS certified with ROPS and FOPS structures.",
       "image": {
-        "src": "/images/load-x/lx-926-cover.webp",
-        "alt": "LOAD-X LX-926 wheel loader on a forecourt, bucket lowered"
+        "src": "/brands/Load-x/lx926/lx-926-1.jpg",
+        "alt": "LOAD-X LX-926 wheel loader, side view"
       },
       "cutoutImage": {
         "src": "/images/load-x/lx-926-cutout.webp",
         "alt": "LOAD-X LX-926 wheel loader, isolated on white"
       },
       "gallery": [
-        {
-          "src": "/images/load-x/lx-926-cover.webp",
-          "alt": "LOAD-X LX-926 wheel loader on a forecourt, bucket lowered"
-        },
         {
           "src": "/brands/Load-x/lx926/lx-926-1.jpg",
           "alt": "LOAD-X LX-926 wheel loader, side view"

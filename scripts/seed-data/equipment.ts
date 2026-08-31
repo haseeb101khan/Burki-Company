@@ -38,22 +38,12 @@ export const equipment: Equipment[] = [
       "A 4.5 tonne loader with a 1 m³ bucket, built for confined yards, block plants and municipal work where a full-size machine cannot turn.",
     description:
       "The LX-926 is the compact machine in the LX Series. A 5,870 mm length and articulated steering let it work close to walls and stockpiles, while a 76 kW Huafeng diesel and 4WD driveline keep it loading rather than spinning. Supplied new, CE / BV / SGS certified with ROPS and FOPS structures.",
-    /*
-     * The supplied cover photograph leads the machine and its gallery.
-     *
-     * It is NOT the catalogue tile. That still shows the studio cutout, because
-     * the cover is a location photograph — the loader on a forecourt, against a
-     * building, a hedge and a road — and there is no white surround to flood
-     * back out of it (see scripts/lib/cutout.mjs for why the cutouts are a
-     * connectivity fill rather than a brightness threshold). Dropped into the
-     * listing as-is it would be the one photograph in a row of cutouts, which
-     * is exactly the mismatch the normalising pass was for. A studio cutout of
-     * this pose would replace the existing one properly.
-     */
-    image: { src: "/images/load-x/lx-926-cover.webp", alt: "LOAD-X LX-926 wheel loader on a forecourt, bucket lowered" },
+    /* The cutout is the replacement studio shot: bucket down, matching the pose
+       the LX-930 and LX-936 are photographed in. The forecourt photograph that
+       briefly led this record was withdrawn along with its file. */
+    image: { src: "/brands/Load-x/lx926/lx-926-1.jpg", alt: "LOAD-X LX-926 wheel loader, side view" },
     cutoutImage: { src: "/images/load-x/lx-926-cutout.webp", alt: "LOAD-X LX-926 wheel loader, isolated on white" },
     gallery: [
-      { src: "/images/load-x/lx-926-cover.webp", alt: "LOAD-X LX-926 wheel loader on a forecourt, bucket lowered" },
       { src: "/brands/Load-x/lx926/lx-926-1.jpg", alt: "LOAD-X LX-926 wheel loader, side view" },
     ],
     highlights: [

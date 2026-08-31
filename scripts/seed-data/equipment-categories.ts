@@ -112,7 +112,10 @@ export const equipmentCategories: EquipmentCategory[] = [
     name: "Attachments",
     description:
       "Buckets, breakers, grapples, quick couplers and ground-engaging tools that adapt a carrier to the job in front of it.",
-    image: { src: "/images/cat-attachments.jpg", alt: "Excavator fitted with a specialist attachment" },
+    /* The 7 t hydraulic breaker cutout rather than a site photograph: this
+       category is the one whose tiles are tools, not machines, and the tool
+       reads at a glance where a photo of a machine wearing one does not. */
+    image: { src: "/images/cat-attachments.webp", alt: "Xinyuan 7 tonne hydraulic breaker attachment" },
     order: 12,
   },
 ];

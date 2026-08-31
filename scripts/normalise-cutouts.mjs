@@ -35,9 +35,10 @@
  *   node scripts/normalise-cutouts.mjs           # write the files
  *   node scripts/normalise-cutouts.mjs --preview # contact sheet only
  */
-import { readdirSync, existsSync, statSync } from "node:fs";
+import { readdirSync, existsSync, statSync, unlinkSync } from "node:fs";
 import { join } from "node:path";
 import sharp from "sharp";
+import { makeTransparentCutout } from "./lib/cutout.mjs";
 
 const DIRS = ["public/images/xinyuan", "public/images/load-x"];
 
@@ -63,11 +64,39 @@ const files = DIRS.filter(existsSync).flatMap((dir) =>
     .map((f) => ({ dir, file: f, path: join(dir, f) })),
 );
 
-/** Trim to the machine and report what came back. */
+/**
+ * Trim to the machine and report what came back.
+ *
+ * NEW ARTWORK USUALLY ARRIVES ON WHITE, NOT ON TRANSPARENCY. Trimming only
+ * removes the white BORDER; the white the machine actually stands on stays,
+ * opaque, and the cutout renders as a machine in a pale box — which is visible
+ * the moment it sits on anything that is not white, and was how the replacement
+ * C95 and LX-926 first came through (about a third of each frame still opaque
+ * near-white, against 1% for the ones already processed).
+ *
+ * So anything without a real alpha channel goes through the flood fill first.
+ * `stats().isOpaque` rather than `metadata().hasAlpha`, because several of the
+ * supplied files carry an alpha channel they never use.
+ */
 async function content(path) {
-  const { data, info } = await sharp(path)
+  const [meta, stats] = await Promise.all([
+    sharp(path).metadata(),
+    sharp(path).stats(),
+  ]);
+
+  let source = path;
+  let scratch = null;
+  if (!meta.hasAlpha || stats.isOpaque) {
+    scratch = `${path}.cut.png`;
+    await makeTransparentCutout(path, scratch, { maxWidth: 1800, format: "png" });
+    source = scratch;
+  }
+
+  const { data, info } = await sharp(source)
     .trim({ threshold: 8 })
     .toBuffer({ resolveWithObject: true });
+
+  if (scratch) unlinkSync(scratch);
   return { buf: data, w: info.width, h: info.height };
 }
 
