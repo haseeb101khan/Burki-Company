@@ -127,10 +127,10 @@ const companyInfo: CompanyInfo = {
   },
   /* The About page's opening section, supplied by the client. */
   story: [
-    "Burki & Company was established in the late 1970s in Karachi, Pakistan — built on a foundation of integrity, quality, and an unwavering commitment to the construction and heavy machinery industry.",
+    "Burki & Company was established in the late 1970s in Karachi, Pakistan, built on a foundation of integrity, quality, and an unwavering commitment to the construction and heavy machinery industry.",
     "What began as a specialised dealership has evolved over five decades into one of Pakistan's most trusted names in heavy equipment, serving contractors, construction companies and infrastructure developers across Pakistan and beyond.",
   ],
-  mission: "Five decades. Thousands of machines. One standard — excellence.",
+  mission: "Five decades. Thousands of machines. One standard, excellence.",
   milestones: [],
   certifications: [],
   regionsServed: [],

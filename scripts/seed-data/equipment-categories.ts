@@ -12,7 +12,7 @@ export const equipmentCategories: EquipmentCategory[] = [
     name: "Excavators",
     description:
       "Tracked and wheeled excavators for bulk earthmoving, trenching, foundation work and demolition, from compact site machines to quarry-duty units.",
-    image: { src: "/images/cat-excavators.jpg", alt: "Tracked excavator working an open cut at sunrise" },
+    image: { src: "/images/cat-excavators.webp", alt: "Xinyuan wheeled excavator on a city street, boom lowered" },
     order: 1,
   },
   {
@@ -22,7 +22,7 @@ export const equipmentCategories: EquipmentCategory[] = [
     shortName: "Loaders",
     description:
       "Front-end loaders for stockpile handling, truck loading and site logistics — the workhorse of aggregate yards, batching plants and road projects.",
-    image: { src: "/images/cat-wheel-loaders.jpg", alt: "Wheel loader moving material on a working site" },
+    image: { src: "/images/cat-wheel-loaders.webp", alt: "Wheel loader with its bucket lowered on a yard" },
     order: 2,
   },
   {

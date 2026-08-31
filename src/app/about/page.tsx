@@ -35,7 +35,7 @@ import { routes } from "@/lib/routes";
 export const metadata: Metadata = {
   title: "About Us",
   description:
-    "Burki & Company — five decades supplying heavy machinery from Karachi and Islamabad, and sole distributor of Xinyuan wheeled excavators and LOAD-X wheel loaders in Pakistan.",
+    "Burki & Company, five decades supplying heavy machinery from Karachi and Islamabad, and sole distributor of Xinyuan wheeled excavators and LOAD-X wheel loaders in Pakistan.",
 };
 
 /** The machine types named in the client's "What We Offer" copy. */
@@ -197,7 +197,7 @@ export default async function AboutPage() {
                   Founded by {info.founder.name ?? "our founder"}, the company
                   grew through one principle: deliver what you promise. That
                   commitment earned the trust of clients across Pakistan,
-                  Afghanistan and Iran — and it remains the cornerstone of
+                  Afghanistan and Iran, and it remains the cornerstone of
                   everything we do today.
                 </p>
               </Reveal>
@@ -239,7 +239,7 @@ export default async function AboutPage() {
                     machinery to some of Pakistan&apos;s most prominent names
                     across construction, contracting, textiles, refineries,
                     mining, oil storage, rice mills, dairy and farming,
-                    agriculture, and the energy and power sectors — as well as
+                    agriculture, and the energy and power sectors, as well as
                     government institutions, including municipal bodies and
                     various federal and provincial departments.
                   </p>
@@ -273,9 +273,9 @@ export default async function AboutPage() {
               <Reveal delay={0.12}>
                 <p className="text-base leading-relaxed text-steel-700">
                   Burki &amp; Company provides a comprehensive range of heavy
-                  machinery — including dumpers, wheel loaders, bulldozers,
+                  machinery including dumpers, wheel loaders, bulldozers,
                   rollers, cranes, graders, dumper trucks, mixer trucks and
-                  excavators — purpose-built for construction, infrastructure
+                  excavators, purpose-built for construction, infrastructure
                   and earthmoving operations.
                 </p>
               </Reveal>
@@ -322,7 +322,7 @@ export default async function AboutPage() {
         >
           <p>
             Burki &amp; Company is the authorised sole distributor of Xinyuan
-            wheeled excavators and LOAD-X wheel loaders across Pakistan —
+            wheeled excavators and LOAD-X wheel loaders across Pakistan,
             bringing proven Chinese engineering to Pakistan&apos;s construction
             industry.
           </p>
@@ -362,7 +362,7 @@ export default async function AboutPage() {
               <div className="mt-12 flex flex-col items-center gap-5 border-t border-white/12 pt-10 text-center">
                 <p className="max-w-xl text-[0.9375rem] leading-relaxed text-white/65">
                   Tell us the job, the material and the site, and we will come
-                  back with what fits — including machines beyond the catalogue.
+                  back with what fits, including machines beyond the catalogue.
                 </p>
                 <div className="flex flex-wrap justify-center gap-3">
                   <Button href={routes.quote()}>

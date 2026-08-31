@@ -137,8 +137,8 @@ export const content: ContentSnapshot = {
       "name": "Excavators",
       "description": "Tracked and wheeled excavators for bulk earthmoving, trenching, foundation work and demolition, from compact site machines to quarry-duty units.",
       "image": {
-        "src": "/images/cat-excavators.jpg",
-        "alt": "Tracked excavator working an open cut at sunrise"
+        "src": "/images/cat-excavators.webp",
+        "alt": "Xinyuan wheeled excavator on a city street, boom lowered"
       },
       "order": 1
     },
@@ -149,8 +149,8 @@ export const content: ContentSnapshot = {
       "shortName": "Loaders",
       "description": "Front-end loaders for stockpile handling, truck loading and site logistics — the workhorse of aggregate yards, batching plants and road projects.",
       "image": {
-        "src": "/images/cat-wheel-loaders.jpg",
-        "alt": "Wheel loader moving material on a working site"
+        "src": "/images/cat-wheel-loaders.webp",
+        "alt": "Wheel loader with its bucket lowered on a yard"
       },
       "order": 2
     },
@@ -802,7 +802,7 @@ export const content: ContentSnapshot = {
         "lx-926",
         "lx-936"
       ],
-      "isFeatured": false,
+      "isFeatured": true,
       "isPlaceholder": true,
       "order": 3,
       "brandSlug": "load-x",
@@ -6673,10 +6673,10 @@ export const content: ContentSnapshot = {
       }
     },
     "story": [
-      "Burki & Company was established in the late 1970s in Karachi, Pakistan — built on a foundation of integrity, quality, and an unwavering commitment to the construction and heavy machinery industry.",
+      "Burki & Company was established in the late 1970s in Karachi, Pakistan, built on a foundation of integrity, quality, and an unwavering commitment to the construction and heavy machinery industry.",
       "What began as a specialised dealership has evolved over five decades into one of Pakistan's most trusted names in heavy equipment, serving contractors, construction companies and infrastructure developers across Pakistan and beyond."
     ],
-    "mission": "Five decades. Thousands of machines. One standard — excellence.",
+    "mission": "Five decades. Thousands of machines. One standard, excellence.",
     "milestones": [],
     "certifications": [],
     "regionsServed": [],

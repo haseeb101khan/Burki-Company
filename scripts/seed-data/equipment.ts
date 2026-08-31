@@ -225,7 +225,7 @@ export const equipment: Equipment[] = [
       },
     ],
     relatedEquipmentSlugs: ["lx-926", "lx-936"],
-    isFeatured: false,
+    isFeatured: true,
     isPlaceholder: true,
     order: 3,
   },
