@@ -69,8 +69,17 @@ export default async function AboutPage() {
           eyebrow={info.companyName}
           title="About Us"
           image={{
-            src: "/images/banner-company.jpg",
-            alt: "The Burki & Company premises in Karachi, with wheel loaders on the forecourt",
+            src: "/images/about/burki-office.webp",
+            alt: "The Burki & Company office, with the Burki Group of Companies name board on the wall",
+            /* Held to the right edge. The frame is 16:9 and a phone crops it to
+               roughly a third of its width; anywhere left of about 90% the crop
+               keeps the seating and slices the name board, which is the one
+               thing in the photograph that says whose office this is. At 95%
+               the board reads in full — all six Burki companies — and the
+               lounge is still in shot. On a desktop the picture covers the
+               frame almost exactly, so this moves it by about 30px and costs
+               that view nothing. */
+            focus: "95% 50%",
           }}
         />
 
@@ -98,6 +107,23 @@ export default async function AboutPage() {
                   </div>
                 </Reveal>
               </div>
+
+              {/* The premises, moved down off the cover the office photograph
+                  now holds. It belongs against this copy rather than above it:
+                  the story is the company's own, and this is the yard it is
+                  told from. Full width under both columns, so it reads as the
+                  section's picture and not as an illustration to one column. */}
+              <BoxReveal className="mt-10 rounded-[3px] md:mt-14">
+                <div className="relative aspect-[16/9] w-full overflow-hidden rounded-[3px] bg-steel-100 md:aspect-[21/9]">
+                  <Image
+                    src="/images/banner-company.jpg"
+                    alt="The Burki & Company premises in Karachi, with wheel loaders on the forecourt"
+                    fill
+                    sizes="(min-width: 1400px) 1300px, 100vw"
+                    className="object-cover"
+                  />
+                </div>
+              </BoxReveal>
             </Container>
           </Section>
         ) : null}

@@ -20,11 +20,14 @@ export function PartnerLogos({ partners }: { partners: Partner[] }) {
   if (withLogos.length === 0) return null;
 
   return (
-    /* Five across, so ten logos fill two rows exactly and the block sits about
-       as tall as the copy beside it. Bordered cells with a real gap rather than
-       a 1px-gap grid over a tinted parent: that trick leaves a partial last row
-       showing as empty grey boxes, and the logo count will change. */
-    <div className="grid grid-cols-2 gap-2 sm:grid-cols-5">
+    /* Five across, so the wall fills whole rows exactly — two rows at ten
+       logos, three at fifteen. Three across on a phone rather than five: at
+       390px a fifth of the row is about 60px of cell, and a wordmark set in
+       that is unreadable, which defeats the point of showing it.
+       Bordered cells with a real gap rather than a 1px-gap grid over a tinted
+       parent: that trick leaves a partial last row showing as empty grey
+       boxes, and the logo count changes as clients are added. */
+    <div className="grid grid-cols-3 gap-2 sm:grid-cols-5">
       {withLogos.map((partner, index) => (
         <Reveal key={partner.id} delay={Math.min(index, 8) * 0.05}>
           <div className="flex h-full items-center justify-center rounded-[3px] border border-steel-200 bg-white px-3 py-4">
