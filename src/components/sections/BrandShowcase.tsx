@@ -295,9 +295,13 @@ function MachineRow({
       <div className="grid gap-5 sm:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] sm:items-center sm:gap-6">
         {/*
          * The sticker. Nothing behind it: no panel, no border, no tinted stage.
-         * `object-bottom` so a machine stands on the same baseline whatever its
-         * proportions — the supplied cutouts run from wide side-on shots to tall
-         * boom-up ones — with the shadow falling directly beneath.
+         *
+         * The baseline the machine stands on is inside the artwork now — every
+         * cutout is authored on one 5:4 canvas at one scale, standing 7% up
+         * from its own bottom edge (`scripts/normalise-cutouts.mjs`). The
+         * `pb-[8%]` that used to sit here was doing that job from the outside,
+         * back when each file was cropped tight to its own machine; leaving it
+         * would lift these off the floor and shrink them by another eighth.
          */}
         <div className="relative">
           <div className="relative aspect-[4/3] w-full">
@@ -306,7 +310,7 @@ function MachineRow({
               alt={art.alt}
               fill
               sizes="(min-width: 640px) 26vw, 70vw"
-              className="object-contain object-bottom pb-[8%] drop-shadow-[0_16px_14px_rgba(0,17,46,0.14)]"
+              className="object-contain object-bottom drop-shadow-[0_16px_14px_rgba(0,17,46,0.14)]"
             />
           </div>
           <span

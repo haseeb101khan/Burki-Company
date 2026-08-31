@@ -228,7 +228,10 @@ export function EquipmentGallery({
                   draggable={false}
                   className={cn(
                     "pointer-events-none select-none",
-                    fit === "contain" ? "object-contain p-5" : "object-cover",
+                    /* No padding on a cutout: `contain` here means the frame is
+                       showing normalised cutout artwork, which carries its own
+                       margin and baseline. */
+                    fit === "contain" ? "object-contain" : "object-cover",
                   )}
                 />
               </motion.div>
@@ -333,7 +336,7 @@ export function EquipmentGallery({
                     aria-hidden="true"
                     fill
                     sizes="140px"
-                    className={cn(fit === "contain" ? "object-contain p-1.5" : "object-cover")}
+                    className={cn(fit === "contain" ? "object-contain" : "object-cover")}
                   />
                 </button>
               </li>
