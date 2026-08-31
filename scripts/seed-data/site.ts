@@ -30,9 +30,11 @@ export const siteConfig: SiteConfig = {
   founder: {
     name: "Haji Jahanzeb Khan Burki",
     role: "Founder",
-    /* Replace this file with the supplied portrait — same path, same crop. */
+    /* The supplied studio portrait, at 1086x1448 — it replaces the 480x600
+       placeholder that stood here, which was soft at the size the About page
+       prints it. */
     image: {
-      src: "/images/about/founder.jpg",
+      src: "/images/about/founder.webp",
       alt: "Haji Jahanzeb Khan Burki, founder of Burki & Company",
     },
   },

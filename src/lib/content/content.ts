@@ -7412,7 +7412,7 @@ export const content: ContentSnapshot = {
       "name": "Haji Jahanzeb Khan Burki",
       "role": "Founder",
       "image": {
-        "src": "/images/about/founder.jpg",
+        "src": "/images/about/founder.webp",
         "alt": "Haji Jahanzeb Khan Burki, founder of Burki & Company"
       }
     },
