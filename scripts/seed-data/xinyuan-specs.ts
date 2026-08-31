@@ -436,141 +436,6 @@ export const XINYUAN_SPECS: Record<string, XinyuanModelData> = {
     isPlaceholder: false,
   },
 
-  /* ─────────────────────────────────────────────────────────── C85 ───── */
-  C85: {
-    tagline: "Seven tonnes, and made for mud",
-    summary:
-      "A 7.1 tonne wheeled excavator on a China IV Yuchai F30, with wheel-end reduction axles, wet brakes and tyres developed for soft ground.",
-    description:
-      "The C85M G4 develops the C80 platform into a 7.1 tonne machine on a China IV Yuchai F30 producing 55.8 kW. Wheel-end reduction axles carry higher torque and load, larger-diameter balance cylinder rods take impact and eccentric loading, and 8.30-20 PLUS tyres are developed specifically for muddy and soft ground. Four-wheel hydraulic wet brakes and 32 km/h of road speed make it as practical getting to municipal, water conservancy and river dredging work as it is doing it.",
-    highlights: [
-      s("Operating weight", "7,100", "kg"),
-      s("Bucket capacity", "0.20-0.35", "m³"),
-      s("Engine power", "55.8", "kW"),
-      s("Max digging force", "35", "kN"),
-    ],
-    specs: [
-      {
-        title: "Engine",
-        specs: [
-          s("Model", "C85M G4"),
-          s("Engine model", "Yuchai F30"),
-          s("Emission standard", "China IV non-road"),
-          s("Aftertreatment", "Fitted as standard"),
-          s("Displacement", "2,982", "mL"),
-          s("Rated power", "55.8", "kW"),
-          s("Rated speed", "2,200", "rpm"),
-        ],
-      },
-      {
-        title: "Operating",
-        specs: [
-          s("Operating weight", "7,100", "kg"),
-          s("Bucket capacity", "0.20-0.35", "m³"),
-          s("Fuel tank", "160", "L"),
-          s("Hydraulic tank", "130", "L"),
-          s("Hydraulic flow rate", "162", "L/min"),
-          s("Main relief valve", "24.5", "MPa"),
-          s("Swing pressure", "21.5", "MPa"),
-        ],
-      },
-      {
-        title: "Performance",
-        specs: [
-          s("Max digging force", "35", "kN"),
-          s("Max traction force", "35", "kN"),
-          s("Max travel speed", "32", "km/h"),
-          s("Platform swing speed", "8.5", "rpm"),
-          s("Gradeability", "35", "°"),
-        ],
-      },
-      {
-        title: "Dimensions",
-        specs: [
-          s("Overall length", "6,435", "mm"),
-          s("Overall width", "1,975", "mm"),
-          s("Overall height", "2,865", "mm"),
-          s("Wheelbase", "2,410", "mm"),
-          s("Tyre type", "8.30-20 PLUS"),
-          s("Ground contact width", "450", "mm"),
-          s("Front track", "1,570", "mm"),
-          s("Rear track", "1,525", "mm"),
-          s("Min ground clearance", "250", "mm"),
-        ],
-      },
-      {
-        title: "Working range",
-        specs: [
-          s("Max digging reach", "6,950", "mm"),
-          s("Max digging depth", "3,630", "mm"),
-          s("Max digging height", "7,110", "mm"),
-          s("Max dumping height", "5,265", "mm"),
-          s("Min front swing radius", "2,455", "mm"),
-          s("Min tail swing radius", "1,965", "mm"),
-        ],
-      },
-      {
-        title: "Configuration",
-        specs: [
-          s("Hydraulic system", "Electronic pump control, load-sensing valve"),
-          s("Drive system", "Mechanical drive with overrunning clutch"),
-          s("Brakes", "4-wheel hydraulic wet"),
-          s("Wheel-end reducer", "Standard"),
-          s("Boom length", "3,600", "mm"),
-          s("Arm length", "2,100", "mm"),
-          s("Standard bucket width", "700", "mm"),
-          s("Blade width", "1,975", "mm"),
-          s("Blade max rise", "400", "mm"),
-          s("Blade max drop", "35", "mm"),
-          s("Dozer blade", "Optional"),
-        ],
-      },
-      {
-        /*
-         * The sheet's ● / ○ / — column, spelled out. A dealer's customer
-         * needs to know what arrives on the machine and what is a line on the
-         * order form; three symbols and a key elsewhere on the page does not
-         * tell them that.
-         */
-        title: "Standard and optional equipment",
-        specs: [
-          s("Engine aftertreatment system", "Standard"),
-          s("Full-colour LCD instrument panel", "Standard"),
-          s("Joystick parking quick button", "Standard"),
-          s("Reversible operating handle", "Standard"),
-          s("Dual-circuit brake control", "Standard"),
-          s("Breaker hydraulic piping", "Standard"),
-          s("Auxiliary hydraulic piping", "Optional"),
-          s("Dozer blade", "Optional"),
-        ],
-      },
-    ],
-    features: [
-      {
-        title: "Wheel-end reduction axles",
-        description:
-          "Higher transmission efficiency and torque, greater load capacity and a longer service life than a plain axle.",
-      },
-      {
-        title: "Tyres for soft ground",
-        description:
-          "8.30-20 PLUS tyres developed for mud and swamp, resisting the slipping and sinking that stops a wheeled machine.",
-      },
-      {
-        title: "Load-sensing hydraulics",
-        description:
-          "An electronically controlled pump on a load-sensing valve supplies only the flow being asked for, which cuts both fuel burn and heat.",
-      },
-      {
-        title: "Reinforced against eccentric load",
-        description:
-          "Larger-diameter balance cylinder piston rods carry impact and off-centre loading on uneven ground.",
-      },
-      CAB_FEATURES[3],
-    ],
-    isPlaceholder: false,
-  },
-
   /* ────────────────────────────────────────── C95 ───── */
   /*
    * C95 G4, from the manufacturer's own sheet.
@@ -579,11 +444,13 @@ export const XINYUAN_SPECS: Record<string, XinyuanModelData> = {
    * gave 8,875 kg and 73.5 kW and matched the C120W row for row. That listing
    * describes a different configuration and is not this machine.
    *
-   * Note the relationship to the C85M G4: same 7,100 kg platform, same bucket
-   * range, relief pressure, digging and traction force, swing speed and tank
-   * capacities. The C95 is the grapple build of it - outriggers, a longer arm,
-   * a taller superstructure and a smaller engine. Those two sheets agreeing in
-   * places is the platform showing through, not a transcription error.
+   * It shares a 7,100 kg platform with the C85M G4 — same bucket range, relief
+   * pressure, digging and traction force, swing speed and tank capacities — the
+   * C95 being the grapple build of it, on outriggers with a longer arm, a
+   * taller superstructure and a smaller engine. The C85 itself is no longer
+   * carried (it is not part of the dealership), but the note is worth keeping:
+   * if a future sheet for either machine repeats these figures, that is the
+   * shared platform showing through and not a transcription error.
    */
   C95: {
     tagline: "Grapple build, on outriggers",
@@ -796,9 +663,9 @@ export const XINYUAN_SPECS: Record<string, XinyuanModelData> = {
   C115: {
     tagline: "More power over the same tail",
     summary:
-      "73.5 kW and over 7 metres of reach on the wide-body chassis, with a 190 litre tank for long working days.",
+      "An 8.05 tonne machine with 73.5 kW and over 7 metres of reach on the wide-body chassis, and a 190 litre tank for long working days.",
     description:
-      "The C115W lifts rated power to 73.5 kW and stretches the working envelope past 7 metres of reach and 4.28 metres of depth, on the same wide-body chassis and 2,090 mm tail swing as the C120. A 190 litre fuel tank and load-tolerant hydraulics keep it working through long days.",
+      "The C115W is an 8.05 tonne machine that lifts rated power to 73.5 kW and stretches the working envelope past 7 metres of reach and 4.28 metres of depth, on the same wide-body chassis and 2,090 mm tail swing as the C120. A 190 litre fuel tank and load-tolerant hydraulics keep it working through long days.",
     highlights: [
       s("Operating weight", "8,050", "kg"),
       s("Bucket capacity", "0.32", "m³"),
@@ -890,9 +757,9 @@ export const XINYUAN_SPECS: Record<string, XinyuanModelData> = {
   C120: {
     tagline: "The high-end nine tonne",
     summary:
-      "The top of the mid-range: 8,875 kg on load-sensing hydraulics, with the highest relief setting in the series below the C150.",
+      "The top of the mid-range: 8.875 tonnes on load-sensing hydraulics, with the highest relief setting in the series below the C150.",
     description:
-      "The C120W is the top of the mid-range: 8,875 kg on a load-sensing hydraulic system that supplies only the power the machine is actually asking for, which cuts both fuel burn and heat. Twin boom cylinders and a reinforced boom and arm carry heavy digging and lifting, and a 28 MPa relief setting is the highest in the series below the C150.",
+      "The C120W is the top of the mid-range: 8.875 tonnes (8,875 kg) on a load-sensing hydraulic system that supplies only the power the machine is actually asking for, which cuts both fuel burn and heat. Twin boom cylinders and a reinforced boom and arm carry heavy digging and lifting, and a 28 MPa relief setting is the highest in the series below the C150.",
     highlights: [
       s("Operating weight", "8,875", "kg"),
       s("Bucket capacity", "0.32", "m³"),
@@ -1091,35 +958,65 @@ export const XINYUAN_SPECS: Record<string, XinyuanModelData> = {
   },
 
   /* ────────────────────────────────────────────────────────── C150 ───── */
+  /* ────────────────────────────────────────────────────────── C150 ───── */
+  /*
+   * C150W / XYC150WT, reconciled against Fujian Xinyuan's own product page.
+   *
+   * This model was published incomplete: power and weight were withheld because
+   * the client's sheet gave power only as "92-110 kW" and weight as both
+   * "13 tons" and a "15-ton class". The manufacturer's technical table settles
+   * both — 118 kW at 1,800 rpm, and a machine weight of 12,500 kg.
+   *
+   * WHERE THE MANUFACTURER CONTRADICTS ITSELF, THE TABLE WINS. Its own blurb
+   * still says "13 ton" while its specification table says 12,500 kg; the same
+   * precedence was applied to the C70 and the C115 above, for the same reason —
+   * the table is the internally consistent document.
+   *
+   * FOUR FIGURES HERE WERE WRONG AND ARE CORRECTED:
+   *   bucket 0.57 -> 0.55 m³   (the sheet says 0.55 in all three places)
+   *   length 7,730 -> 7,790 mm
+   *   height 2,800 -> 3,150 mm (2,800 is the WHEELBASE; the two were conflated)
+   *   engine  A05  -> A05160
+   *
+   * AND ONE IS REMOVED. A hydraulic flow rate of "310 L/min" was carried in the
+   * highlights, the description and a feature. The manufacturer's table lists
+   * no flow rate at all, and 310 is exactly its fuel tank capacity in litres,
+   * so this is near-certainly the tank figure transcribed into the wrong row.
+   * It is gone rather than corrected: a plausible-looking wrong number on a
+   * dealer's spec table is worse than an absent one, and nothing here should be
+   * guessed. Worth reinstating if the client's own sheet genuinely lists it.
+   */
   C150: {
     tagline: "The largest in the range",
     summary:
-      "The largest in the range: a 0.57 m³ bucket, 310 L/min of flow and 8.39 metres of reach for large-site excavation.",
+      "A 12.5 tonne machine on 118 kW, reaching 8.39 metres out with a 0.55 m³ bucket for large-site excavation.",
     description:
-      "The C150W tops the C Series: a 0.57 m³ bucket, 310 L/min of hydraulic flow and a 32 MPa relief setting, reaching 8.39 metres out and 5.3 metres down. A 310 litre fuel tank and 360 mm of ground clearance suit it to large sites where refuelling and rough ground both cost time.",
+      "The C150W tops the C Series: 12.5 tonnes on a 118 kW Yuchai A05160, carrying a 0.55 m³ bucket at a 32 MPa relief setting and reaching 8.39 metres out and 5.3 metres down. An extended working device — a 4,600 mm boom on a 2,500 mm arm — covers a large site from fewer set-ups, while a 310 litre fuel tank and 360 mm of ground clearance suit it to days where refuelling and rough ground both cost time.",
     highlights: [
-      s("Bucket capacity", "0.57", "m³"),
-      s("Hydraulic flow", "310", "L/min"),
-      s("Max digging reach", "8,390", "mm"),
-      s("Max digging depth", "5,295", "mm"),
+      s("Operating weight", "12,500", "kg"),
+      s("Bucket capacity", "0.55", "m³"),
+      s("Engine power", "118", "kW"),
+      s("Max digging force", "75", "kN"),
     ],
     specs: [
       {
         title: "Engine",
         specs: [
-          s("Engine model", "Yuchai A05"),
+          s("Engine model", "Yuchai A05160"),
           s("Emission standard", "Non-road Stage III"),
           s("Aftertreatment", "Fitted"),
           s("Displacement", "4,837", "mL"),
+          s("Rated power", "118", "kW"),
+          s("Rated speed", "1,800", "rpm"),
         ],
       },
       {
         title: "Operating",
         specs: [
-          s("Bucket capacity", "0.57", "m³"),
+          s("Operating weight", "12,500", "kg"),
+          s("Bucket capacity", "0.55", "m³"),
           s("Fuel tank", "310", "L"),
           s("Hydraulic tank", "240", "L"),
-          s("Hydraulic flow rate", "310", "L/min"),
           s("Main relief valve", "32", "MPa"),
           s("Swing pressure", "27", "MPa"),
         ],
@@ -1127,16 +1024,19 @@ export const XINYUAN_SPECS: Record<string, XinyuanModelData> = {
       {
         title: "Performance",
         specs: [
+          s("Max digging force", "75", "kN"),
           s("Max traction force", "55", "kN"),
+          s("Max travel speed", "30", "km/h"),
+          s("Gradeability", "35", "°"),
           s("Platform swing speed", "8.5", "rpm"),
         ],
       },
       {
         title: "Dimensions",
         specs: [
-          s("Overall length", "7,730", "mm"),
+          s("Overall length", "7,790", "mm"),
           s("Overall width (blade)", "2,520", "mm"),
-          s("Overall height", "2,800", "mm"),
+          s("Overall height", "3,150", "mm"),
           s("Wheelbase", "2,800", "mm"),
           s("Min ground clearance", "360", "mm"),
           s("Track", "1,975", "mm"),
@@ -1163,6 +1063,7 @@ export const XINYUAN_SPECS: Record<string, XinyuanModelData> = {
           s("Hydraulic system", "Load-sensing"),
           s("Boom length", "4,600", "mm"),
           s("Arm length", "2,500", "mm"),
+          s("Standard bucket width", "900", "mm"),
           s("Blade width", "2,520", "mm"),
           s("Blade max rise", "540", "mm"),
           s("Blade max drop", "80", "mm"),
@@ -1171,28 +1072,28 @@ export const XINYUAN_SPECS: Record<string, XinyuanModelData> = {
     ],
     features: [
       {
-        title: "High-flow hydraulics",
+        title: "Extended working device",
         description:
-          "310 L/min at 32 MPa — fast cycles, and enough flow to drive demanding attachments properly.",
+          "A 4,600 mm boom on a 2,500 mm arm, with a reinforced main arm support, covering a larger working range from fewer set-ups.",
       },
       {
         title: "Largest working envelope",
         description:
-          "8.39 metres of reach and 5.3 metres of depth cover a large site from fewer set-ups.",
+          "8.39 metres of reach and 5.3 metres of depth cover a large site without repositioning.",
+      },
+      {
+        title: "Dual-circuit wet braking",
+        description:
+          "Front and rear axles each carry an independent wet braking system, so service braking is doubly protected.",
       },
       {
         title: "Long endurance",
         description:
           "310 litres of fuel and 360 mm of ground clearance, for full days on rough, spread-out sites.",
       },
-      CAB_FEATURES[3],
     ],
-    /*
-     * Engine power and operating weight are NOT published here. The supplied
-     * sheet gives power only as an estimate ("92-110 kW") and weight as both
-     * "13 tons" and "15-ton class". Both need confirming.
-     */
-    isPlaceholder: true,
+    isPlaceholder: false,
   },
+
 
 };

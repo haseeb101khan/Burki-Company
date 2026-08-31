@@ -198,22 +198,26 @@ export default async function AboutPage() {
 
               {info.founder.image ? (
                 <BoxReveal className="rounded-[3px]">
-                  <figure className="mx-auto w-full max-w-[17rem] lg:mx-0 lg:ml-auto lg:mr-0">
-                    <div className="relative aspect-[4/5] overflow-hidden rounded-[3px] bg-steel-100">
+                  <figure className="mx-auto w-full max-w-[22rem] lg:mx-0 lg:ml-auto lg:mr-0">
+                    <div className="relative aspect-[3/4] overflow-hidden rounded-[3px] bg-steel-100">
                       <Image
                         src={info.founder.image.src}
                         alt={info.founder.image.alt}
                         fill
-                        sizes="(min-width: 1024px) 18vw, 70vw"
-                        className="object-cover object-top"
+                        sizes="(min-width: 1024px) 24vw, 80vw"
+                        /* The portrait is a cutout on transparency now, so the
+                           tile's grey stands behind it. `contain` keeps the
+                           whole figure — covering a standing shot crops it to
+                           head and shoulders and loses the pose. */
+                        className="object-contain object-bottom"
                       />
                     </div>
                     <figcaption className="mt-4">
-                      <p className="font-display text-base font-bold uppercase tracking-[0.04em] text-navy-900">
+                      <p className="font-display text-xl font-bold uppercase leading-tight tracking-[0.03em] text-navy-900 md:text-2xl">
                         {info.founder.name}
                       </p>
                       {info.founder.role ? (
-                        <p className="mt-1 font-display text-[0.6875rem] font-semibold uppercase tracking-[0.18em] text-steel-500">
+                        <p className="mt-1.5 font-display text-[0.75rem] font-semibold uppercase tracking-[0.18em] text-steel-500">
                           {info.founder.role}
                         </p>
                       ) : null}

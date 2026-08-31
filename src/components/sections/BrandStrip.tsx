@@ -28,24 +28,19 @@ function BrandMark({ brand }: { brand: Brand }) {
     /*
      * No artwork supplied: a drawn wordmark rather than a line of body text.
      *
-     * LOAD-X sat among five real manufacturer marks looking like a caption that
-     * had lost its logo. This gives it the weight of one — the display face at
-     * mark scale, tight tracking, and the X carried in the accent colour so it
-     * reads as a device rather than a letter. Still just type, so it needs no
-     * artwork and no permission, and it inverts with the box like the rest.
+     * IT HAS TO PASS AS ONE OF THE SET. An earlier version set the trailing
+     * letter in the accent colour, which made LOAD-X the one coloured thing in
+     * a row of grey silhouettes — it read as a highlighted item rather than a
+     * sixth manufacturer. It now takes exactly the treatment the real marks
+     * take: one colour, the same 70% weight at rest, and the same flip to white
+     * when the cell inverts. Larger than the marks around it on purpose, since
+     * type at a logo's cap height looks smaller than artwork filling the same
+     * box.
      */
-    const [head, tail] = brand.name.split(/-(?=[^-]*$)/);
     return (
       <span className="flex aspect-[5/2] w-full max-w-[140px] items-center justify-center">
-        <span className="font-display whitespace-nowrap text-[1.6rem] font-bold uppercase leading-none tracking-[-0.02em] text-navy-800 transition-colors duration-300 group-hover:text-white md:text-[1.75rem]">
-          {tail ? (
-            <>
-              {head}
-              <span className="text-amber-500">–{tail}</span>
-            </>
-          ) : (
-            brand.name
-          )}
+        <span className="font-display whitespace-nowrap text-[2rem] font-bold uppercase leading-none tracking-[-0.02em] text-navy-800 opacity-70 transition-all duration-300 group-hover:text-white group-hover:opacity-100 group-active:text-white group-focus-visible:text-white md:text-[2.25rem]">
+          {brand.name}
         </span>
       </span>
     );

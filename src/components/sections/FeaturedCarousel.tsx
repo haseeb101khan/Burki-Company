@@ -80,11 +80,35 @@ export function FeaturedCarousel({ slides }: { slides: Banner[] }) {
       aria-label="Featured equipment"
       className="relative overflow-hidden bg-navy-900"
     >
-      <div className="relative min-h-[72svh] md:min-h-[78svh]">
+      {/* ---------------------------------------------------------- the frame
+       *
+       * ON A PHONE THE PICTURE IS A BAND, NOT A BACKDROP.
+       *
+       * These banners are 2.35:1 to 2.49:1 — the premises with a row of loaders
+       * along the front, a line of LOAD-X machines, a pump truck. Filling a
+       * portrait screen with one means covering a box about 0.7 wide from an
+       * image 2.4 wide, and the arithmetic is brutal: roughly 30% of the width
+       * survives the crop. What survived was a warehouse ceiling and a palm
+       * tree, with the machines the picture exists to show cropped off both
+       * sides.
+       *
+       * No focus point rescues that — the subjects are spread across the full
+       * width, so there is no single point to anchor. The height cannot be cut
+       * far enough either: showing ~70% of a 2.4 image at 390px wide needs a
+       * band about 230px tall, which is too short to also carry a headline and
+       * two buttons.
+       *
+       * So on a phone it stops being a backdrop. The picture takes a 54vw band
+       * across the top, where about 78% of its width survives, and the copy
+       * sits under it on the section's own navy. From `md` up, where the
+       * viewport is landscape and the crop is mild, it goes back to being the
+       * full-bleed backdrop it was designed as.
+       */}
+      <div className="relative md:min-h-[78svh]">
         <AnimatePresence initial={false} mode="sync">
           <motion.div
             key={slide.id}
-            className="absolute inset-0"
+            className="absolute inset-x-0 top-0 h-[54vw] md:inset-0 md:h-auto"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -146,17 +170,11 @@ export function FeaturedCarousel({ slides }: { slides: Banner[] }) {
                 photograph stays legible. The previous version ran to 92% across
                 the left and a second wash over the whole frame, which buried
                 the client's own premises and yard shots. */}
-            {/* Phones: the copy spans the full width, so the scrim has to come
-                up from the base rather than in from the left. A film's copy is
-                at the top, so its scrim comes down from there instead. */}
-            <div
-              className={cn(
-                "absolute inset-0 md:hidden",
-                slide.video
-                  ? "bg-[linear-gradient(to_bottom,rgba(0,10,28,0.88)_0%,rgba(0,10,28,0.5)_34%,rgba(0,10,28,0.12)_62%,rgba(0,10,28,0)_100%)]"
-                  : "bg-[linear-gradient(to_top,rgba(0,10,28,0.92)_0%,rgba(0,10,28,0.74)_42%,rgba(0,10,28,0.44)_72%,rgba(0,10,28,0.28)_100%)]",
-              )}
-            />
+            {/* Phones: nothing is written over the picture any more, so there
+                is no legibility scrim — only a short fade at the band's base so
+                the photograph resolves into the navy beneath it instead of
+                stopping on a hard edge. */}
+            <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(0,10,28,0)_62%,rgba(0,10,28,0.55)_88%,rgba(0,10,28,0.95)_100%)] md:hidden" />
             {/* Wider screens: tight to the text column, so most of the frame
                 stays clear. The film's runs from the top-left corner, which is
                 where its copy sits and where the footage is emptiest. */}
@@ -168,19 +186,23 @@ export function FeaturedCarousel({ slides }: { slides: Banner[] }) {
                   : "bg-[linear-gradient(to_right,rgba(0,10,28,0.82)_0%,rgba(0,10,28,0.52)_32%,rgba(0,10,28,0.14)_60%,rgba(0,10,28,0)_82%)]",
               )}
             />
-            {/* Only the base, so the dots and arrows keep their contrast. */}
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-navy-950/70 to-transparent" />
+            {/* Only the base, so the dots and arrows keep their contrast. Not
+                on a phone, where they sit on navy rather than on the picture. */}
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 hidden h-44 bg-gradient-to-t from-navy-950/70 to-transparent md:block" />
           </motion.div>
         </AnimatePresence>
 
         {/* Content sits in normal flow so the section height follows the copy. */}
         <Container
           className={cn(
-            "relative flex min-h-[72svh] flex-col py-20 md:min-h-[78svh] md:py-24 lg:pl-20 lg:pr-20",
+            "relative flex flex-col md:min-h-[78svh] md:py-24 lg:pl-20 lg:pr-20",
+            /* Clears the picture band on a phone, then reverts to the overlay's
+               own vertical rhythm once the picture is behind the copy again. */
+            "pt-[calc(54vw+2rem)] pb-7 md:pt-24 md:pb-24",
             /* A film carries its own composition — and this one closes on a
                centred logo. Its copy splits to the top and its actions to the
                base, leaving the middle of the frame to the film. */
-            slide.video ? "pt-8 md:pt-10" : "justify-center",
+            slide.video ? "md:pt-10" : "md:justify-center",
           )}
         >
           <AnimatePresence mode="wait">
@@ -267,8 +289,14 @@ export function FeaturedCarousel({ slides }: { slides: Banner[] }) {
           <ChevronRightIcon className="text-lg" />
         </button>
 
-        {/* ------------------------------------------------------- controls */}
-        <Container className="pointer-events-none absolute inset-x-0 bottom-0 pb-7 md:pb-9">
+        {/* ------------------------------------------------------- controls
+         *
+         * In normal flow on a phone, pinned to the base from `md` up. Overlaid,
+         * they landed across the second button — the copy no longer runs the
+         * height of the frame now the picture has taken the top of it, so there
+         * is nothing under them to sit over.
+         */}
+        <Container className="pointer-events-none pb-8 md:absolute md:inset-x-0 md:bottom-0 md:pb-9">
           <div className="pointer-events-auto flex items-center justify-between gap-6 border-t border-white/15 pt-5">
             <ul className="flex items-center gap-2.5" aria-label="Choose slide">
               {slides.map((s, i) => (

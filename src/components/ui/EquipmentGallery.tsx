@@ -28,7 +28,7 @@ type Slide = { key: string; image: ImageRef };
  * a video in the middle of a walkaround sequence, where dragging past it fought
  * the scrubber and a play badge appeared among the stills with no warning. The
  * tabs also mean a machine with no film shows no film control at all, rather
- * than an empty affordance — eight of the eleven Xinyuan models have one.
+ * than an empty affordance — seven of the ten Xinyuan models have one.
  *
  * ---------------------------------------------------------------------------
  * NOTHING IN HERE MAY BE WIDER THAN ITS OWN COLUMN.

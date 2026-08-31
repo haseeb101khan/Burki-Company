@@ -2986,404 +2986,6 @@ export const content: ContentSnapshot = {
       "categoryName": "Excavators"
     },
     {
-      "id": "eq-xy-c85",
-      "slug": "c85",
-      "model": "C85",
-      "name": "C85 Wheeled Excavator",
-      "categorySlug": "excavators",
-      "brand": "Xinyuan",
-      "series": "C Series",
-      "tagline": "Seven tonnes, and made for mud",
-      "summary": "A 7.1 tonne wheeled excavator on a China IV Yuchai F30, with wheel-end reduction axles, wet brakes and tyres developed for soft ground.",
-      "description": "The C85M G4 develops the C80 platform into a 7.1 tonne machine on a China IV Yuchai F30 producing 55.8 kW. Wheel-end reduction axles carry higher torque and load, larger-diameter balance cylinder rods take impact and eccentric loading, and 8.30-20 PLUS tyres are developed specifically for muddy and soft ground. Four-wheel hydraulic wet brakes and 32 km/h of road speed make it as practical getting to municipal, water conservancy and river dredging work as it is doing it.",
-      "image": {
-        "src": "/images/xinyuan/c85-cutout.webp",
-        "alt": "Xinyuan C85 wheeled excavator, isolated on white"
-      },
-      "cutoutImage": {
-        "src": "/images/xinyuan/c85-cutout.webp",
-        "alt": "Xinyuan C85 wheeled excavator, isolated on white"
-      },
-      "gallery": [
-        {
-          "src": "/images/xinyuan/gallery/c85-1.jpg",
-          "alt": "Xinyuan C85 wheeled excavator, view 1"
-        },
-        {
-          "src": "/images/xinyuan/gallery/c85-2.jpg",
-          "alt": "Xinyuan C85 wheeled excavator, view 2"
-        },
-        {
-          "src": "/images/xinyuan/gallery/c85-3.jpg",
-          "alt": "Xinyuan C85 wheeled excavator, view 3"
-        },
-        {
-          "src": "/images/xinyuan/gallery/c85-4.jpg",
-          "alt": "Xinyuan C85 wheeled excavator, view 4"
-        },
-        {
-          "src": "/images/xinyuan/gallery/c85-5.jpg",
-          "alt": "Xinyuan C85 wheeled excavator, view 5"
-        },
-        {
-          "src": "/images/xinyuan/gallery/c85-6.jpg",
-          "alt": "Xinyuan C85 wheeled excavator, view 6"
-        },
-        {
-          "src": "/images/xinyuan/gallery/c85-7.jpg",
-          "alt": "Xinyuan C85 wheeled excavator, view 7"
-        }
-      ],
-      "videos": [
-        {
-          "src": "/videos/xinyuan/c85.mp4",
-          "title": "Detailing film",
-          "poster": {
-            "src": "/images/xinyuan/posters/c85.jpg",
-            "alt": "Xinyuan C85 detailing film"
-          }
-        }
-      ],
-      "highlights": [
-        {
-          "label": "Operating weight",
-          "value": "7,100",
-          "unit": "kg"
-        },
-        {
-          "label": "Bucket capacity",
-          "value": "0.20-0.35",
-          "unit": "m³"
-        },
-        {
-          "label": "Engine power",
-          "value": "55.8",
-          "unit": "kW"
-        },
-        {
-          "label": "Max digging force",
-          "value": "35",
-          "unit": "kN"
-        }
-      ],
-      "specs": [
-        {
-          "title": "Engine",
-          "specs": [
-            {
-              "label": "Model",
-              "value": "C85M G4"
-            },
-            {
-              "label": "Engine model",
-              "value": "Yuchai F30"
-            },
-            {
-              "label": "Emission standard",
-              "value": "China IV non-road"
-            },
-            {
-              "label": "Aftertreatment",
-              "value": "Fitted as standard"
-            },
-            {
-              "label": "Displacement",
-              "value": "2,982",
-              "unit": "mL"
-            },
-            {
-              "label": "Rated power",
-              "value": "55.8",
-              "unit": "kW"
-            },
-            {
-              "label": "Rated speed",
-              "value": "2,200",
-              "unit": "rpm"
-            }
-          ]
-        },
-        {
-          "title": "Operating",
-          "specs": [
-            {
-              "label": "Operating weight",
-              "value": "7,100",
-              "unit": "kg"
-            },
-            {
-              "label": "Bucket capacity",
-              "value": "0.20-0.35",
-              "unit": "m³"
-            },
-            {
-              "label": "Fuel tank",
-              "value": "160",
-              "unit": "L"
-            },
-            {
-              "label": "Hydraulic tank",
-              "value": "130",
-              "unit": "L"
-            },
-            {
-              "label": "Hydraulic flow rate",
-              "value": "162",
-              "unit": "L/min"
-            },
-            {
-              "label": "Main relief valve",
-              "value": "24.5",
-              "unit": "MPa"
-            },
-            {
-              "label": "Swing pressure",
-              "value": "21.5",
-              "unit": "MPa"
-            }
-          ]
-        },
-        {
-          "title": "Performance",
-          "specs": [
-            {
-              "label": "Max digging force",
-              "value": "35",
-              "unit": "kN"
-            },
-            {
-              "label": "Max traction force",
-              "value": "35",
-              "unit": "kN"
-            },
-            {
-              "label": "Max travel speed",
-              "value": "32",
-              "unit": "km/h"
-            },
-            {
-              "label": "Platform swing speed",
-              "value": "8.5",
-              "unit": "rpm"
-            },
-            {
-              "label": "Gradeability",
-              "value": "35",
-              "unit": "°"
-            }
-          ]
-        },
-        {
-          "title": "Dimensions",
-          "specs": [
-            {
-              "label": "Overall length",
-              "value": "6,435",
-              "unit": "mm"
-            },
-            {
-              "label": "Overall width",
-              "value": "1,975",
-              "unit": "mm"
-            },
-            {
-              "label": "Overall height",
-              "value": "2,865",
-              "unit": "mm"
-            },
-            {
-              "label": "Wheelbase",
-              "value": "2,410",
-              "unit": "mm"
-            },
-            {
-              "label": "Tyre type",
-              "value": "8.30-20 PLUS"
-            },
-            {
-              "label": "Ground contact width",
-              "value": "450",
-              "unit": "mm"
-            },
-            {
-              "label": "Front track",
-              "value": "1,570",
-              "unit": "mm"
-            },
-            {
-              "label": "Rear track",
-              "value": "1,525",
-              "unit": "mm"
-            },
-            {
-              "label": "Min ground clearance",
-              "value": "250",
-              "unit": "mm"
-            }
-          ]
-        },
-        {
-          "title": "Working range",
-          "specs": [
-            {
-              "label": "Max digging reach",
-              "value": "6,950",
-              "unit": "mm"
-            },
-            {
-              "label": "Max digging depth",
-              "value": "3,630",
-              "unit": "mm"
-            },
-            {
-              "label": "Max digging height",
-              "value": "7,110",
-              "unit": "mm"
-            },
-            {
-              "label": "Max dumping height",
-              "value": "5,265",
-              "unit": "mm"
-            },
-            {
-              "label": "Min front swing radius",
-              "value": "2,455",
-              "unit": "mm"
-            },
-            {
-              "label": "Min tail swing radius",
-              "value": "1,965",
-              "unit": "mm"
-            }
-          ]
-        },
-        {
-          "title": "Configuration",
-          "specs": [
-            {
-              "label": "Hydraulic system",
-              "value": "Electronic pump control, load-sensing valve"
-            },
-            {
-              "label": "Drive system",
-              "value": "Mechanical drive with overrunning clutch"
-            },
-            {
-              "label": "Brakes",
-              "value": "4-wheel hydraulic wet"
-            },
-            {
-              "label": "Wheel-end reducer",
-              "value": "Standard"
-            },
-            {
-              "label": "Boom length",
-              "value": "3,600",
-              "unit": "mm"
-            },
-            {
-              "label": "Arm length",
-              "value": "2,100",
-              "unit": "mm"
-            },
-            {
-              "label": "Standard bucket width",
-              "value": "700",
-              "unit": "mm"
-            },
-            {
-              "label": "Blade width",
-              "value": "1,975",
-              "unit": "mm"
-            },
-            {
-              "label": "Blade max rise",
-              "value": "400",
-              "unit": "mm"
-            },
-            {
-              "label": "Blade max drop",
-              "value": "35",
-              "unit": "mm"
-            },
-            {
-              "label": "Dozer blade",
-              "value": "Optional"
-            }
-          ]
-        },
-        {
-          "title": "Standard and optional equipment",
-          "specs": [
-            {
-              "label": "Engine aftertreatment system",
-              "value": "Standard"
-            },
-            {
-              "label": "Full-colour LCD instrument panel",
-              "value": "Standard"
-            },
-            {
-              "label": "Joystick parking quick button",
-              "value": "Standard"
-            },
-            {
-              "label": "Reversible operating handle",
-              "value": "Standard"
-            },
-            {
-              "label": "Dual-circuit brake control",
-              "value": "Standard"
-            },
-            {
-              "label": "Breaker hydraulic piping",
-              "value": "Standard"
-            },
-            {
-              "label": "Auxiliary hydraulic piping",
-              "value": "Optional"
-            },
-            {
-              "label": "Dozer blade",
-              "value": "Optional"
-            }
-          ]
-        }
-      ],
-      "features": [
-        {
-          "title": "Wheel-end reduction axles",
-          "description": "Higher transmission efficiency and torque, greater load capacity and a longer service life than a plain axle."
-        },
-        {
-          "title": "Tyres for soft ground",
-          "description": "8.30-20 PLUS tyres developed for mud and swamp, resisting the slipping and sinking that stops a wheeled machine."
-        },
-        {
-          "title": "Load-sensing hydraulics",
-          "description": "An electronically controlled pump on a load-sensing valve supplies only the flow being asked for, which cuts both fuel burn and heat."
-        },
-        {
-          "title": "Reinforced against eccentric load",
-          "description": "Larger-diameter balance cylinder piston rods carry impact and off-centre loading on uneven ground."
-        },
-        {
-          "title": "Attachment-ready hydraulics",
-          "description": "Plumbed for a hydraulic breaker with auxiliary lines and a proportional electric control handle. Quick coupler optional."
-        }
-      ],
-      "relatedEquipmentSlugs": [
-        "c65",
-        "c70",
-        "c75"
-      ],
-      "isFeatured": false,
-      "isPlaceholder": false,
-      "order": 5,
-      "brandSlug": "xinyuan",
-      "categoryName": "Excavators"
-    },
-    {
       "id": "eq-xy-c95",
       "slug": "c95",
       "model": "C95",
@@ -3769,7 +3371,7 @@ export const content: ContentSnapshot = {
       ],
       "isFeatured": false,
       "isPlaceholder": false,
-      "order": 6,
+      "order": 5,
       "brandSlug": "xinyuan",
       "categoryName": "Excavators"
     },
@@ -4148,7 +3750,7 @@ export const content: ContentSnapshot = {
       ],
       "isFeatured": false,
       "isPlaceholder": false,
-      "order": 7,
+      "order": 6,
       "brandSlug": "xinyuan",
       "categoryName": "Excavators"
     },
@@ -4161,8 +3763,8 @@ export const content: ContentSnapshot = {
       "brand": "Xinyuan",
       "series": "C Series",
       "tagline": "More power over the same tail",
-      "summary": "73.5 kW and over 7 metres of reach on the wide-body chassis, with a 190 litre tank for long working days.",
-      "description": "The C115W lifts rated power to 73.5 kW and stretches the working envelope past 7 metres of reach and 4.28 metres of depth, on the same wide-body chassis and 2,090 mm tail swing as the C120. A 190 litre fuel tank and load-tolerant hydraulics keep it working through long days.",
+      "summary": "An 8.05 tonne machine with 73.5 kW and over 7 metres of reach on the wide-body chassis, and a 190 litre tank for long working days.",
+      "description": "The C115W is an 8.05 tonne machine that lifts rated power to 73.5 kW and stretches the working envelope past 7 metres of reach and 4.28 metres of depth, on the same wide-body chassis and 2,090 mm tail swing as the C120. A 190 litre fuel tank and load-tolerant hydraulics keep it working through long days.",
       "image": {
         "src": "/images/xinyuan/c115-cutout.webp",
         "alt": "Xinyuan C115 wheeled excavator, isolated on white"
@@ -4506,7 +4108,7 @@ export const content: ContentSnapshot = {
       ],
       "isFeatured": false,
       "isPlaceholder": false,
-      "order": 8,
+      "order": 7,
       "brandSlug": "xinyuan",
       "categoryName": "Excavators"
     },
@@ -4519,8 +4121,8 @@ export const content: ContentSnapshot = {
       "brand": "Xinyuan",
       "series": "C Series",
       "tagline": "The high-end nine tonne",
-      "summary": "The top of the mid-range: 8,875 kg on load-sensing hydraulics, with the highest relief setting in the series below the C150.",
-      "description": "The C120W is the top of the mid-range: 8,875 kg on a load-sensing hydraulic system that supplies only the power the machine is actually asking for, which cuts both fuel burn and heat. Twin boom cylinders and a reinforced boom and arm carry heavy digging and lifting, and a 28 MPa relief setting is the highest in the series below the C150.",
+      "summary": "The top of the mid-range: 8.875 tonnes on load-sensing hydraulics, with the highest relief setting in the series below the C150.",
+      "description": "The C120W is the top of the mid-range: 8.875 tonnes (8,875 kg) on a load-sensing hydraulic system that supplies only the power the machine is actually asking for, which cuts both fuel burn and heat. Twin boom cylinders and a reinforced boom and arm carry heavy digging and lifting, and a 28 MPa relief setting is the highest in the series below the C150.",
       "image": {
         "src": "/images/xinyuan/c120-cutout.webp",
         "alt": "Xinyuan C120 wheeled excavator, isolated on white"
@@ -4881,7 +4483,7 @@ export const content: ContentSnapshot = {
       ],
       "isFeatured": true,
       "isPlaceholder": false,
-      "order": 9,
+      "order": 8,
       "brandSlug": "xinyuan",
       "categoryName": "Excavators"
     },
@@ -5303,7 +4905,7 @@ export const content: ContentSnapshot = {
       ],
       "isFeatured": false,
       "isPlaceholder": false,
-      "order": 10,
+      "order": 9,
       "brandSlug": "xinyuan",
       "categoryName": "Excavators"
     },
@@ -5316,8 +4918,8 @@ export const content: ContentSnapshot = {
       "brand": "Xinyuan",
       "series": "C Series",
       "tagline": "The largest in the range",
-      "summary": "The largest in the range: a 0.57 m³ bucket, 310 L/min of flow and 8.39 metres of reach for large-site excavation.",
-      "description": "The C150W tops the C Series: a 0.57 m³ bucket, 310 L/min of hydraulic flow and a 32 MPa relief setting, reaching 8.39 metres out and 5.3 metres down. A 310 litre fuel tank and 360 mm of ground clearance suit it to large sites where refuelling and rough ground both cost time.",
+      "summary": "A 12.5 tonne machine on 118 kW, reaching 8.39 metres out with a 0.55 m³ bucket for large-site excavation.",
+      "description": "The C150W tops the C Series: 12.5 tonnes on a 118 kW Yuchai A05160, carrying a 0.55 m³ bucket at a 32 MPa relief setting and reaching 8.39 metres out and 5.3 metres down. An extended working device — a 4,600 mm boom on a 2,500 mm arm — covers a large site from fewer set-ups, while a 310 litre fuel tank and 360 mm of ground clearance suit it to days where refuelling and rough ground both cost time.",
       "image": {
         "src": "/images/xinyuan/c150-cutout.webp",
         "alt": "Xinyuan C150 wheeled excavator, isolated on white"
@@ -5435,24 +5037,24 @@ export const content: ContentSnapshot = {
       "videos": [],
       "highlights": [
         {
+          "label": "Operating weight",
+          "value": "12,500",
+          "unit": "kg"
+        },
+        {
           "label": "Bucket capacity",
-          "value": "0.57",
+          "value": "0.55",
           "unit": "m³"
         },
         {
-          "label": "Hydraulic flow",
-          "value": "310",
-          "unit": "L/min"
+          "label": "Engine power",
+          "value": "118",
+          "unit": "kW"
         },
         {
-          "label": "Max digging reach",
-          "value": "8,390",
-          "unit": "mm"
-        },
-        {
-          "label": "Max digging depth",
-          "value": "5,295",
-          "unit": "mm"
+          "label": "Max digging force",
+          "value": "75",
+          "unit": "kN"
         }
       ],
       "specs": [
@@ -5461,7 +5063,7 @@ export const content: ContentSnapshot = {
           "specs": [
             {
               "label": "Engine model",
-              "value": "Yuchai A05"
+              "value": "Yuchai A05160"
             },
             {
               "label": "Emission standard",
@@ -5475,6 +5077,16 @@ export const content: ContentSnapshot = {
               "label": "Displacement",
               "value": "4,837",
               "unit": "mL"
+            },
+            {
+              "label": "Rated power",
+              "value": "118",
+              "unit": "kW"
+            },
+            {
+              "label": "Rated speed",
+              "value": "1,800",
+              "unit": "rpm"
             }
           ]
         },
@@ -5482,8 +5094,13 @@ export const content: ContentSnapshot = {
           "title": "Operating",
           "specs": [
             {
+              "label": "Operating weight",
+              "value": "12,500",
+              "unit": "kg"
+            },
+            {
               "label": "Bucket capacity",
-              "value": "0.57",
+              "value": "0.55",
               "unit": "m³"
             },
             {
@@ -5495,11 +5112,6 @@ export const content: ContentSnapshot = {
               "label": "Hydraulic tank",
               "value": "240",
               "unit": "L"
-            },
-            {
-              "label": "Hydraulic flow rate",
-              "value": "310",
-              "unit": "L/min"
             },
             {
               "label": "Main relief valve",
@@ -5517,9 +5129,24 @@ export const content: ContentSnapshot = {
           "title": "Performance",
           "specs": [
             {
+              "label": "Max digging force",
+              "value": "75",
+              "unit": "kN"
+            },
+            {
               "label": "Max traction force",
               "value": "55",
               "unit": "kN"
+            },
+            {
+              "label": "Max travel speed",
+              "value": "30",
+              "unit": "km/h"
+            },
+            {
+              "label": "Gradeability",
+              "value": "35",
+              "unit": "°"
             },
             {
               "label": "Platform swing speed",
@@ -5533,7 +5160,7 @@ export const content: ContentSnapshot = {
           "specs": [
             {
               "label": "Overall length",
-              "value": "7,730",
+              "value": "7,790",
               "unit": "mm"
             },
             {
@@ -5543,7 +5170,7 @@ export const content: ContentSnapshot = {
             },
             {
               "label": "Overall height",
-              "value": "2,800",
+              "value": "3,150",
               "unit": "mm"
             },
             {
@@ -5633,6 +5260,11 @@ export const content: ContentSnapshot = {
               "unit": "mm"
             },
             {
+              "label": "Standard bucket width",
+              "value": "900",
+              "unit": "mm"
+            },
+            {
               "label": "Blade width",
               "value": "2,520",
               "unit": "mm"
@@ -5652,20 +5284,20 @@ export const content: ContentSnapshot = {
       ],
       "features": [
         {
-          "title": "High-flow hydraulics",
-          "description": "310 L/min at 32 MPa — fast cycles, and enough flow to drive demanding attachments properly."
+          "title": "Extended working device",
+          "description": "A 4,600 mm boom on a 2,500 mm arm, with a reinforced main arm support, covering a larger working range from fewer set-ups."
         },
         {
           "title": "Largest working envelope",
-          "description": "8.39 metres of reach and 5.3 metres of depth cover a large site from fewer set-ups."
+          "description": "8.39 metres of reach and 5.3 metres of depth cover a large site without repositioning."
+        },
+        {
+          "title": "Dual-circuit wet braking",
+          "description": "Front and rear axles each carry an independent wet braking system, so service braking is doubly protected."
         },
         {
           "title": "Long endurance",
           "description": "310 litres of fuel and 360 mm of ground clearance, for full days on rough, spread-out sites."
-        },
-        {
-          "title": "Attachment-ready hydraulics",
-          "description": "Plumbed for a hydraulic breaker with auxiliary lines and a proportional electric control handle. Quick coupler optional."
         }
       ],
       "relatedEquipmentSlugs": [
@@ -5674,8 +5306,8 @@ export const content: ContentSnapshot = {
         "c75"
       ],
       "isFeatured": false,
-      "isPlaceholder": true,
-      "order": 11,
+      "isPlaceholder": false,
+      "order": 10,
       "brandSlug": "xinyuan",
       "categoryName": "Excavators"
     }
@@ -6130,7 +5762,6 @@ export const content: ContentSnapshot = {
         "c70",
         "c75",
         "c80",
-        "c85",
         "c95"
       ],
       "isPlaceholder": true,
@@ -6233,7 +5864,6 @@ export const content: ContentSnapshot = {
         "c70",
         "c75",
         "c80",
-        "c85",
         "c95"
       ],
       "isPlaceholder": true,
@@ -6327,7 +5957,6 @@ export const content: ContentSnapshot = {
         "c70",
         "c75",
         "c80",
-        "c85",
         "c95"
       ],
       "isPlaceholder": true,
@@ -6366,7 +5995,6 @@ export const content: ContentSnapshot = {
         "c70",
         "c75",
         "c80",
-        "c85",
         "c95"
       ],
       "isPlaceholder": true,
@@ -6441,7 +6069,6 @@ export const content: ContentSnapshot = {
         "c70",
         "c75",
         "c80",
-        "c85",
         "c95"
       ],
       "isPlaceholder": true,
@@ -6496,7 +6123,6 @@ export const content: ContentSnapshot = {
         "c70",
         "c75",
         "c80",
-        "c85",
         "c95"
       ],
       "isPlaceholder": true,
@@ -6530,7 +6156,6 @@ export const content: ContentSnapshot = {
         "c70",
         "c75",
         "c80",
-        "c85",
         "c95"
       ],
       "isPlaceholder": true,
@@ -6564,7 +6189,6 @@ export const content: ContentSnapshot = {
         "c70",
         "c75",
         "c80",
-        "c85",
         "c95"
       ],
       "isPlaceholder": true,
@@ -6603,7 +6227,6 @@ export const content: ContentSnapshot = {
         "c70",
         "c75",
         "c80",
-        "c85",
         "c95"
       ],
       "isPlaceholder": true,
@@ -6637,7 +6260,6 @@ export const content: ContentSnapshot = {
         "c70",
         "c75",
         "c80",
-        "c85",
         "c95"
       ],
       "isPlaceholder": true,
@@ -6676,7 +6298,6 @@ export const content: ContentSnapshot = {
         "c70",
         "c75",
         "c80",
-        "c85",
         "c95"
       ],
       "isPlaceholder": true,
@@ -6715,7 +6336,6 @@ export const content: ContentSnapshot = {
         "c70",
         "c75",
         "c80",
-        "c85",
         "c95"
       ],
       "isPlaceholder": true,
@@ -6749,7 +6369,6 @@ export const content: ContentSnapshot = {
         "c70",
         "c75",
         "c80",
-        "c85",
         "c95"
       ],
       "isPlaceholder": true,
@@ -6783,7 +6402,6 @@ export const content: ContentSnapshot = {
         "c70",
         "c75",
         "c80",
-        "c85",
         "c95"
       ],
       "isPlaceholder": true,

@@ -35,5 +35,13 @@ export async function AboutIntro() {
     },
   ];
 
-  return <AboutIntroCards cards={cards} />;
+  return (
+    <AboutIntroCards
+      cards={cards}
+      aside={{
+        src: "/images/about/burki-office.webp",
+        alt: "The Burki & Company office, with the Burki Group of Companies name board on the wall",
+      }}
+    />
+  );
 }

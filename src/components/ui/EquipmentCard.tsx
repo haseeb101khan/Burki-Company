@@ -85,7 +85,10 @@ export function EquipmentCard({
           )}
           style={display.focus ? { objectPosition: display.focus } : undefined}
         />
-        <div className="absolute left-0 top-0 bg-navy-800/90 px-2.5 py-1 font-display text-[0.625rem] font-semibold uppercase tracking-[0.14em] text-white backdrop-blur-sm md:px-3 md:py-1.5 md:text-[0.6875rem]">
+        {/* The brand flag. Sized up on the client's call — at a 10px cap it
+            read as a caption stuck to the corner rather than as the label on
+            the machine. */}
+        <div className="absolute left-0 top-0 bg-navy-800/90 px-3 py-1.5 font-display text-[0.75rem] font-semibold uppercase tracking-[0.14em] text-white backdrop-blur-sm md:px-4 md:py-2 md:text-[0.875rem]">
           {item.brand}
         </div>
       </div>

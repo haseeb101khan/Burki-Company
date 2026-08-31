@@ -16,10 +16,10 @@ import { XINYUAN_SPECS } from "./xinyuan-specs";
  *  - The CUTOUTS are the manufacturer's own product photography.
  *  - The ATTACHMENT names, carrier classes and images are the manufacturer's.
  *  - THE SPECIFICATIONS come from the client's own manufacturer sheets and
- *    live in `xinyuan-specs.ts`. Ten of the eleven are complete. C150 is
- *    missing engine power and a settled operating weight. Those three stay
- *    flagged provisional, and no figure anywhere is inferred from a model
- *    number or carried across from a neighbouring machine.
+ *    live in `xinyuan-specs.ts`. All ten are now complete: the C150's engine
+ *    power and operating weight, the last two outstanding, are settled from the
+ *    manufacturer's own technical table. No figure anywhere is inferred from a
+ *    model number or carried across from a neighbouring machine.
  *  - ATTACHMENT COMPATIBILITY is DERIVED, not quoted. The factory supplies a
  *    carrier class per attachment (7 t, 9 t, 15 t) — real data — but no
  *    compatibility chart. `CARRIER_BANDS` below matches each class to the
@@ -37,7 +37,7 @@ const CUTOUT = (model: string) => ({
 /**
  * How many working photographs each model came with.
  *
- * All eleven now have a set. Counts mirror what
+ * All ten now have a set. Counts mirror what
  * `prepare-xinyuan-media.mjs` actually produced, so they cannot drift from the
  * files on disk without the gallery going visibly wrong.
  */
@@ -51,12 +51,11 @@ const GALLERY_COUNT: Record<string, number> = {
   "c70": 25,
   "c75": 25,
   "c80": 27,
-  "c85": 7,
   "c95": 21,
 };
 
 /** Models with a detailing film. The rest get no video tab at all. */
-const HAS_FILM = new Set(["c105", "c120", "c130", "c70", "c75", "c80", "c85", "c95"]);
+const HAS_FILM = new Set(["c105", "c120", "c130", "c70", "c75", "c80", "c95"]);
 
 const galleryFor = (model: string) => {
   const n = GALLERY_COUNT[model.toLowerCase()] ?? 0;
@@ -82,8 +81,14 @@ const filmFor = (model: string) => {
   ];
 };
 
-/** The eleven confirmed models, in ascending model-number order. */
-const MODELS = ["C65", "C70", "C75", "C80", "C85", "C95", "C105", "C115", "C120", "C130", "C150"];
+/**
+ * The ten confirmed models, in ascending model-number order.
+ *
+ * C85 was removed on the client's instruction — it is not part of the
+ * dealership, so it is not shown. Its specification, gallery, film and cutout
+ * went with it.
+ */
+const MODELS = ["C65", "C70", "C75", "C80", "C95", "C105", "C115", "C120", "C130", "C150"];
 
 /**
  * The three the client picked for the homepage brand showcase.
@@ -139,16 +144,16 @@ export const xinyuanEquipment: SeedEquipment[] = MODELS.map((model, index) => {
 /**
  * Confirmed operating weights, in tonnes.
  *
- * Straight off the manufacturer sheets. C150 gives its weight two different
- * ways ("13 tons" and "15-ton class"), so it does not appear here and picks up
- * no attachment until that is settled.
+ * Straight off the manufacturer sheets. The C150 read "13 tons" in one place
+ * and a "15-ton class" in another, so it used to sit this out; the
+ * manufacturer's own technical table gives 12,500 kg, which is the figure used,
+ * and it now picks up attachments like the rest of the range.
  */
 const OPERATING_WEIGHT_T: Record<string, number> = {
   C65: 6.2,
   C70: 6.665,
   C75: 6.7,
   C80: 6.65,
-  C85: 7.1,
   C95: 7.1,
   C105: 8.3,
   C115: 8.05,
