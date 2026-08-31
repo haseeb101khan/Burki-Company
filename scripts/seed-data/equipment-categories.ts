@@ -115,7 +115,7 @@ export const equipmentCategories: EquipmentCategory[] = [
     /* The 7 t hydraulic breaker cutout rather than a site photograph: this
        category is the one whose tiles are tools, not machines, and the tool
        reads at a glance where a photo of a machine wearing one does not. */
-    image: { src: "/images/cat-attachments.webp", alt: "Xinyuan 7 tonne hydraulic breaker attachment" },
+    image: { src: "/images/attachments-breaker.webp", alt: "Xinyuan 7 tonne hydraulic breaker attachment" },
     order: 12,
   },
 ];

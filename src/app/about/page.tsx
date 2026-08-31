@@ -108,16 +108,17 @@ export default async function AboutPage() {
                 </Reveal>
               </div>
 
-              {/* The premises, moved down off the cover the office photograph
-                  now holds. It belongs against this copy rather than above it:
-                  the story is the company's own, and this is the yard it is
-                  told from. Full width under both columns, so it reads as the
-                  section's picture and not as an illustration to one column. */}
+              {/* The main building, moved down off the cover the office
+                  photograph now holds. It belongs against this copy rather than
+                  above it: the story is the company's own, and this is the
+                  premises it is told from. Full width under both columns, so it
+                  reads as the section's picture and not as an illustration to
+                  one column. */}
               <BoxReveal className="mt-10 rounded-[3px] md:mt-14">
                 <div className="relative aspect-[16/9] w-full overflow-hidden rounded-[3px] bg-steel-100 md:aspect-[21/9]">
                   <Image
-                    src="/images/banner-company.jpg"
-                    alt="The Burki & Company premises in Karachi, with wheel loaders on the forecourt"
+                    src="/images/about/burki-main-building.webp"
+                    alt="The Burki & Company main building, with a LOAD-X wheel loader on the forecourt"
                     fill
                     sizes="(min-width: 1400px) 1300px, 100vw"
                     className="object-cover"

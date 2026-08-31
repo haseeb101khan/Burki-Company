@@ -259,7 +259,7 @@ export const content: ContentSnapshot = {
       "name": "Attachments",
       "description": "Buckets, breakers, grapples, quick couplers and ground-engaging tools that adapt a carrier to the job in front of it.",
       "image": {
-        "src": "/images/cat-attachments.webp",
+        "src": "/images/attachments-breaker.webp",
         "alt": "Xinyuan 7 tonne hydraulic breaker attachment"
       },
       "order": 12
@@ -272,7 +272,7 @@ export const content: ContentSnapshot = {
       "name": "Attachments",
       "description": "Buckets, breakers, grapples, quick couplers and augers. What turns one machine into several, matched to the carrier it is going on.",
       "image": {
-        "src": "/images/cat-attachments.webp",
+        "src": "/images/attachments-breaker.webp",
         "alt": "Xinyuan 7 tonne hydraulic breaker attachment"
       },
       "order": 0
