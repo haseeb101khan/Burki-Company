@@ -132,10 +132,14 @@ export default async function AboutPage() {
         {info.stats.length > 0 ? (
           <Section tone="light" spacing="tight">
             <Container>
-              <dl className="grid gap-px overflow-hidden rounded-[3px] bg-steel-200 sm:grid-cols-2 lg:grid-cols-4">
+              {/* Two to a row on a phone rather than one. Stacked, four
+                  figures ran the height of most of a screen and stopped
+                  reading as a set — and these only mean anything compared
+                  against each other. */}
+              <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-[3px] bg-steel-200 lg:grid-cols-4">
                 {info.stats.map((stat) => (
-                  <div key={stat.id} className="bg-steel-50 px-5 py-7">
-                    <dd className="font-display text-4xl font-bold tabular-nums text-navy-800">
+                  <div key={stat.id} className="bg-steel-50 px-3.5 py-5 sm:px-5 sm:py-7">
+                    <dd className="font-display text-3xl font-bold tabular-nums text-navy-800 sm:text-4xl">
                       <StatCounter
                         value={stat.value}
                         /* A year sweeping up from zero reads as a bug, not an
@@ -145,11 +149,13 @@ export default async function AboutPage() {
                         suffix={stat.suffix}
                       />
                     </dd>
-                    <dt className="mt-3 font-display text-[0.6875rem] font-semibold uppercase tracking-[0.16em] text-navy-700">
+                    {/* Tighter tracking in a half-width column: at 0.16em
+                        "Equipment categories" breaks to three lines. */}
+                    <dt className="mt-2.5 font-display text-[0.625rem] font-semibold uppercase leading-[1.35] tracking-[0.1em] text-navy-700 sm:mt-3 sm:text-[0.6875rem] sm:tracking-[0.16em]">
                       {stat.label}
                     </dt>
                     {stat.description ? (
-                      <p className="mt-2 text-[0.8125rem] leading-relaxed text-steel-600">
+                      <p className="mt-2 text-[0.75rem] leading-relaxed text-steel-600 sm:text-[0.8125rem]">
                         {stat.description}
                       </p>
                     ) : null}

@@ -15,10 +15,21 @@ import type { Partner } from "../../src/lib/data/types";
  * with a caption under each invites a misspelling of somebody else's company
  * name; the logos already say who they are.
  *
- * FOUR SUPPLIED FILES ARE NOT HERE. Three carry the wrong company's logo
- * entirely and one is a business card rather than a mark — see the SKIP list in
- * scripts/prepare-partners.mjs for what each actually shows. They go in as soon
- * as correct artwork arrives.
+ * ONE SUPPLIED FILE IS STILL NOT HERE. Faisalabad Oil Refinery arrived as a
+ * sales representative's business card — a named individual's personal email
+ * address on it, and a directory site's watermark diagonally across the company
+ * name, so it cannot be cropped down to the wordmark either. It goes in as soon
+ * as the company's actual mark arrives, and takes the wall to fifteen and three
+ * full rows. See the SKIP list in scripts/prepare-partners.mjs.
+ *
+ * THE LAST FOUR WERE ADDED ON THE CLIENT'S INSTRUCTION. Three of them — NKB,
+ * ZKB, SKB — had been held back in an earlier pass because the artwork shows
+ * two Swiss cantonal banks and a US flight-case manufacturer rather than
+ * anything obviously connected to heavy equipment in Pakistan. The client
+ * re-supplied all three and confirmed they belong. Their names below are read
+ * off the artwork, as every other name here is: if the mark and the company
+ * were ever to disagree, the alt text is where it would be visible rather than
+ * hidden.
  */
 export const partners: Partner[] = [
   {
@@ -92,5 +103,33 @@ export const partners: Partner[] = [
     logo: "/images/partners/shaheenwood.webp",
     confirmed: true,
     order: 10,
+  },
+  {
+    id: "pt-h2-ready-mix",
+    name: "H2 Ready Mix",
+    logo: "/images/partners/h2-ready-mix.webp",
+    confirmed: true,
+    order: 11,
+  },
+  {
+    id: "pt-nkb",
+    name: "Nidwaldner Kantonalbank",
+    logo: "/images/partners/nkb.webp",
+    confirmed: true,
+    order: 12,
+  },
+  {
+    id: "pt-zkb",
+    name: "Zürcher Kantonalbank",
+    logo: "/images/partners/zkb.webp",
+    confirmed: true,
+    order: 13,
+  },
+  {
+    id: "pt-skb",
+    name: "SKB Cases",
+    logo: "/images/partners/skb.webp",
+    confirmed: true,
+    order: 14,
   },
 ];

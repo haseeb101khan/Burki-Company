@@ -100,6 +100,10 @@ export function AboutHero({
           </motion.span>
         </h1>
 
+        {/* The rule closes the sequence. There was a scroll cue under it —
+            taken out on the client's call. The frame already stops short of
+            the full viewport, so the section below shows through and says the
+            same thing without a badge over the photograph. */}
         <motion.span
           aria-hidden="true"
           className="mt-6 block h-px w-16 origin-left bg-amber-500 md:w-24"
@@ -107,27 +111,6 @@ export function AboutHero({
           animate={{ scaleX: 1 }}
           transition={{ duration: 0.8, delay: 1.15, ease: EASE }}
         />
-
-        {/* The page continues below, and a cover that fills the screen has to
-            say so — otherwise it reads as the whole page. */}
-        <motion.div
-          className="mt-9 flex items-center gap-3 text-white/55"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.9, delay: 1.4 }}
-        >
-          <motion.span
-            aria-hidden="true"
-            className="flex h-9 w-[1.375rem] items-start justify-center rounded-full border border-white/30 pt-1.5"
-            animate={{ y: [0, 5, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <span className="block h-1.5 w-px bg-white/60" />
-          </motion.span>
-          <span className="font-display text-[0.6875rem] font-semibold uppercase tracking-[0.18em]">
-            Scroll
-          </span>
-        </motion.div>
       </Container>
     </section>
   );

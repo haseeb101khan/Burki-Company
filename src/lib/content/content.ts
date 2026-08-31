@@ -7266,6 +7266,34 @@ export const content: ContentSnapshot = {
       "logo": "/images/partners/shaheenwood.webp",
       "confirmed": true,
       "order": 10
+    },
+    {
+      "id": "pt-h2-ready-mix",
+      "name": "H2 Ready Mix",
+      "logo": "/images/partners/h2-ready-mix.webp",
+      "confirmed": true,
+      "order": 11
+    },
+    {
+      "id": "pt-nkb",
+      "name": "Nidwaldner Kantonalbank",
+      "logo": "/images/partners/nkb.webp",
+      "confirmed": true,
+      "order": 12
+    },
+    {
+      "id": "pt-zkb",
+      "name": "Zürcher Kantonalbank",
+      "logo": "/images/partners/zkb.webp",
+      "confirmed": true,
+      "order": 13
+    },
+    {
+      "id": "pt-skb",
+      "name": "SKB Cases",
+      "logo": "/images/partners/skb.webp",
+      "confirmed": true,
+      "order": 14
     }
   ],
   "banners": [

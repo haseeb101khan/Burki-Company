@@ -153,7 +153,7 @@ export default async function PartCategoryPage({ params, searchParams }: Props) 
         <Section tone="light" spacing={brandsHere.length > 1 ? "default" : "tight"}>
           <Container>
             {parts.length > 0 ? (
-              <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3 xl:grid-cols-4">
+              <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">
                 {parts.map((part, index) => (
                   <Reveal key={part.id} delay={(index % 2) * 0.06} className="h-full">
                     <PartCard

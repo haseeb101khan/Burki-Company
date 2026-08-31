@@ -47,19 +47,26 @@ const OUT = "public/images/partners";
 const BOX = { width: 440, height: 260 };
 
 /**
- * FILES THAT ARE NOT WHAT THEIR NAME SAYS, and are deliberately not published.
+ * FILES THAT ARE NOT PUBLISHED.
  *
- * Three look like someone searched the initials and took the first result, and
- * the fourth is not a logo at all. Publishing any of them would make a false
- * claim about a real company on the client's behalf — or, in the last case,
- * put a named individual's personal email address on a public website.
+ * This list once held four. Three of them — zkb, NKB, SKB — were held back
+ * because the artwork showed two Swiss cantonal banks and a US flight-case
+ * manufacturer, which read as someone searching the initials and taking the
+ * first result. The client has since re-supplied all three and confirmed they
+ * belong on the wall, so they publish now; the names in seed-data/partners.ts
+ * are still read off the artwork, which is where any remaining mismatch would
+ * show.
+ *
+ * The last one stays out, and is a different problem from a wrong logo:
+ * it is not a logo at all. Publishing it would put a named individual's
+ * personal email address on a public website, and it carries a directory
+ * site's watermark diagonally across the company name — so it cannot be
+ * cropped down to the wordmark either. It needs Faisalabad Oil Refinery's
+ * actual mark, not a crop of this.
  *
  * Delete an entry here once correct artwork replaces the file.
  */
 const SKIP = {
-  "zkb.PNG": "shows Zurcher Kantonalbank, a Swiss retail bank",
-  "NKB.PNG": "shows Nidwaldner Kantonalbank, a Swiss retail bank",
-  "SKB.PNG": "shows SKB Cases, a US flight-case manufacturer",
   "FAISALABAD OIL REFINEREY.PNG":
     "is a sales rep's business card carrying a personal email address and a third-party watermark, not a logo",
 };
