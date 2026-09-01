@@ -5,6 +5,7 @@ import { BrandStrip } from "@/components/sections/BrandStrip";
 import { BrandShowcaseSection } from "@/components/sections/BrandShowcaseSection";
 import { FeaturedBanners } from "@/components/sections/FeaturedBanners";
 import { IndustriesSection } from "@/components/sections/IndustriesSection";
+import { MachineReelSection } from "@/components/sections/MachineReelSection";
 import { NewsSection } from "@/components/sections/NewsSection";
 import { PartnerStrip } from "@/components/sections/PartnerStrip";
 import { PartsOverview } from "@/components/sections/PartsOverview";
@@ -22,6 +23,11 @@ import { QuoteSection } from "@/components/sections/QuoteSection";
  * three machines we lead with. Category browsing lives on /equipment now, which
  * is where someone who wants to browse by machine class is already heading.
  *
+ * The range reel sits under the showcase and replaced the twelve category icon
+ * tiles that used to close it. With a catalogue this size most of those icons
+ * led to an empty category, and a machine with its name and a line of copy
+ * sells the range in a way an icon labelled "Graders" does not.
+ *
  * Every section pulls its own content through `@/lib/data` — this file holds no
  * copy of its own, so the order can change without touching content.
  */
@@ -33,6 +39,7 @@ export default function HomePage() {
         <BrandStrip />
         <FeaturedBanners />
         <BrandShowcaseSection />
+        <MachineReelSection />
         <PartsOverview />
         <AboutIntro />
         <IndustriesSection />

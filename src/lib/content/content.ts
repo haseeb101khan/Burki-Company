@@ -49,8 +49,8 @@ export const content: ContentSnapshot = {
       "logo": null,
       "showcaseImages": [
         {
-          "src": "/images/load-x/loadx-banner.webp",
-          "alt": "A line of LOAD-X wheel loaders and excavators at Burki & Company"
+          "src": "/images/load-x/loadx-yard.webp",
+          "alt": "The Burki & Company yard, ranks of LOAD-X wheel loaders either side of the aisle"
         }
       ],
       "countryOfOrigin": "China",

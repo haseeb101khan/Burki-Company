@@ -216,14 +216,14 @@ export const brands: Brand[] = [
     name: "LOAD-X",
     relationship: "distributed",
     logo: null,
-    /* The line-up from the homepage banner. That file is 2.49:1 and both places
-       this is used render 16:10, so it is cropped to a centred 1235x772 window
-       rather than letterboxed — the row of machines is symmetrical, so centring
-       loses the outermost machine each side and keeps the composition. */
+    /* The yard, supplied by the client — it replaces the homepage line-up shot
+       that briefly stood here. 1.93:1 against the 16:10 both uses render, so
+       it is cropped to a centred 848x530 window, which costs 88px each side
+       and keeps the full depth of the yard. */
     showcaseImages: [
       {
-        src: "/images/load-x/loadx-banner.webp",
-        alt: "A line of LOAD-X wheel loaders and excavators at Burki & Company",
+        src: "/images/load-x/loadx-yard.webp",
+        alt: "The Burki & Company yard, ranks of LOAD-X wheel loaders either side of the aisle",
       },
     ],
     countryOfOrigin: "China",
