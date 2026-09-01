@@ -216,6 +216,16 @@ export const brands: Brand[] = [
     name: "LOAD-X",
     relationship: "distributed",
     logo: null,
+    /* The line-up from the homepage banner. That file is 2.49:1 and both places
+       this is used render 16:10, so it is cropped to a centred 1235x772 window
+       rather than letterboxed — the row of machines is symmetrical, so centring
+       loses the outermost machine each side and keeps the composition. */
+    showcaseImages: [
+      {
+        src: "/images/load-x/loadx-banner.webp",
+        alt: "A line of LOAD-X wheel loaders and excavators at Burki & Company",
+      },
+    ],
     countryOfOrigin: "China",
     shortDescription:
       "Compact and mid-range wheel loaders, from yard machines to the 5-tonne class. Burki & Company is the nationwide distributor.",

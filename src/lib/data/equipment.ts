@@ -126,16 +126,33 @@ export async function getCompatibleParts(
 }
 
 /**
- * Other models in the same series as the given machine. Deliberately distinct
+ * Other models in the same line as the given machine. Deliberately distinct
  * from `getRelatedEquipment()`: that one is a curated cross-sell list capped at
  * a small limit, this one is exhaustive for "browse the rest of this line."
+ *
+ * A NAMED SERIES IS NOT REQUIRED. It used to be, and that silently emptied the
+ * variants orbit for any machine whose manufacturer does not market a named
+ * series — the XCMG loaders arrived that way and their detail pages simply had
+ * no such section, with nothing to indicate why.
+ *
+ * Where there is no series, siblings are the same brand in the same category,
+ * which is what "other variants" means to a buyer looking at a wheel loader:
+ * the manufacturer's other wheel loaders. Naming a series that the
+ * manufacturer does not use, purely to make this function fire, would have been
+ * the wrong fix — the ZL50GN and the LW models are different families and
+ * saying otherwise on a spec-led site is a small lie for a layout's sake.
  */
 export async function getSeriesVariants(slug: string): Promise<Equipment[]> {
   const item = content.equipment.find((e) => e.slug === slug);
-  if (!item?.series) return [];
+  if (!item) return [];
+
+  const sameLine = item.series
+    ? (e: (typeof content.equipment)[number]) => e.series === item.series
+    : (e: (typeof content.equipment)[number]) =>
+        !e.series && e.categorySlug === item.categorySlug;
 
   const variants = content.equipment.filter(
-    (e) => e.slug !== slug && e.series === item.series && e.brand === item.brand,
+    (e) => e.slug !== slug && e.brand === item.brand && sameLine(e),
   );
   return clone(variants).sort(byOrder);
 }

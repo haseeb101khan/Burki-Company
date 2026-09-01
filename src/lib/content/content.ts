@@ -47,13 +47,18 @@ export const content: ContentSnapshot = {
       "name": "LOAD-X",
       "relationship": "distributed",
       "logo": null,
+      "showcaseImages": [
+        {
+          "src": "/images/load-x/loadx-banner.webp",
+          "alt": "A line of LOAD-X wheel loaders and excavators at Burki & Company"
+        }
+      ],
       "countryOfOrigin": "China",
       "shortDescription": "Compact and mid-range wheel loaders, from yard machines to the 5-tonne class. Burki & Company is the nationwide distributor.",
       "showInBrandStrip": true,
       "isFeatured": true,
       "order": 2,
       "slug": "load-x",
-      "showcaseImages": [],
       "showcaseVideoUrl": null,
       "relationshipConfirmed": false
     },
