@@ -40,7 +40,11 @@ import { join } from "node:path";
 import sharp from "sharp";
 import { makeTransparentCutout } from "./lib/cutout.mjs";
 
-const DIRS = ["public/images/xinyuan", "public/images/load-x"];
+const DIRS = [
+  "public/images/xinyuan",
+  "public/images/load-x",
+  "public/images/xcmg",
+];
 
 /** 5:4, the shape of the catalogue tile, so a card crops nothing. */
 const CANVAS_W = 1500;

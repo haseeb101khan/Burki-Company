@@ -228,10 +228,23 @@ export const brands: Brand[] = [
     name: "XCMG",
     relationship: "distributed",
     logo: logoPair("xcmg"),
+    /* The supplied banner is 4.78:1 — a strip of the group's signage. Both
+       places that use it (the brand catalogue header and the homepage
+       showcase) render 16:10, so it is cropped to the sign rather than
+       letterboxed; see the note in the git history for the window used. */
+    showcaseImages: [
+      {
+        src: "/images/xcmg/xcmg-banner.webp",
+        alt: "XCMG group signage on the company's building",
+      },
+    ],
+    manufacturerLegalName: "Xuzhou Construction Machinery Group Co., Ltd.",
     countryOfOrigin: "China",
+    website: "https://www.xcmg.com",
     shortDescription:
       "One of the largest construction equipment manufacturers in the world, with a range spanning earthmoving, lifting and road machinery.",
     showInBrandStrip: true,
+    isFeatured: true,
     order: 3,
   },
 ];

@@ -345,4 +345,208 @@ export const equipment: Equipment[] = [
     isPlaceholder: false,
     order: 4,
   },
+
+  /* ---------------------------------------------------------------- LW300FN */
+  {
+    id: "eq-lw300fn",
+    slug: "lw300fn",
+    model: "LW300FN",
+    name: "LW300FN Wheel Loader",
+    categorySlug: "wheel-loaders",
+    brand: "XCMG",
+    tagline: "The yard machine",
+    summary:
+      "A 10.4 tonne loader with a 1.8 m³ bucket and 92 kW, for coal yards, stone plants and general site loading.",
+    description:
+      "XCMG's LW300FN is built for shovelling and loading material, and is applied to workplaces such as coal yards, railway works, construction areas and stone material factories. A 1.8 m³ bucket on a 3,000 kg rated load and a 2,600 mm wheelbase keep it manoeuvrable where a larger machine cannot turn.",
+    image: { src: "/images/xcmg/lw300fn-cutout.webp", alt: "XCMG LW300FN wheel loader" },
+    cutoutImage: { src: "/images/xcmg/lw300fn-cutout.webp", alt: "XCMG LW300FN wheel loader, isolated on white" },
+    gallery: [{ src: "/images/xcmg/lw300fn-cutout.webp", alt: "XCMG LW300FN wheel loader" }],
+    highlights: [
+      { label: "Operating weight", value: "10,400", unit: "kg" },
+      { label: "Bucket capacity", value: "1.8", unit: "m³" },
+      { label: "Rated power", value: "92", unit: "kW" },
+      { label: "Rated load", value: "3,000", unit: "kg" },
+    ],
+    specs: [
+      {
+        title: "Operating",
+        specs: [
+          { label: "Bucket capacity", value: "1.8", unit: "m³" },
+          { label: "Operating weight", value: "10,400", unit: "kg" },
+          { label: "Rated load", value: "3,000", unit: "kg" },
+        ],
+      },
+      {
+        title: "Engine",
+        specs: [{ label: "Rated power", value: "92", unit: "kW" }],
+      },
+      {
+        title: "Dimensions",
+        specs: [
+          { label: "Overall length", value: "7,050", unit: "mm" },
+          { label: "Overall width", value: "2,482", unit: "mm" },
+          { label: "Overall height", value: "3,118", unit: "mm" },
+          { label: "Wheelbase", value: "2,600", unit: "mm" },
+        ],
+      },
+    ],
+    features: [
+      {
+        title: "Shovelling and loading duty",
+        description:
+          "XCMG lists it for coal yards, railway works, construction areas and stone material factories.",
+      },
+      {
+        title: "1.8 m3 bucket on 92 kW",
+        description:
+          "A 1.8 cubic metre bucket and a 3,000 kg rated load, on 92 kW of rated power.",
+      },
+      {
+        title: "The compact one of the three",
+        description:
+          "A 2,600 mm wheelbase and 7,050 mm overall length, the shortest XCMG loader carried.",
+      },
+    ],
+    relatedEquipmentSlugs: ["lw500fn", "zl50gn"],
+    isFeatured: true,
+    isPlaceholder: false,
+    order: 5,
+  },
+
+  /* ---------------------------------------------------------------- LW500FN */
+  {
+    id: "eq-lw500fn",
+    slug: "lw500fn",
+    model: "LW500FN",
+    name: "LW500FN Wheel Loader",
+    categorySlug: "wheel-loaders",
+    brand: "XCMG",
+    tagline: "Five tonnes of rated load",
+    summary:
+      "A 17 tonne loader carrying a 3.0 m³ bucket on 162 kW, for sustained loading in yards, quarries and railway works.",
+    description:
+      "XCMG's LW500FN is suited to shovelling and loading material, and is applied to workplaces such as coal yards, railway works, construction areas and stone material factories. A 3.0 m³ bucket and 5,000 kg rated load on a 3,050 mm wheelbase put it in the five-tonne class for continuous truck and hopper loading.",
+    image: { src: "/images/xcmg/lw500fn-cutout.webp", alt: "XCMG LW500FN wheel loader" },
+    cutoutImage: { src: "/images/xcmg/lw500fn-cutout.webp", alt: "XCMG LW500FN wheel loader, isolated on white" },
+    gallery: [{ src: "/images/xcmg/lw500fn-cutout.webp", alt: "XCMG LW500FN wheel loader" }],
+    highlights: [
+      { label: "Operating weight", value: "17,000", unit: "kg" },
+      { label: "Bucket capacity", value: "3.0", unit: "m³" },
+      { label: "Rated power", value: "162", unit: "kW" },
+      { label: "Rated load", value: "5,000", unit: "kg" },
+    ],
+    specs: [
+      {
+        title: "Operating",
+        specs: [
+          { label: "Bucket capacity", value: "3.0", unit: "m³" },
+          { label: "Operating weight", value: "17,000", unit: "kg" },
+          { label: "Rated load", value: "5,000", unit: "kg" },
+        ],
+      },
+      {
+        title: "Engine",
+        specs: [{ label: "Rated power", value: "162", unit: "kW" }],
+      },
+      {
+        title: "Dimensions",
+        specs: [
+          { label: "Overall length", value: "8,100", unit: "mm" },
+          { label: "Overall width", value: "2,996", unit: "mm" },
+          { label: "Overall height", value: "3,515", unit: "mm" },
+          { label: "Wheelbase", value: "3,050", unit: "mm" },
+        ],
+      },
+    ],
+    features: [
+      {
+        title: "Five-tonne rated load",
+        description:
+          "A 3.0 cubic metre bucket and a 5,000 kg rated load, on 162 kW of rated power.",
+      },
+      {
+        title: "Shovelling and loading duty",
+        description:
+          "XCMG lists it for coal yards, railway works, construction areas and stone material factories.",
+      },
+      {
+        title: "17 tonne platform",
+        description:
+          "A 3,050 mm wheelbase under an 8,100 mm machine, at 17,000 kg operating weight.",
+      },
+    ],
+    relatedEquipmentSlugs: ["zl50gn", "lw300fn"],
+    isFeatured: true,
+    isPlaceholder: false,
+    order: 6,
+  },
+
+  /* ---------------------------------------------------------------- ZL50GN */
+  {
+    id: "eq-zl50gn",
+    slug: "zl50gn",
+    model: "ZL50GN",
+    name: "ZL50GN Wheel Loader",
+    categorySlug: "wheel-loaders",
+    brand: "XCMG",
+    tagline: "The cross-generation five-tonne",
+    summary:
+      "A 17.15 tonne loader with a 3.2 m³ bucket and 162 kW, developed for construction, aggregate yards and coal logistics.",
+    description:
+      "The ZL50GN is XCMG's cross-generation wheel loader, developed on the basis of the group's globalised technical resources. Focused on customer value and operator experience, it is aimed at efficiency in engineering construction, aggregate yards and coal logistics, with a 3.2 m³ bucket and a 5,500 kg rated load on a 3,300 mm wheelbase.",
+    image: { src: "/images/xcmg/zl50gn-cutout.webp", alt: "XCMG ZL50GN wheel loader" },
+    cutoutImage: { src: "/images/xcmg/zl50gn-cutout.webp", alt: "XCMG ZL50GN wheel loader, isolated on white" },
+    gallery: [{ src: "/images/xcmg/zl50gn-cutout.webp", alt: "XCMG ZL50GN wheel loader" }],
+    highlights: [
+      { label: "Operating weight", value: "17,150", unit: "kg" },
+      { label: "Bucket capacity", value: "3.2", unit: "m³" },
+      { label: "Rated power", value: "162", unit: "kW" },
+      { label: "Rated load", value: "5,500", unit: "kg" },
+    ],
+    specs: [
+      {
+        title: "Operating",
+        specs: [
+          { label: "Bucket capacity", value: "3.2", unit: "m³" },
+          { label: "Operating weight", value: "17,150", unit: "kg" },
+          { label: "Rated load", value: "5,500", unit: "kg" },
+        ],
+      },
+      {
+        title: "Engine",
+        specs: [{ label: "Rated power", value: "162", unit: "kW" }],
+      },
+      {
+        title: "Dimensions",
+        specs: [
+          { label: "Overall length", value: "8,350", unit: "mm" },
+          { label: "Overall width", value: "2,996", unit: "mm" },
+          { label: "Overall height", value: "3,515", unit: "mm" },
+          { label: "Wheelbase", value: "3,300", unit: "mm" },
+        ],
+      },
+    ],
+    features: [
+      {
+        title: "Cross-generation development",
+        description:
+          "XCMG describes it as its cross-generation loader, developed on the group's globalised technical resources.",
+      },
+      {
+        title: "The largest bucket of the three",
+        description:
+          "A 3.2 cubic metre bucket and a 5,500 kg rated load, on 162 kW of rated power.",
+      },
+      {
+        title: "Construction, aggregate and coal",
+        description:
+          "The fields XCMG names for it are engineering construction, aggregate yards and coal logistics.",
+      },
+    ],
+    relatedEquipmentSlugs: ["lw500fn", "lw300fn"],
+    isFeatured: true,
+    isPlaceholder: false,
+    order: 7,
+  },
 ];
