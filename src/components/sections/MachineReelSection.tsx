@@ -63,23 +63,36 @@ export async function MachineReelSection() {
     image: machine.cutoutImage ?? machine.image,
   }));
 
+  /*
+   * WHITE, NOT NAVY. This ran on the navy ground first and the machines looked
+   * wrong on it: every cutout is a studio shot lit for white, so on a dark
+   * field the tyres and the black boom work close out into the background and
+   * the soft shadow under each machine has nothing to fall on. On white they
+   * read as the objects they were cut out to be.
+   */
   return (
-    <Section tone="navy" spacing="default">
-      <Container>
+    <Section tone="light" spacing="default" className="relative overflow-hidden">
+      {/* A single soft sweep across the top right, so the field is not a flat
+          slab of white behind a row of machines. Decorative only. */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -right-1/4 -top-1/3 h-[130%] w-[70%] rounded-full bg-[radial-gradient(closest-side,rgba(0,38,101,0.05),transparent)]"
+      />
+
+      <Container className="relative">
         <SectionHeader
-          tone="light"
           eyebrow="The range"
           title="Every machine we carry"
           description="Excavators, wheel loaders and the attachments that go on them, from the two lines we distribute nationwide and the manufacturers we supply alongside them."
           action={
-            <Button href="/equipment" size="sm" variant="outlineLight">
+            <Button href="/equipment" size="sm" variant="navy">
               View all equipment
               <ArrowRight />
             </Button>
           }
         />
 
-        <div className="mt-10 md:mt-12">
+        <div className="mt-12 md:mt-14">
           <MachineReel items={items} />
         </div>
       </Container>

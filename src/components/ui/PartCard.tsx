@@ -50,6 +50,18 @@ export function PartCard({
           sizes="(min-width: 1280px) 25vw, (min-width: 768px) 33vw, 50vw"
           className="object-contain p-3 transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.06]"
         />
+
+        {/* The same flag the machines carry. An attachment is bought against a
+            carrier, so whose carrier it is built for is the first thing worth
+            knowing — and a wall of tools with no maker on them reads as generic
+            stock. Only where the part actually has a brand: most of the wear
+            parts are unbranded on purpose, and "Unbranded" on a chip would look
+            like a mistake rather than a fact. */}
+        {part.brand ? (
+          <div className="absolute left-0 top-0 bg-navy-800/90 px-3 py-1.5 font-display text-[0.75rem] font-semibold uppercase tracking-[0.14em] text-white backdrop-blur-sm md:px-4 md:py-2 md:text-[0.875rem]">
+            {part.brand}
+          </div>
+        ) : null}
       </div>
 
       <div className="flex min-w-0 flex-1 flex-col border-t border-steel-100 p-3.5 md:p-4">
