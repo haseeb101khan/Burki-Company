@@ -19,8 +19,10 @@ export function BrandCategorySection({
   categoryUrls,
   brandUrl,
   all,
+  extraLinks = [],
 }: {
   brand: { name: string };
+  /** Only the categories this brand actually has machines in. */
   categories: any[];
   categorySlug: string | undefined;
   countsHere: Record<string, number>;
@@ -28,6 +30,13 @@ export function BrandCategorySection({
   categoryUrls: Record<string, string>;
   brandUrl: string;
   all: any[];
+  /**
+   * Lines that belong in this brand's filter but are not equipment categories,
+   * and so leave this page — attachments, which are filed under parts. Kept
+   * separate from `categories` rather than faked into it: these do not narrow
+   * the listing below, they navigate away, and the styling says so.
+   */
+  extraLinks?: { slug: string; label: string; href: string; count: number }[];
 }) {
   const [open, setOpen] = useState(false);
 
@@ -79,7 +88,6 @@ export function BrandCategorySection({
                 {categories.map((category) => {
                   const count = countsHere[category.slug] ?? 0;
                   const isActive = categorySlug === category.slug;
-                  const carried = count > 0;
                   return (
                     <li key={category.id}>
                       <Link
@@ -89,23 +97,35 @@ export function BrandCategorySection({
                           "flex items-center justify-between gap-3 px-4 py-3 text-[0.875rem] transition-colors",
                           isActive
                             ? "bg-navy-700 font-medium text-white"
-                            : carried
-                              ? "bg-white font-medium text-navy-800 hover:bg-navy-50"
-                              : "bg-white text-steel-500 hover:bg-steel-50 hover:text-navy-700",
+                            : "bg-white font-medium text-navy-800 hover:bg-navy-50",
                         )}
                       >
                         <span>{category.name}</span>
-                        {carried ? (
-                          <span className="shrink-0 tabular-nums text-[0.75rem] opacity-70">
-                            {count}
-                          </span>
-                        ) : (
-                          <ChevronRightIcon className="shrink-0 text-[0.85em] text-steel-300" />
-                        )}
+                        <span className="shrink-0 tabular-nums text-[0.75rem] opacity-70">
+                          {count}
+                        </span>
                       </Link>
                     </li>
                   );
                 })}
+
+                {/* Leaves the page, so it keeps the chevron the category rows
+                    dropped — the arrow is what distinguishes "narrow this
+                    listing" from "go somewhere else". */}
+                {extraLinks.map((link) => (
+                  <li key={link.slug}>
+                    <Link
+                      href={link.href}
+                      className="flex items-center justify-between gap-3 bg-white px-4 py-3 text-[0.875rem] font-medium text-navy-800 transition-colors hover:bg-navy-50"
+                    >
+                      <span>{link.label}</span>
+                      <span className="flex shrink-0 items-center gap-1.5 tabular-nums text-[0.75rem] opacity-70">
+                        {link.count}
+                        <ChevronRightIcon className="text-[0.85em]" />
+                      </span>
+                    </Link>
+                  </li>
+                ))}
               </ul>
 
               <div className="mt-5 rounded-[3px] border border-steel-200 bg-steel-50 p-4">
@@ -139,14 +159,27 @@ export function BrandCategorySection({
                   <span className="text-[0.625rem] opacity-70">{all.length}</span>
                 </Link>
 
-                {categories.map((category) => {
-                  const count = countsHere[category.slug] ?? 0;
-                  const isActive = categorySlug === category.slug;
-                  const carried = count > 0;
+                {[
+                  ...categories.map((category) => ({
+                    key: category.id,
+                    href: categoryUrls[category.slug] || "#",
+                    label: category.name,
+                    count: countsHere[category.slug] ?? 0,
+                    isActive: categorySlug === category.slug,
+                  })),
+                  ...extraLinks.map((link) => ({
+                    key: link.slug,
+                    href: link.href,
+                    label: link.label,
+                    count: link.count,
+                    isActive: false,
+                  })),
+                ].map((category) => {
+                  const { count, isActive } = category;
                   return (
                     <Link
-                      key={category.id}
-                      href={categoryUrls[category.slug] || "#"}
+                      key={category.key}
+                      href={category.href}
                       onClick={() => setOpen(false)}
                       aria-current={isActive ? "true" : undefined}
                       className={cn(
@@ -156,8 +189,8 @@ export function BrandCategorySection({
                           : "text-white/70 hover:text-white",
                       )}
                     >
-                      <span>{category.name}</span>
-                      {carried && (
+                      <span>{category.label}</span>
+                      {count > 0 && (
                         <span className="text-[0.625rem] opacity-70">{count}</span>
                       )}
                     </Link>

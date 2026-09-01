@@ -14,6 +14,7 @@ import {
   getBrandBySlug,
   getEquipment,
   getEquipmentCategories,
+  getParts,
 } from "@/lib/data";
 import { routes } from "@/lib/routes";
 
@@ -64,9 +65,10 @@ export default async function BrandCataloguePage({ params, searchParams }: Props
   const brand = await getBrandBySlug(slug);
   if (!brand) notFound();
 
-  const [all, categories] = await Promise.all([
+  const [all, categories, attachments] = await Promise.all([
     getEquipment({ brandSlug: slug }),
     getEquipmentCategories(),
+    getParts({ categorySlug: "attachments" }),
   ]);
 
   const machines = categorySlug
@@ -81,16 +83,42 @@ export default async function BrandCataloguePage({ params, searchParams }: Props
   );
   const countsHere = Object.fromEntries(countsMap);
 
+  /*
+   * ONLY WHAT THIS BRAND ACTUALLY CARRIES.
+   *
+   * The filter used to list all twelve equipment categories on every brand
+   * page, greying out the eleven the brand has nothing in and routing them to
+   * the site-wide category instead. On a page headed "All Xinyuan" that read as
+   * a claim to supply Xinyuan bulldozers, cranes and graders — and it made the
+   * one category with machines in it hard to pick out of a list of twelve.
+   *
+   * A brand's filter is now the categories it has stock in. Anyone who wants to
+   * browse a category across all brands has /equipment for exactly that.
+   */
+  const carried = categories.filter((c) => (countsHere[c.slug] ?? 0) > 0);
+
   const categoryUrls = Object.fromEntries(
-    categories.map((c) => {
-      const count = countsHere[c.slug] ?? 0;
-      const url =
-        count > 0
-          ? `${routes.brand(slug)}?category=${c.slug}`
-          : routes.category(c);
-      return [c.slug, url];
-    })
+    carried.map((c) => [c.slug, `${routes.brand(slug)}?category=${c.slug}`]),
   );
+
+  /*
+   * Attachments are filed under parts, not equipment, so they never appear in
+   * the loop above — but they are this brand's product line as much as its
+   * machines are, and the client asked for them in the filter. The link leaves
+   * for the parts catalogue, pre-filtered to this brand.
+   */
+  const brandAttachments = attachments.filter((p) => p.brandSlug === slug);
+  const extraLinks =
+    brandAttachments.length > 0
+      ? [
+          {
+            slug: "attachments",
+            label: "Excavator attachments",
+            href: `${routes.partCategory("attachments")}?brand=${slug}`,
+            count: brandAttachments.length,
+          },
+        ]
+      : [];
 
   return (
     <>
@@ -191,11 +219,12 @@ export default async function BrandCataloguePage({ params, searchParams }: Props
         {/* --------------------------------------- categories + the listings */}
         <BrandCategorySection
           brand={brand}
-          categories={categories}
+          categories={carried}
           categorySlug={categorySlug}
           countsHere={countsHere}
           machines={machines}
           categoryUrls={categoryUrls}
+          extraLinks={extraLinks}
           brandUrl={routes.brand(slug)}
           all={all}
         />
