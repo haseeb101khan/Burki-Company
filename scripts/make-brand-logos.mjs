@@ -36,12 +36,12 @@ const WHITE = { r: 255, g: 255, b: 255 };
  * Both use a soft mask rather than a hard threshold, so anti-aliased edges stay
  * smooth instead of going jagged at the cut.
  */
+/* Zoomlion, SANY and LiuGong were withdrawn from the site, so their marks are
+   no longer generated. The source artwork stays in source-media in case any of
+   them is taken on again. */
 const SOURCES = [
   { slug: 'xinyuan',  file: 'Capture.PNG',  mask: 'dark' },
   { slug: 'xcmg',     file: 'xcmg.PNG',     mask: 'light' },
-  { slug: 'zoomlion', file: 'zoomlion.PNG', mask: 'dark' },
-  { slug: 'sany',     file: 'sany.PNG',     mask: 'dark' },
-  { slug: 'liugong',  file: 'liugong.PNG',  mask: 'dark' },
 ];
 
 /**

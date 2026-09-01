@@ -20,15 +20,18 @@ import { cn, toDialString } from "@/lib/utils";
 /*
  * Shared nav-link styling: an amber rule wipes in from the left on hover.
  *
- * Sized up from 13px/semibold to 15px/bold with tighter tracking. At the old
- * size the primary navigation read as fine print next to the amber quote
- * button — smaller than the utility bar's own phone number. These are the main
- * routes through the site and should look like it. Tracking comes in a little
- * because wide letterspacing at a larger size starts to sprawl.
+ * Sized up twice: 13px/semibold to 15px, and 15px to 17px on the client's call.
+ * At the original size the primary navigation read as fine print next to the
+ * amber quote button — smaller than the utility bar's own phone number. These
+ * are the main routes through the site and should look like it.
+ *
+ * Tracking eased at each step, because letterspacing that reads as deliberate
+ * at 13px sprawls at 17. Horizontal padding comes in a little below `lg` so the
+ * six items still clear the logo and the quote button on a 1280px screen.
  */
 const NAV_LINK =
-  "relative inline-flex items-center gap-1.5 px-3.5 py-2 font-display text-[0.9375rem] font-bold uppercase tracking-[0.07em] transition-colors " +
-  "after:absolute after:bottom-1 after:left-3.5 after:right-3.5 after:h-[2px] after:origin-left after:scale-x-0 after:bg-amber-500 " +
+  "relative inline-flex items-center gap-1.5 px-3 py-2 font-display text-[1.0625rem] font-bold uppercase tracking-[0.05em] transition-colors lg:px-3.5 " +
+  "after:absolute after:bottom-1 after:left-3 after:right-3 after:h-[2px] after:origin-left after:scale-x-0 after:bg-amber-500 " +
   "after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.22,1,0.36,1)] hover:after:scale-x-100";
 
 export type NavPanelItem = { label: string; href: string };
@@ -47,7 +50,7 @@ export type NavItem = {
     /**
      * A highlighted column on the left of the panel, ahead of `items`.
      *
-     * Equipment uses it for the six manufacturers. For a multi-brand
+     * Equipment uses it for the manufacturers. For a multi-brand
      * distributor that is the first cut a buyer makes — "what do you carry from
      * Xinyuan" — so it leads the panel and is styled to be read first, with the
      * machine categories beside it as the second way in.

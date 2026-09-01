@@ -74,60 +74,6 @@ export const content: ContentSnapshot = {
       "showcaseVideoUrl": null,
       "relationshipConfirmed": false,
       "isFeatured": false
-    },
-    {
-      "id": "br-zoomlion",
-      "name": "Zoomlion",
-      "relationship": "distributed",
-      "logo": {
-        "navy": "/brand-logos/zoomlion-navy.png",
-        "white": "/brand-logos/zoomlion-white.png"
-      },
-      "countryOfOrigin": "China",
-      "shortDescription": "Concrete machinery, cranes and earthmoving equipment for infrastructure and heavy civil work.",
-      "showInBrandStrip": true,
-      "order": 4,
-      "slug": "zoomlion",
-      "showcaseImages": [],
-      "showcaseVideoUrl": null,
-      "relationshipConfirmed": false,
-      "isFeatured": false
-    },
-    {
-      "id": "br-sany",
-      "name": "SANY",
-      "relationship": "distributed",
-      "logo": {
-        "navy": "/brand-logos/sany-navy.png",
-        "white": "/brand-logos/sany-white.png"
-      },
-      "countryOfOrigin": "China",
-      "shortDescription": "Excavators, cranes and concrete equipment, widely used on large infrastructure projects.",
-      "showInBrandStrip": true,
-      "order": 5,
-      "slug": "sany",
-      "showcaseImages": [],
-      "showcaseVideoUrl": null,
-      "relationshipConfirmed": false,
-      "isFeatured": false
-    },
-    {
-      "id": "br-liugong",
-      "name": "Liugong",
-      "relationship": "distributed",
-      "logo": {
-        "navy": "/brand-logos/liugong-navy.png",
-        "white": "/brand-logos/liugong-white.png"
-      },
-      "countryOfOrigin": "China",
-      "shortDescription": "Wheel loaders, excavators and road machinery, with a long track record in quarrying and aggregate handling.",
-      "showInBrandStrip": true,
-      "order": 6,
-      "slug": "liugong",
-      "showcaseImages": [],
-      "showcaseVideoUrl": null,
-      "relationshipConfirmed": false,
-      "isFeatured": false
     }
   ],
   "equipmentCategories": [
@@ -6773,7 +6719,7 @@ export const content: ContentSnapshot = {
       {
         "id": "st-04",
         "label": "Brands supplied",
-        "value": 6,
+        "value": 3,
         "description": "Including two sole distributorships"
       }
     ]

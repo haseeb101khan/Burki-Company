@@ -12,7 +12,7 @@ import { routes } from "@/lib/routes";
  * Which brands appear here is an explicit per-brand flag in the CMS, not a
  * consequence of how the brand is classified. With the brand list open-ended
  * and growing, that is an editorial decision the client makes in the Studio.
- * All six brands currently appear here. The earlier exception — keeping the
+ * All three brands currently appear here. The earlier exception — keeping the
  * house lines out — no longer applies: every brand on the site is now a
  * manufacturer Burki distributes.
  *
@@ -82,14 +82,15 @@ export async function BrandStrip() {
       <Container className="px-0 sm:px-0 lg:px-0">
         {/* gap-px over a steel ground draws the hairline grid; each cell paints
             its own white so it can flip to navy independently. */}
-        {/* Six columns because there are six brands. An eight-column grid left
-            two dead cells hanging off the end of the row. If the list grows,
-            this is the number to change. */}
-        <ul className="flex overflow-x-auto gap-px bg-steel-200 lg:grid lg:grid-cols-6">
+        {/* Three columns because there are three brands. A column count that
+            outruns the list leaves dead cells hanging off the end of the row —
+            which is what an eight-column grid did back when there were six.
+            If the list grows, this is the number to change. */}
+        <ul className="flex overflow-x-auto gap-px bg-steel-200 lg:grid lg:grid-cols-3">
           {brands.map((brand, index) => (
             <li key={brand.id} className="min-w-[calc(100%/3)] sm:min-w-[calc(100%/3)] lg:min-w-auto">
               <Reveal delay={index * 0.04} y={10}>
-                {/* The strip was six inert boxes. Each cell now opens that
+                {/* The strip was inert boxes. Each cell now opens that
                     brand's catalogue, which is the only thing anyone would
                     expect a manufacturer logo on a dealer's homepage to do. */}
                 <Link

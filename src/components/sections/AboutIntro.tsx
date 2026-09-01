@@ -26,7 +26,7 @@ export async function AboutIntro() {
     {
       id: "today",
       title: "Where we stand today",
-      body: "We supply and support excavators, loaders, haulage, compaction and material handling equipment, holding distributorships for a growing list of manufacturers — Xinyuan, LOAD-X, XCMG, Zoomlion, SANY and Liugong — with parts and service behind every line we carry.",
+      body: "We supply and support excavators, loaders, haulage, compaction and material handling equipment, holding distributorships for a growing list of manufacturers, Xinyuan, LOAD-X and XCMG, with parts and service behind every line we carry.",
     },
     {
       id: "why",

@@ -138,7 +138,7 @@ export const stats: Stat[] = [
   {
     id: "st-04",
     label: "Brands supplied",
-    value: 6,
+    value: 3,
     description: "Including two sole distributorships",
   },
 ];
@@ -153,8 +153,14 @@ export const stats: Stat[] = [
  * risk this file used to warn about. WORK MASTER went with them, on the same
  * instruction.
  *
- * These six are the whole list, and it is expected to grow. Adding the seventh
+ * These three are the whole list, and it is expected to grow. Adding the fourth
  * is a Studio action, not a deploy.
+ *
+ * ZOOMLION, SANY AND LIUGONG WERE REMOVED on the client's instruction, the way
+ * Caterpillar and the rest were before them: records, marks and mentions, not
+ * merely hidden. Showing a manufacturer you do not represent is the specific
+ * risk this file exists to warn about, and a hidden record is still a claim
+ * sitting in the data waiting to be switched back on by accident.
  *
  * INTROS ARE PROVISIONAL. Each is a short factual line about the manufacturer,
  * written to give the brand catalogue a heading block that is not empty. None
@@ -227,39 +233,6 @@ export const brands: Brand[] = [
       "One of the largest construction equipment manufacturers in the world, with a range spanning earthmoving, lifting and road machinery.",
     showInBrandStrip: true,
     order: 3,
-  },
-  {
-    id: "br-zoomlion",
-    name: "Zoomlion",
-    relationship: "distributed",
-    logo: logoPair("zoomlion"),
-    countryOfOrigin: "China",
-    shortDescription:
-      "Concrete machinery, cranes and earthmoving equipment for infrastructure and heavy civil work.",
-    showInBrandStrip: true,
-    order: 4,
-  },
-  {
-    id: "br-sany",
-    name: "SANY",
-    relationship: "distributed",
-    logo: logoPair("sany"),
-    countryOfOrigin: "China",
-    shortDescription:
-      "Excavators, cranes and concrete equipment, widely used on large infrastructure projects.",
-    showInBrandStrip: true,
-    order: 5,
-  },
-  {
-    id: "br-liugong",
-    name: "Liugong",
-    relationship: "distributed",
-    logo: logoPair("liugong"),
-    countryOfOrigin: "China",
-    shortDescription:
-      "Wheel loaders, excavators and road machinery, with a long track record in quarrying and aggregate handling.",
-    showInBrandStrip: true,
-    order: 6,
   },
 ];
 
