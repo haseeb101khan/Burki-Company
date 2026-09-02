@@ -861,9 +861,9 @@ export const XINYUAN_SPECS: Record<string, XinyuanModelData> = {
       "The C130S is the heavy end of the wheeled range: 13 tonnes on an 86 kW Yuchai 4DK, digging 4.76 metres down and reaching 7.72 metres out. Dual-circuit four-wheel hydraulic disc brakes and 35° gradeability make a machine this size practical to move under its own power, and load-sensing hydraulics keep the fuel burn in proportion to the work.",
     highlights: [
       s("Operating weight", "13,000", "kg"),
+      s("Bucket capacity", "0.35", "m³"),
       s("Engine power", "86", "kW"),
       s("Max digging force", "55", "kN"),
-      s("Max digging depth", "4,765", "mm"),
     ],
     specs: [
       {
@@ -881,6 +881,7 @@ export const XINYUAN_SPECS: Record<string, XinyuanModelData> = {
         title: "Operating",
         specs: [
           s("Operating weight", "13,000", "kg"),
+          s("Bucket capacity", "0.35", "m³"),
           s("Fuel tank", "200", "L"),
           s("Hydraulic tank", "165", "L"),
           s("Hydraulic flow rate", "230", "L/min"),

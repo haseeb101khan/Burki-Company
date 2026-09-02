@@ -19,12 +19,12 @@ export type CompareMachine = {
   image: { src: string; alt: string };
 };
 
-/**
- * Three, as the comparison table is three columns wide. A fourth would either
- * push a column off a laptop screen or shrink all of them to the point where
- * the figures stop lining up, which is the only thing the table is for.
- */
-export const COMPARE_LIMIT = 3;
+import { COMPARE_LIMIT } from "@/lib/compare";
+
+/* Re-exported so the client components that already import it from here keep
+   working; the value itself lives in a module with no "use client", because a
+   server component reading it from here would get a client reference. */
+export { COMPARE_LIMIT };
 
 const STORAGE_KEY = "burki:compare";
 
@@ -35,6 +35,7 @@ type CompareValue = {
   toggle: (slug: string) => void;
   remove: (slug: string) => void;
   clear: () => void;
+  replace: (slugs: string[]) => void;
   isFull: boolean;
   /** False until the stored selection has been read, so nothing flashes. */
   ready: boolean;
@@ -113,6 +114,20 @@ export function CompareProvider({
 
   const clear = useCallback(() => setSelected([]), []);
 
+  /**
+   * Set the whole selection at once.
+   *
+   * The comparison page is addressed by query string so it can be shared, which
+   * means arriving at one by link puts the URL and the stored selection out of
+   * step — the tray would show yesterday's picks beside somebody else's
+   * comparison. The page pushes its models through this on mount so the two
+   * agree, and "clear" on that page then means something.
+   */
+  const replace = useCallback(
+    (slugs: string[]) => setSelected(slugs.slice(0, COMPARE_LIMIT)),
+    [],
+  );
+
   const value = useMemo<CompareValue>(
     () => ({
       selected,
@@ -121,10 +136,11 @@ export function CompareProvider({
       toggle,
       remove,
       clear,
+      replace,
       isFull: selected.length >= COMPARE_LIMIT,
       ready,
     }),
-    [selected, machines, toggle, remove, clear, ready],
+    [selected, machines, toggle, remove, clear, replace, ready],
   );
 
   return <CompareContext.Provider value={value}>{children}</CompareContext.Provider>;

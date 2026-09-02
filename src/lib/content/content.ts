@@ -282,8 +282,8 @@ export const content: ContentSnapshot = {
       "summary": "A 4.5 tonne loader with a 1 m³ bucket, built for confined yards, block plants and municipal work where a full-size machine cannot turn.",
       "description": "The LX-926 is the compact machine in the LX Series. A 5,870 mm length and articulated steering let it work close to walls and stockpiles, while a 76 kW Huafeng diesel and 4WD driveline keep it loading rather than spinning. Supplied new, CE / BV / SGS certified with ROPS and FOPS structures.",
       "image": {
-        "src": "/brands/Load-x/lx926/lx-926-1.jpg",
-        "alt": "LOAD-X LX-926 wheel loader, side view"
+        "src": "/images/load-x/lx-926/lx-926-01.webp",
+        "alt": "LOAD-X LX-926 wheel loader, side view, carrying its LX 926 badge"
       },
       "cutoutImage": {
         "src": "/images/load-x/lx-926-cutout.webp",
@@ -291,8 +291,84 @@ export const content: ContentSnapshot = {
       },
       "gallery": [
         {
-          "src": "/brands/Load-x/lx926/lx-926-1.jpg",
-          "alt": "LOAD-X LX-926 wheel loader, side view"
+          "src": "/images/load-x/lx-926/lx-926-01.webp",
+          "alt": "LOAD-X LX-926 wheel loader, side view, carrying its LX 926 badge"
+        },
+        {
+          "src": "/images/load-x/lx-926/lx-926-02.webp",
+          "alt": "LOAD-X LX-926 wheel loader, head on, bucket down"
+        },
+        {
+          "src": "/images/load-x/lx-926/lx-926-03.webp",
+          "alt": "LOAD-X LX-926 wheel loader, three-quarter view on the yard"
+        },
+        {
+          "src": "/images/load-x/lx-926/lx-926-04.webp",
+          "alt": "LOAD-X LX-926 wheel loader, side view with the bucket lowered"
+        },
+        {
+          "src": "/images/load-x/lx-926/lx-926-05.webp",
+          "alt": "LOAD-X LX-926 wheel loader, with the bucket raised"
+        },
+        {
+          "src": "/images/load-x/lx-926/lx-926-06.webp",
+          "alt": "LOAD-X LX-926 wheel loader, under the canopy"
+        },
+        {
+          "src": "/images/load-x/lx-926/lx-926-07.webp",
+          "alt": "LOAD-X LX-926 wheel loader, rear, counterweight and lamps"
+        },
+        {
+          "src": "/images/load-x/lx-926/lx-926-08.webp",
+          "alt": "LOAD-X LX-926 wheel loader, loader arms and lift cylinders"
+        },
+        {
+          "src": "/images/load-x/lx-926/lx-926-09.webp",
+          "alt": "LOAD-X LX-926 wheel loader, engine under the raised bonnet"
+        },
+        {
+          "src": "/images/load-x/lx-926/lx-926-10.webp",
+          "alt": "LOAD-X LX-926 wheel loader, engine bay, air cleaner and manifold"
+        },
+        {
+          "src": "/images/load-x/lx-926/lx-926-11.webp",
+          "alt": "LOAD-X LX-926 wheel loader, fluid reservoirs and filters under the bonnet"
+        },
+        {
+          "src": "/images/load-x/lx-926/lx-926-12.webp",
+          "alt": "LOAD-X LX-926 wheel loader, wheel and tyre"
+        },
+        {
+          "src": "/images/load-x/lx-926/lx-926-13.webp",
+          "alt": "LOAD-X LX-926 wheel loader, wheel hub and brake assembly"
+        },
+        {
+          "src": "/images/load-x/lx-926/lx-926-14.webp",
+          "alt": "LOAD-X LX-926 wheel loader, chassis hydraulics beneath the frame"
+        },
+        {
+          "src": "/images/load-x/lx-926/lx-926-15.webp",
+          "alt": "LOAD-X LX-926 wheel loader, cab interior, seat and controls"
+        },
+        {
+          "src": "/images/load-x/lx-926/lx-926-16.webp",
+          "alt": "LOAD-X LX-926 wheel loader, steering wheel and column"
+        },
+        {
+          "src": "/images/load-x/lx-926/lx-926-17.webp",
+          "alt": "LOAD-X LX-926 wheel loader, switch panel"
+        },
+        {
+          "src": "/images/load-x/lx-926/lx-926-18.webp",
+          "alt": "LOAD-X LX-926 wheel loader, control knobs on the console"
+        },
+        {
+          "src": "/images/load-x/lx-926/lx-926-19.webp",
+          "alt": "LOAD-X LX-926 wheel loader, in-cab display screen"
+        },
+        {
+          "src": "/images/load-x/lx-926/lx-926-20.webp",
+          "alt": "LOAD-X LX-926 wheel loader, instrument cluster"
         }
       ],
       "highlights": [
@@ -4685,6 +4761,11 @@ export const content: ContentSnapshot = {
           "unit": "kg"
         },
         {
+          "label": "Bucket capacity",
+          "value": "0.35",
+          "unit": "m³"
+        },
+        {
           "label": "Engine power",
           "value": "86",
           "unit": "kW"
@@ -4693,11 +4774,6 @@ export const content: ContentSnapshot = {
           "label": "Max digging force",
           "value": "55",
           "unit": "kN"
-        },
-        {
-          "label": "Max digging depth",
-          "value": "4,765",
-          "unit": "mm"
         }
       ],
       "specs": [
@@ -4740,6 +4816,11 @@ export const content: ContentSnapshot = {
               "label": "Operating weight",
               "value": "13,000",
               "unit": "kg"
+            },
+            {
+              "label": "Bucket capacity",
+              "value": "0.35",
+              "unit": "m³"
             },
             {
               "label": "Fuel tank",

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { CloseIcon } from "@/components/ui/Icons";
 import { Container } from "@/components/ui/Section";
@@ -24,12 +25,15 @@ import { COMPARE_LIMIT, useCompare } from "./CompareProvider";
 export function CompareBar() {
   const { selected, machines, remove, clear, ready } = useCompare();
   const reduceMotion = useReducedMotion();
+  const pathname = usePathname();
 
   const chosen = selected
     .map((slug) => machines.find((m) => m.slug === slug))
     .filter((m): m is NonNullable<typeof m> => Boolean(m));
 
-  const show = ready && chosen.length > 0;
+  /* Not on the comparison page itself: everything the tray offers is already
+     on that page, in a form with room to say it. */
+  const show = ready && chosen.length > 0 && pathname !== "/compare";
 
   return (
     <AnimatePresence>
