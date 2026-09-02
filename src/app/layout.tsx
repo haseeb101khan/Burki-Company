@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import { Barlow_Condensed, Inter } from "next/font/google";
 import { MotionProvider } from "@/components/MotionProvider";
+import { CompareBar } from "@/components/compare/CompareBar";
+import { CompareProvider } from "@/components/compare/CompareProvider";
+import { getEquipment } from "@/lib/data";
+import { routes } from "@/lib/routes";
 import { siteUrl } from "@/lib/site";
 import "./globals.css";
 
@@ -35,13 +39,35 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+/**
+ * The comparison selection lives at the root, because comparing means picking
+ * one machine on one brand's catalogue and another on a different one — the
+ * selection cannot belong to either page.
+ *
+ * The whole catalogue is reduced here to the five fields the tray needs to draw
+ * a chip. Sixteen machines' worth of that is small enough to hand down once,
+ * and it keeps the client components from reaching into the data layer.
+ */
+export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
+  const machines = (await getEquipment()).map((machine) => ({
+    slug: machine.slug,
+    model: machine.model,
+    brand: machine.brand,
+    href: routes.equipmentItem(machine),
+    image: machine.cutoutImage ?? machine.image,
+  }));
+
   return (
     <html lang="en" className={`${barlowCondensed.variable} ${inter.variable}`}>
       <body className="min-h-screen bg-white text-ink antialiased">
-        <MotionProvider>{children}</MotionProvider>
+        <MotionProvider>
+          <CompareProvider machines={machines}>
+            {children}
+            <CompareBar />
+          </CompareProvider>
+        </MotionProvider>
       </body>
     </html>
   );

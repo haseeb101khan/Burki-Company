@@ -1,32 +1,29 @@
 import Image from "next/image";
 import Link from "next/link";
+import { CompareToggle } from "@/components/compare/CompareToggle";
 import type { Equipment } from "@/lib/data";
+import { keyFigures } from "@/lib/key-figures";
 import { cn } from "@/lib/utils";
-import { ArrowRight } from "./Button";
 import { routes } from "@/lib/routes";
 
 /**
- * Equipment card used across the catalogue. The whole card is one link target.
+ * Equipment card used across the catalogue.
  *
- * THE PANEL IS THE MANUFACTURER'S OWN CARD, IN OUR COLOURS.
+ * PLAIN AGAIN, ON THE CLIENT'S CALL. The dotted map, the diagonal bands and the
+ * ribbon are gone: the machine on white, its name under it, three figures, two
+ * actions. Modelled on XCMG's own catalogue card, which does exactly that and
+ * lets the machine carry the card.
  *
- * Modelled on Xinyuan's product cards, which the client asked for: a dotted
- * field, a diagonal band behind the machine, the maker top left, the model top
- * right, and a "view specifications" ribbon across the foot. Theirs is yellow;
- * this is the navy.
+ * THREE FIGURES, AND THE SAME THREE EVERY TIME — weight, engine, bucket, in that
+ * order, whatever the manufacturer's sheet called them. See `keyFigures`: the
+ * labels are inconsistent across the range, so they are matched by meaning
+ * rather than taken by position, and printed under one house label so a row of
+ * cards reads as a table rather than as three different sheets.
  *
- * THE BAND IS LIGHT BLUE, NOT NAVY, AND THAT IS THE ONE DELIBERATE DEPARTURE.
- * Their yellow works because the machines are near-black and the band is the
- * brightest thing on the card. Swapping yellow for navy would have put a dark
- * band behind a dark machine and lost the boom and the tyres into it. The band
- * carries the blue at a tint the cutouts read against; the ribbon and the type
- * carry it at full strength, so the card is unmistakably navy without eating
- * the thing it is selling.
- *
- * ONLY CUTOUTS GET THE PANEL. A machine with no cutout falls back to its
- * photograph, which brings its own background — a dotted field and a diagonal
- * band behind a full-bleed photo would be decoration stacked on decoration. It
- * keeps the plain covered treatment it always had.
+ * THE CARD IS NOT A LINK ANY MORE, and that is what the two buttons cost. A
+ * toggle inside an anchor is invalid markup, and clicking it would navigate.
+ * The picture and the name are the link; Compare toggles; More is the explicit
+ * way in for anyone who wants a target rather than a picture.
  */
 export function EquipmentCard({
   item,
@@ -37,163 +34,76 @@ export function EquipmentCard({
   className?: string;
   priority?: boolean;
 }) {
-  /* Two figures is the most a narrow tile holds without the labels wrapping
-     into columns of single words. The rest are on the detail page. */
-  const keyHighlights = item.highlights.slice(0, 2);
-
+  const figures = keyFigures(item);
   const cutout = item.cutoutImage;
   const display = cutout ?? item.image;
+  const href = routes.equipmentItem(item);
 
   return (
-    <Link
-      href={routes.equipmentItem(item)}
+    <article
       className={cn(
         "group flex h-full flex-col overflow-hidden rounded-[3px] border border-steel-200 bg-white",
-        "transition-all duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1",
-        "hover:border-navy-300 hover:shadow-[0_22px_44px_-28px_rgba(0,17,46,0.5)] focus-visible:border-navy-400",
+        "transition-all duration-400 ease-[cubic-bezier(0.22,1,0.36,1)]",
+        "hover:-translate-y-1 hover:border-navy-300 hover:shadow-[0_22px_44px_-28px_rgba(0,17,46,0.5)]",
         className,
       )}
     >
-      {/* SQUARE, NOT 5:4. The panel has to carry the maker and model above the
-          machine and the ribbon below it, and a landscape frame paid for both
-          out of the machine's own height — which is what left the cutouts
-          looking small. A square panel gives the height back. */}
-      <div
-        className={cn(
-          "relative aspect-square overflow-hidden",
-          cutout ? "bg-white" : "bg-steel-100",
-        )}
-      >
-        {cutout ? (
-          <>
-            {/* Pakistan in dots, where the reference card carries a dotted
-                world map. Traced from the map the client supplied by
-                `scripts/make-dot-map.mjs` — not drawn by hand, because the
-                outline includes Kashmir and Gilgit-Baltistan and a border
-                approximated from memory on a Pakistani company's own site is a
-                mistake with consequences.
+      <Link href={href} className="block px-3 pt-3 md:px-4 md:pt-4">
+        {/* 4:3 and almost no padding: the machine is the card, and every pixel
+            given to a margin here comes straight off it. */}
+        <div className="relative aspect-[4/3] w-full">
+          <Image
+            src={display.src}
+            alt={display.alt}
+            fill
+            priority={priority}
+            sizes="(min-width: 1280px) 25vw, (min-width: 768px) 33vw, 50vw"
+            className={cn(
+              "transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]",
+              cutout ? "object-contain" : "object-cover",
+            )}
+            style={display.focus ? { objectPosition: display.focus } : undefined}
+          />
+        </div>
 
-                MASK, NOT BACKGROUND-IMAGE. The file paints in `currentColor`,
-                which only resolves for an SVG inlined in the document; as a
-                background it would render black. Masking an amber panel with it
-                puts the colour under CSS control and keeps one shared file
-                cached across every card, rather than 89KB of inline markup
-                repeated a dozen times a page. */}
-            <span
-              aria-hidden="true"
-              className={cn(
-                "absolute inset-0 bg-amber-500/45",
-                "[mask-image:url('/images/pakistan-dots.svg')] [mask-position:center] [mask-repeat:no-repeat] [mask-size:contain]",
-                "[-webkit-mask-image:url('/images/pakistan-dots.svg')] [-webkit-mask-position:center] [-webkit-mask-repeat:no-repeat] [-webkit-mask-size:contain]",
-              )}
-            />
+        <h3 className="mt-1 text-center font-display text-2xl font-bold uppercase leading-none tracking-tight text-navy-800 md:text-3xl">
+          {item.model}
+        </h3>
+      </Link>
 
-            {/* Two diagonals, thick over thin, as on the original — and amber
-                now, which is what the reference was doing all along: a bright
-                band behind a near-black machine, so the boom and the tyres read
-                as a silhouette against it. This is why the navy band had to be
-                a tint; amber needs no such compromise. */}
-            <span
-              aria-hidden="true"
-              className="absolute -left-[12%] bottom-[15%] h-[19%] w-[128%] -rotate-[13deg] bg-amber-500"
-            />
-            <span
-              aria-hidden="true"
-              className="absolute -left-[12%] bottom-[9%] h-[5%] w-[128%] -rotate-[13deg] bg-amber-300"
-            />
-          </>
-        ) : null}
-
-        <Image
-          src={display.src}
-          alt={display.alt}
-          fill
-          priority={priority}
-          sizes="(min-width: 1280px) 25vw, (min-width: 768px) 33vw, 50vw"
-          className={cn(
-            "transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]",
-            /* Inset only as far as it takes to clear the maker and model above
-               and the ribbon below. Every pixel of padding here comes straight
-               off the machine, and at two cards to a phone screen there is not
-               much to give — so the phone runs tighter than the desktop. */
-            cutout
-              ? "object-contain px-1.5 pt-7 pb-7 drop-shadow-[0_10px_9px_rgba(0,17,46,0.14)] group-hover:scale-[1.05] md:px-3 md:pt-8 md:pb-9"
-              : "object-cover group-hover:scale-[1.04]",
-          )}
-          style={display.focus ? { objectPosition: display.focus } : undefined}
-        />
-
-        {cutout ? (
-          <>
-            {/* Maker left, model right, as the reference sets them. */}
-            <div className="absolute inset-x-0 top-0 flex items-start justify-between gap-2 px-3 pt-2.5 md:px-4 md:pt-3">
-              <span className="font-display text-[0.625rem] font-bold uppercase tracking-[0.14em] text-navy-700 md:text-[0.6875rem]">
-                {item.brand}
-              </span>
-              <span className="font-display text-base font-bold uppercase leading-none tracking-tight text-navy-800 sm:text-lg md:text-xl">
-                {item.model}
-              </span>
-            </div>
-
-            {/* The ribbon. Angled ends by clip-path rather than by rotating a
-                box, so it stays flush to the panel's bottom edge at any width. */}
-            <div className="absolute inset-x-0 bottom-0 flex justify-center">
-              <span
-                className={cn(
-                  /* Navy, and it deepens rather than going amber on hover —
-                     the bands are amber now and a matching ribbon would lose
-                     the one piece of navy holding the card to the brand. */
-                  "w-[86%] bg-navy-700 py-1.5 text-center transition-colors duration-300 group-hover:bg-navy-900",
-                  "font-display text-[0.5625rem] font-bold uppercase tracking-[0.12em] text-white",
-                  "[clip-path:polygon(4%_0,100%_0,96%_100%,0_100%)]",
-                  "sm:text-[0.625rem] md:py-2 md:text-[0.6875rem] md:tracking-[0.16em]",
-                )}
-              >
-                View specifications
-              </span>
-            </div>
-          </>
-        ) : null}
+      <div className="px-3 pt-3 md:px-4 md:pt-4">
+        <div className="border-t border-steel-200 pt-3 md:pt-4">
+          {figures.length > 0 ? (
+            <dl className="space-y-1.5">
+              {figures.map((figure) => (
+                <div key={figure.label} className="flex items-baseline gap-1.5">
+                  <dt className="text-[0.75rem] text-steel-600 md:text-[0.8125rem]">
+                    {figure.label}:
+                  </dt>
+                  <dd className="font-display text-[0.8125rem] font-semibold tabular-nums text-navy-800 md:text-sm">
+                    {figure.value}
+                    {figure.unit ? (
+                      <span className="ml-0.5 font-medium text-steel-500">{figure.unit}</span>
+                    ) : null}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          ) : null}
+        </div>
       </div>
 
-      <div className="flex flex-1 flex-col border-t border-steel-100 p-3.5 md:p-4">
-        {/* The model is on the panel now, so this is the descriptive line — the
-            job the long product title does on the reference card. */}
-        <p className="line-clamp-2 text-[0.8125rem] leading-relaxed text-steel-600 sm:line-clamp-3 md:text-sm">
-          {item.summary}
-        </p>
-
-        {keyHighlights.length > 0 ? (
-          /* Stacked in a narrow column and side by side from `sm`: at two cards
-             to a phone screen, "Operating weight" and "Bucket capacity" cannot
-             share a row without breaking one word to a line. */
-          <dl className="mt-3.5 grid gap-px overflow-hidden rounded-[2px] bg-steel-200 sm:grid-cols-2">
-            {keyHighlights.map((highlight) => (
-              <div key={highlight.label} className="min-w-0 bg-steel-50 px-2.5 py-2">
-                <dt className="text-[0.5625rem] font-medium uppercase leading-[1.3] tracking-[0.08em] text-steel-500 md:text-[0.625rem] md:tracking-[0.1em]">
-                  {highlight.label}
-                </dt>
-                <dd className="mt-0.5 whitespace-nowrap font-display text-[0.8125rem] font-semibold tabular-nums text-navy-700 sm:text-sm md:text-base">
-                  {highlight.value}
-                  {highlight.unit ? (
-                    <span className="ml-1 text-[0.625rem] font-medium text-steel-500 md:text-xs">
-                      {highlight.unit}
-                    </span>
-                  ) : null}
-                </dd>
-              </div>
-            ))}
-          </dl>
-        ) : null}
-
-        {/* Only where the panel has no ribbon to carry it. */}
-        {cutout ? null : (
-          <span className="mt-auto inline-flex items-center gap-1.5 pt-3.5 font-display text-[0.625rem] font-semibold uppercase tracking-[0.08em] text-navy-700 transition-colors group-hover:text-amber-600 sm:text-[0.6875rem] sm:tracking-[0.1em] md:text-[0.75rem]">
-            View specifications
-            <ArrowRight className="shrink-0 transition-transform duration-300 group-hover:translate-x-1" />
-          </span>
-        )}
+      {/* `mt-auto` so the actions sit on the floor of the card whatever the
+          figures above them came to — a row of cards keeps one baseline. */}
+      <div className="mt-auto grid grid-cols-2 divide-x divide-steel-200 border-t border-steel-200">
+        <CompareToggle slug={item.slug} />
+        <Link
+          href={href}
+          className="flex items-center justify-center py-3 font-display text-[0.6875rem] font-semibold uppercase tracking-[0.1em] text-navy-700 transition-colors hover:bg-navy-50 hover:text-navy-900 md:text-[0.75rem]"
+        >
+          More
+        </Link>
       </div>
-    </Link>
+    </article>
   );
 }
