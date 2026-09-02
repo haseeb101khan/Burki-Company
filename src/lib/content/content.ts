@@ -592,7 +592,8 @@ export const content: ContentSnapshot = {
       ],
       "relatedEquipmentSlugs": [
         "lx-936",
-        "lx-930"
+        "lx-930",
+        "lx-950"
       ],
       "isFeatured": true,
       "isPlaceholder": false,
@@ -846,7 +847,8 @@ export const content: ContentSnapshot = {
       ],
       "relatedEquipmentSlugs": [
         "lx-926",
-        "lx-936"
+        "lx-936",
+        "lx-950"
       ],
       "isFeatured": true,
       "isPlaceholder": true,
@@ -1185,11 +1187,200 @@ export const content: ContentSnapshot = {
       ],
       "relatedEquipmentSlugs": [
         "lx-926",
-        "lx-930"
+        "lx-930",
+        "lx-950"
       ],
       "isFeatured": true,
       "isPlaceholder": false,
       "order": 4,
+      "brandSlug": "load-x",
+      "categoryName": "Wheel Loaders",
+      "videos": []
+    },
+    {
+      "id": "eq-lx-950",
+      "slug": "lx-950",
+      "model": "LX-950",
+      "name": "LX-950 Wheel Loader",
+      "categorySlug": "wheel-loaders",
+      "brand": "LOAD-X",
+      "series": "LX Series",
+      "tagline": "The five-tonne end of the range",
+      "summary": "A 15 tonne loader rated to 5,000 kg, on 162 kW and 177 kN of breakout force, for quarry and aggregate loading.",
+      "description": "The LX-950 is the largest machine in the LX Series: 15 tonnes operating weight, a 5,000 kg rated payload and 177 kN of breakout force, on 20.5-25 tyres. It is the machine for sustained loading against a face or a stockpile, where the smaller LX machines would be working at their limit rather than inside it.",
+      "image": {
+        "src": "/images/load-x/lx-950/lx-950-01.webp",
+        "alt": "LOAD-X LX-950 wheel loader, three-quarter view, carrying its LX950 badge"
+      },
+      "cutoutImage": {
+        "src": "/images/load-x/lx-950-cutout.webp",
+        "alt": "LOAD-X LX-950 wheel loader, isolated on white"
+      },
+      "gallery": [
+        {
+          "src": "/images/load-x/lx-950/lx-950-01.webp",
+          "alt": "LOAD-X LX-950 wheel loader, three-quarter view, carrying its LX950 badge"
+        },
+        {
+          "src": "/images/load-x/lx-950/lx-950-02.webp",
+          "alt": "LOAD-X LX-950 wheel loader, front of the line, bucket down"
+        },
+        {
+          "src": "/images/load-x/lx-950/lx-950-03.webp",
+          "alt": "LOAD-X LX-950 wheel loader, in the yard among the LOAD-X range"
+        },
+        {
+          "src": "/images/load-x/lx-950/lx-950-04.webp",
+          "alt": "LOAD-X LX-950 wheel loader, Weichai engine under the raised bonnet"
+        },
+        {
+          "src": "/images/load-x/lx-950/lx-950-05.webp",
+          "alt": "LOAD-X LX-950 wheel loader, engine bay, filters and hydraulics"
+        },
+        {
+          "src": "/images/load-x/lx-950/lx-950-06.webp",
+          "alt": "LOAD-X LX-950 wheel loader, engine data plate"
+        },
+        {
+          "src": "/images/load-x/lx-950/lx-950-07.webp",
+          "alt": "LOAD-X LX-950 wheel loader, cab interior, seat and console"
+        },
+        {
+          "src": "/images/load-x/lx-950/lx-950-08.webp",
+          "alt": "LOAD-X LX-950 wheel loader, steering wheel and pedals"
+        },
+        {
+          "src": "/images/load-x/lx-950/lx-950-09.webp",
+          "alt": "LOAD-X LX-950 wheel loader, operator's console and controls"
+        },
+        {
+          "src": "/images/load-x/lx-950/lx-950-10.webp",
+          "alt": "LOAD-X LX-950 wheel loader, cab roof console"
+        }
+      ],
+      "highlights": [
+        {
+          "label": "Operating weight",
+          "value": "15,000",
+          "unit": "kg"
+        },
+        {
+          "label": "Bucket capacity",
+          "value": "2.6–5.5",
+          "unit": "m³"
+        },
+        {
+          "label": "Rated power",
+          "value": "162",
+          "unit": "kW"
+        },
+        {
+          "label": "Rated payload",
+          "value": "5,000",
+          "unit": "kg"
+        }
+      ],
+      "specs": [
+        {
+          "title": "Identification",
+          "specs": [
+            {
+              "label": "Brand",
+              "value": "LOAD-X"
+            },
+            {
+              "label": "Model",
+              "value": "LX-950"
+            },
+            {
+              "label": "Loading port",
+              "value": "China"
+            },
+            {
+              "label": "Minimum order",
+              "value": "1 set"
+            },
+            {
+              "label": "Supply capability",
+              "value": "25 sets/month"
+            }
+          ]
+        },
+        {
+          "title": "Operating",
+          "specs": [
+            {
+              "label": "Operating weight",
+              "value": "15,000",
+              "unit": "kg"
+            },
+            {
+              "label": "Rated payload",
+              "value": "5,000",
+              "unit": "kg"
+            },
+            {
+              "label": "Bucket capacity",
+              "value": "2.6–5.5",
+              "unit": "m³"
+            }
+          ]
+        },
+        {
+          "title": "Performance",
+          "specs": [
+            {
+              "label": "Breakout force",
+              "value": "177",
+              "unit": "kN"
+            }
+          ]
+        },
+        {
+          "title": "Engine",
+          "specs": [
+            {
+              "label": "Engine model",
+              "value": "WD10G220E23"
+            },
+            {
+              "label": "Rated power",
+              "value": "162",
+              "unit": "kW"
+            }
+          ]
+        },
+        {
+          "title": "Tyres",
+          "specs": [
+            {
+              "label": "Tyre size",
+              "value": "20.5-25"
+            }
+          ]
+        }
+      ],
+      "features": [
+        {
+          "title": "Five tonnes rated",
+          "description": "A 5,000 kg rated payload on a 15 tonne machine, for loading trucks and hoppers without working the loader at its limit."
+        },
+        {
+          "title": "177 kN of breakout",
+          "description": "Breakout force to enter a compacted face or a settled stockpile rather than skating off it."
+        },
+        {
+          "title": "Sized for the work",
+          "description": "20.5-25 tyres under the largest machine in the LX Series, where the smaller LX loaders would be at the edge of their class."
+        }
+      ],
+      "relatedEquipmentSlugs": [
+        "lx-936",
+        "lx-930"
+      ],
+      "isFeatured": false,
+      "isPlaceholder": false,
+      "order": 5,
       "brandSlug": "load-x",
       "categoryName": "Wheel Loaders",
       "videos": []
