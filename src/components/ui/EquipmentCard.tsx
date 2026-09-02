@@ -66,22 +66,40 @@ export function EquipmentCard({
       >
         {cutout ? (
           <>
-            {/* The dotted field. A plain grid rather than their world map: a
-                map traced in dots is their brand's device, not ours. */}
+            {/* Pakistan in dots, where the reference card carries a dotted
+                world map. Traced from the map the client supplied by
+                `scripts/make-dot-map.mjs` — not drawn by hand, because the
+                outline includes Kashmir and Gilgit-Baltistan and a border
+                approximated from memory on a Pakistani company's own site is a
+                mistake with consequences.
+
+                MASK, NOT BACKGROUND-IMAGE. The file paints in `currentColor`,
+                which only resolves for an SVG inlined in the document; as a
+                background it would render black. Masking an amber panel with it
+                puts the colour under CSS control and keeps one shared file
+                cached across every card, rather than 89KB of inline markup
+                repeated a dozen times a page. */}
             <span
               aria-hidden="true"
-              className="absolute inset-0 [background-image:radial-gradient(circle,rgba(0,38,101,0.13)_1px,transparent_1px)] [background-size:13px_13px]"
+              className={cn(
+                "absolute inset-0 bg-amber-500/45",
+                "[mask-image:url('/images/pakistan-dots.svg')] [mask-position:center] [mask-repeat:no-repeat] [mask-size:contain]",
+                "[-webkit-mask-image:url('/images/pakistan-dots.svg')] [-webkit-mask-position:center] [-webkit-mask-repeat:no-repeat] [-webkit-mask-size:contain]",
+              )}
             />
 
-            {/* Two diagonals, thick over thin, as on the original. Behind the
-                machine in the DOM, so the cutout sits on top of them. */}
+            {/* Two diagonals, thick over thin, as on the original — and amber
+                now, which is what the reference was doing all along: a bright
+                band behind a near-black machine, so the boom and the tyres read
+                as a silhouette against it. This is why the navy band had to be
+                a tint; amber needs no such compromise. */}
             <span
               aria-hidden="true"
-              className="absolute -left-[12%] bottom-[15%] h-[19%] w-[128%] -rotate-[13deg] bg-navy-200"
+              className="absolute -left-[12%] bottom-[15%] h-[19%] w-[128%] -rotate-[13deg] bg-amber-500"
             />
             <span
               aria-hidden="true"
-              className="absolute -left-[12%] bottom-[9%] h-[5%] w-[128%] -rotate-[13deg] bg-navy-300/70"
+              className="absolute -left-[12%] bottom-[9%] h-[5%] w-[128%] -rotate-[13deg] bg-amber-300"
             />
           </>
         ) : null}
@@ -122,8 +140,11 @@ export function EquipmentCard({
             <div className="absolute inset-x-0 bottom-0 flex justify-center">
               <span
                 className={cn(
-                  "w-[86%] bg-navy-700 py-1.5 text-center transition-colors duration-300 group-hover:bg-amber-500",
-                  "font-display text-[0.5625rem] font-bold uppercase tracking-[0.12em] text-white group-hover:text-navy-900",
+                  /* Navy, and it deepens rather than going amber on hover —
+                     the bands are amber now and a matching ribbon would lose
+                     the one piece of navy holding the card to the brand. */
+                  "w-[86%] bg-navy-700 py-1.5 text-center transition-colors duration-300 group-hover:bg-navy-900",
+                  "font-display text-[0.5625rem] font-bold uppercase tracking-[0.12em] text-white",
                   "[clip-path:polygon(4%_0,100%_0,96%_100%,0_100%)]",
                   "sm:text-[0.625rem] md:py-2 md:text-[0.6875rem] md:tracking-[0.16em]",
                 )}
