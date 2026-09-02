@@ -49,11 +49,21 @@ const DIRS = [
 /** 5:4, the shape of the catalogue tile, so a card crops nothing. */
 const CANVAS_W = 1500;
 const CANVAS_H = 1200;
-/** Room the machine may occupy, leaving a margin the card can rely on. */
+/**
+ * Room the machine may occupy, leaving a margin the card can rely on.
+ *
+ * HEIGHT WAS RAISED FROM 0.86, AND IT DID MORE THAN MAKE THINGS BIGGER. At 0.86
+ * the upright-boom machines were all hitting the height clamp before they
+ * reached the area target below, which is why they came out at a matched height
+ * rather than a matched size — and left a band of empty canvas that the
+ * catalogue card then padded again, so the machine rendered small twice over.
+ * At 0.94 every machine reaches the area rule instead, so the range is equal by
+ * area as intended and each file wastes less of itself.
+ */
 const SAFE_W = 0.94;
-const SAFE_H = 0.86;
+const SAFE_H = 0.94;
 /** Gap under the wheels, as a share of canvas height — the common floor. */
-const BASELINE = 0.07;
+const BASELINE = 0.04;
 /**
  * Target size as sqrt(area) in px. Set from the median of the range as it
  * stands, so the machines that already looked right do not move much.

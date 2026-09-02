@@ -54,9 +54,13 @@ export function EquipmentCard({
         className,
       )}
     >
+      {/* SQUARE, NOT 5:4. The panel has to carry the maker and model above the
+          machine and the ribbon below it, and a landscape frame paid for both
+          out of the machine's own height — which is what left the cutouts
+          looking small. A square panel gives the height back. */}
       <div
         className={cn(
-          "relative aspect-[5/4] overflow-hidden",
+          "relative aspect-square overflow-hidden",
           cutout ? "bg-white" : "bg-steel-100",
         )}
       >
@@ -90,10 +94,12 @@ export function EquipmentCard({
           sizes="(min-width: 1280px) 25vw, (min-width: 768px) 33vw, 50vw"
           className={cn(
             "transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]",
-            /* Inset so the machine clears the maker and model above it and the
-               ribbon below, rather than running under either. */
+            /* Inset only as far as it takes to clear the maker and model above
+               and the ribbon below. Every pixel of padding here comes straight
+               off the machine, and at two cards to a phone screen there is not
+               much to give — so the phone runs tighter than the desktop. */
             cutout
-              ? "object-contain px-3 pt-8 pb-9 drop-shadow-[0_10px_9px_rgba(0,17,46,0.14)] group-hover:scale-[1.05] md:pt-9 md:pb-10"
+              ? "object-contain px-1.5 pt-7 pb-7 drop-shadow-[0_10px_9px_rgba(0,17,46,0.14)] group-hover:scale-[1.05] md:px-3 md:pt-8 md:pb-9"
               : "object-cover group-hover:scale-[1.04]",
           )}
           style={display.focus ? { objectPosition: display.focus } : undefined}
