@@ -352,7 +352,7 @@ export const equipment: Equipment[] = [
     slug: "lw300fn",
     model: "LW300FN",
     name: "LW300FN Wheel Loader",
-    categorySlug: "wheel-loaders",
+    categorySlug: "backhoe-loaders",
     brand: "XCMG",
     tagline: "The yard machine",
     summary:
@@ -420,7 +420,7 @@ export const equipment: Equipment[] = [
     slug: "lw500fn",
     model: "LW500FN",
     name: "LW500FN Wheel Loader",
-    categorySlug: "wheel-loaders",
+    categorySlug: "backhoe-loaders",
     brand: "XCMG",
     tagline: "Five tonnes of rated load",
     summary:
@@ -488,7 +488,7 @@ export const equipment: Equipment[] = [
     slug: "zl50gn",
     model: "ZL50GN",
     name: "ZL50GN Wheel Loader",
-    categorySlug: "wheel-loaders",
+    categorySlug: "backhoe-loaders",
     brand: "XCMG",
     tagline: "The cross-generation five-tonne",
     summary:

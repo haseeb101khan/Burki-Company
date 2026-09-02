@@ -29,22 +29,25 @@ export const equipmentCategories: EquipmentCategory[] = [
     id: "cat-03",
     slug: "backhoe-loaders",
     name: "Backhoe Loaders",
-    description:
-      "Two machines on one chassis. Loader at the front, backhoe at the rear — built for utilities, municipal work and confined urban sites.",
     /*
-     * ON THE CLIENT'S INSTRUCTION, and worth a note because the picture and the
-     * heading do not agree: this is an XCMG ZL50GN, which is a WHEEL loader —
-     * front bucket, no rear boom — and XCMG file it under Wheel Loader
-     * themselves. It is not a backhoe loader.
+     * WHAT IS FILED HERE, AND THE ONE THING TO KNOW ABOUT IT.
      *
-     * It goes in anyway because what it replaces was worse: a photograph of a
-     * VOLVO, a manufacturer Burki does not represent, which is the specific
-     * risk seed-data/site.ts exists to warn about. An XCMG machine on a
-     * category tile at least shows a line that is actually carried.
+     * On the client's instruction this category holds the three XCMG machines —
+     * LW300FN, LW500FN and ZL50GN — and the tile shows the ZL50GN. All three
+     * are WHEEL loaders: front bucket, no rear boom, and XCMG file them under
+     * Wheel Loader on their own product pages, which is where their
+     * specifications here came from.
      *
-     * The category has no machines in it yet. A photograph of an actual backhoe
-     * loader replaces this the moment one arrives.
+     * So the description below no longer claims a rear backhoe. It described
+     * "loader at the front, backhoe at the rear" while listing three machines
+     * that have no backhoe, which is a straightforward falsehood on a page that
+     * sells on specifications. The category NAME still says Backhoe Loaders and
+     * only the client can settle that — either these move back to Wheel Loaders
+     * beside the LOAD-X machines, or the category is renamed to match what is
+     * in it.
      */
+    description:
+      "Loaders for utilities, municipal work and confined urban sites, where a full-size machine cannot turn.",
     image: {
       src: "/images/xcmg-zl50gn-side.webp",
       alt: "An XCMG ZL50GN loader, side view",

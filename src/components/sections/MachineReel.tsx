@@ -3,8 +3,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useReducedMotion } from "motion/react";
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { ArrowRight } from "@/components/ui/Button";
+import { ChevronRightIcon } from "@/components/ui/Icons";
 import { cn } from "@/lib/utils";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -36,12 +37,19 @@ const chunk = <T,>(list: T[], size: number): T[][] => {
  * outgoing machines leave to the left while the incoming ones arrive from the
  * right, in one motion, because they are the same motion.
  *
- * THE WRAP GOES THE SAME WAY. The track carries a COPY of the first set on the
- * end. Reaching it slides left like every other advance; the moment that
- * settles, the track jumps back to the real first set with the animation
- * switched off — invisible, because the two are identical. Without the copy the
- * loop would have to travel backwards through every set to start again, which
- * is the one direction this is not supposed to move in.
+ * A COPY AT EACH END. The track runs [last, ...sets, first], so both directions
+ * wrap the way they travel: reaching either copy slides the way it was already
+ * going, and the moment that settles the track jumps to the real set with the
+ * animation switched off — invisible, the two being identical. Without the
+ * copies, wrapping would have to travel backwards through every set to start
+ * again, which is the one direction this is not supposed to move in. The arrows
+ * need the copy at the front for exactly the same reason going the other way.
+ *
+ * THE CLOCK DOES NOT STOP FOR THE CURSOR. It used to pause on hover, which meant
+ * resting the pointer anywhere over the row froze the whole thing until the
+ * mouse left. Removed on the client's call: the rotation is continuous. Focus
+ * still holds it, because a keyboard user tabbing through the cards would
+ * otherwise have the row move out from under them mid-tab.
  *
  * NO BOXES. The machines are cutouts on transparency and they sit directly on
  * the section, shadow and all. That is the entire point of cutting them out; a
@@ -58,9 +66,16 @@ export function MachineReel({ items }: { items: ReelItem[] }) {
   /* Three is the server's assumption, so the markup a crawler sees is the
      desktop one; a phone drops to two immediately after mount. */
   const [perPage, setPerPage] = useState(3);
-  const [index, setIndex] = useState(0);
-  /** Set while the track snaps from the trailing copy back to the real first
-      set, so that one move happens with no animation. */
+  /**
+   * Position along the track, NOT the set number.
+   *
+   * The track is [copy of last, ...sets, copy of first], so position 1 is the
+   * first real set. Position 0 and position sets+1 are the copies, held only
+   * long enough to snap across.
+   */
+  const [pos, setPos] = useState(1);
+  /** Set while the track crosses from a copy to its real set, so that one move
+      happens with no animation. */
   const [snapping, setSnapping] = useState(false);
   const [paused, setPaused] = useState(false);
   const reduceMotion = useReducedMotion();
@@ -75,36 +90,43 @@ export function MachineReel({ items }: { items: ReelItem[] }) {
 
   const pages = useMemo(() => chunk(items, perPage), [items, perPage]);
   const looping = pages.length > 1;
-  /* The trailing copy only earns its place when there is something to loop. */
-  const track = looping ? [...pages, pages[0]] : pages;
+  /* The copies only earn their place when there is something to loop. */
+  const track = looping
+    ? [pages[pages.length - 1], ...pages, pages[0]]
+    : pages;
+  /* Where the real sets start on the track. */
+  const base = looping ? 1 : 0;
 
-  /* Keep the position in range when the page size changes under it — a rotation
-     to landscape on the last set would otherwise leave the track off the end. */
+  /* Back to the first set when the page size changes under it — a rotation to
+     landscape on the last set would otherwise leave the track off the end. */
   useEffect(() => {
     setSnapping(true);
-    setIndex(0);
+    setPos(perPage > 0 ? 1 : 1);
   }, [perPage]);
 
-  /* `index` is in the dependency list deliberately: it restarts the clock on a
+  const step = useCallback((delta: number) => {
+    setSnapping(false);
+    setPos((p) => p + delta);
+  }, []);
+
+  /* `pos` is in the dependency list deliberately: it restarts the clock on a
      manual change instead of letting the timer fire early on its original
      schedule. The same fix the other carousels on this page carry. */
   useEffect(() => {
     if (paused || reduceMotion || !looping) return;
-    const id = window.setTimeout(() => {
-      setSnapping(false);
-      setIndex((i) => i + 1);
-    }, DWELL_MS);
+    const id = window.setTimeout(() => step(1), DWELL_MS);
     return () => window.clearTimeout(id);
-  }, [index, paused, reduceMotion, looping]);
+  }, [pos, paused, reduceMotion, looping, step]);
 
   if (items.length === 0) return null;
 
-  const active = index % pages.length;
+  /* Which real set is on screen, with either copy reading as the set it copies. */
+  const active = ((pos - base) % pages.length + pages.length) % pages.length;
 
   return (
     <div
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
+      /* Focus, not hover. See the note above: resting the pointer over the row
+         used to freeze it until the mouse left. */
       onFocusCapture={() => setPaused(true)}
       onBlurCapture={() => setPaused(false)}
     >
@@ -112,34 +134,41 @@ export function MachineReel({ items }: { items: ReelItem[] }) {
       <div className="overflow-hidden">
         <motion.div
           className="flex"
-          animate={{ x: `-${index * 100}%` }}
+          animate={{ x: `-${pos * 100}%` }}
           transition={
             snapping || reduceMotion
               ? { duration: 0 }
               : { duration: SLIDE_MS, ease: EASE }
           }
           onAnimationComplete={() => {
-            /* Landed on the trailing copy: step back onto the real first set
-               without animating. Identical content, so nothing is seen. */
-            if (looping && index === pages.length) {
+            if (!looping) return;
+            /* Landed on a copy: cross to the real set it copies, without
+               animating. Identical content, so nothing is seen. */
+            if (pos > pages.length) {
               setSnapping(true);
-              setIndex(0);
+              setPos(1);
+            } else if (pos < 1) {
+              setSnapping(true);
+              setPos(pages.length);
             }
           }}
         >
-          {track.map((page, pageIndex) => (
+          {track.map((page, pageIndex) => {
+            /* The two copies, at either end of the track. */
+            const isCopy = looping && (pageIndex === 0 || pageIndex === track.length - 1);
+            return (
             <ul
               key={pageIndex}
-              /* `aria-hidden` on the trailing copy: it is the same three
-                 machines again and a screen reader should not read them twice. */
-              aria-hidden={looping && pageIndex === pages.length ? true : undefined}
+              /* `aria-hidden` on both copies: they are the same machines again
+                 and a screen reader should not read them twice. */
+              aria-hidden={isCopy ? true : undefined}
               className="grid w-full shrink-0 grid-cols-2 gap-x-5 gap-y-9 px-px md:grid-cols-3 md:gap-x-10"
             >
               {page.map((item) => (
                 <li key={`${pageIndex}-${item.slug}`}>
                   <Link
                     href={item.href}
-                    tabIndex={looping && pageIndex === pages.length ? -1 : undefined}
+                    tabIndex={isCopy ? -1 : undefined}
                     className="group block"
                   >
                     {/* The machine stands on the page, not in a box. The shadow
@@ -180,32 +209,55 @@ export function MachineReel({ items }: { items: ReelItem[] }) {
                 </li>
               ))}
             </ul>
-          ))}
+            );
+          })}
         </motion.div>
       </div>
 
       {/* Segments rather than dots: they read as a strip of the range being
-          worked through, which is what the sequence is. */}
+          worked through, which is what the sequence is. The arrows sit with
+          them rather than over the machines — the row is cutouts on white with
+          no frame to pin a control to, and a button floating on the page beside
+          a bucket would read as part of the picture. */}
       {looping ? (
-        <ul className="mt-10 flex items-center gap-1.5" aria-label="Choose a set">
-          {pages.map((_, i) => (
-            <li key={i} className="flex-1">
+        <div className="mt-10 flex items-center gap-5">
+          <ul className="flex flex-1 items-center gap-1.5" aria-label="Choose a set">
+            {pages.map((_, i) => (
+              <li key={i} className="flex-1">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setSnapping(false);
+                    setPos(base + i);
+                  }}
+                  aria-label={`Set ${i + 1} of ${pages.length}`}
+                  aria-current={i === active}
+                  className={cn(
+                    "h-0.5 w-full rounded-full transition-colors duration-300",
+                    i === active ? "bg-amber-500" : "bg-steel-200 hover:bg-steel-400",
+                  )}
+                />
+              </li>
+            ))}
+          </ul>
+
+          <div className="flex shrink-0 items-center gap-2">
+            {([-1, 1] as const).map((d) => (
               <button
+                key={d}
                 type="button"
-                onClick={() => {
-                  setSnapping(false);
-                  setIndex(i);
-                }}
-                aria-label={`Set ${i + 1} of ${pages.length}`}
-                aria-current={i === active}
+                onClick={() => step(d)}
+                aria-label={d < 0 ? "Previous set" : "Next set"}
                 className={cn(
-                  "h-0.5 w-full rounded-full transition-colors duration-300",
-                  i === active ? "bg-amber-500" : "bg-steel-200 hover:bg-steel-400",
+                  "flex h-10 w-10 items-center justify-center rounded-[3px] border border-steel-300 text-navy-700",
+                  "transition-all duration-300 hover:border-navy-700 hover:bg-navy-700 hover:text-white active:scale-95",
                 )}
-              />
-            </li>
-          ))}
-        </ul>
+              >
+                <ChevronRightIcon className={cn("text-lg", d < 0 && "rotate-180")} />
+              </button>
+            ))}
+          </div>
+        </div>
       ) : null}
     </div>
   );

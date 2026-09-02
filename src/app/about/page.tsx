@@ -8,11 +8,10 @@ import { OfficeMaps } from "@/components/about/OfficeMaps";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { ArrowRight, Button } from "@/components/ui/Button";
-import { CategoryIconTile } from "@/components/ui/CategoryIconTile";
 import { Reveal } from "@/components/ui/Reveal";
 import { Container, Section } from "@/components/ui/Section";
 import { StatCounter } from "@/components/ui/StatCounter";
-import { getCompanyInfo, getEquipmentCategories, getPartners } from "@/lib/data";
+import { getCompanyInfo, getPartners } from "@/lib/data";
 import { routes } from "@/lib/routes";
 
 /**
@@ -38,28 +37,11 @@ export const metadata: Metadata = {
     "Burki & Company, five decades supplying heavy machinery from Karachi and Islamabad, and sole distributor of Xinyuan wheeled excavators and LOAD-X wheel loaders in Pakistan.",
 };
 
-/** The machine types named in the client's "What We Offer" copy. */
-const OFFER_CATEGORY_SLUGS = [
-  "excavators",
-  "wheel-loaders",
-  "bulldozers",
-  "rollers",
-  "cranes",
-  "graders",
-  "dump-trucks",
-  "mixer-trucks",
-];
-
 export default async function AboutPage() {
-  const [info, categories, partners] = await Promise.all([
+  const [info, partners] = await Promise.all([
     getCompanyInfo(),
-    getEquipmentCategories(),
     getPartners(),
   ]);
-
-  const offered = OFFER_CATEGORY_SLUGS.map((slug) =>
-    categories.find((c) => c.slug === slug),
-  ).filter((c): c is NonNullable<typeof c> => Boolean(c));
 
   return (
     <>
@@ -281,18 +263,10 @@ export default async function AboutPage() {
               </Reveal>
             </div>
 
-            {/* The same tiles as the homepage, in their compact size, so all
-                eight sit on one row as a strip. Four across on phones, where
-                eight would leave each label unreadable. */}
-            {offered.length > 0 ? (
-              <div className="mt-12 grid grid-cols-4 gap-2.5 lg:grid-cols-8">
-                {offered.map((category, index) => (
-                  <Reveal key={category.id} delay={(index % 8) * 0.04}>
-                    <CategoryIconTile category={category} compact />
-                  </Reveal>
-                ))}
-              </div>
-            ) : null}
+            {/* A strip of eight category icon tiles used to close this section,
+                mirroring the homepage. Both are gone on the client's call: with
+                a catalogue this size most of them led to an empty category, and
+                the paragraph above already names the machine classes. */}
           </Container>
         </Section>
 

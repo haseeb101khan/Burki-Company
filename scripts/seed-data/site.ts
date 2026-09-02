@@ -242,15 +242,11 @@ export const brands: Brand[] = [
        places that use it (the brand catalogue header and the homepage
        showcase) render 16:10, so it is cropped to the sign rather than
        letterboxed; see the note in the git history for the window used. */
-    /* Two frames, not one: `BrandBanner` rotates a brand's showcase images, so
-       the machine is added alongside the signage rather than replacing it. The
-       brand catalogue header takes the first of the list, which stays the
-       signage — it identifies the manufacturer, which is that header's job. */
+    /* The machine, not the signage. The group's name board is still in
+       source-media and the crop is still at /images/xcmg/xcmg-banner.webp if it
+       is ever wanted back; the client's call is that the brand's page should
+       lead with a machine. */
     showcaseImages: [
-      {
-        src: "/images/xcmg/xcmg-banner.webp",
-        alt: "XCMG group signage on the company's building",
-      },
       {
         src: "/images/xcmg-zl50gn-side.webp",
         alt: "An XCMG ZL50GN loader, side view",

@@ -72,10 +72,6 @@ export const content: ContentSnapshot = {
       },
       "showcaseImages": [
         {
-          "src": "/images/xcmg/xcmg-banner.webp",
-          "alt": "XCMG group signage on the company's building"
-        },
-        {
           "src": "/images/xcmg-zl50gn-side.webp",
           "alt": "An XCMG ZL50GN loader, side view"
         }
@@ -120,7 +116,7 @@ export const content: ContentSnapshot = {
       "id": "cat-03",
       "slug": "backhoe-loaders",
       "name": "Backhoe Loaders",
-      "description": "Two machines on one chassis. Loader at the front, backhoe at the rear — built for utilities, municipal work and confined urban sites.",
+      "description": "Loaders for utilities, municipal work and confined urban sites, where a full-size machine cannot turn.",
       "image": {
         "src": "/images/xcmg-zl50gn-side.webp",
         "alt": "An XCMG ZL50GN loader, side view"
@@ -1003,7 +999,7 @@ export const content: ContentSnapshot = {
       "slug": "lw300fn",
       "model": "LW300FN",
       "name": "LW300FN Wheel Loader",
-      "categorySlug": "wheel-loaders",
+      "categorySlug": "backhoe-loaders",
       "brand": "XCMG",
       "tagline": "The yard machine",
       "summary": "A 10.4 tonne loader with a 1.8 m³ bucket and 92 kW, for coal yards, stone plants and general site loading.",
@@ -1123,7 +1119,7 @@ export const content: ContentSnapshot = {
       "isPlaceholder": false,
       "order": 5,
       "brandSlug": "xcmg",
-      "categoryName": "Wheel Loaders",
+      "categoryName": "Backhoe Loaders",
       "videos": []
     },
     {
@@ -1131,7 +1127,7 @@ export const content: ContentSnapshot = {
       "slug": "lw500fn",
       "model": "LW500FN",
       "name": "LW500FN Wheel Loader",
-      "categorySlug": "wheel-loaders",
+      "categorySlug": "backhoe-loaders",
       "brand": "XCMG",
       "tagline": "Five tonnes of rated load",
       "summary": "A 17 tonne loader carrying a 3.0 m³ bucket on 162 kW, for sustained loading in yards, quarries and railway works.",
@@ -1251,7 +1247,7 @@ export const content: ContentSnapshot = {
       "isPlaceholder": false,
       "order": 6,
       "brandSlug": "xcmg",
-      "categoryName": "Wheel Loaders",
+      "categoryName": "Backhoe Loaders",
       "videos": []
     },
     {
@@ -1259,7 +1255,7 @@ export const content: ContentSnapshot = {
       "slug": "zl50gn",
       "model": "ZL50GN",
       "name": "ZL50GN Wheel Loader",
-      "categorySlug": "wheel-loaders",
+      "categorySlug": "backhoe-loaders",
       "brand": "XCMG",
       "tagline": "The cross-generation five-tonne",
       "summary": "A 17.15 tonne loader with a 3.2 m³ bucket and 162 kW, developed for construction, aggregate yards and coal logistics.",
@@ -1379,7 +1375,7 @@ export const content: ContentSnapshot = {
       "isPlaceholder": false,
       "order": 7,
       "brandSlug": "xcmg",
-      "categoryName": "Wheel Loaders",
+      "categoryName": "Backhoe Loaders",
       "videos": []
     },
     {
