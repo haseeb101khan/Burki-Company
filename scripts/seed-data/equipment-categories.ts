@@ -31,7 +31,24 @@ export const equipmentCategories: EquipmentCategory[] = [
     name: "Backhoe Loaders",
     description:
       "Two machines on one chassis. Loader at the front, backhoe at the rear — built for utilities, municipal work and confined urban sites.",
-    image: { src: "/images/cat-backhoe-loaders.jpg", alt: "Backhoe loader parked on a gravel site" },
+    /*
+     * ON THE CLIENT'S INSTRUCTION, and worth a note because the picture and the
+     * heading do not agree: this is an XCMG ZL50GN, which is a WHEEL loader —
+     * front bucket, no rear boom — and XCMG file it under Wheel Loader
+     * themselves. It is not a backhoe loader.
+     *
+     * It goes in anyway because what it replaces was worse: a photograph of a
+     * VOLVO, a manufacturer Burki does not represent, which is the specific
+     * risk seed-data/site.ts exists to warn about. An XCMG machine on a
+     * category tile at least shows a line that is actually carried.
+     *
+     * The category has no machines in it yet. A photograph of an actual backhoe
+     * loader replaces this the moment one arrives.
+     */
+    image: {
+      src: "/images/xcmg-zl50gn-side.webp",
+      alt: "An XCMG ZL50GN loader, side view",
+    },
     order: 3,
   },
   {

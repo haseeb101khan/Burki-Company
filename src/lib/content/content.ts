@@ -74,6 +74,10 @@ export const content: ContentSnapshot = {
         {
           "src": "/images/xcmg/xcmg-banner.webp",
           "alt": "XCMG group signage on the company's building"
+        },
+        {
+          "src": "/images/xcmg-zl50gn-side.webp",
+          "alt": "An XCMG ZL50GN loader, side view"
         }
       ],
       "manufacturerLegalName": "Xuzhou Construction Machinery Group Co., Ltd.",
@@ -118,8 +122,8 @@ export const content: ContentSnapshot = {
       "name": "Backhoe Loaders",
       "description": "Two machines on one chassis. Loader at the front, backhoe at the rear — built for utilities, municipal work and confined urban sites.",
       "image": {
-        "src": "/images/cat-backhoe-loaders.jpg",
-        "alt": "Backhoe loader parked on a gravel site"
+        "src": "/images/xcmg-zl50gn-side.webp",
+        "alt": "An XCMG ZL50GN loader, side view"
       },
       "order": 3
     },
