@@ -537,8 +537,8 @@ export const content: ContentSnapshot = {
       "summary": "A step up in bucket and breakout over the LX-926, for contractors running longer cycles and heavier material.",
       "description": "The LX-930 answers the most common request from LX-926 operators: more bucket without moving to a larger class of machine. A 1.8 m³ bucket, 3.0 tonne rated load and a slightly larger cooling pack suit continuous aggregate handling and longer load-and-carry cycles in high ambient temperatures.",
       "image": {
-        "src": "/images/load-x/lx-930-cutout.webp",
-        "alt": "LOAD-X LX-930 wheel loader"
+        "src": "/images/load-x/lx-930/lx-930-01.webp",
+        "alt": "LOAD-X LX-930 wheel loader, front three-quarter view with the bucket down"
       },
       "cutoutImage": {
         "src": "/images/load-x/lx-930-cutout.webp",
@@ -546,8 +546,64 @@ export const content: ContentSnapshot = {
       },
       "gallery": [
         {
-          "src": "/images/load-x/lx-930-cutout.webp",
-          "alt": "LOAD-X LX-930 wheel loader"
+          "src": "/images/load-x/lx-930/lx-930-01.webp",
+          "alt": "LOAD-X LX-930 wheel loader, front three-quarter view with the bucket down"
+        },
+        {
+          "src": "/images/load-x/lx-930/lx-930-02.webp",
+          "alt": "LOAD-X LX-930 wheel loader, side view, carrying its LX 930 badge"
+        },
+        {
+          "src": "/images/load-x/lx-930/lx-930-03.webp",
+          "alt": "LOAD-X LX-930 wheel loader, three-quarter view with the bucket raised"
+        },
+        {
+          "src": "/images/load-x/lx-930/lx-930-04.webp",
+          "alt": "LOAD-X LX-930 wheel loader, on the yard, bucket lowered"
+        },
+        {
+          "src": "/images/load-x/lx-930/lx-930-05.webp",
+          "alt": "LOAD-X LX-930 wheel loader, rear, counterweight and lamps"
+        },
+        {
+          "src": "/images/load-x/lx-930/lx-930-06.webp",
+          "alt": "LOAD-X LX-930 wheel loader, engine bay, turbocharger and manifold"
+        },
+        {
+          "src": "/images/load-x/lx-930/lx-930-07.webp",
+          "alt": "LOAD-X LX-930 wheel loader, engine under the raised bonnet"
+        },
+        {
+          "src": "/images/load-x/lx-930/lx-930-08.webp",
+          "alt": "LOAD-X LX-930 wheel loader, engine bay from the side"
+        },
+        {
+          "src": "/images/load-x/lx-930/lx-930-09.webp",
+          "alt": "LOAD-X LX-930 wheel loader, fluid reservoirs and filters under the bonnet"
+        },
+        {
+          "src": "/images/load-x/lx-930/lx-930-10.webp",
+          "alt": "LOAD-X LX-930 wheel loader, wheel and tyre"
+        },
+        {
+          "src": "/images/load-x/lx-930/lx-930-11.webp",
+          "alt": "LOAD-X LX-930 wheel loader, drive shaft and axle beneath the frame"
+        },
+        {
+          "src": "/images/load-x/lx-930/lx-930-12.webp",
+          "alt": "LOAD-X LX-930 wheel loader, steering wheel and dash"
+        },
+        {
+          "src": "/images/load-x/lx-930/lx-930-13.webp",
+          "alt": "LOAD-X LX-930 wheel loader, cab interior with the display screen"
+        },
+        {
+          "src": "/images/load-x/lx-930/lx-930-14.webp",
+          "alt": "LOAD-X LX-930 wheel loader, operator's seat and controls"
+        },
+        {
+          "src": "/images/load-x/lx-930/lx-930-15.webp",
+          "alt": "LOAD-X LX-930 wheel loader, cab from the doorway, seat and console"
         }
       ],
       "highlights": [
@@ -735,8 +791,8 @@ export const content: ContentSnapshot = {
       "summary": "A 9.5 tonne loader with a 1.8 m³ bucket and Weichai power, sized for crusher feed, batching plants and sustained truck loading.",
       "description": "The LX-936 is the volume machine of the LX Series. A 92 kW Weichai WP6G125E22 drives a two-speed powershift and 4WD driveline, with a 1.8 m³ bucket and 3,000 kg rated load for continuous loading duty. Supplied new, CE / BV / SGS certified with ROPS and FOPS structures.",
       "image": {
-        "src": "/brands/Load-x/lx936/lx-936-1.jpg",
-        "alt": "LOAD-X LX-936 wheel loader with bucket lowered on site"
+        "src": "/images/load-x/lx-936/lx-936-01.webp",
+        "alt": "LOAD-X LX-936 wheel loader, side view, carrying its LX 936 badge"
       },
       "featuredImage": {
         "src": "/brands/Load-x/lx936/lx-936-white-1.jpg",
@@ -752,16 +808,84 @@ export const content: ContentSnapshot = {
       },
       "gallery": [
         {
-          "src": "/brands/Load-x/lx936/lx-936-1.jpg",
-          "alt": "LOAD-X LX-936 wheel loader with bucket lowered on site"
+          "src": "/images/load-x/lx-936/lx-936-01.webp",
+          "alt": "LOAD-X LX-936 wheel loader, side view, carrying its LX 936 badge"
         },
         {
-          "src": "/brands/Load-x/lx936/lx-936-2.jpg",
-          "alt": "LOAD-X LX-936 wheel loader, side profile on site"
+          "src": "/images/load-x/lx-936/lx-936-02.webp",
+          "alt": "LOAD-X LX-936 wheel loader, head on, bucket down"
         },
         {
-          "src": "/brands/Load-x/lx936/lx-936-3.jpg",
-          "alt": "LOAD-X LX-936 wheel loader, three-quarter view on site"
+          "src": "/images/load-x/lx-936/lx-936-03.webp",
+          "alt": "LOAD-X LX-936 wheel loader, front, loader arms and linkage"
+        },
+        {
+          "src": "/images/load-x/lx-936/lx-936-04.webp",
+          "alt": "LOAD-X LX-936 wheel loader, with the bucket raised"
+        },
+        {
+          "src": "/images/load-x/lx-936/lx-936-05.webp",
+          "alt": "LOAD-X LX-936 wheel loader, rear three-quarter view"
+        },
+        {
+          "src": "/images/load-x/lx-936/lx-936-06.webp",
+          "alt": "LOAD-X LX-936 wheel loader, side view under the canopy"
+        },
+        {
+          "src": "/images/load-x/lx-936/lx-936-07.webp",
+          "alt": "LOAD-X LX-936 wheel loader, rear, counterweight and lamps"
+        },
+        {
+          "src": "/images/load-x/lx-936/lx-936-08.webp",
+          "alt": "LOAD-X LX-936 wheel loader, engine under the raised bonnet"
+        },
+        {
+          "src": "/images/load-x/lx-936/lx-936-09.webp",
+          "alt": "LOAD-X LX-936 wheel loader, engine bay from the front"
+        },
+        {
+          "src": "/images/load-x/lx-936/lx-936-10.webp",
+          "alt": "LOAD-X LX-936 wheel loader, fluid reservoirs and hoses under the bonnet"
+        },
+        {
+          "src": "/images/load-x/lx-936/lx-936-11.webp",
+          "alt": "LOAD-X LX-936 wheel loader, wheel and tyre"
+        },
+        {
+          "src": "/images/load-x/lx-936/lx-936-12.webp",
+          "alt": "LOAD-X LX-936 wheel loader, wheel hub and brake assembly"
+        },
+        {
+          "src": "/images/load-x/lx-936/lx-936-13.webp",
+          "alt": "LOAD-X LX-936 wheel loader, articulation joint and rear frame"
+        },
+        {
+          "src": "/images/load-x/lx-936/lx-936-14.webp",
+          "alt": "LOAD-X LX-936 wheel loader, cab interior, seat and steering"
+        },
+        {
+          "src": "/images/load-x/lx-936/lx-936-15.webp",
+          "alt": "LOAD-X LX-936 wheel loader, steering wheel and column"
+        },
+        {
+          "src": "/images/load-x/lx-936/lx-936-16.webp",
+          "alt": "LOAD-X LX-936 wheel loader, operator's console and joystick"
+        },
+        {
+          "src": "/images/load-x/lx-936/lx-936-17.webp",
+          "alt": "LOAD-X LX-936 wheel loader, in-cab display screen"
+        },
+        {
+          "src": "/images/load-x/lx-936/lx-936-18.webp",
+          "alt": "LOAD-X LX-936 wheel loader, instrument cluster"
+        },
+        {
+          "src": "/images/load-x/lx-936/lx-936-19.webp",
+          "alt": "LOAD-X LX-936 wheel loader, control knobs on the console"
+        },
+        {
+          "src": "/images/load-x/lx-936/lx-936-20.webp",
+          "alt": "LOAD-X LX-936 wheel loader, switch panel"
         }
       ],
       "highlights": [
@@ -6539,8 +6663,8 @@ export const content: ContentSnapshot = {
     {
       "id": "bn-lx-936",
       "image": {
-        "src": "/brands/Load-x/lx936/lx-936-1.jpg",
-        "alt": "LOAD-X LX-936 wheel loader with bucket lowered on site"
+        "src": "/images/load-x/lx-936/lx-936-01.webp",
+        "alt": "LOAD-X LX-936 wheel loader, side view, carrying its LX 936 badge"
       },
       "eyebrow": "LOAD-X",
       "title": "LX-936",
