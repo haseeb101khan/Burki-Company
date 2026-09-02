@@ -4,7 +4,6 @@ import type {
   CompanyInfo,
   Equipment,
   EquipmentCategory,
-  Industry,
   NewsPost,
   Part,
   PartCategory,
@@ -25,7 +24,6 @@ export interface ContentSnapshot {
   partCategories: PartCategory[];
   equipment: Equipment[];
   parts: Part[];
-  industries: Industry[];
   services: Service[];
   partners: Partner[];
   banners: Banner[];

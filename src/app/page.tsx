@@ -4,7 +4,6 @@ import { AboutIntro } from "@/components/sections/AboutIntro";
 import { BrandStrip } from "@/components/sections/BrandStrip";
 import { BrandShowcaseSection } from "@/components/sections/BrandShowcaseSection";
 import { FeaturedBanners } from "@/components/sections/FeaturedBanners";
-import { IndustriesSection } from "@/components/sections/IndustriesSection";
 import { MachineReelSection } from "@/components/sections/MachineReelSection";
 import { NewsSection } from "@/components/sections/NewsSection";
 import { PartnerStrip } from "@/components/sections/PartnerStrip";
@@ -15,7 +14,11 @@ import { QuoteSection } from "@/components/sections/QuoteSection";
  * Homepage.
  *
  * Running order is the client's: brand strip, featured banners, the brand
- * showcase, parts, company introduction, industries, quote.
+ * showcase, the range, parts, company introduction, quote.
+ *
+ * INDUSTRIES IS GONE, not hidden. With a catalogue of excavators and loaders
+ * only, a sector index promised a breadth of range the business does not carry
+ * yet — every industry page recommended machine classes with nothing in them.
  *
  * The brand showcase REPLACED two sections — "Backed by established relations"
  * (business partners) and "Explore our equipment". The client asked for one
@@ -42,7 +45,6 @@ export default function HomePage() {
         <MachineReelSection />
         <PartsOverview />
         <AboutIntro />
-        <IndustriesSection />
         <NewsSection />
         <QuoteSection />
         <PartnerStrip />

@@ -1,7 +1,6 @@
 import {
   getCatalogueBrands,
   getEquipmentCategories,
-  getIndustries,
   getPartCategories,
   getServices,
   getSiteConfig,
@@ -14,11 +13,10 @@ import { routes } from "@/lib/routes";
  * to the interactive nav. When the CMS lands, only these calls change.
  */
 export async function Header() {
-  const [brands, categories, partCategories, industries, services, site] = await Promise.all([
+  const [brands, categories, partCategories, services, site] = await Promise.all([
     getCatalogueBrands({ includeEmpty: true }),
     getEquipmentCategories(),
     getPartCategories(),
-    getIndustries(),
     getServices(),
     getSiteConfig(),
   ]);
@@ -67,17 +65,6 @@ export async function Header() {
             alt: "Hydraulic components on a machine",
           },
         },
-      },
-    },
-    {
-      label: "Industries",
-      href: "/industries",
-      panel: {
-        columns: 2,
-        items: industries.map((i) => ({
-          label: i.name,
-          href: `/industries/${i.slug}`,
-        })),
       },
     },
     {

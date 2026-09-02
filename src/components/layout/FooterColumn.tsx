@@ -9,12 +9,12 @@ import { cn } from "@/lib/utils";
  * One footer link column: a disclosure while the columns are stacked, a plain
  * column once they sit side by side.
  *
- * The four lists together are around twenty-five links. Side by side that is a
+ * The three lists together are around twenty links. Side by side that is a
  * tidy block at the foot of the page; stacked on a phone it was most of a
  * screen of undifferentiated links between the visitor and the copyright line,
  * and the headings that organise it scrolled past one at a time. Collapsed, the
- * whole of it — Equipment, Parts, Industries, Company — fits at a glance and
- * opens where the visitor is actually going.
+ * whole of it — Equipment, Parts, Company — fits at a glance and opens where
+ * the visitor is actually going.
  *
  * THE BREAKPOINT IS THE LAYOUT'S, NOT ITS OWN. It collapses exactly while the
  * grid is stacked (below `lg`) and is always open once the grid gives it a

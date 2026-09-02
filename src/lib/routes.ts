@@ -60,9 +60,6 @@ export const routes = {
   partCategory: (category: SlugLike | string) =>
     `/parts/${typeof category === "string" ? category : category.slug}`,
 
-  industry: (industry: SlugLike | string) =>
-    `/industries/${typeof industry === "string" ? industry : industry.slug}`,
-
   /** Deep-links the quote form to a specific machine. */
   quote: (item?: EquipmentLike) =>
     item ? `/request-a-quote?model=${item.slug}` : "/request-a-quote",

@@ -25,7 +25,6 @@ import { mkdirSync, writeFileSync } from "node:fs";
 import { equipmentCategories } from "./seed-data/equipment-categories";
 import { equipment } from "./seed-data/equipment";
 import { partCategories, parts } from "./seed-data/parts";
-import { industries } from "./seed-data/industries";
 import { banners } from "./seed-data/banners";
 import { news } from "./seed-data/news";
 import { brands, services, siteConfig, stats } from "./seed-data/site";
@@ -173,7 +172,6 @@ const content = {
   partCategories,
   equipment: allEquipment,
   parts: allParts,
-  industries,
   services,
   partners: [...partners].sort((a, b) => a.order - b.order),
   banners: allBanners,

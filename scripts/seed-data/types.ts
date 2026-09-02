@@ -3,7 +3,6 @@ import type {
   Office,
   Equipment,
   EquipmentCategory,
-  Industry,
   Part,
   PartCategory,
   Partner,
@@ -57,7 +56,6 @@ export type SeedBrand = Omit<
 
 export type {
   EquipmentCategory as SeedEquipmentCategory,
-  Industry as SeedIndustry,
   Part as SeedPart,
   PartCategory as SeedPartCategory,
   Partner as SeedPartner,

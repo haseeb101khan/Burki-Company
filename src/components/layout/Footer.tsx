@@ -1,6 +1,5 @@
 import {
   getEquipmentCategories,
-  getIndustries,
   getPartCategories,
   getSiteConfig,
 } from "@/lib/data";
@@ -18,11 +17,10 @@ import { toDialString } from "@/lib/utils";
 import { routes } from "@/lib/routes";
 
 export async function Footer() {
-  const [site, categories, partCategories, industries] = await Promise.all([
+  const [site, categories, partCategories] = await Promise.all([
     getSiteConfig(),
     getEquipmentCategories(),
     getPartCategories(),
-    getIndustries(),
   ]);
 
   const year = new Date().getFullYear();
@@ -96,15 +94,15 @@ export async function Footer() {
 
           {/* ------------------------------------------------ link columns
            *
-           * All four are siblings so they read as one run of strips while
-           * stacked. Industries and Company used to share a column, which as
-           * strips would have put a hairline between two of them and a gap
-           * between the other two.
+           * Siblings, so they read as one run of strips while stacked rather
+           * than as groups with different gaps between them.
            *
-           * `lg:contents` dissolves this wrapper at the wide breakpoint, so the
-           * four become grid items of the footer grid itself and take the
-           * 1fr_1fr_1fr tracks — the layout the columns were designed for,
-           * without a second grid inside the first.
+           * `lg:contents` dissolves this wrapper at the wide breakpoint, so
+           * they become grid items of the footer grid itself and take its
+           * tracks — the layout the columns were designed for, without a second
+           * grid inside the first. There were four until Industries came out;
+           * the grid's own column count is the thing to change if a fourth
+           * returns.
            */}
           <div className="border-t border-white/10 lg:contents lg:border-t-0">
             <FooterColumn
@@ -127,14 +125,6 @@ export async function Footer() {
                 })),
                 { label: "All parts", href: "/parts" },
               ]}
-            />
-
-            <FooterColumn
-              title="Industries"
-              links={industries.slice(0, 6).map((i) => ({
-                label: i.name,
-                href: `/industries/${i.slug}`,
-              }))}
             />
 
             <FooterColumn

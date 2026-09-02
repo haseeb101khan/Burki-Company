@@ -15,6 +15,5 @@ export * from "./banners";
 export * from "./equipment";
 export * from "./form";
 export * from "./parts";
-export * from "./industries";
 export * from "./news";
 export * from "./site";

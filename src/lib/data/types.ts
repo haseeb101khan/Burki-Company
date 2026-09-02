@@ -165,20 +165,6 @@ export interface Part {
   order: number;
 }
 
-export interface Industry {
-  id: string;
-  slug: string;
-  name: string;
-  summary: string;
-  description: string;
-  image: ImageRef;
-  /** What this kind of work demands of a machine. */
-  demands: Feature[];
-  recommendedCategorySlugs: string[];
-  recommendedEquipmentSlugs: string[];
-  order: number;
-}
-
 export interface Service {
   id: string;
   slug: string;
