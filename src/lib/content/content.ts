@@ -46,7 +46,10 @@ export const content: ContentSnapshot = {
       "id": "br-load-x",
       "name": "LOAD-X",
       "relationship": "distributed",
-      "logo": null,
+      "logo": {
+        "navy": "/brand-logos/load-x-navy.png",
+        "white": "/brand-logos/load-x-white.png"
+      },
       "showcaseImages": [
         {
           "src": "/images/load-x/loadx-yard.webp",

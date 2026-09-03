@@ -215,7 +215,10 @@ export const brands: Brand[] = [
     id: "br-load-x",
     name: "LOAD-X",
     relationship: "distributed",
-    logo: null,
+    /* The client supplied the real mark. Until then the strip drew LOAD-X as a
+       typographic plate, which is still the fallback for any brand without
+       artwork. */
+    logo: logoPair("load-x"),
     /* The yard, supplied by the client — it replaces the homepage line-up shot
        that briefly stood here. 1.93:1 against the 16:10 both uses render, so
        it is cropped to a centred 848x530 window, which costs 88px each side

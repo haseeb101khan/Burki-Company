@@ -12,7 +12,7 @@ import { routes } from "@/lib/routes";
  * Server wrapper: pulls navigation content through the data layer and hands it
  * to the interactive nav. When the CMS lands, only these calls change.
  */
-export async function Header() {
+export async function Header({ overlay = false }: { overlay?: boolean } = {}) {
   const [brands, categories, partCategories, services, site] = await Promise.all([
     getCatalogueBrands({ includeEmpty: true }),
     getEquipmentCategories(),
@@ -84,6 +84,7 @@ export async function Header() {
 
   return (
     <HeaderNav
+      overlay={overlay}
       nav={nav}
       contact={{
         phone: site.phone,

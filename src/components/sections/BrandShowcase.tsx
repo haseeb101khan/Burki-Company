@@ -58,7 +58,10 @@ export function BrandShowcase({
         <SectionHeader
           eyebrow="Our brands"
           title="The lines we carry"
-          description="Six manufacturers, imported and supported directly. Choose one to see the machines we lead with."
+          /* Counted, not written out. This said "Six" for a while after three
+             brands were withdrawn: a number in prose is a fact that has to be
+             maintained by hand, and this one was not. */
+          description={`${entries.length} manufacturers, imported and supported directly. Choose one to see the machines we lead with.`}
         />
 
         <div

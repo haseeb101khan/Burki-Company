@@ -63,19 +63,35 @@ export type NavItem = {
 type HeaderNavProps = {
   nav: NavItem[];
   contact: { phone: string; email: string };
+  /**
+   * True where the bar sits over a full-bleed hero — the homepage.
+   *
+   * A solid white bar above a hero reads as a lid on it: the banner starts
+   * below a band of chrome instead of being the first thing on the page. Over
+   * a hero the bar is transparent with white type until the visitor scrolls,
+   * at which point it becomes the solid bar every other page starts with.
+   */
+  overlay?: boolean;
 };
 
-export function HeaderNav({ nav, contact }: HeaderNavProps) {
+export function HeaderNav({ nav, contact, overlay = false }: HeaderNavProps) {
   const [scrolled, setScrolled] = useState(false);
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [openAccordion, setOpenAccordion] = useState<string | null>(null);
   const pathname = usePathname();
 
-  /* The bar inverts as you leave the top of the page: white ground with navy
-     type becomes navy ground with white type. The utility bar above it slides
-     out of view at the same time, so the two read as one movement. */
-  const inverted = scrolled;
+  /*
+   * Only one thing is now inverted: the bar while it floats over a hero.
+   *
+   * It used to flip white-on-navy the moment you scrolled, on every page. That
+   * left the homepage with a white lid above its banner and a navy bar below
+   * it — two states, neither of them the hero's. The bar is now white with navy
+   * type whenever it is solid, and transparent with white type only while it is
+   * over the hero. Scrolling on the homepage is therefore a fade from
+   * transparent to the same bar every other page has.
+   */
+  const inverted = overlay && !scrolled;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -127,7 +143,8 @@ export function HeaderNav({ nav, contact }: HeaderNavProps) {
       {/* ---------------------------------------------------- utility bar */}
       <div
         className={cn(
-          "hidden h-9 items-center border-b border-navy-700/60 bg-navy-800 text-white/75 md:flex",
+          "hidden h-9 items-center border-b border-navy-700/60 text-white/75 md:flex",
+          overlay ? "bg-navy-950/70 backdrop-blur-sm" : "bg-navy-800",
         )}
       >
         <Container className="flex items-center justify-between gap-6">
@@ -156,10 +173,12 @@ export function HeaderNav({ nav, contact }: HeaderNavProps) {
       {/* ----------------------------------------------------- main nav bar */}
       <div
         className={cn(
-          "border-b backdrop-blur-md transition-colors duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
+          "backdrop-blur-md transition-colors duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
           inverted
-            ? "border-navy-700/60 bg-navy-800/95 shadow-[0_10px_30px_-24px_rgba(0,10,28,0.8)]"
-            : "border-steel-200 bg-white/95",
+            ? /* Over the hero: no ground, no rule. A hairline here would draw a
+                 line across the artwork. */
+              "border-b border-white/10 bg-transparent"
+            : "border-b border-steel-200 bg-white/95 shadow-[0_10px_30px_-26px_rgba(0,17,46,0.55)]",
         )}
         onMouseLeave={() => setOpenMenu(null)}
       >

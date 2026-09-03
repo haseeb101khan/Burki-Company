@@ -42,6 +42,10 @@ const WHITE = { r: 255, g: 255, b: 255 };
 const SOURCES = [
   { slug: 'xinyuan',  file: 'Capture.PNG',  mask: 'dark' },
   { slug: 'xcmg',     file: 'xcmg.PNG',     mask: 'light' },
+  /* LOAD-X finally has artwork. It was a drawn wordmark in the strip until the
+     client supplied the real mark; silhouetted like the rest, so the row stays
+     one set rather than one coloured logo among five greys. */
+  { slug: 'load-x',   file: 'load-x.PNG',   mask: 'dark' },
 ];
 
 /**

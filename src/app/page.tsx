@@ -3,7 +3,7 @@ import { Header } from "@/components/layout/Header";
 import { AboutIntro } from "@/components/sections/AboutIntro";
 import { BrandStrip } from "@/components/sections/BrandStrip";
 import { BrandShowcaseSection } from "@/components/sections/BrandShowcaseSection";
-import { FeaturedBanners } from "@/components/sections/FeaturedBanners";
+import { Hero } from "@/components/sections/Hero";
 import { MachineReelSection } from "@/components/sections/MachineReelSection";
 import { NewsSection } from "@/components/sections/NewsSection";
 import { PartnerStrip } from "@/components/sections/PartnerStrip";
@@ -13,8 +13,19 @@ import { QuoteSection } from "@/components/sections/QuoteSection";
 /**
  * Homepage.
  *
- * Running order is the client's: brand strip, featured banners, the brand
- * showcase, the range, parts, company introduction, quote.
+ * Running order: the hero, the brand strip, the showcase, the range, parts,
+ * the company introduction, the quote.
+ *
+ * THE HERO LEADS AND THE STRIP FOLLOWS IT. The brand strip used to open the
+ * page above the banner carousel, which put a row of small grey logos before
+ * the first thing worth looking at. The hero is full-bleed artwork, so the page
+ * now opens inside the photograph.
+ *
+ * The header is NOT overlaid on it, though the plan was to float it there and
+ * `Header` still takes `overlay` for the day the artwork suits it. These
+ * banners carry their own Burki lockup in the top left and pale sky behind the
+ * nav; floating the header put two Burki marks on top of each other and white
+ * nav type on white cloud. Hero.tsx carries the full reasoning.
  *
  * INDUSTRIES IS GONE, not hidden. With a catalogue of excavators and loaders
  * only, a sector index promised a breadth of range the business does not carry
@@ -39,8 +50,8 @@ export default function HomePage() {
     <>
       <Header />
       <main>
+        <Hero />
         <BrandStrip />
-        <FeaturedBanners />
         <BrandShowcaseSection />
         <MachineReelSection />
         <PartsOverview />
