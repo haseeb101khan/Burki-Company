@@ -13,13 +13,13 @@ import { QuoteSection } from "@/components/sections/QuoteSection";
 /**
  * Homepage.
  *
- * Running order: the hero, the brand strip, the showcase, the range, parts,
+ * Running order: the brand strip, the hero, the showcase, the range, parts,
  * the company introduction, the quote.
  *
- * THE HERO LEADS AND THE STRIP FOLLOWS IT. The brand strip used to open the
- * page above the banner carousel, which put a row of small grey logos before
- * the first thing worth looking at. The hero is full-bleed artwork, so the page
- * now opens inside the photograph.
+ * THE STRIP STAYS ABOVE THE HERO, where it has always been. It was moved below
+ * for one revision, on the reasoning that a row of small grey logos is a weak
+ * thing to open a page with — the client's call is that it belongs on top, and
+ * it does read as a masthead of the three lines rather than as content.
  *
  * The header is NOT overlaid on it, though the plan was to float it there and
  * `Header` still takes `overlay` for the day the artwork suits it. These
@@ -50,8 +50,8 @@ export default function HomePage() {
     <>
       <Header />
       <main>
-        <Hero />
         <BrandStrip />
+        <Hero />
         <BrandShowcaseSection />
         <MachineReelSection />
         <PartsOverview />
