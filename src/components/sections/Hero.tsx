@@ -22,13 +22,14 @@ const EASE = [0.22, 1, 0.36, 1] as const;
  * is not there. Everything this component adds is a thin indicator rail and a
  * scroll cue, both of which get out of the way.
  *
- * AND BECAUSE THE TYPE IS PART OF THE PICTURE, THE PICTURE IS NEVER CROPPED.
- * The first version of this ran full-bleed with `object-cover`, sized in `vh`,
- * with a crop anchor tuned per breakpoint. It cut the artwork — the "Burki &
- * Company | LOAD-X" lockup went off the top of a laptop, and a phone lost the
- * first letters of the headline — and no anchor fixes that, because an anchor
- * only chooses which part to lose. The frame is now shaped from the artwork and
- * the banners are FITTED into it. See the note on the container below.
+ * AND BECAUSE THE TYPE IS PART OF THE PICTURE, WHERE THE CROP FALLS IS THE
+ * WHOLE DESIGN. This took three goes. Sized in `vh` it cut the "Burki & Company
+ * | LOAD-X" lockup off the top of a laptop. Fitted inside the frame instead, it
+ * stopped cutting anything and left navy margins down the sides, which is
+ * worse — a hero has to reach the edge of the screen. It now fills a frame cut
+ * to the film's proportions, which the banners are close enough to that the
+ * crop is a sliver, and each sliver is aimed at a part of the artwork that is
+ * carrying nothing. See the note on the container below.
  *
  * WHAT MOVES, AND ALL OF IT IS TRANSFORM OR OPACITY:
  *
@@ -39,7 +40,7 @@ const EASE = [0.22, 1, 0.36, 1] as const;
  *     there is never a frame of empty hero. Incoming comes up from 1.025 and
  *     1.5% to the right, outgoing falls away to 1.015 and 1% left. Opacity
  *     carries it; the movement is there to stop it reading as a slideshow.
- *  3. A slow drift, but only on the film — see the note where it is applied.
+ *  3. A slow drift while a slide is held — see the note where it is applied.
  *  4. The indicator fill, which is a scaleX tied to the same clock.
  *
  * `will-change` is set only on the two slides actually moving. On all of them
@@ -123,31 +124,40 @@ export function Hero({ slides = heroSlides }: { slides?: HeroSlide[] }) {
          * `HeaderNav` still takes `overlay`, ready for artwork designed with a
          * clear, dark top band.
          *
-         * THE FRAME IS SHAPED FROM THE ARTWORK, WHICH IS WHY THIS IS A RATIO
-         * AND NOT A `vh` HEIGHT. A hero measured in viewport height decides for
-         * itself how much of a banner you get, and the answer kept being "not
-         * all of it". Sizing from a ratio instead — exactly what the banner
-         * carousel this replaced did with its `h-[54vw]` — lets the pictures be
-         * fitted rather than cropped.
+         * A RATIO, NOT A `vh` HEIGHT — and every banner FILLS it.
          *
-         * Two ratios, because one will not serve both ends:
+         * Sizing a hero in viewport height lets the frame decide how much of a
+         * banner you get, and on a laptop what it decided to take was the top:
+         * the "Burki & Company" lockup went with it. Fitting the pictures
+         * inside the frame instead fixed the cropping and introduced something
+         * worse — navy margins down the sides of the squarest banner. A hero
+         * that does not reach the edge of the screen looks broken, and no
+         * explanation of the aspect ratios makes it look less broken.
          *
-         *  - Phones take 1.51, the squarest banner. LOAD-X then sits exactly
-         *    edge to edge and the wider two get a shallow band top and bottom.
-         *    Bands above and below read as a frame; bands down the sides of a
-         *    phone read as a mistake.
-         *  - From `md` the constraint flips — a 1.51 frame is 953px tall on a
-         *    1440 laptop, a hero whose bottom you never see — so it takes 1.86,
-         *    near the average of the four, capped to whatever the viewport has
-         *    left under the header. LOAD-X is the one that pays there, with a
-         *    margin down each side.
+         * So the frame takes the FILM'S proportions and the stills fill it. The
+         * reason that works is arithmetic rather than luck: at 1.86 the Xinyuan
+         * banner gives up 2.8% of its height, XCMG is already wider than the
+         * frame and gives up 2% of its width, and only LOAD-X gives up anything
+         * real — 18.8%, which comes out of bare sky and bare gravel because its
+         * anchor is set to spend it there. See hero-slides.ts, where each of
+         * those anchors is a measurement of the file rather than a preference.
          *
-         * A 16:9 re-export of the LOAD-X banner would close that margin and is
-         * the only thing that can: no single frame shows a 1.51 picture and a
-         * 1.90 picture edge-to-edge at the same time.
+         * Phones take a squarer 1.35 and anchor hard left. A 1.86 frame on a
+         * 390px screen is a 210px letterbox strip with headline type too small
+         * to read; 1.35 gives it 289px, keeps every banner full height, and
+         * spends the crop on the far end of the machine instead of the message.
+         *
+         * NO MAX-HEIGHT. There was one, capping the hero to whatever the
+         * viewport had left under the header, and it quietly broke the whole
+         * arrangement: a cap does not shorten the frame, it WIDENS it. At
+         * 1920x1080 the cap turned 1.86 into 1.99, which took the LOAD-X crop
+         * from 18.8% to 24% — past the 8% of bare sky its anchor was budgeted
+         * against — and clipped the top of the Burki badge. The ratio has to
+         * hold at every width or the anchors underneath it stop meaning
+         * anything. On a 1080-tall screen that leaves the last 170px of the
+         * hero below the fold, which is what heroes do.
          */
-        "aspect-[1.51/1] md:aspect-[1.86/1]",
-        "max-h-[calc(100svh-64px)] md:max-h-[calc(100vh-116px)]",
+        "aspect-[1.35/1] md:aspect-[1.86/1]",
       )}
     >
       {slides.map((slide, i) => {
@@ -201,18 +211,19 @@ export function Hero({ slides = heroSlides }: { slides?: HeroSlide[] }) {
               if (isLeaving) setPrevious(null);
             }}
           >
-            {/* THE DRIFT IS THE FILM'S ALONE NOW. On a fitted picture a creeping
-                `scale` is not depth, it is a crop that grows: at 1.025 the frame
-                clips over 1% off every edge, and on this artwork that edge is
-                the lockup. The film fills its frame anyway, so it has room to
-                drift and keeps it. Still its own element either way, because the
-                drift and the transition both write `scale` and one would sit on
-                the other. */}
+            {/* The drift is back, and small. It was dropped while the banners
+                were fitted rather than filled, because a creeping `scale` on a
+                fitted picture is not depth, it is a crop that grows. Now that
+                they fill the frame there is slack to move inside — but only a
+                little: 1.5% over the dwell, where a fuller 2.5% would start
+                eating the margin the LOAD-X anchor is already spending. Its own
+                element regardless, because the drift and the transition both
+                write `scale` and one would sit on the other. */}
             <motion.div
               className="absolute inset-0"
               initial={{ scale: 1 }}
-              animate={{ scale: isActive && slide.video && !reduceMotion ? 1.03 : 1 }}
-              transition={{ duration: isActive && slide.video ? 6 : 0, ease: "linear" }}
+              animate={{ scale: isActive && !reduceMotion ? (slide.video ? 1.03 : 1.015) : 1 }}
+              transition={{ duration: isActive ? (slide.video ? 6 : 5) : 0, ease: "linear" }}
             >
               <SlideMedia slide={slide} priority={i === 0} eager={isActive} />
             </motion.div>
@@ -305,12 +316,13 @@ export function Hero({ slides = heroSlides }: { slides?: HeroSlide[] }) {
 /**
  * One slide's media.
  *
- * STILLS ARE FITTED, THE FILM FILLS. `object-contain` on the banners is the
- * point of the whole arrangement: the type is part of the picture, so the
- * picture has to arrive whole. The film gets `object-cover` and a crop anchor,
- * because it is footage — there is nothing in it that breaks when an edge goes.
+ * EVERYTHING COVERS, AND THE ANCHOR IS THE WHOLE ARGUMENT. `object-cover`
+ * fills the frame; `object-position` decides which sliver is given up to do
+ * it. On artwork with the type baked into it that anchor is the difference
+ * between a hero and a decapitated logo, which is why the anchors in
+ * hero-slides.ts are measured off the files rather than chosen by eye.
  *
- * That anchor is a CSS variable per breakpoint rather than an inline value,
+ * The anchor is a CSS variable per breakpoint rather than an inline value,
  * because it has to change at `md` and `lg` and an inline style cannot hold a
  * media query.
  */
@@ -323,16 +335,16 @@ function SlideMedia({
   priority: boolean;
   eager: boolean;
 }) {
+  const position = {
+    "--pos-mobile": slide.position?.mobile ?? "center",
+    "--pos-tablet": slide.position?.tablet ?? slide.position?.desktop ?? "center",
+    "--pos-desktop": slide.position?.desktop ?? "center",
+  } as React.CSSProperties;
+
+  const objectPosition =
+    "[object-position:var(--pos-mobile)] md:[object-position:var(--pos-tablet)] lg:[object-position:var(--pos-desktop)]";
+
   if (slide.video) {
-    const position = {
-      "--pos-mobile": slide.position?.mobile ?? "center",
-      "--pos-tablet": slide.position?.tablet ?? slide.position?.desktop ?? "center",
-      "--pos-desktop": slide.position?.desktop ?? "center",
-    } as React.CSSProperties;
-
-    const objectPosition =
-      "[object-position:var(--pos-mobile)] md:[object-position:var(--pos-tablet)] lg:[object-position:var(--pos-desktop)]";
-
     return (
       <>
         <Image
@@ -362,18 +374,16 @@ function SlideMedia({
     );
   }
 
-  const source = slide.mobileImage ?? slide.image;
-
   return slide.mobileImage ? (
     <>
       <Image
-        src={source.src}
-        alt={source.alt}
+        src={slide.mobileImage.src}
+        alt={slide.mobileImage.alt}
         fill
         priority={priority}
         sizes="100vw"
         quality={90}
-        className="object-contain md:hidden"
+        className="object-cover md:hidden"
       />
       <Image
         src={slide.image.src}
@@ -382,7 +392,8 @@ function SlideMedia({
         priority={priority}
         sizes="100vw"
         quality={90}
-        className="hidden object-contain md:block"
+        style={position}
+        className={cn("hidden object-cover md:block", objectPosition)}
       />
     </>
   ) : (
@@ -393,7 +404,8 @@ function SlideMedia({
       priority={priority}
       sizes="100vw"
       quality={90}
-      className="object-contain"
+      style={position}
+      className={cn("object-cover", objectPosition)}
     />
   );
 }
