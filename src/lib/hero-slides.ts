@@ -54,6 +54,8 @@ export type HeroSlide = {
   /** Drives the two buttons under the frame: "View {name} Full Range" to
       `/equipment/{slug}`, and Request a Quote alongside it. */
   brand: { name: string; slug: string };
+  /** Replaces the usual brand-range link for a company-wide banner. */
+  primaryAction?: { label: string; href: string };
 };
 
 export const heroSlides: HeroSlide[] = [
@@ -74,6 +76,17 @@ export const heroSlides: HeroSlide[] = [
     aspect: 1920 / 822,
     position: { mobile: "60% center", tablet: "center", desktop: "center" },
     brand: { name: "Xinyuan", slug: "xinyuan" },
+  },
+  {
+    id: "burki-company",
+    image: {
+      src: "/images/about/burki and company banner.png",
+      alt: "Burki & Company heavy equipment outside the Burki Group building in Pakistan.",
+    },
+    aspect: 1681 / 935,
+    position: { mobile: "center", tablet: "center", desktop: "center" },
+    brand: { name: "Burki & Company", slug: "" },
+    primaryAction: { label: "Explore Our Equipment", href: "/equipment" },
   },
   {
     id: "xinyuan",

@@ -2,9 +2,8 @@
 
 import Image from "next/image";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { ArrowRight, Button } from "@/components/ui/Button";
-import { ChevronRightIcon } from "@/components/ui/Icons";
 import {
   HERO_DWELL_MS,
   HERO_SLIDE_MS,
@@ -17,11 +16,6 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 /** Used for the indicator's fill animation before the film's real length is
     known from its own metadata. */
 const FILM_FALLBACK_S = 8;
-
-const ARROW =
-  "flex h-9 w-9 items-center justify-center rounded-[3px] border border-white/25 " +
-  "bg-navy-950/40 text-white backdrop-blur-sm transition-all duration-300 " +
-  "hover:border-amber-500 hover:bg-amber-500 hover:text-navy-900 md:h-11 md:w-11";
 
 /**
  * The homepage hero: the banner artwork, and (almost) nothing on top of it.
@@ -67,6 +61,7 @@ export function Hero({ slides = heroSlides }: { slides?: HeroSlide[] }) {
   const [scrolled, setScrolled] = useState(false);
   const [filmRunning, setFilmRunning] = useState(false);
   const [filmDuration, setFilmDuration] = useState<number | null>(null);
+  const swipeStart = useRef<{ x: number; y: number } | null>(null);
   const reduceMotion = useReducedMotion();
 
   const count = slides.length;
@@ -86,6 +81,26 @@ export function Hero({ slides = heroSlides }: { slides?: HeroSlide[] }) {
       });
     },
     [count],
+  );
+
+  const onTouchStart = useCallback((event: React.TouchEvent<HTMLElement>) => {
+    const touch = event.touches[0];
+    if (touch) swipeStart.current = { x: touch.clientX, y: touch.clientY };
+  }, []);
+
+  const onTouchEnd = useCallback(
+    (event: React.TouchEvent<HTMLElement>) => {
+      const start = swipeStart.current;
+      const touch = event.changedTouches[0];
+      swipeStart.current = null;
+      if (!start || !touch) return;
+
+      const horizontal = touch.clientX - start.x;
+      const vertical = touch.clientY - start.y;
+      if (Math.abs(horizontal) < 44 || Math.abs(horizontal) <= Math.abs(vertical)) return;
+      go(index + (horizontal < 0 ? 1 : -1));
+    },
+    [go, index],
   );
 
   /* A hidden tab pauses it, and coming back resumes rather than restarting the
@@ -128,12 +143,22 @@ export function Hero({ slides = heroSlides }: { slides?: HeroSlide[] }) {
 
   if (count === 0) return null;
   const activeSlide = slides[index];
+  const primaryAction =
+    activeSlide.primaryAction ?? {
+      label: `View ${activeSlide.brand.name} Full Range`,
+      href: `/equipment/${activeSlide.brand.slug}`,
+    };
 
   return (
     <>
       <section
         aria-roledescription="carousel"
         aria-label="Burki & Company equipment"
+        onTouchStart={onTouchStart}
+        onTouchEnd={onTouchEnd}
+        onTouchCancel={() => {
+          swipeStart.current = null;
+        }}
         /*
          * NO POINTER PAUSE. Hovering used to hold the banner, which on a wide
          * screen meant the carousel simply stopped for anyone whose cursor
@@ -141,7 +166,7 @@ export function Hero({ slides = heroSlides }: { slides?: HeroSlide[] }) {
          * bar the film running to its own end.
          */
         className={cn(
-          "relative w-full overflow-hidden bg-navy-950",
+          "relative w-full touch-pan-y overflow-hidden bg-navy-950",
           /*
            * THE HEADER SITS ABOVE THIS, NOT OVER IT — and that is a decision
            * the artwork forced.
@@ -266,33 +291,6 @@ export function Hero({ slides = heroSlides }: { slides?: HeroSlide[] }) {
           );
         })}
 
-        {/* ------------------------------------------------------------ arrows
-         *
-         * Manual navigation either side of the frame. Small and translucent —
-         * they sit over live artwork at every width, so they read as a control
-         * rather than another graphic competing with the banner.
-         */}
-        {count > 1 ? (
-          <>
-            <button
-              type="button"
-              onClick={() => go(index - 1)}
-              aria-label="Previous banner"
-              className={cn(ARROW, "absolute left-3 top-1/2 z-10 -translate-y-1/2 md:left-6")}
-            >
-              <ChevronRightIcon className="rotate-180 text-base md:text-lg" />
-            </button>
-            <button
-              type="button"
-              onClick={() => go(index + 1)}
-              aria-label="Next banner"
-              className={cn(ARROW, "absolute right-3 top-1/2 z-10 -translate-y-1/2 md:right-6")}
-            >
-              <ChevronRightIcon className="text-base md:text-lg" />
-            </button>
-          </>
-        ) : null}
-
         {/* ------------------------------------------------------- indicators
          *
          * Numbered rules rather than dots: they say how many banners there are
@@ -398,8 +396,8 @@ export function Hero({ slides = heroSlides }: { slides?: HeroSlide[] }) {
               exit={{ opacity: 0, y: reduceMotion ? 0 : -6 }}
               transition={{ duration: 0.35, ease: EASE }}
             >
-              <Button href={`/equipment/${activeSlide.brand.slug}`} size="md" variant="primary">
-                {`View ${activeSlide.brand.name} Full Range`}
+              <Button href={primaryAction.href} size="md" variant="primary">
+                {primaryAction.label}
                 <ArrowRight />
               </Button>
               <Button href="/request-a-quote" size="md" variant="outlineLight">
