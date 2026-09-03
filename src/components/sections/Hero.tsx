@@ -143,11 +143,6 @@ export function Hero({ slides = heroSlides }: { slides?: HeroSlide[] }) {
 
   if (count === 0) return null;
   const activeSlide = slides[index];
-  const primaryAction =
-    activeSlide.primaryAction ?? {
-      label: `View ${activeSlide.brand.name} Full Range`,
-      href: `/equipment/${activeSlide.brand.slug}`,
-    };
 
   return (
     <>
@@ -396,8 +391,8 @@ export function Hero({ slides = heroSlides }: { slides?: HeroSlide[] }) {
               exit={{ opacity: 0, y: reduceMotion ? 0 : -6 }}
               transition={{ duration: 0.35, ease: EASE }}
             >
-              <Button href={primaryAction.href} size="md" variant="primary">
-                {primaryAction.label}
+              <Button href={`/equipment/${activeSlide.brand.slug}`} size="md" variant="primary">
+                {`View ${activeSlide.brand.name} Full Range`}
                 <ArrowRight />
               </Button>
               <Button href="/request-a-quote" size="md" variant="outlineLight">
