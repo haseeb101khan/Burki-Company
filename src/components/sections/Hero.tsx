@@ -7,7 +7,7 @@ import { ArrowRight, Button } from "@/components/ui/Button";
 import { ChevronRightIcon } from "@/components/ui/Icons";
 import {
   HERO_DWELL_MS,
-  HERO_FADE_MS,
+  HERO_SLIDE_MS,
   heroSlides,
   type HeroSlide,
 } from "@/lib/hero-slides";
@@ -38,19 +38,18 @@ const ARROW =
  * WHOLE DESIGN. This took three goes on desktop before it filled the frame
  * without cutting the lockup or leaving margins — see the note on the
  * container below and the longer one in hero-slides.ts. The phone frame is a
- * separate decision again: see the note there on why it is sized in `svh`
- * rather than sharing the `md` frame's ratio.
+ * separate decision again: it uses a wide strip and contains the real artwork
+ * so the baked-in text survives.
  *
  * WHAT MOVES, AND ALL OF IT IS TRANSFORM OR OPACITY:
  *
  *  1. The opening reveal — the first slide fades up from `scale(1.035)` over
  *     1.4s. Slow enough to register as a settle rather than a zoom.
  *  2. The change itself. The outgoing slide is NOT unmounted before the
- *     incoming one arrives — both are in the DOM for the whole crossfade, so
- *     there is never a frame of empty hero. Incoming comes up from 1.025 and
- *     1.5% to the right, outgoing falls away to 1.015 and 1% left. Opacity
- *     carries it; the movement is there to stop it reading as a slideshow.
- *  3. A slow drift while a slide is held.
+ *     incoming one arrives — both are in the DOM for the whole horizontal
+ *     travel, so there is never a frame of empty hero. The motion now reads
+ *     as a real banner slider rather than a fade-in slideshow.
+ *  3. A very small drift while a slide is held.
  *  4. The indicator fill, tied to the same clock — except on the film, which
  *     runs to its own end; see the note on the dwell effect below.
  *
@@ -58,11 +57,12 @@ const ARROW =
  * it costs a compositor layer per banner for the entire life of the page.
  *
  * Under `prefers-reduced-motion` every scale and translation drops out and the
- * slides simply cross-fade.
+ * slides simply fade.
  */
 export function Hero({ slides = heroSlides }: { slides?: HeroSlide[] }) {
   const [index, setIndex] = useState(0);
   const [previous, setPrevious] = useState<number | null>(null);
+  const [direction, setDirection] = useState(1);
   const [paused, setPaused] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [filmRunning, setFilmRunning] = useState(false);
@@ -76,11 +76,13 @@ export function Hero({ slides = heroSlides }: { slides?: HeroSlide[] }) {
   const go = useCallback(
     (next: number) => {
       setIndex((current) => {
-        if (next === current) return current;
+        const wrapped = ((next % count) + count) % count;
+        if (wrapped === current) return current;
+        setDirection(next > current ? 1 : -1);
         setPrevious(current);
         setFilmRunning(false);
         setFilmDuration(null);
-        return ((next % count) + count) % count;
+        return wrapped;
       });
     },
     [count],
@@ -171,22 +173,23 @@ export function Hero({ slides = heroSlides }: { slides?: HeroSlide[] }) {
            * hero-slides.ts.
            *
            * BELOW `md`, THE SAME RATIO DOES NOT WORK, so it is not used. A
-           * phone is roughly 0.6:1 and these banners are 1.5:1 to 1.9:1 — no
-           * height keeps the frame close enough to the artwork's shape to make
-           * the crop a sliver, the way it is from `md` up. So the phone frame
-           * is sized in `svh` instead, tall enough to read as a hero rather
-           * than a strip, and pays for it in width: the sides are what goes,
-           * anchored hard left so the lockup and headline (always at the left
-           * of these banners) come through whole and it is the tail of the
-           * machine that is cropped.
+           * phone is roughly 0.6:1 and these banners are 1.5:1 to 2.34:1. A
+           * tall mobile hero can only get there by throwing away a lot of the
+           * sides, including exactly the logos and headlines the artwork is
+           * supposed to preserve. So the phone frame follows Zoomlion's move:
+           * a wide banner strip, with the full image contained over a softened
+           * cover-fill copy of itself. The hero still reaches the edges, but
+           * the actual banner art stays essentially whole.
            */
-          "h-[64svh] min-h-[400px] max-h-[640px]",
-          "md:h-auto md:min-h-0 md:max-h-none md:aspect-[1.86/1]",
+          "aspect-[1.7/1]",
+          "md:aspect-[1.86/1]",
         )}
       >
         {slides.map((slide, i) => {
           const isActive = i === index;
           const isLeaving = i === previous && i !== index;
+          const enterX = direction > 0 ? "100%" : "-100%";
+          const leaveX = direction > 0 ? "-100%" : "100%";
           if (!isActive && !isLeaving) {
             /* Everything else stays mounted but is not painted, so the browser
                is not compositing four full-bleed layers at once. */
@@ -211,24 +214,24 @@ export function Hero({ slides = heroSlides }: { slides?: HeroSlide[] }) {
                 reduceMotion
                   ? { opacity: 0 }
                   : /* The very first paint uses the opening reveal; every later
-                       arrival comes in from the right. */
+                       arrival slides in from the side it is travelling from. */
                     previous === null
                     ? { opacity: 0, scale: 1.035, x: 0 }
-                    : { opacity: 0, scale: 1.025, x: "1.5%" }
+                    : { opacity: 1, scale: 1, x: enterX }
               }
               animate={
                 isActive
                   ? { opacity: 1, scale: 1, x: 0 }
                   : reduceMotion
                     ? { opacity: 0 }
-                    : { opacity: 0, scale: 1.015, x: "-1%" }
+                    : { opacity: 1, scale: 1, x: leaveX }
               }
               transition={{
                 duration: reduceMotion
                   ? 0.3
                   : previous === null && isActive
                     ? 1.4
-                    : HERO_FADE_MS / 1000,
+                    : HERO_SLIDE_MS / 1000,
                 ease: EASE,
               }}
               onAnimationComplete={() => {
@@ -237,15 +240,15 @@ export function Hero({ slides = heroSlides }: { slides?: HeroSlide[] }) {
             >
               {/* The drift is small and stays on its own element, because it
                   and the transition above both write `scale` and one would sit
-                  on the other. 1.5% over the dwell for a still; a fuller drift
+                  on the other. 0.8% over the dwell for a still; a fuller drift
                   would start eating the margin the LOAD-X anchor is already
-                  spending on tablet and desktop. The film gets more (3%) since
+                  spending on tablet and desktop. The film gets a little more since
                   it fills its frame with room to spare at every width. */}
               <motion.div
                 className="absolute inset-0"
                 initial={{ scale: 1 }}
-                animate={{ scale: isActive && !reduceMotion ? (slide.video ? 1.03 : 1.015) : 1 }}
-                transition={{ duration: isActive ? (slide.video ? 6 : 5) : 0, ease: "linear" }}
+                animate={{ scale: isActive && !reduceMotion ? (slide.video ? 1.012 : 1.008) : 1 }}
+                transition={{ duration: isActive ? HERO_DWELL_MS / 1000 : 0, ease: "linear" }}
               >
                 <SlideMedia
                   slide={slide}
@@ -413,11 +416,10 @@ export function Hero({ slides = heroSlides }: { slides?: HeroSlide[] }) {
 /**
  * One slide's media.
  *
- * EVERYTHING COVERS, AND THE ANCHOR IS THE WHOLE ARGUMENT. `object-cover`
- * fills the frame; `object-position` decides which sliver is given up to do
- * it. On artwork with the type baked into it that anchor is the difference
- * between a hero and a decapitated logo, which is why the anchors in
- * hero-slides.ts are measured off the files rather than chosen by eye.
+ * Desktop covers, mobile contains. From `md` up, `object-cover` fills the
+ * frame and `object-position` decides which sliver is given up to do it. Below
+ * `md`, the real artwork is `object-contain` over a softened cover-fill
+ * backdrop, keeping the banner legible instead of cropping the sides away.
  *
  * The anchor is a CSS variable per breakpoint rather than an inline value,
  * because it has to change at `md` and `lg` and an inline style cannot hold a
@@ -448,37 +450,71 @@ function SlideMedia({
 
   const objectPosition =
     "[object-position:var(--pos-mobile)] md:[object-position:var(--pos-tablet)] lg:[object-position:var(--pos-desktop)]";
+  const loading = priority ? undefined : eager ? "eager" : "lazy";
+  const imageProps = {
+    fill: true,
+    preload: priority,
+    loading,
+    sizes: "100vw",
+    quality: 90,
+  } as const;
 
   if (slide.video) {
     return (
       <>
-        <Image
-          src={slide.image.src}
-          alt={slide.image.alt}
-          fill
-          priority={priority}
-          sizes="100vw"
-          quality={90}
-          style={position}
-          className={cn("object-cover", objectPosition)}
-        />
-        {/* Sits over its own poster, so the frame is never black while the
-            first video frame decodes. */}
-        <video
-          src={slide.video.src}
-          poster={slide.image.src}
-          autoPlay={eager}
-          muted
-          playsInline
-          preload={eager ? "auto" : "none"}
-          aria-label={slide.image.alt}
-          style={position}
-          onEnded={onEnded}
-          onPlaying={onPlaying}
-          onError={onErrorVideo}
-          onLoadedMetadata={(e) => onDuration?.(e.currentTarget.duration)}
-          className={cn("absolute inset-0 h-full w-full object-cover", objectPosition)}
-        />
+        <div className="absolute inset-0 md:hidden">
+          <Image
+            {...imageProps}
+            src={slide.image.src}
+            alt=""
+            aria-hidden="true"
+            style={position}
+            className={cn("scale-110 object-cover opacity-65 blur-md", objectPosition)}
+          />
+          <div className="absolute inset-0 bg-navy-950/20" />
+          <video
+            key={`${slide.video.src}-${eager ? "active" : "idle"}-mobile`}
+            src={slide.video.src}
+            poster={slide.image.src}
+            autoPlay={eager}
+            muted
+            playsInline
+            preload={eager ? "auto" : "none"}
+            aria-label={slide.image.alt}
+            onEnded={onEnded}
+            onPlaying={onPlaying}
+            onError={onErrorVideo}
+            onLoadedMetadata={(e) => onDuration?.(e.currentTarget.duration)}
+            className="absolute inset-0 h-full w-full object-contain"
+          />
+        </div>
+        <div className="absolute inset-0 hidden md:block">
+          <Image
+            {...imageProps}
+            src={slide.image.src}
+            alt={slide.image.alt}
+            style={position}
+            className={cn("object-cover", objectPosition)}
+          />
+          {/* Sits over its own poster, so the frame is never black while the
+              first video frame decodes. */}
+          <video
+            key={`${slide.video.src}-${eager ? "active" : "idle"}-desktop`}
+            src={slide.video.src}
+            poster={slide.image.src}
+            autoPlay={eager}
+            muted
+            playsInline
+            preload={eager ? "auto" : "none"}
+            aria-label={slide.image.alt}
+            style={position}
+            onEnded={onEnded}
+            onPlaying={onPlaying}
+            onError={onErrorVideo}
+            onLoadedMetadata={(e) => onDuration?.(e.currentTarget.duration)}
+            className={cn("absolute inset-0 h-full w-full object-cover", objectPosition)}
+          />
+        </div>
       </>
     );
   }
@@ -486,35 +522,45 @@ function SlideMedia({
   return slide.mobileImage ? (
     <>
       <Image
+        {...imageProps}
         src={slide.mobileImage.src}
         alt={slide.mobileImage.alt}
-        fill
-        priority={priority}
-        sizes="100vw"
-        quality={90}
         className="object-cover md:hidden"
       />
       <Image
+        {...imageProps}
         src={slide.image.src}
         alt={slide.image.alt}
-        fill
-        priority={priority}
-        sizes="100vw"
-        quality={90}
         style={position}
         className={cn("hidden object-cover md:block", objectPosition)}
       />
     </>
   ) : (
-    <Image
-      src={slide.image.src}
-      alt={slide.image.alt}
-      fill
-      priority={priority}
-      sizes="100vw"
-      quality={90}
-      style={position}
-      className={cn("object-cover", objectPosition)}
-    />
+    <>
+      <div className="absolute inset-0 md:hidden">
+        <Image
+          {...imageProps}
+          src={slide.image.src}
+          alt=""
+          aria-hidden="true"
+          style={position}
+          className={cn("scale-110 object-cover opacity-60 blur-md", objectPosition)}
+        />
+        <div className="absolute inset-0 bg-white/15" />
+        <Image
+          {...imageProps}
+          src={slide.image.src}
+          alt={slide.image.alt}
+          className="object-contain"
+        />
+      </div>
+      <Image
+        {...imageProps}
+        src={slide.image.src}
+        alt={slide.image.alt}
+        style={position}
+        className={cn("hidden object-cover md:block", objectPosition)}
+      />
+    </>
   );
 }

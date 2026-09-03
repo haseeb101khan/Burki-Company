@@ -8,12 +8,12 @@
  * layout and lives in the codebase. Add or remove a banner by editing this
  * array.
  *
- * THESE FILL THE SCREEN, AND THE CROP COMES OUT OF THE EMPTY PARTS. Two
- * earlier passes both got this wrong in opposite directions: the first cropped
- * blindly to a tall frame and sliced the "Burki & Company" lockup off the top;
- * the second refused to crop at all and left navy margins down the sides. Bars
- * are not an option — a hero that does not reach the edge of the screen looks
- * broken, whatever the reason for it.
+ * THESE FILL THE SCREEN FROM `md` UP, AND THE CROP COMES OUT OF THE EMPTY
+ * PARTS. Two earlier passes both got this wrong in opposite directions: the
+ * first cropped blindly to a tall frame and sliced the "Burki & Company"
+ * lockup off the top; the second refused to crop at all and left navy margins
+ * down the sides. Bars are not an option on desktop — a hero that does not
+ * reach the edge of the screen looks broken, whatever the reason for it.
  *
  * What makes filling possible from `md` up is that the frame is close to the
  * artwork's own shape, so there is barely anything to cut:
@@ -31,15 +31,11 @@
  * That is what `position` is for; it is a measurement, not a preference.
  *
  * PHONES DO NOT SHARE THAT FRAME. A phone is roughly 0.6:1 and these banners
- * are 1.5:1 to 1.9:1 — there is no height short enough to keep the frame close
- * to the artwork's shape the way `md` does, so the trade flips: give up a
- * generous chunk of an immersive hero to keep the crop tight, or give up an
- * immersive hero to keep more of the picture. Height wins. Hero.tsx sizes the
- * phone frame in `svh` rather than from these ratios, tall enough to feel like
- * a hero, and `position.mobile` is horizontal-only — hard left, because at that
- * aspect gap it is ALWAYS the sides that are cropped, never the top or bottom,
- * so the lockup and headline (which sit at the left of every banner) survive
- * complete and it is the tail of the machine that goes.
+ * are 1.5:1 to 2.34:1, so a tall mobile hero can only work by throwing away a
+ * lot of the sides. The mobile treatment now follows the Zoomlion-style trade:
+ * a wide banner strip, with the full artwork contained in front of a softened
+ * cover-fill version of itself. The picture still reaches edge to edge, but
+ * the logos, headlines and machines survive essentially whole.
  *
  * `aspect` is the file's true ratio. It drives the `md`-and-up frame and says
  * how much each banner has to give up there.
@@ -126,5 +122,5 @@ export const heroSlides: HeroSlide[] = [
  * Hero.tsx.
  */
 export const HERO_DWELL_MS = 5000;
-/** The crossfade itself. Both slides are mounted for its duration. */
-export const HERO_FADE_MS = 900;
+/** The horizontal slide itself. Both slides are mounted for its duration. */
+export const HERO_SLIDE_MS = 820;

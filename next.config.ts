@@ -12,6 +12,7 @@ const nextConfig: NextConfig = {
      * own optimiser handles them from disk — no CDN, no custom loader, and no
      * request that can fail because a service in another country is slow.
      */
+    qualities: [75, 90],
     formats: ["image/avif", "image/webp"],
   },
 };
