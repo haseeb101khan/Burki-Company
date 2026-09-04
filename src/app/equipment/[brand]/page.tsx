@@ -60,7 +60,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function BrandCataloguePage({ params, searchParams }: Props) {
   const { brand: slug } = await params;
-  const categorySlug = one((await searchParams).category);
+  const query = await searchParams;
+  const categorySlug = one(query.category);
+  const workCasesSelected =
+    one(query.view) === "work-cases" && ["xinyuan", "load-x", "xcmg"].includes(slug);
 
   const brand = await getBrandBySlug(slug);
   if (!brand) notFound();
@@ -71,9 +74,11 @@ export default async function BrandCataloguePage({ params, searchParams }: Props
     getParts({ categorySlug: "attachments" }),
   ]);
 
-  const machines = categorySlug
-    ? all.filter((m) => m.categorySlug === categorySlug)
-    : all;
+  const machines = workCasesSelected
+    ? []
+    : categorySlug
+      ? all.filter((m) => m.categorySlug === categorySlug)
+      : all;
 
   /* How many of this brand's machines sit in each category, so the strip can
      show a count where there is one and route elsewhere where there is not. */
@@ -108,7 +113,7 @@ export default async function BrandCataloguePage({ params, searchParams }: Props
    * for the parts catalogue, pre-filtered to this brand.
    */
   const brandAttachments = attachments.filter((p) => p.brandSlug === slug);
-  const extraLinks =
+  const attachmentLinks =
     brandAttachments.length > 0
       ? [
           {
@@ -119,6 +124,19 @@ export default async function BrandCataloguePage({ params, searchParams }: Props
           },
         ]
       : [];
+  const extraLinks = [
+    ...attachmentLinks,
+    ...(["xinyuan", "load-x", "xcmg"].includes(slug)
+      ? [
+          {
+            slug: "work-cases",
+            label: "Work cases",
+            href: `${routes.brand(slug)}?view=work-cases`,
+            isActive: workCasesSelected,
+          },
+        ]
+      : []),
+  ];
 
   return (
     <>
@@ -225,6 +243,15 @@ export default async function BrandCataloguePage({ params, searchParams }: Props
           machines={machines}
           categoryUrls={categoryUrls}
           extraLinks={extraLinks}
+          emptyState={
+            workCasesSelected
+              ? {
+                  eyebrow: "Work cases",
+                  title: "Work cases have not been uploaded yet",
+                  description: `${brand.name} project references and machine applications will be added here as they are documented.`,
+                }
+              : undefined
+          }
           brandUrl={routes.brand(slug)}
           all={all}
         />

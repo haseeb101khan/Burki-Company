@@ -1,5 +1,6 @@
 import {
   getCatalogueBrands,
+  getEquipment,
   getEquipmentCategories,
   getPartCategories,
   getServices,
@@ -13,13 +14,39 @@ import { routes } from "@/lib/routes";
  * to the interactive nav. When the CMS lands, only these calls change.
  */
 export async function Header({ overlay = false }: { overlay?: boolean } = {}) {
-  const [brands, categories, partCategories, services, site] = await Promise.all([
+  const [brands, categories, equipment, partCategories, services, site] = await Promise.all([
     getCatalogueBrands({ includeEmpty: true }),
     getEquipmentCategories(),
+    getEquipment(),
     getPartCategories(),
     getServices(),
     getSiteConfig(),
   ]);
+
+  const catalogueGroups = [
+    {
+      slug: "excavators",
+      models: ["C65", "C70", "C75", "C80", "C95", "C105", "C115", "C120", "C130", "C150"],
+    },
+    { slug: "wheel-loaders", models: ["LX-926", "LX-930", "LX-936"] },
+    { slug: "backhoe-loaders", models: ["LW300FN", "LW500FN", "ZL50GN"] },
+  ];
+
+  const catalogueItems = catalogueGroups.flatMap((group) => {
+    const category = categories.find((item) => item.slug === group.slug);
+    if (!category) return [];
+
+    const children = group.models.flatMap((model) => {
+      const machine = equipment.find(
+        (item) => item.categorySlug === group.slug && item.model === model,
+      );
+      return machine
+        ? [{ label: machine.model, href: routes.equipmentItem(machine) }]
+        : [];
+    });
+
+    return [{ label: category.name, href: routes.category(category), children }];
+  });
 
   const nav: NavItem[] = [
     {
@@ -31,11 +58,8 @@ export async function Header({ overlay = false }: { overlay?: boolean } = {}) {
           title: "By brand",
           items: brands.map((b) => ({ label: b.name, href: routes.brand(b) })),
         },
-        columns: 2,
-        items: categories.map((c) => ({
-          label: c.name,
-          href: routes.category(c),
-        })),
+        columns: 3,
+        items: catalogueItems,
         promo: {
           title: "Xinyuan C Series",
           description: "Eleven wheeled excavators, 6.5 to 15 tonnes.",

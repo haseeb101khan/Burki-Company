@@ -34,7 +34,11 @@ const NAV_LINK =
   "after:absolute after:bottom-1 after:left-3 after:right-3 after:h-[2px] after:origin-left after:scale-x-0 after:bg-amber-500 " +
   "after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.22,1,0.36,1)] hover:after:scale-x-100";
 
-export type NavPanelItem = { label: string; href: string };
+export type NavPanelItem = {
+  label: string;
+  href: string;
+  children?: { label: string; href: string }[];
+};
 export type NavPromo = {
   title: string;
   description: string;
@@ -321,11 +325,30 @@ export function HeaderNav({ nav, contact, overlay = false }: HeaderNavProps) {
                       <li key={link.href}>
                         <Link
                           href={link.href}
-                          className="group flex items-center justify-between gap-4 border-b border-steel-100 py-2.5 text-sm font-medium text-steel-700 transition-colors hover:text-amber-600"
+                          className={cn(
+                            "group flex items-center justify-between gap-4 border-b border-steel-100 py-2.5 transition-colors hover:text-amber-600",
+                            link.children?.length
+                              ? "font-display text-[0.875rem] font-bold uppercase tracking-[0.05em] text-navy-800"
+                              : "text-sm font-medium text-steel-700",
+                          )}
                         >
                           {link.label}
                           <ChevronRightIcon className="text-[0.9em] text-steel-300 transition-all duration-300 group-hover:translate-x-0.5 group-hover:text-amber-500" />
                         </Link>
+                        {link.children?.length ? (
+                          <ul className="mt-2 space-y-0.5 border-l border-steel-200 pl-3">
+                            {link.children.map((child) => (
+                              <li key={child.href}>
+                                <Link
+                                  href={child.href}
+                                  className="block py-1.5 text-[0.8125rem] font-medium text-steel-600 transition-colors hover:text-amber-600"
+                                >
+                                  {child.label}
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        ) : null}
                       </li>
                     ))}
                   </ul>
@@ -415,10 +438,29 @@ export function HeaderNav({ nav, contact, overlay = false }: HeaderNavProps) {
                                 <li key={link.href}>
                                   <Link
                                     href={link.href}
-                                    className="block py-2 text-sm text-steel-600 hover:text-amber-600"
+                                    className={cn(
+                                      "block py-2 hover:text-amber-600",
+                                      link.children?.length
+                                        ? "font-display text-sm font-semibold uppercase tracking-[0.05em] text-navy-800"
+                                        : "text-sm text-steel-600",
+                                    )}
                                   >
                                     {link.label}
                                   </Link>
+                                  {link.children?.length ? (
+                                    <ul className="mb-2 grid grid-cols-2 gap-x-4 border-l border-steel-200 pl-3">
+                                      {link.children.map((child) => (
+                                        <li key={child.href}>
+                                          <Link
+                                            href={child.href}
+                                            className="block py-1.5 text-[0.8125rem] text-steel-600 hover:text-amber-600"
+                                          >
+                                            {child.label}
+                                          </Link>
+                                        </li>
+                                      ))}
+                                    </ul>
+                                  ) : null}
                                 </li>
                               ))}
                               <li>

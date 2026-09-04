@@ -87,42 +87,80 @@ export default async function CategoryPage({ params, searchParams }: Props) {
           </Container>
         </div>
 
-        <Section tone="light" spacing="tight">
-          <Container>
-            <div className="grid items-center gap-8 lg:grid-cols-[1.2fr_1fr]">
-              <SectionHeader
-                eyebrow="Equipment"
-                title={category.name}
-                description={category.description}
-                action={
-                  <Button href={routes.quote()} size="sm">
+        {slug === "excavators" ? (
+          <>
+            <section className="bg-navy-950">
+              <div className="relative mx-auto aspect-video w-full max-w-[1440px] overflow-hidden bg-navy-950">
+                <Image
+                  src="/images/excavator-cat-banner.png"
+                  alt="Xinyuan excavators lined up at the Burki & Company dealership"
+                  fill
+                  priority
+                  sizes="100vw"
+                  className="object-cover object-top"
+                />
+              </div>
+            </section>
+            <Section tone="light" spacing="tight" className="border-b border-steel-200">
+              <Container>
+                <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+                  <div className="max-w-3xl">
+                    <p className="eyebrow-rule font-display text-eyebrow uppercase text-navy-700">
+                      Equipment
+                    </p>
+                    <h1 className="mt-5 font-display text-4xl font-bold uppercase text-navy-900 md:text-5xl">
+                      {category.name}
+                    </h1>
+                    <p className="mt-3 text-base leading-relaxed text-steel-600 md:text-lg">
+                      {category.description}
+                    </p>
+                  </div>
+                  <Button href={routes.quote()} size="sm" className="shrink-0">
                     Request a quote
                     <ArrowRight />
                   </Button>
-                }
-              />
-              {category.image.src ? (
-                <Reveal y={16}>
-                  <div className="relative aspect-[16/10] overflow-hidden rounded-[3px] bg-steel-100">
-                    <Image
-                      src={category.image.src}
-                      alt={category.image.alt}
-                      fill
-                      priority
-                      sizes="(min-width: 1024px) 40vw, 100vw"
-                      className="object-cover"
-                      style={
-                        category.image.focus
-                          ? { objectPosition: category.image.focus }
-                          : undefined
-                      }
-                    />
-                  </div>
-                </Reveal>
-              ) : null}
-            </div>
-          </Container>
-        </Section>
+                </div>
+              </Container>
+            </Section>
+          </>
+        ) : (
+          <Section tone="light" spacing="tight">
+            <Container>
+              <div className="grid items-center gap-8 lg:grid-cols-[1.2fr_1fr]">
+                <SectionHeader
+                  eyebrow="Equipment"
+                  title={category.name}
+                  description={category.description}
+                  action={
+                    <Button href={routes.quote()} size="sm">
+                      Request a quote
+                      <ArrowRight />
+                    </Button>
+                  }
+                />
+                {category.image.src ? (
+                  <Reveal y={16}>
+                    <div className="relative aspect-[16/10] overflow-hidden rounded-[3px] bg-steel-100">
+                      <Image
+                        src={category.image.src}
+                        alt={category.image.alt}
+                        fill
+                        priority
+                        sizes="(min-width: 1024px) 40vw, 100vw"
+                        className="object-cover"
+                        style={
+                          category.image.focus
+                            ? { objectPosition: category.image.focus }
+                            : undefined
+                        }
+                      />
+                    </div>
+                  </Reveal>
+                ) : null}
+              </div>
+            </Container>
+          </Section>
+        )}
 
         {brandsHere.length > 1 ? (
           <Section tone="muted" spacing="tight" className="border-y border-steel-200">

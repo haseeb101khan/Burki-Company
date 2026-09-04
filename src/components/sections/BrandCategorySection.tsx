@@ -20,6 +20,7 @@ export function BrandCategorySection({
   brandUrl,
   all,
   extraLinks = [],
+  emptyState,
 }: {
   brand: { name: string };
   /** Only the categories this brand actually has machines in. */
@@ -36,9 +37,17 @@ export function BrandCategorySection({
    * separate from `categories` rather than faked into it: these do not narrow
    * the listing below, they navigate away, and the styling says so.
    */
-  extraLinks?: { slug: string; label: string; href: string; count: number }[];
+  extraLinks?: {
+    slug: string;
+    label: string;
+    href: string;
+    count?: number;
+    isActive?: boolean;
+  }[];
+  emptyState?: { eyebrow: string; title: string; description: string };
 }) {
   const [open, setOpen] = useState(false);
+  const extraViewActive = extraLinks.some((link) => link.isActive);
 
   return (
     <Section tone="light" spacing="tight" className="pt-8 md:pt-10">
@@ -70,10 +79,10 @@ export function BrandCategorySection({
                 <li>
                   <Link
                     href={brandUrl}
-                    aria-current={!categorySlug ? "true" : undefined}
+                    aria-current={!categorySlug && !extraViewActive ? "true" : undefined}
                     className={cn(
                       "flex items-center justify-between gap-3 px-4 py-3 text-[0.875rem] font-medium transition-colors",
-                      !categorySlug
+                      !categorySlug && !extraViewActive
                         ? "bg-navy-700 text-white"
                         : "bg-white text-navy-800 hover:bg-navy-50",
                     )}
@@ -116,11 +125,17 @@ export function BrandCategorySection({
                   <li key={link.slug}>
                     <Link
                       href={link.href}
-                      className="flex items-center justify-between gap-3 bg-white px-4 py-3 text-[0.875rem] font-medium text-navy-800 transition-colors hover:bg-navy-50"
+                      aria-current={link.isActive ? "true" : undefined}
+                      className={cn(
+                        "flex items-center justify-between gap-3 px-4 py-3 text-[0.875rem] font-medium transition-colors",
+                        link.isActive
+                          ? "bg-navy-700 text-white"
+                          : "bg-white text-navy-800 hover:bg-navy-50",
+                      )}
                     >
                       <span>{link.label}</span>
                       <span className="flex shrink-0 items-center gap-1.5 tabular-nums text-[0.75rem] opacity-70">
-                        {link.count}
+                        {link.count ?? null}
                         <ChevronRightIcon className="text-[0.85em]" />
                       </span>
                     </Link>
@@ -147,10 +162,10 @@ export function BrandCategorySection({
                 <Link
                   href={brandUrl}
                   onClick={() => setOpen(false)}
-                  aria-current={!categorySlug ? "true" : undefined}
+                  aria-current={!categorySlug && !extraViewActive ? "true" : undefined}
                   className={cn(
                     "flex flex-col items-center justify-center gap-1 px-2 py-2.5 rounded text-[0.6875rem] font-semibold uppercase tracking-[0.04em] text-center transition-all",
-                    !categorySlug
+                    !categorySlug && !extraViewActive
                       ? "bg-navy-900 text-amber-500"
                       : "text-white/70 hover:text-white",
                   )}
@@ -172,7 +187,7 @@ export function BrandCategorySection({
                     href: link.href,
                     label: link.label,
                     count: link.count,
-                    isActive: false,
+                    isActive: Boolean(link.isActive),
                   })),
                 ].map((category) => {
                   const { count, isActive } = category;
@@ -190,7 +205,7 @@ export function BrandCategorySection({
                       )}
                     >
                       <span>{category.label}</span>
-                      {count > 0 && (
+                      {(count ?? 0) > 0 && (
                         <span className="text-[0.625rem] opacity-70">{count}</span>
                       )}
                     </Link>
@@ -212,14 +227,13 @@ export function BrandCategorySection({
               </div>
             ) : (
               <div className="mx-auto max-w-lg py-8 text-center">
-                <Eyebrow>Coming soon</Eyebrow>
+                <Eyebrow>{emptyState?.eyebrow ?? "Coming soon"}</Eyebrow>
                 <h2 className="font-display mt-4 text-2xl font-bold uppercase text-navy-800">
-                  {brand.name} models are being catalogued
+                  {emptyState?.title ?? `${brand.name} models are being catalogued`}
                 </h2>
                 <p className="mt-3 text-base leading-relaxed text-steel-600">
-                  We supply {brand.name} equipment and can quote against a
-                  specification today — the individual models are not on the
-                  site yet.
+                  {emptyState?.description ??
+                    `We supply ${brand.name} equipment and can quote against a specification today — the individual models are not on the site yet.`}
                 </p>
                 <div className="mt-7 flex flex-wrap justify-center gap-3">
                   <Button href={routes.quote()}>
