@@ -9,10 +9,9 @@ import { routes } from "@/lib/routes";
 /**
  * Equipment card used across the catalogue.
  *
- * PLAIN AGAIN, ON THE CLIENT'S CALL. The dotted map, the diagonal bands and the
- * ribbon are gone: the machine on white, its name under it, three figures, two
- * actions. Modelled on XCMG's own catalogue card, which does exactly that and
- * lets the machine carry the card.
+ * The machine remains the focus, with the supplied dotted Pakistan map as a
+ * restrained amber field behind transparent cutouts. Photographic cards keep
+ * their own backgrounds rather than stacking the map over real scenery.
  *
  * THREE FIGURES, AND THE SAME THREE EVERY TIME — weight, engine, bucket, in that
  * order, whatever the manufacturer's sheet called them. See `keyFigures`: the
@@ -52,6 +51,16 @@ export function EquipmentCard({
         {/* 4:3 and almost no padding: the machine is the card, and every pixel
             given to a margin here comes straight off it. */}
         <div className="relative aspect-[4/3] w-full">
+          {cutout ? (
+            <span
+              aria-hidden="true"
+              className={cn(
+                "absolute inset-[3%] bg-amber-500/45",
+                "[mask-image:url('/images/pakistan-dots.svg')] [mask-position:center] [mask-repeat:no-repeat] [mask-size:contain]",
+                "[-webkit-mask-image:url('/images/pakistan-dots.svg')] [-webkit-mask-position:center] [-webkit-mask-repeat:no-repeat] [-webkit-mask-size:contain]",
+              )}
+            />
+          ) : null}
           <Image
             src={display.src}
             alt={display.alt}
