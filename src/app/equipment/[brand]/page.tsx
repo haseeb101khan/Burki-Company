@@ -168,25 +168,10 @@ export default async function BrandCataloguePage({ params, searchParams }: Props
           </Container>
         </div>
 
-        <Section tone="light" spacing="tight">
-          <Container>
-            <SectionHeader
-              eyebrow="Brand catalogue"
-              title={brand.name}
-              action={
-                <Button href={routes.quote()} size="sm">
-                  Request a quote
-                  <ArrowRight />
-                </Button>
-              }
-            />
-          </Container>
-        </Section>
-
         {/* Existing brand media promoted to the same full-width banner position
             used by the excavator category page. */}
         <section className="bg-navy-950">
-          <div className="relative mx-auto aspect-[2/1] w-full max-w-[1440px] overflow-hidden">
+          <div className="relative mx-auto aspect-[10/3] w-full max-w-[1440px] overflow-hidden">
             {brand.showcaseVideoUrl ? (
               <BrandIntroVideo
                 src={brand.showcaseVideoUrl}
@@ -206,6 +191,21 @@ export default async function BrandCataloguePage({ params, searchParams }: Props
             ) : null}
           </div>
         </section>
+
+        <Section tone="light" spacing="tight" className="pb-0 md:pb-0">
+          <Container>
+            <SectionHeader
+              eyebrow="Brand catalogue"
+              title={brand.name}
+              action={
+                <Button href={routes.quote()} size="sm">
+                  Request a quote
+                  <ArrowRight />
+                </Button>
+              }
+            />
+          </Container>
+        </Section>
 
         {/* --------------------------------------- categories + the listings */}
         <BrandCategorySection

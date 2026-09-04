@@ -33,7 +33,7 @@ export function BrandIntroVideo({
 
   if (autoplayMuted) {
     return (
-      <div className="relative aspect-[2/1] overflow-hidden bg-navy-950">
+      <div className="relative h-full w-full overflow-hidden bg-navy-950">
         <video
           src={src}
           poster={poster?.src}
