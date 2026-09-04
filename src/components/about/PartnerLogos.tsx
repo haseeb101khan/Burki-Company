@@ -20,17 +20,12 @@ export function PartnerLogos({ partners }: { partners: Partner[] }) {
   if (withLogos.length === 0) return null;
 
   return (
-    /* Five across, so the wall fills whole rows exactly — two rows at ten
-       logos, three at fifteen. Three across on a phone rather than five: at
-       390px a fifth of the row is about 60px of cell, and a wordmark set in
-       that is unreadable, which defeats the point of showing it.
-       Bordered cells with a real gap rather than a 1px-gap grid over a tinted
-       parent: that trick leaves a partial last row showing as empty grey
-       boxes, and the logo count changes as clients are added. */
-    <div className="grid grid-cols-3 gap-2 sm:grid-cols-5">
+    /* Fourteen confirmed marks form two complete rows of seven on desktop.
+       Phones keep fewer columns so every wordmark remains legible. */
+    <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 lg:grid-cols-7">
       {withLogos.map((partner, index) => (
-        <Reveal key={partner.id} delay={Math.min(index, 8) * 0.05}>
-          <div className="flex h-full items-center justify-center rounded-[3px] border border-steel-200 bg-white px-3 py-4">
+        <Reveal key={partner.id} delay={Math.min(index, 6) * 0.04}>
+          <div className="flex h-full min-h-[5.25rem] items-center justify-center rounded-[3px] border border-steel-200 bg-white px-3 py-4">
             {/* `fill` in a fixed box, so every logo letterboxes to its own
                 proportions — the artwork keeps its natural aspect and no
                 per-file dimensions have to live in the data. */}

@@ -3,7 +3,8 @@ import { Barlow_Condensed, Inter } from "next/font/google";
 import { MotionProvider } from "@/components/MotionProvider";
 import { CompareBar } from "@/components/compare/CompareBar";
 import { CompareProvider } from "@/components/compare/CompareProvider";
-import { getEquipment } from "@/lib/data";
+import { QuickActions } from "@/components/layout/QuickActions";
+import { getEquipment, getSiteConfig } from "@/lib/data";
 import { routes } from "@/lib/routes";
 import { siteUrl } from "@/lib/site";
 import "./globals.css";
@@ -51,7 +52,8 @@ export const metadata: Metadata = {
 export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  const machines = (await getEquipment()).map((machine) => ({
+  const [equipment, site] = await Promise.all([getEquipment(), getSiteConfig()]);
+  const machines = equipment.map((machine) => ({
     slug: machine.slug,
     model: machine.model,
     brand: machine.brand,
@@ -65,6 +67,7 @@ export default async function RootLayout({
         <MotionProvider>
           <CompareProvider machines={machines}>
             {children}
+            <QuickActions whatsapp={site.whatsapp} />
             <CompareBar />
           </CompareProvider>
         </MotionProvider>

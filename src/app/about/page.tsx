@@ -160,14 +160,7 @@ export default async function AboutPage() {
         {/* ---------------------------------------------------------- legacy */}
         <Section tone="light">
           <Container>
-            {/*
-              Two rows, each pairing copy with the thing it is about: the
-              founder's portrait beside the sentence about him, and the client
-              wall beside the sentences about the clients. One row with
-              everything stacked in the right-hand column would have put the
-              logos level with a paragraph that does not mention them.
-            */}
-            <div className="grid gap-x-8 gap-y-8 md:gap-x-12 md:gap-y-10 md:grid-cols-2 lg:gap-x-16 lg:gap-y-12">
+            <div className="grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(18rem,22rem)] md:items-start lg:gap-16">
               <Reveal>
                 <p className="eyebrow-rule font-display text-eyebrow uppercase text-navy-700">
                   Our legacy
@@ -175,13 +168,29 @@ export default async function AboutPage() {
                 <h2 className="mt-5 text-display-md uppercase text-navy-900">
                   Deliver what you promise
                 </h2>
-                <p className="mt-6 text-base leading-relaxed text-steel-700">
-                  Founded by {info.founder.name ?? "our founder"}, the company
-                  grew through one principle: deliver what you promise. That
-                  commitment earned the trust of clients across Pakistan,
-                  Afghanistan and Iran, and it remains the cornerstone of
-                  everything we do today.
-                </p>
+                <div className="mt-6 space-y-4 text-base leading-relaxed text-steel-700">
+                  <p>
+                    Founded by {info.founder.name ?? "our founder"}, the company
+                    grew through one principle: deliver what you promise. That
+                    commitment earned the trust of clients across Pakistan,
+                    Afghanistan and Iran, and it remains the cornerstone of
+                    everything we do today.
+                  </p>
+                  <p>
+                    Over five decades, Burki &amp; Company has supplied heavy
+                    machinery to some of Pakistan&apos;s most prominent names
+                    across construction, contracting, textiles, refineries,
+                    mining, oil storage, rice mills, dairy and farming,
+                    agriculture, and the energy and power sectors, as well as
+                    government institutions, including municipal bodies and
+                    various federal and provincial departments.
+                  </p>
+                  <p>
+                    A client portfolio built over fifty years that speaks for
+                    itself. Our partners reflect the trust that
+                    Pakistan&apos;s industry has placed in us since 1970.
+                  </p>
+                </div>
               </Reveal>
 
               {info.founder.image ? (
@@ -214,26 +223,18 @@ export default async function AboutPage() {
                 </BoxReveal>
               ) : null}
 
-              <Reveal>
-                <div className="space-y-4 text-base leading-relaxed text-steel-700">
-                  <p>
-                    Over five decades, Burki &amp; Company has supplied heavy
-                    machinery to some of Pakistan&apos;s most prominent names
-                    across construction, contracting, textiles, refineries,
-                    mining, oil storage, rice mills, dairy and farming,
-                    agriculture, and the energy and power sectors, as well as
-                    government institutions, including municipal bodies and
-                    various federal and provincial departments.
-                  </p>
-                  <p>
-                    A client portfolio built over fifty years that speaks for
-                    itself. Our partners reflect the trust that
-                    Pakistan&apos;s industry has placed in us since 1970.
-                  </p>
-                </div>
-              </Reveal>
+            </div>
 
-              <BoxReveal className="rounded-[3px]">
+            <div className="mt-12 border-t border-steel-200 pt-8 md:mt-14 md:pt-10">
+              <Reveal>
+                <p className="eyebrow-rule font-display text-eyebrow uppercase text-navy-700">
+                  Trusted relationships
+                </p>
+                <h3 className="mt-4 text-display-sm uppercase text-navy-900">
+                  Our business partners
+                </h3>
+              </Reveal>
+              <BoxReveal className="mt-6 rounded-[3px]">
                 <PartnerLogos partners={partners} />
               </BoxReveal>
             </div>

@@ -5,6 +5,7 @@ import { getStripBrands } from "@/lib/data";
 import { Reveal } from "@/components/ui/Reveal";
 import { Container } from "@/components/ui/Section";
 import { routes } from "@/lib/routes";
+import { cn } from "@/lib/utils";
 
 /**
  * Manufacturer strip, directly under the nav.
@@ -51,12 +52,19 @@ function BrandMark({ brand }: { brand: Brand }) {
      ratio — matching the shared canvas — so every logo scales identically as
      the grid narrows. */
   return (
-    <span className="relative block aspect-[5/2] w-full max-w-[140px]">
+    <span
+      className={cn(
+        "relative block aspect-[5/2] w-full",
+        brand.slug === "load-x"
+          ? "max-w-[168px] scale-[1.12] md:scale-[1.18]"
+          : "max-w-[140px]",
+      )}
+    >
       <Image
         src={brand.logo.navy}
         alt={brand.name}
         fill
-        sizes="(min-width: 1024px) 140px, 22vw"
+        sizes={brand.slug === "load-x" ? "(min-width: 1024px) 168px, 26vw" : "(min-width: 1024px) 140px, 22vw"}
         className="object-contain opacity-70 transition-opacity duration-300 group-hover:opacity-0 group-active:opacity-0 group-focus-visible:opacity-0"
       />
       <Image
@@ -64,7 +72,7 @@ function BrandMark({ brand }: { brand: Brand }) {
         alt=""
         aria-hidden="true"
         fill
-        sizes="(min-width: 1024px) 140px, 22vw"
+        sizes={brand.slug === "load-x" ? "(min-width: 1024px) 168px, 26vw" : "(min-width: 1024px) 140px, 22vw"}
         className="object-contain opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-active:opacity-100 group-focus-visible:opacity-100"
       />
     </span>

@@ -47,21 +47,19 @@ export const partCategories: PartCategory[] = [
     name: "Filters",
     description:
       "Engine oil, fuel, air, hydraulic and transmission filtration. The consumables that decide component life.",
-    image: { src: "/images/part-filters.jpg", alt: "Oil filter and lubricant containers" },
+    image: {
+      src: "/images/load-x/lx-926/lx-926-11.webp",
+      alt: "Hydraulic filters and fluid reservoirs inside a LOAD-X wheel loader",
+    },
     order: 2,
   },
   {
-    /*
-     * No photograph yet, and the tile renders text-only without one rather
-     * than borrowing a picture of something else. The one oil image on the
-     * site is the filters photograph, which is already doing that job.
-     */
     id: "pc-03",
     slug: "oil",
     name: "Oil",
     description:
       "Engine, hydraulic, transmission and axle oils, and the greases that go with them, matched to the machine's service schedule.",
-    image: { src: "", alt: "" },
+    image: { src: "/images/part-filters.jpg", alt: "Engine oil containers and an oil filter" },
     order: 3,
   },
 ];

@@ -255,8 +255,8 @@ export const content: ContentSnapshot = {
       "name": "Filters",
       "description": "Engine oil, fuel, air, hydraulic and transmission filtration. The consumables that decide component life.",
       "image": {
-        "src": "/images/part-filters.jpg",
-        "alt": "Oil filter and lubricant containers"
+        "src": "/images/load-x/lx-926/lx-926-11.webp",
+        "alt": "Hydraulic filters and fluid reservoirs inside a LOAD-X wheel loader"
       },
       "order": 2
     },
@@ -266,8 +266,8 @@ export const content: ContentSnapshot = {
       "name": "Oil",
       "description": "Engine, hydraulic, transmission and axle oils, and the greases that go with them, matched to the machine's service schedule.",
       "image": {
-        "src": "",
-        "alt": ""
+        "src": "/images/part-filters.jpg",
+        "alt": "Engine oil containers and an oil filter"
       },
       "order": 3
     }

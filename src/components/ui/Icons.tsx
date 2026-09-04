@@ -79,6 +79,21 @@ export const PhoneIcon = (p: IconProps) => (
   </Icon>
 );
 
+export const QuoteIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <circle cx="12" cy="12" r="9" />
+    <path d="M14.7 8.7c-.6-.7-1.5-1.1-2.7-1.1-1.5 0-2.7.8-2.7 2s1.1 1.7 2.8 2.1c1.8.4 2.8.9 2.8 2.3 0 1.3-1.2 2.2-2.9 2.2-1.3 0-2.4-.5-3.1-1.4M12 5.8v12.4" />
+  </Icon>
+);
+
+export const PartsIcon = (p: IconProps) => (
+  <Icon {...p}>
+    <circle cx="12" cy="12" r="3" />
+    <path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1" />
+    <circle cx="12" cy="12" r="7" />
+  </Icon>
+);
+
 export const MailIcon = (p: IconProps) => (
   <Icon {...p}>
     <rect x="3" y="5" width="18" height="14" rx="1" />
