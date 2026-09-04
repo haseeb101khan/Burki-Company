@@ -7,7 +7,6 @@ import { Header } from "@/components/layout/Header";
 import { BrandIntroVideo } from "@/components/ui/BrandIntroVideo";
 import { ArrowRight, Button } from "@/components/ui/Button";
 import { ChevronRightIcon } from "@/components/ui/Icons";
-import { Reveal } from "@/components/ui/Reveal";
 import { Container, Section, SectionHeader } from "@/components/ui/Section";
 import { BrandCategorySection } from "@/components/sections/BrandCategorySection";
 import {
@@ -137,6 +136,14 @@ export default async function BrandCataloguePage({ params, searchParams }: Props
         ]
       : []),
   ];
+  const catalogueImage =
+    slug === "xcmg"
+      ? {
+          src: "/images/xcmg/xcmg-banner.webp",
+          alt: "XCMG headquarters signage",
+        }
+      : (brand.showcaseImages[0] ?? null);
+
   return (
     <>
       <Header />
@@ -161,82 +168,44 @@ export default async function BrandCataloguePage({ params, searchParams }: Props
           </Container>
         </div>
 
-        {/* ------------------------------------------- brand name and intro */}
-        {/* No bottom padding: the listings section directly below supplies the
-            gap. Two full-padding sections back to back left a dead band of
-            white between the intro and the catalogue. */}
-        <Section tone="light" spacing="tight" className="pb-0 md:pb-0">
+        <Section tone="light" spacing="tight">
           <Container>
-            <div className="grid items-center gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.85fr)] lg:gap-12">
-              <div>
-                <SectionHeader
-                  eyebrow="Brand catalogue"
-                  title={brand.name}
-                  description={brand.shortDescription}
-                  action={
-                    <Button href={routes.quote()} size="sm">
-                      Request a quote
-                      <ArrowRight />
-                    </Button>
-                  }
-                />
-
-                <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 font-display text-[0.6875rem] font-semibold uppercase tracking-[0.16em] text-steel-500">
-                  {brand.countryOfOrigin ? <span>{brand.countryOfOrigin}</span> : null}
-                  {brand.manufacturerLegalName ? (
-                    <span>{brand.manufacturerLegalName}</span>
-                  ) : null}
-                  <span>
-                    {all.length} {all.length === 1 ? "model" : "models"}
-                  </span>
-                  {brand.website ? (
-                    <a
-                      href={brand.website}
-                      target="_blank"
-                      rel="noreferrer noopener"
-                      className="text-navy-700 transition-colors hover:text-amber-600"
-                    >
-                      Manufacturer site
-                    </a>
-                  ) : null}
-                </div>
-              </div>
-
-              {/*
-               * The introduction film where a brand has one, its photography
-               * otherwise, and nothing at all for the four brands with neither
-               * — the header simply runs full width there.
-               */}
-              {brand.showcaseVideoUrl ? (
-                <Reveal y={16}>
-                  <BrandIntroVideo
-                    src={brand.showcaseVideoUrl}
-                    poster={brand.showcaseImages[0] ?? null}
-                    brandName={brand.name}
-                    autoplayMuted={slug === "xinyuan"}
-                  />
-                </Reveal>
-              ) : brand.showcaseImages[0] ? (
-                <Reveal y={16}>
-                  <div
-                    className={`relative overflow-hidden rounded-[3px] bg-steel-100 ${
-                      slug === "load-x" ? "aspect-[2/1]" : "aspect-[16/10]"
-                    }`}
-                  >
-                    <Image
-                      src={brand.showcaseImages[0].src}
-                      alt={brand.showcaseImages[0].alt}
-                      fill
-                      priority
-                      sizes="(min-width: 1024px) 42vw, 100vw"
-                      className="object-cover"
-                    />
-                  </div>
-                </Reveal>
-              ) : null}
-            </div>
+            <SectionHeader
+              eyebrow="Brand catalogue"
+              title={brand.name}
+              action={
+                <Button href={routes.quote()} size="sm">
+                  Request a quote
+                  <ArrowRight />
+                </Button>
+              }
+            />
           </Container>
         </Section>
+
+        {/* Existing brand media promoted to the same full-width banner position
+            used by the excavator category page. */}
+        <section className="bg-navy-950">
+          <div className="relative mx-auto aspect-[2/1] w-full max-w-[1440px] overflow-hidden">
+            {brand.showcaseVideoUrl ? (
+              <BrandIntroVideo
+                src={brand.showcaseVideoUrl}
+                poster={brand.showcaseImages[0] ?? null}
+                brandName={brand.name}
+                autoplayMuted={slug === "xinyuan"}
+              />
+            ) : catalogueImage ? (
+              <Image
+                src={catalogueImage.src}
+                alt={catalogueImage.alt}
+                fill
+                priority
+                sizes="100vw"
+                className="object-cover"
+              />
+            ) : null}
+          </div>
+        </section>
 
         {/* --------------------------------------- categories + the listings */}
         <BrandCategorySection

@@ -7,6 +7,7 @@ import { EquipmentCard } from "@/components/ui/EquipmentCard";
 import { ChevronRightIcon } from "@/components/ui/Icons";
 import { Reveal } from "@/components/ui/Reveal";
 import { Container, Eyebrow, Section } from "@/components/ui/Section";
+import type { Equipment, EquipmentCategory } from "@/lib/data";
 import { routes } from "@/lib/routes";
 import { cn } from "@/lib/utils";
 
@@ -24,13 +25,13 @@ export function BrandCategorySection({
 }: {
   brand: { name: string };
   /** Only the categories this brand actually has machines in. */
-  categories: any[];
+  categories: EquipmentCategory[];
   categorySlug: string | undefined;
   countsHere: Record<string, number>;
-  machines: any[];
+  machines: Equipment[];
   categoryUrls: Record<string, string>;
   brandUrl: string;
-  all: any[];
+  all: Equipment[];
   /**
    * Lines that belong in this brand's filter but are not equipment categories,
    * and so leave this page — attachments, which are filed under parts. Kept
@@ -52,13 +53,13 @@ export function BrandCategorySection({
   return (
     <Section tone="light" spacing="tight" className="pt-8 md:pt-10">
       <Container>
-        <div className="lg:grid lg:grid-cols-[236px_minmax(0,1fr)] lg:gap-10">
+        <div className="lg:grid lg:grid-cols-[300px_minmax(0,1fr)] lg:gap-12">
           {/* ------- CATEGORY DROPDOWN (Mobile) / SIDEBAR (Desktop) ------- */}
           <div>
             {/* Mobile dropdown button */}
             <button
               onClick={() => setOpen(!open)}
-              className="lg:hidden w-full mb-6 flex items-center justify-between gap-3 bg-navy-700 text-white px-4 py-3.5 rounded-[3px] font-display text-[0.8125rem] font-semibold uppercase tracking-[0.08em] transition-colors hover:bg-navy-800"
+              className="mb-6 flex w-full items-center justify-between gap-3 rounded-[3px] bg-navy-700 px-5 py-4 font-display text-[0.875rem] font-bold uppercase tracking-[0.08em] text-white transition-colors hover:bg-navy-800 lg:hidden"
             >
               <span>Filter by category</span>
               <ChevronRightIcon
@@ -71,7 +72,7 @@ export function BrandCategorySection({
 
             {/* Desktop sidebar - always shown on lg+ */}
             <aside className="hidden lg:block lg:sticky lg:top-24 lg:self-start">
-              <h2 className="font-display text-[0.6875rem] font-semibold uppercase tracking-[0.16em] text-steel-500">
+              <h2 className="font-display text-[0.8125rem] font-bold uppercase tracking-[0.16em] text-steel-600">
                 Categories
               </h2>
 
@@ -81,14 +82,14 @@ export function BrandCategorySection({
                     href={brandUrl}
                     aria-current={!categorySlug && !extraViewActive ? "true" : undefined}
                     className={cn(
-                      "flex items-center justify-between gap-3 px-4 py-3 text-[0.875rem] font-medium transition-colors",
+                      "flex items-center justify-between gap-3 px-5 py-4 text-base font-bold transition-colors",
                       !categorySlug && !extraViewActive
                         ? "bg-navy-700 text-white"
                         : "bg-white text-navy-800 hover:bg-navy-50",
                     )}
                   >
                     <span>All {brand.name}</span>
-                    <span className="shrink-0 tabular-nums text-[0.75rem] opacity-70">
+                    <span className="shrink-0 tabular-nums text-[0.875rem] opacity-70">
                       {all.length}
                     </span>
                   </Link>
@@ -103,14 +104,14 @@ export function BrandCategorySection({
                         href={categoryUrls[category.slug] || "#"}
                         aria-current={isActive ? "true" : undefined}
                         className={cn(
-                          "flex items-center justify-between gap-3 px-4 py-3 text-[0.875rem] transition-colors",
+                          "flex items-center justify-between gap-3 px-5 py-4 text-base font-bold transition-colors",
                           isActive
-                            ? "bg-navy-700 font-medium text-white"
-                            : "bg-white font-medium text-navy-800 hover:bg-navy-50",
+                            ? "bg-navy-700 text-white"
+                            : "bg-white text-navy-800 hover:bg-navy-50",
                         )}
                       >
                         <span>{category.name}</span>
-                        <span className="shrink-0 tabular-nums text-[0.75rem] opacity-70">
+                        <span className="shrink-0 tabular-nums text-[0.875rem] opacity-70">
                           {count}
                         </span>
                       </Link>
@@ -127,14 +128,14 @@ export function BrandCategorySection({
                       href={link.href}
                       aria-current={link.isActive ? "true" : undefined}
                       className={cn(
-                        "flex items-center justify-between gap-3 px-4 py-3 text-[0.875rem] font-medium transition-colors",
+                        "flex items-center justify-between gap-3 px-5 py-4 text-base font-bold transition-colors",
                         link.isActive
                           ? "bg-navy-700 text-white"
                           : "bg-white text-navy-800 hover:bg-navy-50",
                       )}
                     >
                       <span>{link.label}</span>
-                      <span className="flex shrink-0 items-center gap-1.5 tabular-nums text-[0.75rem] opacity-70">
+                      <span className="flex shrink-0 items-center gap-1.5 tabular-nums text-[0.875rem] opacity-70">
                         {link.count ?? null}
                         <ChevronRightIcon className="text-[0.85em]" />
                       </span>
@@ -143,11 +144,11 @@ export function BrandCategorySection({
                 ))}
               </ul>
 
-              <div className="mt-5 rounded-[3px] border border-steel-200 bg-steel-50 p-4">
-                <p className="font-display text-[0.6875rem] font-semibold uppercase tracking-[0.16em] text-navy-700">
+              <div className="mt-6 rounded-[3px] border border-steel-200 bg-steel-50 p-5">
+                <p className="font-display text-[0.8125rem] font-bold uppercase tracking-[0.14em] text-navy-700">
                   Need help choosing?
                 </p>
-                <p className="mt-2 text-[0.8125rem] leading-relaxed text-steel-600">
+                <p className="mt-2 text-[0.9375rem] font-medium leading-relaxed text-steel-600">
                   Tell us the job and the site, and we will specify the machine.
                 </p>
                 <Button href={routes.quote()} size="sm" variant="outline" className="mt-4 w-full">
@@ -158,13 +159,13 @@ export function BrandCategorySection({
 
             {/* Mobile expanded grid - fits in one frame */}
             {open && (
-              <div className="lg:hidden grid grid-cols-3 gap-2 bg-navy-700 text-white p-3 rounded-[3px] max-h-64 overflow-y-auto">
+              <div className="grid max-h-72 grid-cols-3 gap-2 overflow-y-auto rounded-[3px] bg-navy-700 p-3 text-white lg:hidden">
                 <Link
                   href={brandUrl}
                   onClick={() => setOpen(false)}
                   aria-current={!categorySlug && !extraViewActive ? "true" : undefined}
                   className={cn(
-                    "flex flex-col items-center justify-center gap-1 px-2 py-2.5 rounded text-[0.6875rem] font-semibold uppercase tracking-[0.04em] text-center transition-all",
+                    "flex flex-col items-center justify-center gap-1 rounded px-2 py-3 text-center text-[0.75rem] font-bold uppercase tracking-[0.04em] transition-all",
                     !categorySlug && !extraViewActive
                       ? "bg-navy-900 text-amber-500"
                       : "text-white/70 hover:text-white",
@@ -198,7 +199,7 @@ export function BrandCategorySection({
                       onClick={() => setOpen(false)}
                       aria-current={isActive ? "true" : undefined}
                       className={cn(
-                        "flex flex-col items-center justify-center gap-1 px-2 py-2.5 rounded text-[0.6875rem] font-semibold uppercase tracking-[0.04em] text-center transition-all",
+                        "flex flex-col items-center justify-center gap-1 rounded px-2 py-3 text-center text-[0.75rem] font-bold uppercase tracking-[0.04em] transition-all",
                         isActive
                           ? "bg-navy-900 text-amber-500"
                           : "text-white/70 hover:text-white",
