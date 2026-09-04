@@ -8,34 +8,16 @@
  * layout and lives in the codebase. Add or remove a banner by editing this
  * array.
  *
- * THESE FILL THE SCREEN FROM `md` UP, AND THE CROP COMES OUT OF THE EMPTY
- * PARTS. Two earlier passes both got this wrong in opposite directions: the
- * first cropped blindly to a tall frame and sliced the "Burki & Company"
- * lockup off the top; the second refused to crop at all and left navy margins
- * down the sides. Bars are not an option on desktop — a hero that does not
- * reach the edge of the screen looks broken, whatever the reason for it.
+ * THESE FILL THE SCREEN AT EVERY SIZE. The three stills are deliberately
+ * composed at the same 2:1 ratio as the hero frame, with their logos, copy and
+ * machinery held inside a crop-safe centre area.
  *
- * What makes filling possible from `md` up is that the frame is close to the
- * artwork's own shape, so there is barely anything to cut:
+ * That shared geometry is the Zoomlion-style solution: the artwork and its
+ * container agree before responsive cropping begins. A centred `object-cover`
+ * therefore fills the frame cleanly without sacrificing meaningful content.
  *
- *   xinyuan  1.81  loses 2.8% of its height   — nothing in it
- *   xcmg     1.90  already wider than the frame, loses ~2% of its width
- *   load-x   1.51  loses 18.8% of its height  — the one that needs thought
- *
- * LOAD-X is squarer than the other two and is the only one where the crop is
- * real. It can afford it because it is not evenly filled: measured on the file,
- * the top 8% is bare sky above the lockup and the bottom 4% is bare gravel, and
- * the gravel above that line carries nothing either. So its anchor pulls the
- * window UP — the cut is 8% of sky off the top and the rest off the gravel at
- * the bottom, and the lockup, headline, tagline and machine all survive intact.
- * That is what `position` is for; it is a measurement, not a preference.
- *
- * PHONES DO NOT SHARE THAT FRAME. A phone is roughly 0.6:1 and these banners
- * are 1.5:1 to 2.34:1, so a tall mobile hero can only work by throwing away a
- * lot of the sides. The mobile treatment now follows the Zoomlion-style trade:
- * a wide banner strip, with the full artwork contained in front of a softened
- * cover-fill version of itself. The picture still reaches edge to edge, but
- * the logos, headlines and machines survive essentially whole.
+ * Phones keep the same wide banner strip rather than forcing the artwork into
+ * a tall viewport-shaped hero. This keeps the intended composition intact.
  *
  * `aspect` is the file's true ratio. It drives the `md`-and-up frame and says
  * how much each banner has to give up there.
@@ -78,41 +60,31 @@ export const heroSlides: HeroSlide[] = [
   {
     id: "xinyuan",
     image: {
-      src: "/images/hero/xinyuan.webp",
+      src: "/images/hero/xinyuan.png",
       alt: "Burki & Company and Xinyuan — innovation creates the future. Xinyuan wheeled excavators.",
     },
-    aspect: 1090 / 603,
-    /* 2.8% off the height at most, and the composition is centred. */
-    position: { mobile: "left center", tablet: "center", desktop: "center" },
+    aspect: 2,
+    position: { mobile: "center", tablet: "center", desktop: "center" },
     brand: { name: "Xinyuan", slug: "xinyuan" },
   },
   {
     id: "load-x",
     image: {
-      src: "/images/hero/load-x.webp",
+      src: "/images/hero/loadx.png",
       alt: "Burki & Company and LOAD-X — power that moves more. LOAD-X wheel loaders.",
     },
-    /* The squarest of the three by some way, and so the only one where filling
-       the `md` frame costs anything real: 18.8% of its height. */
-    aspect: 908 / 601,
-    /* 40%, not 50%, on tablet/desktop. A centred crop would take 9.4% off the
-       top, and only the top 8% is bare sky — the next slice down is the
-       lockup. Pulling the window up spends the cut on the gravel at the
-       bottom instead, which is carrying nothing. Mobile crops the sides only
-       (see the file note), so it stays centred vertically. */
-    position: { mobile: "left center", tablet: "center 40%", desktop: "center 40%" },
+    aspect: 2,
+    position: { mobile: "center", tablet: "center", desktop: "center" },
     brand: { name: "LOAD-X", slug: "load-x" },
   },
   {
     id: "xcmg",
     image: {
-      src: "/images/hero/xcmg.webp",
+      src: "/images/hero/xcmg.png",
       alt: "Burki & Company and XCMG — performance for every jobsite. XCMG wheel loaders.",
     },
-    aspect: 1143 / 603,
-    /* Wider than the `md` frame, so this one is trimmed on the sides there,
-       not the top — about 2% of its width, off a sky that runs to the edge. */
-    position: { mobile: "left center", tablet: "center", desktop: "center" },
+    aspect: 2,
+    position: { mobile: "center", tablet: "center", desktop: "center" },
     brand: { name: "XCMG", slug: "xcmg" },
   },
 ];
@@ -123,4 +95,4 @@ export const heroSlides: HeroSlide[] = [
  */
 export const HERO_DWELL_MS = 5000;
 /** The horizontal slide itself. Both slides are mounted for its duration. */
-export const HERO_SLIDE_MS = 820;
+export const HERO_SLIDE_MS = 1400;

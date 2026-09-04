@@ -13,6 +13,7 @@ import {
 import { cn } from "@/lib/utils";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
+const SLIDE_EASE = [0.65, 0, 0.35, 1] as const;
 /** Used for the indicator's fill animation before the film's real length is
     known from its own metadata. */
 const FILM_FALLBACK_S = 8;
@@ -29,11 +30,8 @@ const FILM_FALLBACK_S = 8;
  * heading, nothing written across it.
  *
  * AND BECAUSE THE TYPE IS PART OF THE PICTURE, WHERE THE CROP FALLS IS THE
- * WHOLE DESIGN. This took three goes on desktop before it filled the frame
- * without cutting the lockup or leaving margins — see the note on the
- * container below and the longer one in hero-slides.ts. The phone frame is a
- * separate decision again: it uses a wide strip and contains the real artwork
- * so the baked-in text survives.
+ * WHOLE DESIGN. The redesigned stills and their container now share a 2:1
+ * ratio, so the full composition survives consistently at every breakpoint.
  *
  * WHAT MOVES, AND ALL OF IT IS TRANSFORM OR OPACITY:
  *
@@ -178,31 +176,12 @@ export function Hero({ slides = heroSlides }: { slides?: HeroSlide[] }) {
            * `HeaderNav` still takes `overlay`, ready for artwork designed with
            * a clear, dark top band.
            *
-           * TWO DIFFERENT SIZING STRATEGIES, ONE PER SIDE OF `md`.
-           *
-           * From `md` up, the frame is a RATIO — the film's own proportions —
-           * and every banner FILLS it. Sizing in viewport height let the frame
-           * decide how much of a banner survived, and on a laptop it decided
-           * to take the top: the lockup went with it. Fitting the pictures
-           * inside the frame instead stopped the cropping and introduced
-           * something worse, navy margins down the sides of the squarest
-           * banner. Filling a frame shaped close to the artwork's own ratio is
-           * what finally cost nothing worth noticing — 2-3% on two of the
-           * three banners, spent on bare sky. LOAD-X pays for real, 18.8%, and
-           * its anchor is aimed at the sky and gravel that can afford it; see
-           * hero-slides.ts.
-           *
-           * BELOW `md`, THE SAME RATIO DOES NOT WORK, so it is not used. A
-           * phone is roughly 0.6:1 and these banners are 1.5:1 to 2.34:1. A
-           * tall mobile hero can only get there by throwing away a lot of the
-           * sides, including exactly the logos and headlines the artwork is
-           * supposed to preserve. So the phone frame follows Zoomlion's move:
-           * a wide banner strip, with the full image contained over a softened
-           * cover-fill copy of itself. The hero still reaches the edges, but
-           * the actual banner art stays essentially whole.
+           * ONE SHARED 2:1 FRAME AT EVERY BREAKPOINT. The redesigned stills
+           * were made for this exact shape, with meaningful content held away
+           * from the edges. `object-cover` can therefore fill the frame without
+           * visible bars or harmful cropping, including on phones.
            */
-          "aspect-[1.7/1]",
-          "md:aspect-[1.86/1]",
+          "aspect-[2/1]",
         )}
       >
         {slides.map((slide, i) => {
@@ -252,7 +231,7 @@ export function Hero({ slides = heroSlides }: { slides?: HeroSlide[] }) {
                   : previous === null && isActive
                     ? 1.4
                     : HERO_SLIDE_MS / 1000,
-                ease: EASE,
+                ease: previous === null ? EASE : SLIDE_EASE,
               }}
               onAnimationComplete={() => {
                 if (isLeaving) setPrevious(null);
@@ -409,10 +388,9 @@ export function Hero({ slides = heroSlides }: { slides?: HeroSlide[] }) {
 /**
  * One slide's media.
  *
- * Desktop covers, mobile contains. From `md` up, `object-cover` fills the
- * frame and `object-position` decides which sliver is given up to do it. Below
- * `md`, the real artwork is `object-contain` over a softened cover-fill
- * backdrop, keeping the banner legible instead of cropping the sides away.
+ * Every banner covers the shared 2:1 frame. The redesigned stills use that
+ * exact ratio and keep their meaningful content in a centred safe area, so
+ * the same treatment remains clean from phones through wide desktops.
  *
  * The anchor is a CSS variable per breakpoint rather than an inline value,
  * because it has to change at `md` and `lg` and an inline style cannot hold a
@@ -455,59 +433,31 @@ function SlideMedia({
   if (slide.video) {
     return (
       <>
-        <div className="absolute inset-0 md:hidden">
-          <Image
-            {...imageProps}
-            src={slide.image.src}
-            alt=""
-            aria-hidden="true"
-            style={position}
-            className={cn("scale-110 object-cover opacity-65 blur-md", objectPosition)}
-          />
-          <div className="absolute inset-0 bg-navy-950/20" />
-          <video
-            key={`${slide.video.src}-${eager ? "active" : "idle"}-mobile`}
-            src={slide.video.src}
-            poster={slide.image.src}
-            autoPlay={eager}
-            muted
-            playsInline
-            preload={eager ? "auto" : "none"}
-            aria-label={slide.image.alt}
-            onEnded={onEnded}
-            onPlaying={onPlaying}
-            onError={onErrorVideo}
-            onLoadedMetadata={(e) => onDuration?.(e.currentTarget.duration)}
-            className="absolute inset-0 h-full w-full object-contain"
-          />
-        </div>
-        <div className="absolute inset-0 hidden md:block">
-          <Image
-            {...imageProps}
-            src={slide.image.src}
-            alt={slide.image.alt}
-            style={position}
-            className={cn("object-cover", objectPosition)}
-          />
-          {/* Sits over its own poster, so the frame is never black while the
-              first video frame decodes. */}
-          <video
-            key={`${slide.video.src}-${eager ? "active" : "idle"}-desktop`}
-            src={slide.video.src}
-            poster={slide.image.src}
-            autoPlay={eager}
-            muted
-            playsInline
-            preload={eager ? "auto" : "none"}
-            aria-label={slide.image.alt}
-            style={position}
-            onEnded={onEnded}
-            onPlaying={onPlaying}
-            onError={onErrorVideo}
-            onLoadedMetadata={(e) => onDuration?.(e.currentTarget.duration)}
-            className={cn("absolute inset-0 h-full w-full object-cover", objectPosition)}
-          />
-        </div>
+        <Image
+          {...imageProps}
+          src={slide.image.src}
+          alt={slide.image.alt}
+          style={position}
+          className={cn("object-cover", objectPosition)}
+        />
+        {/* Sits over its own poster, so the frame is never black while the
+            first video frame decodes. */}
+        <video
+          key={`${slide.video.src}-${eager ? "active" : "idle"}`}
+          src={slide.video.src}
+          poster={slide.image.src}
+          autoPlay={eager}
+          muted
+          playsInline
+          preload={eager ? "auto" : "none"}
+          aria-label={slide.image.alt}
+          style={position}
+          onEnded={onEnded}
+          onPlaying={onPlaying}
+          onError={onErrorVideo}
+          onLoadedMetadata={(e) => onDuration?.(e.currentTarget.duration)}
+          className={cn("absolute inset-0 h-full w-full object-cover", objectPosition)}
+        />
       </>
     );
   }
@@ -529,31 +479,12 @@ function SlideMedia({
       />
     </>
   ) : (
-    <>
-      <div className="absolute inset-0 md:hidden">
-        <Image
-          {...imageProps}
-          src={slide.image.src}
-          alt=""
-          aria-hidden="true"
-          style={position}
-          className={cn("scale-110 object-cover opacity-60 blur-md", objectPosition)}
-        />
-        <div className="absolute inset-0 bg-white/15" />
-        <Image
-          {...imageProps}
-          src={slide.image.src}
-          alt={slide.image.alt}
-          className="object-contain"
-        />
-      </div>
-      <Image
-        {...imageProps}
-        src={slide.image.src}
-        alt={slide.image.alt}
-        style={position}
-        className={cn("hidden object-cover md:block", objectPosition)}
-      />
-    </>
+    <Image
+      {...imageProps}
+      src={slide.image.src}
+      alt={slide.image.alt}
+      style={position}
+      className={cn("object-cover", objectPosition)}
+    />
   );
 }
