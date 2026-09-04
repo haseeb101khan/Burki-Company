@@ -56,9 +56,14 @@ export default async function EquipmentDetailPage({ params }: Props) {
     item.gallery.length === 1 &&
     item.gallery[0].src === item.cutoutImage?.src;
 
+  const showCompatibleAttachments = item.categorySlug === "excavators";
   const [categoryInfo, compatibleParts, variants] = await Promise.all([
     getEquipmentCategoryBySlug(item.categorySlug),
-    getCompatibleParts(item.slug, 6),
+    showCompatibleAttachments
+      ? getCompatibleParts(item.slug, 30).then((parts) =>
+          parts.filter((part) => part.categorySlug === "attachments").slice(0, 6),
+        )
+      : Promise.resolve([]),
     getSeriesVariants(item.slug),
   ]);
 
@@ -269,7 +274,7 @@ export default async function EquipmentDetailPage({ params }: Props) {
           </Section>
         ) : null}
 
-        {/* --------------------------------------------------- compatible parts */}
+        {/* --------------------------------------------- compatible attachments */}
         {/*
          * Shown on the same arc as the variants, on the client's instruction.
          * It works here for the same reason it works there: the attachment
@@ -282,14 +287,14 @@ export default async function EquipmentDetailPage({ params }: Props) {
             <Container size="wide">
               <VariantOrbit
                 items={compatibleParts.map(partToOrbitItem)}
-                eyebrow="Attachments & parts"
-                title="What fits this machine"
-                description={`Attachments and parts matched to the ${item.model} — swing through to see what the machine can be turned into.`}
+                eyebrow="Compatible attachments"
+                title="What fits this excavator"
+                description={`Attachments matched to the ${item.model} — swing through to see what the excavator can be turned into.`}
                 note="Fitment is by carrier class. Confirm with us before ordering."
               />
               <div className="mt-10 flex justify-center">
-                <Button href="/parts" variant="outline" size="sm">
-                  Browse all parts
+                <Button href="/parts/attachments" variant="outline" size="sm">
+                  Browse all attachments
                   <ArrowRight />
                 </Button>
               </div>

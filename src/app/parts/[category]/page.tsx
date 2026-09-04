@@ -1,16 +1,22 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { ArrowRight, Button } from "@/components/ui/Button";
-import { ChevronRightIcon } from "@/components/ui/Icons";
+import { ChevronRightIcon, WhatsAppIcon } from "@/components/ui/Icons";
 import { PartCard } from "@/components/ui/PartCard";
 import { Reveal } from "@/components/ui/Reveal";
 import { Container, Section, SectionHeader } from "@/components/ui/Section";
-import { getPartCategories, getPartCategoryBySlug, getParts } from "@/lib/data";
+import {
+  getPartCategories,
+  getPartCategoryBySlug,
+  getParts,
+  getSiteConfig,
+} from "@/lib/data";
 import { routes } from "@/lib/routes";
-import { cn } from "@/lib/utils";
+import { cn, toWhatsAppNumber } from "@/lib/utils";
 
 /**
  * One part category — every attachment or component of this kind.
@@ -48,7 +54,12 @@ export default async function PartCategoryPage({ params, searchParams }: Props) 
   const category = await getPartCategoryBySlug(slug);
   if (!category) notFound();
 
-  const all = await getParts({ categorySlug: slug });
+  const isAttachmentCategory = slug === "attachments";
+
+  const [all, site] = await Promise.all([
+    getParts({ categorySlug: slug }),
+    getSiteConfig(),
+  ]);
   const parts = brandSlug
     ? all.filter((p) => (p.brandSlug ?? "unbranded") === brandSlug)
     : all;
@@ -66,6 +77,27 @@ export default async function PartCategoryPage({ params, searchParams }: Props) 
 
   const fitsLabel = (count: number) =>
     count > 0 ? `Fits ${count} ${count === 1 ? "machine" : "machines"}` : undefined;
+
+  const availability = {
+    "xinyuan-genuine-parts": {
+      title: "All Xinyuan genuine parts are available",
+      description:
+        "Send us the machine model, serial number or part number and we will quote the correct genuine component.",
+    },
+    filters: {
+      title: "Filters for your machine are available",
+      description:
+        "Send us the machine model, serial number or filter number and we will identify and quote the correct filter.",
+    },
+    oil: {
+      title: "Equipment oils and lubricants are available",
+      description:
+        "Tell us the machine model and application and we will recommend and quote the correct oil or lubricant.",
+    },
+  }[slug];
+  const whatsappHref = `https://wa.me/${toWhatsAppNumber(site.whatsapp)}?text=${encodeURIComponent(
+    `Hello Burki & Company, I would like a quote for ${category.name}.`,
+  )}`;
 
   return (
     <>
@@ -106,7 +138,7 @@ export default async function PartCategoryPage({ params, searchParams }: Props) 
           </Container>
         </Section>
 
-        {brandsHere.length > 1 ? (
+        {isAttachmentCategory && brandsHere.length > 1 ? (
           <Section tone="muted" spacing="tight" className="border-y border-steel-200">
             <Container>
               <div className="flex flex-wrap items-center gap-x-6 gap-y-4">
@@ -150,9 +182,44 @@ export default async function PartCategoryPage({ params, searchParams }: Props) 
         {/* Tight when the brand filter above is hidden — a category carrying one
             brand (Attachments is all Xinyuan) otherwise gets two full-padding
             sections back to back and a dead band of white. */}
-        <Section tone="light" spacing={brandsHere.length > 1 ? "default" : "tight"}>
+        <Section
+          tone="light"
+          spacing={isAttachmentCategory && brandsHere.length > 1 ? "default" : "tight"}
+        >
           <Container>
-            {parts.length > 0 ? (
+            {!isAttachmentCategory && availability ? (
+              <div className="grid items-center gap-8 py-4 md:grid-cols-[minmax(0,0.8fr)_minmax(0,1fr)] md:gap-14 md:py-8">
+                <div className="relative aspect-[16/10] overflow-hidden rounded-[3px] bg-steel-100">
+                  <Image
+                    src={category.image.src}
+                    alt={category.image.alt}
+                    fill
+                    sizes="(min-width: 768px) 42vw, 100vw"
+                    className="object-cover"
+                  />
+                </div>
+                <div>
+                  <p className="font-display text-[0.75rem] font-bold uppercase tracking-[0.16em] text-amber-600">
+                    Available to order
+                  </p>
+                  <h2 className="mt-3 text-display-sm uppercase text-navy-800">
+                    {availability.title}
+                  </h2>
+                  <p className="mt-4 max-w-xl text-base leading-relaxed text-steel-600">
+                    {availability.description}
+                  </p>
+                  <div className="mt-7 flex flex-wrap gap-3">
+                    <Button href={whatsappHref} external>
+                      <WhatsAppIcon />
+                      Message on WhatsApp
+                    </Button>
+                    <Button href={routes.quote()} variant="outline">
+                      Request a quote
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            ) : parts.length > 0 ? (
               <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">
                 {parts.map((part, index) => (
                   <Reveal key={part.id} delay={(index % 2) * 0.06} className="h-full">

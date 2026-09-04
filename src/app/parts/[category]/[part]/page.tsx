@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { ArrowRight, Button } from "@/components/ui/Button";
@@ -39,6 +39,9 @@ export default async function PartDetailPage({ params }: Props) {
 
   const part = await getPartBySlug(slug);
   if (!part || part.categorySlug !== category) notFound();
+  if (part.categorySlug !== "attachments") {
+    redirect(routes.partCategory(part.categorySlug));
+  }
 
   const [categoryInfo, machines] = await Promise.all([
     getPartCategoryBySlug(part.categorySlug),

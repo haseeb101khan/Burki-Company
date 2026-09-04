@@ -30,7 +30,7 @@ export default async function PartsPage() {
     getPartCountByCategory(),
   ]);
 
-  const total = Object.values(counts).reduce((sum, n) => sum + n, 0);
+  const attachmentCount = counts.attachments ?? 0;
 
   return (
     <>
@@ -57,6 +57,7 @@ export default async function PartsPage() {
             <ul className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">
               {categories.map((category, index) => {
                 const count = counts[category.slug] ?? 0;
+                const hasIndividualListings = category.slug === "attachments";
                 return (
                   <li key={category.id}>
                     <Reveal delay={(index % 3) * 0.06} className="h-full">
@@ -84,15 +85,15 @@ export default async function PartsPage() {
                             <h2 className="font-display text-base font-bold uppercase leading-tight tracking-tight text-navy-800 sm:text-lg md:text-xl">
                               {category.name}
                             </h2>
-                            <span className="shrink-0 tabular-nums text-[0.75rem] text-steel-500">
-                              {count}
+                            <span className="shrink-0 text-[0.75rem] font-medium uppercase tracking-[0.08em] text-steel-500">
+                              {hasIndividualListings ? count : "Available"}
                             </span>
                           </div>
                           <p className="mt-2 hidden line-clamp-3 flex-1 text-sm leading-relaxed text-steel-600 sm:block">
                             {category.description}
                           </p>
                           <span className="mt-3 inline-flex items-center gap-1.5 font-display text-[0.6875rem] font-semibold uppercase tracking-[0.1em] text-navy-700 transition-colors group-hover:text-amber-600 sm:mt-5 sm:gap-2 sm:text-[0.8125rem]">
-                            {count > 0 ? "Browse" : "Enquire"}
+                            {hasIndividualListings ? "Browse" : "Enquire"}
                             <ArrowRight className="shrink-0 transition-transform duration-300 group-hover:translate-x-1" />
                           </span>
                         </div>
@@ -114,8 +115,8 @@ export default async function PartsPage() {
                 </h2>
                 <p className="mt-3 max-w-xl text-[0.9375rem] leading-relaxed text-white/65">
                   Send us the machine model and serial and we will identify it.
-                  We also source parts for machines outside the {total} listed
-                  here.
+                  We also source parts beyond the {attachmentCount} attachments
+                  individually listed here.
                 </p>
               </div>
               <Button href={routes.quote()}>

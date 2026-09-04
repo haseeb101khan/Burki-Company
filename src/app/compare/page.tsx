@@ -24,13 +24,10 @@ import { cn } from "@/lib/utils";
  * renders on the server rather than waiting on localStorage. `CompareSync` then
  * pushes those models back into the tray so the two never disagree.
  *
- * ONLY ROWS EVERY MACHINE PUBLISHES. This began as the union of all their
- * labels, with an em dash wherever a machine had no figure. Across two
- * manufacturers the sheets share barely a third of their labels, so most of the
- * table was dashes and it read as missing data rather than as a comparison. A
- * row is only a comparison if there is something in every column; what one
- * machine publishes and another does not belongs on its own specification page,
- * where it is a fact about that machine rather than a hole in a grid.
+ * Every published figure is retained. Manufacturer sheets often use different
+ * labels for the same measurement, so equivalent labels are normalized before
+ * the union is built. This keeps LOAD-X comparisons useful even when one model's
+ * sheet says "Total weight" and another says "Operating weight".
  */
 
 export const metadata: Metadata = {
@@ -43,6 +40,21 @@ type Props = { searchParams: Promise<Record<string, string | string[] | undefine
 
 const one = (value: string | string[] | undefined): string | undefined =>
   Array.isArray(value) ? value[0] : value;
+
+const comparisonLabels: Record<string, string> = {
+  "Total weight": "Operating weight",
+  "Rated payload": "Rated load",
+  "Rated output": "Rated power",
+  "Max speed": "Max travel speed",
+  "Loader length": "Overall length",
+  "Loader width": "Overall width",
+  "Overall width (bucket)": "Overall width",
+  "Loader height": "Overall height",
+  "Overall height (cab)": "Overall height",
+  "Gear shifts": "Gears",
+};
+
+const comparisonLabel = (label: string) => comparisonLabels[label] ?? label;
 
 export default async function ComparePage({ searchParams }: Props) {
   const requested = (one((await searchParams).models) ?? "")
@@ -89,26 +101,35 @@ export default async function ComparePage({ searchParams }: Props) {
     );
   }
 
-  const publishes = (machine: (typeof machines)[number], label: string) =>
-    machine.specs.some((group) => group.specs.some((s) => s.label === label));
-
-  /* First-seen order within the shared set: the manufacturer's own running
-     order puts the figures a buyer leads with at the top. */
+  /* First-seen order across the complete union. The first machine establishes
+     the main reading order and additional published fields follow it. */
   const rows: string[] = [];
-  for (const group of machines[0].specs) {
-    for (const spec of group.specs) {
-      if (rows.includes(spec.label)) continue;
-      if (machines.every((machine) => publishes(machine, spec.label))) {
-        rows.push(spec.label);
+  for (const machine of machines) {
+    for (const group of machine.specs) {
+      for (const spec of group.specs) {
+        const label = comparisonLabel(spec.label);
+        if (!rows.includes(label)) rows.push(label);
       }
     }
   }
 
-  const valueFor = (machine: (typeof machines)[number], label: string) => {
-    const spec = machine.specs
+  const specFor = (machine: (typeof machines)[number], label: string) =>
+    machine.specs
       .flatMap((group) => group.specs)
-      .find((s) => s.label === label);
-    if (!spec) return "";
+      .find((spec) => comparisonLabel(spec.label) === label);
+
+  /* Shared measurements lead, while model-specific published detail remains
+     available below. Array sorting is stable, so each tier keeps catalogue
+     order rather than becoming an alphabetical wall. */
+  rows.sort(
+    (a, b) =>
+      machines.filter((machine) => specFor(machine, b)).length -
+      machines.filter((machine) => specFor(machine, a)).length,
+  );
+
+  const valueFor = (machine: (typeof machines)[number], label: string) => {
+    const spec = specFor(machine, label);
+    if (!spec) return "—";
     return spec.unit ? `${spec.value} ${spec.unit}` : spec.value;
   };
 
