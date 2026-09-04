@@ -24,10 +24,10 @@ import { cn } from "@/lib/utils";
  * renders on the server rather than waiting on localStorage. `CompareSync` then
  * pushes those models back into the tray so the two never disagree.
  *
- * Every published figure is retained. Manufacturer sheets often use different
- * labels for the same measurement, so equivalent labels are normalized before
- * the union is built. This keeps LOAD-X comparisons useful even when one model's
- * sheet says "Total weight" and another says "Operating weight".
+ * Only figures published by every selected machine are shown. Manufacturer
+ * sheets often use different labels for the same measurement, so equivalent
+ * labels are normalized before that intersection is built. This keeps LOAD-X
+ * comparisons useful without introducing blank cells or placeholder dashes.
  */
 
 export const metadata: Metadata = {
@@ -101,14 +101,13 @@ export default async function ComparePage({ searchParams }: Props) {
     );
   }
 
-  /* First-seen order across the complete union. The first machine establishes
-     the main reading order and additional published fields follow it. */
-  const rows: string[] = [];
+  /* Gather normalized labels first, preserving the manufacturers' order. */
+  const publishedLabels: string[] = [];
   for (const machine of machines) {
     for (const group of machine.specs) {
       for (const spec of group.specs) {
         const label = comparisonLabel(spec.label);
-        if (!rows.includes(label)) rows.push(label);
+        if (!publishedLabels.includes(label)) publishedLabels.push(label);
       }
     }
   }
@@ -118,18 +117,13 @@ export default async function ComparePage({ searchParams }: Props) {
       .flatMap((group) => group.specs)
       .find((spec) => comparisonLabel(spec.label) === label);
 
-  /* Shared measurements lead, while model-specific published detail remains
-     available below. Array sorting is stable, so each tier keeps catalogue
-     order rather than becoming an alphabetical wall. */
-  rows.sort(
-    (a, b) =>
-      machines.filter((machine) => specFor(machine, b)).length -
-      machines.filter((machine) => specFor(machine, a)).length,
+  const rows = publishedLabels.filter((label) =>
+    machines.every((machine) => Boolean(specFor(machine, label))),
   );
 
   const valueFor = (machine: (typeof machines)[number], label: string) => {
     const spec = specFor(machine, label);
-    if (!spec) return "—";
+    if (!spec) return null;
     return spec.unit ? `${spec.value} ${spec.unit}` : spec.value;
   };
 
