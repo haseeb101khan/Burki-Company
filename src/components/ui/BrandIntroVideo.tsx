@@ -8,14 +8,12 @@ import { PlayIcon } from "@/components/ui/Icons";
 /**
  * A brand's introduction film, on the catalogue header.
  *
- * POSTER FIRST, PLAY ON PURPOSE. Not an autoplaying loop: this clip carries
- * narration and the visitor arrived to look at machines, not to have a film
- * start at them. It also means nothing downloads until someone asks — the file
- * is 4.6 MB, which is fine on request and rude on page load.
+ * Introduction films remain poster-first when they carry narration. A brand
+ * can instead opt into a muted looping banner for footage designed to behave
+ * like the homepage hero rather than a film the visitor explicitly watches.
  *
- * `preload="none"` on the element enforces that: without it the browser starts
- * pulling the video the moment the markup renders, which is the whole cost this
- * pattern exists to avoid.
+ * `preload="none"` protects the manual mode from downloading until requested;
+ * the muted banner mode uses metadata preload because autoplay needs the media.
  *
  * The frame is 16:9 because that is the clip's own shape (848x478). Matching it
  * means no letterbox bars and no crop across the branding in the footage.
@@ -24,12 +22,35 @@ export function BrandIntroVideo({
   src,
   poster,
   brandName,
+  autoplayMuted = false,
 }: {
   src: string;
   poster: ImageRef | null;
   brandName: string;
+  autoplayMuted?: boolean;
 }) {
   const [playing, setPlaying] = useState(false);
+
+  if (autoplayMuted) {
+    return (
+      <div className="relative aspect-video overflow-hidden rounded-[3px] bg-navy-950">
+        <video
+          src={src}
+          poster={poster?.src}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          aria-label={`${brandName} equipment video banner`}
+          className="h-full w-full object-cover"
+        />
+        <span className="pointer-events-none absolute bottom-3 left-4 font-display text-[0.6875rem] font-semibold uppercase tracking-[0.16em] text-white/85">
+          {brandName}
+        </span>
+      </div>
+    );
+  }
 
   if (playing) {
     return (

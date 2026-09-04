@@ -137,7 +137,6 @@ export default async function BrandCataloguePage({ params, searchParams }: Props
         ]
       : []),
   ];
-
   return (
     <>
       <Header />
@@ -214,11 +213,16 @@ export default async function BrandCataloguePage({ params, searchParams }: Props
                     src={brand.showcaseVideoUrl}
                     poster={brand.showcaseImages[0] ?? null}
                     brandName={brand.name}
+                    autoplayMuted={slug === "xinyuan"}
                   />
                 </Reveal>
               ) : brand.showcaseImages[0] ? (
                 <Reveal y={16}>
-                  <div className="relative aspect-[16/10] overflow-hidden rounded-[3px] bg-steel-100">
+                  <div
+                    className={`relative overflow-hidden rounded-[3px] bg-steel-100 ${
+                      slug === "load-x" ? "aspect-[2/1]" : "aspect-[16/10]"
+                    }`}
+                  >
                     <Image
                       src={brand.showcaseImages[0].src}
                       alt={brand.showcaseImages[0].alt}
