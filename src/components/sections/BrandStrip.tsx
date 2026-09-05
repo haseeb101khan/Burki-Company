@@ -5,7 +5,12 @@ import { getStripBrands } from "@/lib/data";
 import { Reveal } from "@/components/ui/Reveal";
 import { Container } from "@/components/ui/Section";
 import { routes } from "@/lib/routes";
-import { cn } from "@/lib/utils";
+
+const ORIGINAL_LOGOS: Record<string, string> = {
+  xinyuan: "/brand-logos/xinyuan-original.png",
+  "load-x": "/brand-logos/load-x-original.png",
+  xcmg: "/brand-logos/xcmg-original.png",
+};
 
 /**
  * Manufacturer strip, directly under the nav.
@@ -17,63 +22,31 @@ import { cn } from "@/lib/utils";
  * house lines out — no longer applies: every brand on the site is now a
  * manufacturer Burki distributes.
  *
- * Every logo ships as a pair of single-colour silhouettes on an identical
- * 480x192 canvas. That matters twice over: the boxes stay visually even no
- * matter how differently the original artwork was proportioned (Doosan is 7:1,
- * Volvo is square), and the mark stays legible when its box inverts to navy —
- * two of the supplied files were white-on-black, which would have vanished
- * against a white strip, and two were pale silver, which would have washed out.
+ * The supplied original-colour marks are normalised onto identical 560x180
+ * transparent canvases. They therefore occupy exactly the same layout box
+ * without stretching any manufacturer's artwork.
  */
 function BrandMark({ brand }: { brand: Brand }) {
-  if (!brand.logo) {
-    /*
-     * No artwork supplied: a drawn wordmark rather than a line of body text.
-     *
-     * IT HAS TO PASS AS ONE OF THE SET. An earlier version set the trailing
-     * letter in the accent colour, which made LOAD-X the one coloured thing in
-     * a row of grey silhouettes — it read as a highlighted item rather than a
-     * sixth manufacturer. It now takes exactly the treatment the real marks
-     * take: one colour, the same 70% weight at rest, and the same flip to white
-     * when the cell inverts. Larger than the marks around it on purpose, since
-     * type at a logo's cap height looks smaller than artwork filling the same
-     * box.
-     */
+  const original = ORIGINAL_LOGOS[brand.slug];
+
+  if (!original && !brand.logo) {
     return (
-      <span className="flex aspect-[5/2] w-full max-w-[140px] items-center justify-center">
-        <span className="font-display whitespace-nowrap text-[2rem] font-bold uppercase leading-none tracking-[-0.02em] text-navy-800 opacity-70 transition-all duration-300 group-hover:text-white group-hover:opacity-100 group-active:text-white group-focus-visible:text-white md:text-[2.25rem]">
+      <span className="flex aspect-[28/9] w-full max-w-[168px] items-center justify-center">
+        <span className="font-display whitespace-nowrap text-2xl font-bold uppercase leading-none text-navy-800">
           {brand.name}
         </span>
       </span>
     );
   }
 
-  /* Both variants are stacked and cross-faded, so hovering never waits on a
-     network request for the second image. The box is fluid with a fixed 5:2
-     ratio — matching the shared canvas — so every logo scales identically as
-     the grid narrows. */
   return (
-    <span
-      className={cn(
-        "relative block aspect-[5/2] w-full",
-        brand.slug === "load-x"
-          ? "max-w-[168px] scale-[1.12] md:scale-[1.18]"
-          : "max-w-[140px]",
-      )}
-    >
+    <span className="relative block aspect-[28/9] w-full max-w-[168px]">
       <Image
-        src={brand.logo.navy}
+        src={original ?? brand.logo!.navy}
         alt={brand.name}
         fill
-        sizes={brand.slug === "load-x" ? "(min-width: 1024px) 168px, 26vw" : "(min-width: 1024px) 140px, 22vw"}
-        className="object-contain opacity-70 transition-opacity duration-300 group-hover:opacity-0 group-active:opacity-0 group-focus-visible:opacity-0"
-      />
-      <Image
-        src={brand.logo.white}
-        alt=""
-        aria-hidden="true"
-        fill
-        sizes={brand.slug === "load-x" ? "(min-width: 1024px) 168px, 26vw" : "(min-width: 1024px) 140px, 22vw"}
-        className="object-contain opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-active:opacity-100 group-focus-visible:opacity-100"
+        sizes="(min-width: 1024px) 168px, 30vw"
+        className="object-contain"
       />
     </span>
   );
@@ -104,7 +77,7 @@ export async function BrandStrip() {
                 <Link
                   href={routes.brand(brand)}
                   aria-label={`${brand.name} equipment`}
-                  className="group flex items-center justify-center bg-white px-2.5 py-4 transition-colors duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:bg-navy-800 md:px-4 md:py-5 h-full"
+                  className="group flex h-full items-center justify-center bg-white px-2.5 py-4 transition-colors duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:bg-steel-50 md:px-4 md:py-5"
                 >
                   <BrandMark brand={brand} />
                 </Link>

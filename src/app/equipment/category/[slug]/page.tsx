@@ -90,7 +90,9 @@ export default async function CategoryPage({ params, searchParams }: Props) {
         {slug === "excavators" ? (
           <>
             <section className="bg-navy-950">
-              <div className="relative aspect-[2/1] w-full overflow-hidden bg-navy-950">
+              {/* Match the brand catalogue banners exactly. Artwork exported
+                  at 10:3 fills this responsive frame without cropping. */}
+              <div className="relative aspect-[10/3] w-full overflow-hidden bg-navy-950">
                 <Image
                   src="/images/excavator-cat-banner-v2.png"
                   alt="Xinyuan excavators lined up at the Burki & Company dealership"
