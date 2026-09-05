@@ -90,14 +90,14 @@ export default async function CategoryPage({ params, searchParams }: Props) {
         {slug === "excavators" ? (
           <>
             <section className="bg-navy-950">
-              <div className="relative mx-auto aspect-video w-full max-w-[1440px] overflow-hidden bg-navy-950">
+              <div className="relative aspect-[2/1] w-full overflow-hidden bg-navy-950">
                 <Image
-                  src="/images/excavator-cat-banner.png"
+                  src="/images/excavator-cat-banner-v2.png"
                   alt="Xinyuan excavators lined up at the Burki & Company dealership"
                   fill
                   priority
                   sizes="100vw"
-                  className="object-cover object-top"
+                  className="object-cover"
                 />
               </div>
             </section>
