@@ -1,0 +1,258 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background-color: #f7f9fc;
+  cursor: pointer;
+  isolation: isolate;
+}
+
+.overlay::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  content: "";
+  background-image:
+    linear-gradient(rgba(0, 38, 101, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 38, 101, 0.045) 1px, transparent 1px);
+  background-size: 52px 52px;
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 24%, black 76%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, black 24%, black 76%, transparent);
+}
+
+.overlay::after {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: min(18rem, 42vw);
+  height: 3px;
+  content: "";
+  background-color: #f5a623;
+  transform: translateX(-50%) scaleX(0);
+  transform-origin: center;
+  animation: top-rule 900ms 180ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.exiting {
+  pointer-events: none;
+  animation: overlay-out 560ms cubic-bezier(0.4, 0, 1, 1) forwards;
+}
+
+.stage {
+  position: relative;
+  width: min(720px, 90vw);
+  aspect-ratio: 2593 / 411;
+}
+
+.mover {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  transform: translate(-5.65%, -50%);
+  animation: assemble-position 1180ms 2080ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.logo {
+  object-fit: contain;
+  opacity: 0;
+  clip-path: inset(0 88.7% 0 0);
+  animation:
+    mark-fill 380ms 1710ms ease-out forwards,
+    wordmark-reveal 1180ms 2080ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.trace {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 11.3%;
+  height: 100%;
+  overflow: visible;
+  animation: trace-out 380ms 1710ms ease-out forwards;
+}
+
+.trace path {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.guide path {
+  stroke: rgba(0, 38, 101, 0.13);
+  stroke-width: 8;
+}
+
+.drawn path {
+  stroke: #123979;
+  stroke-width: 34;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation-name: draw-path;
+  animation-timing-function: cubic-bezier(0.45, 0, 0.2, 1);
+  animation-fill-mode: forwards;
+}
+
+.strokeOne {
+  animation-duration: 760ms;
+  animation-delay: 120ms;
+}
+
+.strokeTwo {
+  animation-duration: 900ms;
+  animation-delay: 390ms;
+}
+
+.strokeThree {
+  animation-duration: 620ms;
+  animation-delay: 930ms;
+}
+
+.strokeFour {
+  animation-duration: 520ms;
+  animation-delay: 1170ms;
+}
+
+.amberTrace {
+  animation: amber-out 300ms 1650ms ease-out forwards;
+}
+
+.amberTrace path {
+  stroke: #f5a623;
+  stroke-width: 5;
+  stroke-dasharray: 0.08 0.92;
+  stroke-dashoffset: 1;
+  animation: amber-path 1080ms cubic-bezier(0.45, 0, 0.2, 1) forwards;
+}
+
+.amberTrace path:nth-child(2) {
+  animation-delay: 260ms;
+}
+
+.amberTrace path:nth-child(3) {
+  animation-delay: 680ms;
+}
+
+.amberTrace path:nth-child(4) {
+  animation-delay: 980ms;
+}
+
+.baseline {
+  position: absolute;
+  right: 0;
+  bottom: -24px;
+  left: 0;
+  height: 1px;
+  background-color: rgba(0, 38, 101, 0.18);
+  opacity: 0;
+  transform: scaleX(0);
+  transform-origin: left;
+  animation:
+    baseline-in 900ms 2390ms cubic-bezier(0.22, 1, 0.36, 1) forwards,
+    baseline-out 420ms 3730ms ease forwards;
+}
+
+.baseline::before {
+  display: block;
+  width: 18%;
+  height: 2px;
+  content: "";
+  background-color: #f5a623;
+}
+
+.skip {
+  position: absolute;
+  right: max(22px, env(safe-area-inset-right));
+  bottom: max(20px, env(safe-area-inset-bottom));
+  padding: 8px 0;
+  border: 0;
+  border-bottom: 1px solid rgba(0, 38, 101, 0.28);
+  background: transparent;
+  color: #55647d;
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  transition: color 180ms ease, border-color 180ms ease;
+}
+
+.skip:hover,
+.skip:focus-visible {
+  border-color: #f5a623;
+  color: #002665;
+}
+
+@keyframes draw-path {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes amber-path {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes amber-out {
+  to { opacity: 0; }
+}
+
+@keyframes trace-out {
+  to { opacity: 0; }
+}
+
+@keyframes mark-fill {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes assemble-position {
+  from { transform: translate(-5.65%, -50%); }
+  to { transform: translate(-50%, -50%); }
+}
+
+@keyframes wordmark-reveal {
+  from { clip-path: inset(0 88.7% 0 0); }
+  to { clip-path: inset(0 0 0 0); }
+}
+
+@keyframes baseline-in {
+  0% { opacity: 0; transform: scaleX(0); }
+  100% { opacity: 1; transform: scaleX(1); }
+}
+
+@keyframes baseline-out {
+  to { opacity: 0; }
+}
+
+@keyframes top-rule {
+  to { transform: translateX(-50%) scaleX(1); }
+}
+
+@keyframes overlay-out {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@media (max-width: 640px) {
+  .overlay::before {
+    background-size: 36px 36px;
+  }
+
+  .stage {
+    width: 92vw;
+  }
+
+  .baseline {
+    bottom: -18px;
+  }
+
+  .skip {
+    right: 18px;
+    bottom: max(16px, env(safe-area-inset-bottom));
+  }
+}

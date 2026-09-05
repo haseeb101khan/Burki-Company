@@ -1,5 +1,6 @@
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
+import { HomeIntro } from "@/components/home/HomeIntro";
 import { AboutIntro } from "@/components/sections/AboutIntro";
 import { BrandStrip } from "@/components/sections/BrandStrip";
 import { BrandShowcaseSection } from "@/components/sections/BrandShowcaseSection";
@@ -48,6 +49,7 @@ import { QuoteSection } from "@/components/sections/QuoteSection";
 export default function HomePage() {
   return (
     <>
+      <HomeIntro />
       <Header />
       <main>
         <BrandStrip />
