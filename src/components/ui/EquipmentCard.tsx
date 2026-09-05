@@ -47,15 +47,30 @@ export function EquipmentCard({
         className,
       )}
     >
-      <Link href={href} className="block px-3 pt-3 md:px-4 md:pt-4">
-        {/* 4:3 and almost no padding: the machine is the card, and every pixel
-            given to a margin here comes straight off it. */}
-        <div className="relative aspect-[4/3] w-full">
+      <Link href={href} className="block">
+        {/*
+         * FULL-BLEED, AND 5:4 BECAUSE THAT IS THE CUTOUTS' OWN SHAPE.
+         *
+         * The machine is the card, so every pixel spent on a margin here comes
+         * straight off it — and the old 4:3 box with `px-4` around it was
+         * spending them twice over. The cutouts are all 1500x1200, so a 4:3 box
+         * left the image height-bound with 6% of the width sitting empty as
+         * letterbox bars either side, inside a box that was itself already
+         * inset from the card. Matching the box to the artwork and running it
+         * to the card's edge recovers both at once.
+         *
+         * Nothing touches the border: every cutout carries its own margin
+         * inside the file (5.5% at the tightest, on the widest loader), which
+         * is what keeps the machine clear of the edge now the box does not.
+         */}
+        <div className="relative aspect-[5/4] w-full">
           {cutout ? (
             <span
               aria-hidden="true"
               className={cn(
-                "absolute inset-[3%] bg-amber-500/45",
+                /* 6%, up from 3%: the box is no longer inset from the card, so
+                   the map needs its own margin or it runs into the border. */
+                "absolute inset-[6%] bg-amber-500/45",
                 "[mask-image:url('/images/pakistan-dots.svg')] [mask-position:center] [mask-repeat:no-repeat] [mask-size:contain]",
                 "[-webkit-mask-image:url('/images/pakistan-dots.svg')] [-webkit-mask-position:center] [-webkit-mask-repeat:no-repeat] [-webkit-mask-size:contain]",
               )}
@@ -68,14 +83,26 @@ export function EquipmentCard({
             priority={priority}
             sizes="(min-width: 1280px) 25vw, (min-width: 768px) 33vw, 50vw"
             className={cn(
-              "transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]",
-              cutout ? "object-contain" : "object-cover",
+              "transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
+              /*
+               * 1.04 IS A MEASURED CEILING, NOT A GUESS. Scaling a contained
+               * cutout eats the transparent margin baked into the file, and the
+               * tightest of the seventeen — C115 and C150, whose booms stop 2%
+               * from the top of the canvas — clip at anything past 1.042. So
+               * this is the last of the free size, and it is why the cutouts
+               * do not also grow on hover: 1.04 already spends the margin, and
+               * a hover scale on top of it would crop those two booms. The card
+               * lifts and shadows on hover instead, which it already did.
+               */
+              cutout
+                ? "scale-[1.04] object-contain"
+                : "object-cover group-hover:scale-[1.04]",
             )}
             style={display.focus ? { objectPosition: display.focus } : undefined}
           />
         </div>
 
-        <h3 className="mt-1 text-center font-display text-2xl font-bold uppercase leading-none tracking-tight text-navy-800 md:text-3xl">
+        <h3 className="mt-1 px-3 text-center font-display text-2xl font-bold uppercase leading-none tracking-tight text-navy-800 md:px-4 md:text-3xl">
           {item.model}
         </h3>
       </Link>

@@ -40,8 +40,21 @@ export async function Header({ overlay = false }: { overlay?: boolean } = {}) {
       const machine = equipment.find(
         (item) => item.categorySlug === group.slug && item.model === model,
       );
+      /*
+       * The cutout rides along so the panel can show the machine when you
+       * hover its name. Cutouts first because they are the isolated shots that
+       * read on the panel's white ground; the photos are the fallback for
+       * anything that has not been cut out yet, and a model with neither
+       * simply shows no preview rather than a broken frame.
+       */
       return machine
-        ? [{ label: machine.model, href: routes.equipmentItem(machine) }]
+        ? [
+            {
+              label: machine.model,
+              href: routes.equipmentItem(machine),
+              image: machine.cutoutImage ?? machine.featuredImage ?? machine.image,
+            },
+          ]
         : [];
     });
 

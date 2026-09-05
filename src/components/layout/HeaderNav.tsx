@@ -34,11 +34,18 @@ const NAV_LINK =
   "after:absolute after:bottom-1 after:left-3 after:right-3 after:h-[2px] after:origin-left after:scale-x-0 after:bg-amber-500 " +
   "after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.22,1,0.36,1)] hover:after:scale-x-100";
 
+/** A model under a category. `image` is its cutout, shown beside the panel on
+    hover — see `preview` in HeaderNav. */
+export type NavChildItem = {
+  label: string;
+  href: string;
+  image?: { src: string; alt: string };
+};
 export type NavPanelItem = {
   label: string;
   href: string;
   logo?: { src: string; alt: string };
-  children?: { label: string; href: string }[];
+  children?: NavChildItem[];
 };
 export type NavPromo = {
   title: string;
@@ -84,6 +91,13 @@ export function HeaderNav({ nav, contact, overlay = false }: HeaderNavProps) {
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [openAccordion, setOpenAccordion] = useState<string | null>(null);
+  /**
+   * The model currently under the cursor in the mega panel, so its cutout can
+   * be shown beside the list. A list of model numbers is not a thing anyone
+   * recognises — "C115" and "C120" are two strings that differ by a digit — so
+   * the panel puts the machine next to the name while you read down it.
+   */
+  const [preview, setPreview] = useState<NavChildItem | null>(null);
   const pathname = usePathname();
 
   /*
@@ -114,6 +128,7 @@ export function HeaderNav({ nav, contact, overlay = false }: HeaderNavProps) {
     setOpenMenu(null);
     setDrawerOpen(false);
     setOpenAccordion(null);
+    setPreview(null);
   }
 
   useEffect(() => {
@@ -121,6 +136,7 @@ export function HeaderNav({ nav, contact, overlay = false }: HeaderNavProps) {
       if (e.key !== "Escape") return;
       setOpenMenu(null);
       setDrawerOpen(false);
+      setPreview(null);
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
@@ -185,10 +201,18 @@ export function HeaderNav({ nav, contact, overlay = false }: HeaderNavProps) {
               "border-b border-white/10 bg-transparent"
             : "border-b border-steel-200 bg-white/95 shadow-[0_10px_30px_-26px_rgba(0,17,46,0.55)]",
         )}
-        onMouseLeave={() => setOpenMenu(null)}
+        onMouseLeave={() => {
+          setOpenMenu(null);
+          setPreview(null);
+        }}
       >
         <Container className="flex h-16 items-center justify-between gap-6 md:h-20">
-          <Logo variant={inverted ? "white" : "navy"} height={46} priority />
+          <span className="hidden lg:inline-flex">
+            <Logo variant={inverted ? "white" : "navy"} height={60} priority />
+          </span>
+          <span className="inline-flex lg:hidden">
+            <Logo variant={inverted ? "white" : "navy"} height={46} priority />
+          </span>
 
           {/* desktop nav */}
           <nav className="hidden items-center gap-1 lg:flex" aria-label="Main">
@@ -200,7 +224,12 @@ export function HeaderNav({ nav, contact, overlay = false }: HeaderNavProps) {
                 <div
                   key={item.label}
                   className="relative"
-                  onMouseEnter={() => setOpenMenu(hasPanel ? item.label : null)}
+                  onMouseEnter={() => {
+                    setOpenMenu(hasPanel ? item.label : null);
+                    /* Moving between top-level menus must not carry the last
+                       panel's machine across into this one. */
+                    setPreview(null);
+                  }}
                 >
                   {hasPanel ? (
                     <button
@@ -355,6 +384,13 @@ export function HeaderNav({ nav, contact, overlay = false }: HeaderNavProps) {
                               <li key={child.href}>
                                 <Link
                                   href={child.href}
+                                  /* Pointer AND keyboard: the preview is a
+                                     reading aid, and tabbing the list should
+                                     get it too. Nothing is announced — the
+                                     picture repeats the name beside it, so it
+                                     is decorative to a screen reader. */
+                                  onMouseEnter={() => setPreview(child)}
+                                  onFocus={() => setPreview(child)}
                                   className="block py-2 text-[0.9375rem] font-semibold text-navy-700 transition-colors hover:text-amber-600"
                                 >
                                   {child.label}
@@ -376,27 +412,80 @@ export function HeaderNav({ nav, contact, overlay = false }: HeaderNavProps) {
                 </div>
 
                 {promo ? (
-                  <Link
-                    href={promo.href}
-                    className="group relative flex w-[300px] flex-col justify-end overflow-hidden rounded-[3px] bg-navy-900 p-5"
-                  >
-                    <Image
-                      src={promo.image.src}
-                      alt={promo.image.alt}
-                      fill
-                      sizes="300px"
-                      className="object-cover opacity-60 transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-navy-950/95 via-navy-950/50 to-transparent" />
-                    <div className="relative">
-                      <h4 className="text-lg font-bold uppercase leading-tight text-white">
-                        {promo.title}
-                      </h4>
-                      <p className="mt-1.5 text-[0.8125rem] leading-relaxed text-white/70">
-                        {promo.description}
+                  /*
+                   * THE PROMO'S COLUMN DOUBLES AS THE MACHINE PREVIEW.
+                   *
+                   * Hovering a model swaps the promo for that machine's cutout.
+                   * It goes here rather than floating beside the cursor for two
+                   * reasons: the column already exists, so nothing moves and no
+                   * layout shifts as you run down the list; and a panel this
+                   * wide has nowhere else to put a 300px picture without
+                   * covering the very list you are reading.
+                   *
+                   * Both are always mounted and cross-faded, so the image is
+                   * decoded before its first hover rather than popping in.
+                   */
+                  <div className="relative w-[300px]">
+                    <Link
+                      href={promo.href}
+                      className={cn(
+                        "group relative flex h-full w-full flex-col justify-end overflow-hidden rounded-[3px] bg-navy-900 p-5",
+                        "transition-opacity duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]",
+                        preview?.image ? "pointer-events-none opacity-0" : "opacity-100",
+                      )}
+                    >
+                      <Image
+                        src={promo.image.src}
+                        alt={promo.image.alt}
+                        fill
+                        sizes="300px"
+                        className="object-cover opacity-60 transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-navy-950/95 via-navy-950/50 to-transparent" />
+                      <div className="relative">
+                        <h4 className="text-lg font-bold uppercase leading-tight text-white">
+                          {promo.title}
+                        </h4>
+                        <p className="mt-1.5 text-[0.8125rem] leading-relaxed text-white/70">
+                          {promo.description}
+                        </p>
+                      </div>
+                    </Link>
+
+                    <div
+                      aria-hidden="true"
+                      className={cn(
+                        "absolute inset-0 flex flex-col items-center justify-center rounded-[3px] border border-steel-200 bg-gradient-to-b from-steel-50 to-white p-4",
+                        "transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]",
+                        preview?.image
+                          ? "translate-x-0 opacity-100"
+                          : "pointer-events-none translate-x-2 opacity-0",
+                      )}
+                    >
+                      {/*
+                       * Centred as a block rather than stretched to the panel's
+                       * height. The panel is as tall as the longest category
+                       * list, which is far taller than a 5:4 cutout — filling
+                       * it left the machine marooned in white with the name
+                       * stranded at the bottom. The pair now sits together in
+                       * the middle whatever the panel's height happens to be.
+                       */}
+                      <div className="relative aspect-[5/4] w-full">
+                        {preview?.image ? (
+                          <Image
+                            src={preview.image.src}
+                            alt=""
+                            fill
+                            sizes="300px"
+                            className="object-contain"
+                          />
+                        ) : null}
+                      </div>
+                      <p className="mt-3 text-center font-display text-xl font-bold uppercase leading-none tracking-tight text-navy-800">
+                        {preview?.label}
                       </p>
                     </div>
-                  </Link>
+                  </div>
                 ) : null}
               </Container>
             </div>
