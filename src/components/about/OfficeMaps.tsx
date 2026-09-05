@@ -38,7 +38,7 @@ export function OfficeMaps({ locations }: { locations: Location[] }) {
         <SectionHeader
           eyebrow="Where to find us"
           title="Our offices"
-          description="Two locations, north and south."
+          description="Visit our Karachi head office or Islamabad office."
         />
 
         <div className="mt-10 grid gap-6 md:grid-cols-2 md:gap-7">
