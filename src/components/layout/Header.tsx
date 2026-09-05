@@ -48,6 +48,12 @@ export async function Header({ overlay = false }: { overlay?: boolean } = {}) {
     return [{ label: category.name, href: routes.category(category), children }];
   });
 
+  const brandLogos: Record<string, string> = {
+    xinyuan: "/brand-logos/xinyuan-original.png",
+    "load-x": "/brand-logos/load-x-original.png",
+    xcmg: "/brand-logos/xcmg-original.png",
+  };
+
   const nav: NavItem[] = [
     {
       label: "Equipment",
@@ -56,7 +62,13 @@ export async function Header({ overlay = false }: { overlay?: boolean } = {}) {
         /* Brands lead, categories beside them in two columns. */
         lead: {
           title: "By brand",
-          items: brands.map((b) => ({ label: b.name, href: routes.brand(b) })),
+          items: brands.map((b) => ({
+            label: b.name,
+            href: routes.brand(b),
+            logo: brandLogos[b.slug]
+              ? { src: brandLogos[b.slug], alt: `${b.name} equipment` }
+              : undefined,
+          })),
         },
         columns: 3,
         items: catalogueItems,

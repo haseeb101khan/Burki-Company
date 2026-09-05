@@ -7,11 +7,11 @@ import { cn } from "@/lib/utils";
  *
  * Both variants are derived from the client-supplied artwork, background
  * removed and trimmed to the mark's bounding box (see design/logo-source/).
- * To drop in new artwork, replace the two files in /public/brand and keep the
- * same aspect ratio — nothing else in the app references the logo directly.
+ * To drop in new artwork, replace the two original variants in /public/brand
+ * and update the intrinsic ratio here.
  */
 
-const LOGO_ASPECT = 1023 / 412; // intrinsic ratio of the supplied artwork
+const LOGO_ASPECT = 1035 / 586; // intrinsic ratio of the supplied artwork
 
 type LogoProps = {
   /** "navy" for light backgrounds, "white" for navy/photographic backgrounds. */
@@ -35,7 +35,11 @@ export function Logo({
 
   const mark = (
     <Image
-      src={variant === "white" ? "/brand/logo-white.png" : "/brand/logo-navy.png"}
+      src={
+        variant === "white"
+          ? "/brand/logo-original-white.png"
+          : "/brand/logo-original-navy.png"
+      }
       alt="Burki &amp; Company"
       width={width}
       height={height}

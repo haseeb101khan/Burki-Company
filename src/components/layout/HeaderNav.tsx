@@ -37,6 +37,7 @@ const NAV_LINK =
 export type NavPanelItem = {
   label: string;
   href: string;
+  logo?: { src: string; alt: string };
   children?: { label: string; href: string }[];
 };
 export type NavPromo = {
@@ -187,7 +188,7 @@ export function HeaderNav({ nav, contact, overlay = false }: HeaderNavProps) {
         onMouseLeave={() => setOpenMenu(null)}
       >
         <Container className="flex h-16 items-center justify-between gap-6 md:h-20">
-          <Logo variant={inverted ? "white" : "navy"} height={40} priority />
+          <Logo variant={inverted ? "white" : "navy"} height={46} priority />
 
           {/* desktop nav */}
           <nav className="hidden items-center gap-1 lg:flex" aria-label="Main">
@@ -289,7 +290,7 @@ export function HeaderNav({ nav, contact, overlay = false }: HeaderNavProps) {
                 )}
               >
                 {lead ? (
-                  <div className="lg:min-w-[210px]">
+                  <div className="lg:min-w-[230px]">
                     <p className="eyebrow-rule font-display text-eyebrow uppercase text-navy-700">
                       {lead.title}
                     </p>
@@ -298,9 +299,22 @@ export function HeaderNav({ nav, contact, overlay = false }: HeaderNavProps) {
                         <li key={link.href}>
                           <Link
                             href={link.href}
-                            className="group flex items-center justify-between gap-4 rounded-[3px] px-3 py-2.5 font-display text-[0.9375rem] font-semibold uppercase tracking-[0.06em] text-navy-700 transition-colors hover:bg-navy-50 hover:text-navy-900"
+                            className="group flex min-h-14 items-center justify-between gap-4 rounded-[3px] px-3 py-1.5 font-display text-[0.9375rem] font-semibold uppercase tracking-[0.06em] text-navy-700 transition-colors hover:bg-navy-50 hover:text-navy-900"
                           >
-                            {link.label}
+                            {link.logo ? (
+                              <>
+                                <Image
+                                  src={link.logo.src}
+                                  alt={link.logo.alt}
+                                  width={168}
+                                  height={54}
+                                  className="h-auto max-h-12 w-[168px] object-contain object-left"
+                                />
+                                <span className="sr-only">{link.label}</span>
+                              </>
+                            ) : (
+                              link.label
+                            )}
                             <ChevronRightIcon className="text-[0.9em] text-navy-300 transition-all duration-300 group-hover:translate-x-0.5 group-hover:text-amber-500" />
                           </Link>
                         </li>
@@ -341,7 +355,7 @@ export function HeaderNav({ nav, contact, overlay = false }: HeaderNavProps) {
                               <li key={child.href}>
                                 <Link
                                   href={child.href}
-                                  className="block py-1.5 text-[0.8125rem] font-medium text-steel-600 transition-colors hover:text-amber-600"
+                                  className="block py-2 text-[0.9375rem] font-semibold text-navy-700 transition-colors hover:text-amber-600"
                                 >
                                   {child.label}
                                 </Link>
@@ -399,7 +413,7 @@ export function HeaderNav({ nav, contact, overlay = false }: HeaderNavProps) {
           />
           <div className="absolute inset-y-0 right-0 flex w-full max-w-sm flex-col bg-white shadow-2xl">
             <div className="flex h-16 shrink-0 items-center justify-between border-b border-steel-200 px-5">
-              <Logo variant="navy" height={30} />
+              <Logo variant="navy" height={36} />
               <button
                 type="button"
                 aria-label="Close menu"
@@ -434,6 +448,40 @@ export function HeaderNav({ nav, contact, overlay = false }: HeaderNavProps) {
                           </button>
                           {expanded ? (
                             <ul className="mb-3 space-y-0.5 border-l-2 border-amber-500 pl-4">
+                              {item.panel.lead ? (
+                                <li className="pb-3">
+                                  <p className="py-2 font-display text-[0.75rem] font-semibold uppercase tracking-[0.12em] text-steel-500">
+                                    {item.panel.lead.title}
+                                  </p>
+                                  <ul className="grid grid-cols-3 gap-2">
+                                    {item.panel.lead.items.map((link) => (
+                                      <li key={link.href}>
+                                        <Link
+                                          href={link.href}
+                                          className="flex h-12 items-center justify-center border-b border-steel-200 px-1 transition-colors hover:border-amber-500"
+                                        >
+                                          {link.logo ? (
+                                            <>
+                                              <Image
+                                                src={link.logo.src}
+                                                alt={link.logo.alt}
+                                                width={112}
+                                                height={36}
+                                                className="h-auto max-h-9 w-full object-contain"
+                                              />
+                                              <span className="sr-only">{link.label}</span>
+                                            </>
+                                          ) : (
+                                            <span className="font-display text-sm font-semibold uppercase text-navy-800">
+                                              {link.label}
+                                            </span>
+                                          )}
+                                        </Link>
+                                      </li>
+                                    ))}
+                                  </ul>
+                                </li>
+                              ) : null}
                               {item.panel.items.map((link) => (
                                 <li key={link.href}>
                                   <Link
@@ -453,7 +501,7 @@ export function HeaderNav({ nav, contact, overlay = false }: HeaderNavProps) {
                                         <li key={child.href}>
                                           <Link
                                             href={child.href}
-                                            className="block py-1.5 text-[0.8125rem] text-steel-600 hover:text-amber-600"
+                                            className="block py-2 text-[0.9375rem] font-semibold text-navy-700 hover:text-amber-600"
                                           >
                                             {child.label}
                                           </Link>
