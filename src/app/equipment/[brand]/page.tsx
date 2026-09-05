@@ -142,6 +142,11 @@ export default async function BrandCataloguePage({ params, searchParams }: Props
           src: "/images/xcmg/xcmg-banner.webp",
           alt: "XCMG headquarters signage",
         }
+      : slug === "load-x"
+        ? {
+            src: "/images/banner-load-x.jpg",
+            alt: "LOAD-X wheel loaders and excavators lined up at the yard",
+          }
       : (brand.showcaseImages[0] ?? null);
 
   return (
@@ -171,7 +176,7 @@ export default async function BrandCataloguePage({ params, searchParams }: Props
         {/* Existing brand media promoted to the same full-width banner position
             used by the excavator category page. */}
         <section className="bg-navy-950">
-          <div className="relative mx-auto aspect-[10/3] w-full max-w-[1440px] overflow-hidden">
+          <div className="relative aspect-[10/3] w-full overflow-hidden">
             {brand.showcaseVideoUrl ? (
               <BrandIntroVideo
                 src={brand.showcaseVideoUrl}
