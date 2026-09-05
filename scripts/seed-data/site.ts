@@ -10,13 +10,10 @@ import type {
  */
 
 /**
- * ADDRESSES AND SOCIAL LINKS ARE THE CLIENT'S OWN. PHONE NUMBERS ARE NOT.
+ * CONTACT DETAILS, ADDRESSES AND SOCIAL LINKS ARE THE CLIENT'S OWN.
  *
- * Both office addresses and the three social accounts were supplied and are
- * real. The phone and WhatsApp numbers are still invented - correctly
- * formatted for a Karachi business, but not the client's - and
- * `contactIsPlaceholder` keeps a visible notice on the contact page until they
- * are replaced. Email addresses use the client's genuine domain.
+ * WhatsApp is the primary direct line. The second mobile number is kept as the
+ * voice helpline anywhere both contact methods are presented.
  *
  * Positioning is deliberately NATIONWIDE: no country list, no claim to operate
  * only locally, and no export markets named until the client confirms which
@@ -64,8 +61,8 @@ export const siteConfig: SiteConfig = {
       isPrimary: false,
     },
   ],
-  phone: "+92 21 3456 7890",
-  whatsapp: "+92 300 1234567",
+  phone: "+92 316 6666786",
+  whatsapp: "+92 333 2315786",
   email: "info@burkigroup.com",
   salesEmail: "sales@burkigroup.com",
   hours: "Monday to Saturday, 9:00am to 6:00pm",
@@ -102,7 +99,7 @@ export const siteConfig: SiteConfig = {
       href: "https://www.tiktok.com/@burkicompanyofficial",
     },
   ],
-  contactIsPlaceholder: true,
+  contactIsPlaceholder: false,
 };
 
 /**

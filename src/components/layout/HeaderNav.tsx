@@ -11,11 +11,11 @@ import {
   CloseIcon,
   MailIcon,
   MenuIcon,
-  PhoneIcon,
+  WhatsAppIcon,
 } from "@/components/ui/Icons";
 import { Logo } from "@/components/ui/Logo";
 import { Container } from "@/components/ui/Section";
-import { cn, toDialString } from "@/lib/utils";
+import { cn, toWhatsAppNumber } from "@/lib/utils";
 
 /*
  * Shared nav-link styling: an amber rule wipes in from the left on hover.
@@ -74,7 +74,7 @@ export type NavItem = {
 
 type HeaderNavProps = {
   nav: NavItem[];
-  contact: { phone: string; email: string };
+  contact: { whatsapp: string; email: string };
   /**
    * True where the bar sits over a full-bleed hero — the homepage.
    *
@@ -174,11 +174,13 @@ export function HeaderNav({ nav, contact, overlay = false }: HeaderNavProps) {
           </p>
           <div className="flex items-center gap-6 text-[0.75rem]">
             <a
-              href={`tel:${toDialString(contact.phone)}`}
+              href={`https://wa.me/${toWhatsAppNumber(contact.whatsapp)}`}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 transition-colors hover:text-amber-400"
             >
-              <PhoneIcon className="text-[0.9em]" />
-              {contact.phone}
+              <WhatsAppIcon className="text-[0.9em]" />
+              {contact.whatsapp}
             </a>
             <a
               href={`mailto:${contact.email}`}
@@ -630,10 +632,12 @@ export function HeaderNav({ nav, contact, overlay = false }: HeaderNavProps) {
                 Request a Quote
               </Button>
               <a
-                href={`tel:${toDialString(contact.phone)}`}
+                href={`https://wa.me/${toWhatsAppNumber(contact.whatsapp)}`}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 py-2 text-sm font-medium text-navy-700"
               >
-                <PhoneIcon /> {contact.phone}
+                <WhatsAppIcon /> {contact.whatsapp}
               </a>
             </div>
           </div>

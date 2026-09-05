@@ -136,7 +136,7 @@ export async function Header({ overlay = false }: { overlay?: boolean } = {}) {
       overlay={overlay}
       nav={nav}
       contact={{
-        phone: site.phone,
+        whatsapp: site.whatsapp,
         email: site.email,
       }}
     />

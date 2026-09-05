@@ -6822,7 +6822,7 @@ export const content: ContentSnapshot = {
         "city": "Karachi",
         "country": "Pakistan",
         "mapQuery": "Highway Trade Centre, Super Highway, Karachi, Pakistan",
-        "phone": "+92 21 3456 7890",
+        "phone": "+92 316 6666786",
         "email": "info@burkigroup.com",
         "isPrimary": true
       },
@@ -6843,12 +6843,12 @@ export const content: ContentSnapshot = {
       "city": "Karachi",
       "country": "Pakistan",
       "mapQuery": "Highway Trade Centre, Super Highway, Karachi, Pakistan",
-      "phone": "+92 21 3456 7890",
+      "phone": "+92 316 6666786",
       "email": "info@burkigroup.com",
       "isPrimary": true
     },
-    "phone": "+92 21 3456 7890",
-    "whatsapp": "+92 300 1234567",
+    "phone": "+92 316 6666786",
+    "whatsapp": "+92 333 2315786",
     "email": "info@burkigroup.com",
     "salesEmail": "sales@burkigroup.com",
     "businessHours": [
@@ -6877,7 +6877,7 @@ export const content: ContentSnapshot = {
         "href": "https://www.tiktok.com/@burkicompanyofficial"
       }
     ],
-    "contactIsPlaceholder": true,
+    "contactIsPlaceholder": false,
     "introVideo": {
       "src": null,
       "poster": {

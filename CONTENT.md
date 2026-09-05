@@ -121,7 +121,6 @@ Tracking parameters are stripped from every link.
 | **About section covers** | Sections 2-4 show a designed navy panel until cover photographs arrive. |
 | **Four partner logos** | Wrong artwork supplied for ZKB, NKB and SKB; the Faisalabad Oil Refinery file is a business card. |
 | **News strip covers and dates** | Three reels are linked. Reel cover frames, posting dates and a Facebook post are still to come. |
-| **Phone and WhatsApp** | Still invented. Both addresses and all three social accounts are now the client's own. |
 | **Manufacturer permissions** | Xinyuan is confirmed by certificate. The other five are unconfirmed until an agreement is on file. |
 | **Video captions** | None supplied for the introduction film. |
 | **Domain** | Set `NEXT_PUBLIC_SITE_URL` once decided. |

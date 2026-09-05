@@ -132,18 +132,18 @@ export default async function RequestQuotePage({ searchParams }: Props) {
                     <div className="mt-6 space-y-4">
                       {[
                         {
-                          icon: <PhoneIcon />,
-                          label: "Call",
-                          value: site.phone,
-                          href: `tel:${toDialString(site.phone)}`,
-                          external: false,
-                        },
-                        {
                           icon: <WhatsAppIcon />,
                           label: "WhatsApp",
                           value: site.whatsapp,
                           href: `https://wa.me/${toWhatsAppNumber(site.whatsapp)}`,
                           external: true,
+                        },
+                        {
+                          icon: <PhoneIcon />,
+                          label: "Helpline",
+                          value: site.phone,
+                          href: `tel:${toDialString(site.phone)}`,
+                          external: false,
                         },
                         {
                           icon: <MailIcon />,

@@ -50,23 +50,6 @@ export async function QuoteSection() {
           <Reveal delay={0.1}>
             <div className="flex flex-col gap-3 border-t border-white/15 pt-8 lg:border-l lg:border-t-0 lg:pl-12 lg:pt-0">
               <a
-                href={`tel:${toDialString(site.phone)}`}
-                className="group flex items-center gap-4 text-white/75 transition-colors hover:text-white"
-              >
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[3px] border border-white/20 text-lg text-amber-500 transition-colors group-hover:border-amber-500">
-                  <PhoneIcon />
-                </span>
-                <span>
-                  <span className="block font-display text-[0.6875rem] font-semibold uppercase tracking-[0.16em] text-white/45">
-                    Call
-                  </span>
-                  <span className="font-display text-base font-semibold tabular-nums">
-                    {site.phone}
-                  </span>
-                </span>
-              </a>
-
-              <a
                 href={`https://wa.me/${toWhatsAppNumber(site.whatsapp)}`}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -81,6 +64,23 @@ export async function QuoteSection() {
                   </span>
                   <span className="font-display text-base font-semibold tabular-nums">
                     {site.whatsapp}
+                  </span>
+                </span>
+              </a>
+
+              <a
+                href={`tel:${toDialString(site.phone)}`}
+                className="group flex items-center gap-4 text-white/75 transition-colors hover:text-white"
+              >
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[3px] border border-white/20 text-lg text-amber-500 transition-colors group-hover:border-amber-500">
+                  <PhoneIcon />
+                </span>
+                <span>
+                  <span className="block font-display text-[0.6875rem] font-semibold uppercase tracking-[0.16em] text-white/45">
+                    Helpline
+                  </span>
+                  <span className="font-display text-base font-semibold tabular-nums">
+                    {site.phone}
                   </span>
                 </span>
               </a>

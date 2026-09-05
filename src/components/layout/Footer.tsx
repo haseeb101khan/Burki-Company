@@ -8,12 +8,13 @@ import {
   MailIcon,
   MapPinIcon,
   PhoneIcon,
+  WhatsAppIcon,
   socialIcons,
 } from "@/components/ui/Icons";
 import { FooterColumn } from "@/components/layout/FooterColumn";
 import { Logo } from "@/components/ui/Logo";
 import { Container } from "@/components/ui/Section";
-import { toDialString } from "@/lib/utils";
+import { toDialString, toWhatsAppNumber } from "@/lib/utils";
 import { routes } from "@/lib/routes";
 
 export async function Footer() {
@@ -47,13 +48,34 @@ export async function Footer() {
                 </span>
               </p>
               <p className="flex items-center gap-3">
+                <WhatsAppIcon className="shrink-0 text-base text-amber-500" />
+                <span>
+                  <span className="block text-[0.6875rem] font-semibold uppercase text-white/40">
+                    WhatsApp
+                  </span>
+                  <a
+                    href={`https://wa.me/${toWhatsAppNumber(site.whatsapp)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="transition-colors hover:text-white"
+                  >
+                    {site.whatsapp}
+                  </a>
+                </span>
+              </p>
+              <p className="flex items-center gap-3">
                 <PhoneIcon className="shrink-0 text-base text-amber-500" />
-                <a
-                  href={`tel:${toDialString(site.phone)}`}
-                  className="transition-colors hover:text-white"
-                >
-                  {site.phone}
-                </a>
+                <span>
+                  <span className="block text-[0.6875rem] font-semibold uppercase text-white/40">
+                    Helpline
+                  </span>
+                  <a
+                    href={`tel:${toDialString(site.phone)}`}
+                    className="transition-colors hover:text-white"
+                  >
+                    {site.phone}
+                  </a>
+                </span>
               </p>
               <p className="flex items-center gap-3">
                 <MailIcon className="shrink-0 text-base text-amber-500" />

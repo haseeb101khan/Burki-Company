@@ -154,7 +154,7 @@ const companyInfo: CompanyInfo = {
   salesEmail: siteConfig.salesEmail,
   businessHours: [{ days: "Monday to Saturday", hours: "9:00am to 6:00pm" }],
   socials: siteConfig.socials,
-  contactIsPlaceholder: true,
+  contactIsPlaceholder: siteConfig.contactIsPlaceholder,
   introVideo: {
     src: siteConfig.introVideo.src,
     poster: { src: siteConfig.introVideo.poster, alt: "Burki & Company" },
