@@ -208,10 +208,10 @@ export function HeaderNav({ nav, contact, overlay = false }: HeaderNavProps) {
       >
         <Container className="flex h-16 items-center justify-between gap-6 md:h-20">
           <span className="hidden lg:inline-flex">
-            <Logo variant={inverted ? "white" : "navy"} height={60} priority />
+            <Logo variant={inverted ? "white" : "navy"} width={180} priority />
           </span>
           <span className="inline-flex lg:hidden">
-            <Logo variant={inverted ? "white" : "navy"} height={46} priority />
+            <Logo variant={inverted ? "white" : "navy"} width={122} priority />
           </span>
 
           {/* desktop nav */}
@@ -502,7 +502,7 @@ export function HeaderNav({ nav, contact, overlay = false }: HeaderNavProps) {
           />
           <div className="absolute inset-y-0 right-0 flex w-full max-w-sm flex-col bg-white shadow-2xl">
             <div className="flex h-16 shrink-0 items-center justify-between border-b border-steel-200 px-5">
-              <Logo variant="navy" height={36} />
+              <Logo variant="navy" width={122} />
               <button
                 type="button"
                 aria-label="Close menu"

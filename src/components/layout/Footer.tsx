@@ -31,7 +31,7 @@ export async function Footer() {
         <div className="grid gap-10 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
           {/* ------------------------------------------------ brand block */}
           <div className="max-w-sm">
-            <Logo variant="white" height={48} />
+            <Logo variant="white" width={190} />
             <p className="mt-6 text-[0.9375rem] leading-relaxed text-white/60">
               {site.tagline}
             </p>

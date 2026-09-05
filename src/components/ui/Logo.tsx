@@ -11,13 +11,13 @@ import { cn } from "@/lib/utils";
  * and update the intrinsic ratio here.
  */
 
-const LOGO_ASPECT = 1035 / 586; // intrinsic ratio of the supplied artwork
+const LOGO_ASPECT = 2593 / 411; // intrinsic ratio of the prepared artwork
 
 type LogoProps = {
   /** "navy" for light backgrounds, "white" for navy/photographic backgrounds. */
   variant?: "navy" | "white";
-  /** Rendered height in px; width is derived from the artwork's aspect ratio. */
-  height?: number;
+  /** Rendered width in px; height is derived from the artwork's aspect ratio. */
+  width?: number;
   className?: string;
   /** Wraps the mark in a link to home. Set false inside an existing link. */
   href?: string | null;
@@ -26,19 +26,19 @@ type LogoProps = {
 
 export function Logo({
   variant = "navy",
-  height = 40,
+  width = 160,
   className,
   href = "/",
   priority = false,
 }: LogoProps) {
-  const width = Math.round(height * LOGO_ASPECT);
+  const height = Math.round(width / LOGO_ASPECT);
 
   const mark = (
     <Image
       src={
         variant === "white"
-          ? "/brand/logo-original-white.png"
-          : "/brand/logo-original-navy.png"
+          ? "/brand/logo-horizontal-white.png"
+          : "/brand/logo-horizontal-navy.png"
       }
       alt="Burki &amp; Company"
       width={width}

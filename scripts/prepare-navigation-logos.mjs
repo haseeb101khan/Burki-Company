@@ -1,4 +1,4 @@
-import { mkdirSync, unlinkSync } from "node:fs";
+import { copyFileSync, mkdirSync, unlinkSync } from "node:fs";
 import { join } from "node:path";
 import sharp from "sharp";
 
@@ -105,7 +105,7 @@ async function xcmgOriginal(input, output) {
 mkdirSync("public/brand", { recursive: true });
 mkdirSync("public/brand-logos", { recursive: true });
 
-const burkiSource = "design/logo-source/burki-company-original.png";
+const burkiSource = "design/logo-source/burki-company-original-horizontal.png";
 const xinyuanSource = "design/logo-source/xinyuan-original.jpeg";
 const loadXSource = "source-media/brand-logos/load-x.PNG";
 const xcmgSource = "source-media/brand-logos/xcmg.PNG";
@@ -115,11 +115,13 @@ const burkiColour = (colour) => {
   return amber ? AMBER : BURKI_NAVY;
 };
 
-await transparentArtwork(burkiSource, "public/brand/logo-original-navy.png", burkiColour);
-await transparentArtwork(burkiSource, "public/brand/logo-original-white.png", (colour) => {
+await transparentArtwork(burkiSource, "public/brand/logo-horizontal-navy.png", burkiColour);
+await transparentArtwork(burkiSource, "public/brand/logo-horizontal-white.png", (colour) => {
   const amber = colour.r > 150 && colour.g > 75 && colour.b < 100;
   return amber ? AMBER : WHITE;
 });
+copyFileSync("public/brand/logo-horizontal-navy.png", "public/brand/logo-original-navy.png");
+copyFileSync("public/brand/logo-horizontal-white.png", "public/brand/logo-original-white.png");
 
 const prepared = [
   [xinyuanSource, "xinyuan-original", () => BLACK],
