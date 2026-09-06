@@ -12,6 +12,7 @@ import styles from "./HomeIntro.module.css";
 
 const SESSION_KEY = "burki-home-intro-played";
 const EXIT_MS = 560;
+const INTRO_HOLD_MS = 2440;
 const subscribe = () => () => undefined;
 
 function shouldPlayInBrowser() {
@@ -71,7 +72,7 @@ export function HomeIntro() {
     });
 
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const autoFinish = window.setTimeout(finish, reducedMotion ? 850 : 4240);
+    const autoFinish = window.setTimeout(finish, reducedMotion ? 500 : INTRO_HOLD_MS);
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") finish();
     };
@@ -105,14 +106,14 @@ export function HomeIntro() {
       onPointerDown={finish}
     >
       <div className={styles.stage} aria-hidden="true">
-        <div className={styles.mover}>
+        <div className={styles.emblemMover}>
           <Image
-            src="/brand/logo-horizontal-navy.png"
+            src="/brand/logo-emblem-navy.png"
             alt=""
             fill
             priority
-            sizes="(min-width: 820px) 720px, 90vw"
-            className={styles.logo}
+            sizes="(min-width: 1000px) 242px, 27vw"
+            className={styles.emblem}
           />
 
           <svg
@@ -139,6 +140,17 @@ export function HomeIntro() {
               <path pathLength="1" d="M137 214 L184 167 L184 280" />
             </g>
           </svg>
+        </div>
+
+        <div className={styles.wordmark}>
+          <Image
+            src="/brand/logo-wordmark-navy.png"
+            alt=""
+            fill
+            priority
+            sizes="(min-width: 1000px) 611px, 67vw"
+            className={styles.wordmarkImage}
+          />
         </div>
         <span className={styles.baseline} />
       </div>

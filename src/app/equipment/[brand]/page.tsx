@@ -144,8 +144,8 @@ export default async function BrandCataloguePage({ params, searchParams }: Props
         }
       : slug === "load-x"
         ? {
-            src: "/images/banner-load-x.jpg",
-            alt: "LOAD-X wheel loaders and excavators lined up at the yard",
+            src: "/images/loadx-catalogue-banner.webp",
+            alt: "LOAD-X wheel loaders presented across the product range",
           }
       : (brand.showcaseImages[0] ?? null);
 
@@ -176,7 +176,7 @@ export default async function BrandCataloguePage({ params, searchParams }: Props
         {/* Existing brand media promoted to the same full-width banner position
             used by the excavator category page. */}
         <section className="bg-navy-950">
-          <div className="relative aspect-[10/3] w-full overflow-hidden">
+          <div className="relative aspect-[2/1] w-full overflow-hidden md:aspect-[10/3]">
             {brand.showcaseVideoUrl ? (
               <BrandIntroVideo
                 src={brand.showcaseVideoUrl}

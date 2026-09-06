@@ -87,8 +87,8 @@ export const banners: BannerSource[] = [
     id: "bn-load-x",
     order: 2,
     image: {
-      src: "/images/banner-load-x.jpg",
-      alt: "A line of LOAD-X wheel loaders and excavators at Burki & Company",
+      src: "/images/loadx-catalogue-banner.webp",
+      alt: "LOAD-X wheel loaders presented across the product range",
     },
     eyebrow: "Load-X",
     title: "Sole nationwide dealer",

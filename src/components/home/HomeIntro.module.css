@@ -33,7 +33,7 @@
   background-color: #f5a623;
   transform: translateX(-50%) scaleX(0);
   transform-origin: center;
-  animation: top-rule 900ms 180ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: top-rule 600ms 100ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 .exiting {
@@ -43,38 +43,50 @@
 
 .stage {
   position: relative;
-  width: min(720px, 90vw);
-  aspect-ratio: 2593 / 411;
+  width: min(920px, 92vw);
+  aspect-ratio: 920 / 342;
 }
 
-.mover {
+.emblemMover {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 100%;
+  width: 26.3%;
   height: 100%;
-  transform: translate(-5.65%, -50%);
-  animation: assemble-position 1180ms 2080ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  transform: translate(-50%, -50%);
+  animation: emblem-settle 700ms 1180ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
-.logo {
+.emblem {
   object-fit: contain;
   opacity: 0;
-  clip-path: inset(0 88.7% 0 0);
-  animation:
-    mark-fill 380ms 1710ms ease-out forwards,
-    wordmark-reveal 1180ms 2080ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: mark-fill 220ms 1010ms ease-out forwards;
+}
+
+.wordmark {
+  position: absolute;
+  top: 50%;
+  left: 30.1%;
+  width: 66.4%;
+  aspect-ratio: 2201 / 411;
+  overflow: hidden;
+  opacity: 0;
+  clip-path: inset(0 100% 0 0);
+  transform: translateY(-50%);
+  animation: wordmark-reveal 700ms 1180ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.wordmarkImage {
+  object-fit: contain;
 }
 
 .trace {
   position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  width: 11.3%;
+  inset: 0;
+  width: 100%;
   height: 100%;
   overflow: visible;
-  animation: trace-out 380ms 1710ms ease-out forwards;
+  animation: trace-out 220ms 1010ms ease-out forwards;
 }
 
 .trace path {
@@ -99,27 +111,27 @@
 }
 
 .strokeOne {
-  animation-duration: 760ms;
-  animation-delay: 120ms;
+  animation-duration: 420ms;
+  animation-delay: 50ms;
 }
 
 .strokeTwo {
-  animation-duration: 900ms;
-  animation-delay: 390ms;
+  animation-duration: 500ms;
+  animation-delay: 180ms;
 }
 
 .strokeThree {
-  animation-duration: 620ms;
-  animation-delay: 930ms;
+  animation-duration: 380ms;
+  animation-delay: 520ms;
 }
 
 .strokeFour {
-  animation-duration: 520ms;
-  animation-delay: 1170ms;
+  animation-duration: 320ms;
+  animation-delay: 680ms;
 }
 
 .amberTrace {
-  animation: amber-out 300ms 1650ms ease-out forwards;
+  animation: amber-out 180ms 980ms ease-out forwards;
 }
 
 .amberTrace path {
@@ -127,34 +139,34 @@
   stroke-width: 5;
   stroke-dasharray: 0.08 0.92;
   stroke-dashoffset: 1;
-  animation: amber-path 1080ms cubic-bezier(0.45, 0, 0.2, 1) forwards;
+  animation: amber-path 650ms cubic-bezier(0.45, 0, 0.2, 1) forwards;
 }
 
 .amberTrace path:nth-child(2) {
-  animation-delay: 260ms;
+  animation-delay: 140ms;
 }
 
 .amberTrace path:nth-child(3) {
-  animation-delay: 680ms;
+  animation-delay: 390ms;
 }
 
 .amberTrace path:nth-child(4) {
-  animation-delay: 980ms;
+  animation-delay: 590ms;
 }
 
 .baseline {
   position: absolute;
-  right: 0;
-  bottom: -24px;
-  left: 0;
+  top: 73.5%;
+  right: 3.5%;
+  left: 30.1%;
   height: 1px;
   background-color: rgba(0, 38, 101, 0.18);
   opacity: 0;
   transform: scaleX(0);
   transform-origin: left;
   animation:
-    baseline-in 900ms 2390ms cubic-bezier(0.22, 1, 0.36, 1) forwards,
-    baseline-out 420ms 3730ms ease forwards;
+    baseline-in 520ms 1370ms cubic-bezier(0.22, 1, 0.36, 1) forwards,
+    baseline-out 260ms 2180ms ease forwards;
 }
 
 .baseline::before {
@@ -210,14 +222,14 @@
   to { opacity: 1; }
 }
 
-@keyframes assemble-position {
-  from { transform: translate(-5.65%, -50%); }
-  to { transform: translate(-50%, -50%); }
+@keyframes emblem-settle {
+  from { left: 50%; transform: translate(-50%, -50%); }
+  to { left: 0; transform: translate(0, -50%); }
 }
 
 @keyframes wordmark-reveal {
-  from { clip-path: inset(0 88.7% 0 0); }
-  to { clip-path: inset(0 0 0 0); }
+  from { opacity: 0; clip-path: inset(0 100% 0 0); }
+  to { opacity: 1; clip-path: inset(0 0 0 0); }
 }
 
 @keyframes baseline-in {
@@ -243,16 +255,33 @@
     background-size: 36px 36px;
   }
 
-  .stage {
-    width: 92vw;
-  }
-
-  .baseline {
-    bottom: -18px;
-  }
-
   .skip {
     right: 18px;
     bottom: max(16px, env(safe-area-inset-bottom));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .overlay::after {
+    transform: translateX(-50%) scaleX(1);
+    animation: none;
+  }
+
+  .emblemMover {
+    left: 0;
+    transform: translate(0, -50%);
+    animation: none;
+  }
+
+  .emblem,
+  .wordmark {
+    opacity: 1;
+    clip-path: none;
+    animation: none;
+  }
+
+  .trace,
+  .baseline {
+    display: none;
   }
 }

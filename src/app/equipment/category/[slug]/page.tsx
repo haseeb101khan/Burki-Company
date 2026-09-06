@@ -64,6 +64,19 @@ export default async function CategoryPage({ params, searchParams }: Props) {
   const href = (brand?: string) =>
     brand ? `${routes.category(slug)}?brand=${brand}` : routes.category(slug);
 
+  const categoryBanner =
+    slug === "excavators"
+      ? {
+          src: "/images/excavator-cat-page.webp",
+          alt: "Xinyuan excavators lined up at the Burki & Company dealership",
+        }
+      : slug === "wheel-loaders"
+        ? {
+            src: "/images/loadx-catalogue-banner.webp",
+            alt: "LOAD-X wheel loaders presented across the product range",
+          }
+        : null;
+
   return (
     <>
       <Header />
@@ -87,15 +100,15 @@ export default async function CategoryPage({ params, searchParams }: Props) {
           </Container>
         </div>
 
-        {slug === "excavators" ? (
+        {categoryBanner ? (
           <>
             <section className="bg-navy-950">
-              {/* Match the brand catalogue banners exactly. Artwork exported
-                  at 10:3 fills this responsive frame without cropping. */}
-              <div className="relative aspect-[10/3] w-full overflow-hidden bg-navy-950">
+              {/* The wide catalogue ratio stays on larger screens. Phones use
+                  the homepage hero ratio so the banner has enough height. */}
+              <div className="relative aspect-[2/1] w-full overflow-hidden bg-navy-950 md:aspect-[10/3]">
                 <Image
-                  src="/images/excavator-cat-page.webp"
-                  alt="Xinyuan excavators lined up at the Burki & Company dealership"
+                  src={categoryBanner.src}
+                  alt={categoryBanner.alt}
                   fill
                   priority
                   sizes="100vw"
