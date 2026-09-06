@@ -72,10 +72,15 @@ export default async function CategoryPage({ params, searchParams }: Props) {
         }
       : slug === "wheel-loaders"
         ? {
-            src: "/images/loadx-catalogue-banner.webp",
+            src: "/images/loadx-catalogue-banner-2026.webp",
             alt: "LOAD-X wheel loaders presented across the product range",
           }
-        : null;
+        : slug === "backhoe-loaders"
+          ? {
+              src: "/images/xcmg-catalogue-banner.webp",
+              alt: "XCMG wheel loader presented across the product range",
+            }
+          : null;
 
   return (
     <>
@@ -103,9 +108,7 @@ export default async function CategoryPage({ params, searchParams }: Props) {
         {categoryBanner ? (
           <>
             <section className="bg-navy-950">
-              {/* The wide catalogue ratio stays on larger screens. Phones use
-                  the homepage hero ratio so the banner has enough height. */}
-              <div className="relative aspect-[2/1] w-full overflow-hidden bg-navy-950 md:aspect-[10/3]">
+              <div className="relative aspect-[10/3] w-full overflow-hidden bg-navy-950">
                 <Image
                   src={categoryBanner.src}
                   alt={categoryBanner.alt}

@@ -6703,7 +6703,7 @@ export const content: ContentSnapshot = {
     {
       "id": "bn-load-x",
       "image": {
-        "src": "/images/loadx-catalogue-banner.webp",
+        "src": "/images/loadx-catalogue-banner-2026.webp",
         "alt": "LOAD-X wheel loaders presented across the product range"
       },
       "eyebrow": "Load-X",

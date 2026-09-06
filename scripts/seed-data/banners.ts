@@ -87,7 +87,7 @@ export const banners: BannerSource[] = [
     id: "bn-load-x",
     order: 2,
     image: {
-      src: "/images/loadx-catalogue-banner.webp",
+      src: "/images/loadx-catalogue-banner-2026.webp",
       alt: "LOAD-X wheel loaders presented across the product range",
     },
     eyebrow: "Load-X",
