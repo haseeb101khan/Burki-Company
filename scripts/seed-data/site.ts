@@ -63,8 +63,8 @@ export const siteConfig: SiteConfig = {
   ],
   phone: "+92 316 6666786",
   whatsapp: "+92 333 2315786",
-  email: "info@burkigroup.com",
-  salesEmail: "sales@burkigroup.com",
+  email: "info@burkiandcompany.com",
+  salesEmail: "info@burkiandcompany.com",
   hours: "Monday to Saturday, 9:00am to 6:00pm",
   /**
    * Company introduction video. `src` stays null until the client supplies the

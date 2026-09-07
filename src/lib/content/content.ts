@@ -6823,7 +6823,7 @@ export const content: ContentSnapshot = {
         "country": "Pakistan",
         "mapQuery": "Highway Trade Centre, Super Highway, Karachi, Pakistan",
         "phone": "+92 316 6666786",
-        "email": "info@burkigroup.com",
+        "email": "info@burkiandcompany.com",
         "isPrimary": true
       },
       {
@@ -6844,13 +6844,13 @@ export const content: ContentSnapshot = {
       "country": "Pakistan",
       "mapQuery": "Highway Trade Centre, Super Highway, Karachi, Pakistan",
       "phone": "+92 316 6666786",
-      "email": "info@burkigroup.com",
+      "email": "info@burkiandcompany.com",
       "isPrimary": true
     },
     "phone": "+92 316 6666786",
     "whatsapp": "+92 333 2315786",
-    "email": "info@burkigroup.com",
-    "salesEmail": "sales@burkigroup.com",
+    "email": "info@burkiandcompany.com",
+    "salesEmail": "info@burkiandcompany.com",
     "businessHours": [
       {
         "days": "Monday to Saturday",
