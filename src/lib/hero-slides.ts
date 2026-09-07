@@ -60,17 +60,17 @@ export const heroSlides: HeroSlide[] = [
   {
     id: "xinyuan",
     image: {
-      src: "/images/hero/xinyuan.png",
+      src: "/images/hero/xinyuan-hero-2026.png",
       alt: "Burki & Company and Xinyuan — innovation creates the future. Xinyuan wheeled excavators.",
     },
-    aspect: 2,
+    aspect: 1672 / 941,
     position: { mobile: "center", tablet: "center", desktop: "center" },
     brand: { name: "Xinyuan", slug: "xinyuan" },
   },
   {
     id: "load-x",
     image: {
-      src: "/images/hero/loadx.png",
+      src: "/images/hero/loadx-hero-2026.png",
       alt: "Burki & Company and LOAD-X — power that moves more. LOAD-X wheel loaders.",
     },
     aspect: 2,
@@ -80,7 +80,7 @@ export const heroSlides: HeroSlide[] = [
   {
     id: "xcmg",
     image: {
-      src: "/images/hero/xcmg.png",
+      src: "/images/hero/xcmg-hero-2026.png",
       alt: "Burki & Company and XCMG — performance for every jobsite. XCMG wheel loaders.",
     },
     aspect: 2,
