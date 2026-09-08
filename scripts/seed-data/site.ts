@@ -322,12 +322,12 @@ export const services: Service[] = [
   },
   {
     id: "sv-05",
-    slug: "xinyuan-warranty",
-    name: "Half-Year Free Warranty",
+    slug: "one-year-warranty",
+    name: "One-Year Free Warranty",
     description:
-      "Burki & Company provides timely warranty support for Xinyuan wheeled excavators through the nearest available service team, helping owners keep their machines working with confidence.",
+      "Burki & Company provides timely warranty support for Xinyuan wheeled excavators and LOAD-X wheel loaders through the nearest available service team, helping owners keep their machines working with confidence.",
     points: [
-      "Free on-site maintenance for eligible faults during normal use for six months from the official purchase date",
+      "Free on-site maintenance for eligible faults during normal use for one year from the official purchase date",
       "Warranty eligibility verified against the official purchase invoice",
       "Confirmed product-quality faults repaired by Burki & Company under the warranty terms",
     ],

@@ -55,12 +55,27 @@ const allBrands: Brand[] = brands.map((b) => ({
 
 /* ──────────────────────────────────────────────────────── equipment ────── */
 
-const allEquipment: Equipment[] = [...equipment, ...xinyuanEquipment].map((e) => ({
-  ...e,
-  brandSlug: brandSlug(e.brand),
-  categoryName: equipmentCategories.find((c) => c.slug === e.categorySlug)?.name,
-  videos: e.videos ?? [],
-}));
+const warrantyBrands = new Set(["xinyuan", "load-x"]);
+
+const allEquipment: Equipment[] = [...equipment, ...xinyuanEquipment].map((e) => {
+  const hasOneYearWarranty = warrantyBrands.has(e.brand.toLowerCase());
+
+  return {
+    ...e,
+    brandSlug: brandSlug(e.brand),
+    categoryName: equipmentCategories.find((c) => c.slug === e.categorySlug)?.name,
+    videos: e.videos ?? [],
+    features: hasOneYearWarranty
+      ? [
+          ...e.features.filter((feature) => feature.title !== "One-Year Free Warranty"),
+          {
+            title: "One-Year Free Warranty",
+            description: `This ${e.brand} machine is covered by Burki & Company's free warranty for one year from the official purchase date, subject to the warranty terms.`,
+          },
+        ]
+      : e.features,
+  };
+});
 
 /* ──────────────────────────────────────────────────────────── parts ────── */
 

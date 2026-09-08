@@ -423,7 +423,7 @@ export const content: ContentSnapshot = {
             },
             {
               "label": "Warranty",
-              "value": "6 months"
+              "value": "1 year"
             },
             {
               "label": "Loading port",
@@ -590,8 +590,12 @@ export const content: ContentSnapshot = {
           "description": "Drive to all four wheels keeps it loading on loose and broken ground instead of spinning."
         },
         {
-          "title": "Certified and warranted",
-          "description": "Supplied new with CE, BV and SGS certification, ROPS and FOPS structures and a 6 month warranty."
+          "title": "Certified safety structure",
+          "description": "Supplied new with CE, BV and SGS certification plus ROPS and FOPS structures."
+        },
+        {
+          "title": "One-Year Free Warranty",
+          "description": "This LOAD-X machine is covered by Burki & Company's free warranty for one year from the official purchase date, subject to the warranty terms."
         }
       ],
       "relatedEquipmentSlugs": [
@@ -847,6 +851,10 @@ export const content: ContentSnapshot = {
         {
           "title": "Common LX parts",
           "description": "Shares filters, cutting edges and driveline components with the rest of the LX Series."
+        },
+        {
+          "title": "One-Year Free Warranty",
+          "description": "This LOAD-X machine is covered by Burki & Company's free warranty for one year from the official purchase date, subject to the warranty terms."
         }
       ],
       "relatedEquipmentSlugs": [
@@ -1018,7 +1026,7 @@ export const content: ContentSnapshot = {
             },
             {
               "label": "Warranty",
-              "value": "6 months"
+              "value": "1 year"
             },
             {
               "label": "Loading port",
@@ -1185,8 +1193,12 @@ export const content: ContentSnapshot = {
           "description": "Six-cylinder diesel at 92 kW and 500 N·m, the driveline most widely serviced and stocked for in this class."
         },
         {
-          "title": "Certified and warranted",
-          "description": "Supplied new with CE, BV and SGS certification, ROPS and FOPS structures and a 6 month warranty."
+          "title": "Certified safety structure",
+          "description": "Supplied new with CE, BV and SGS certification plus ROPS and FOPS structures."
+        },
+        {
+          "title": "One-Year Free Warranty",
+          "description": "This LOAD-X machine is covered by Burki & Company's free warranty for one year from the official purchase date, subject to the warranty terms."
         }
       ],
       "relatedEquipmentSlugs": [
@@ -1376,6 +1388,10 @@ export const content: ContentSnapshot = {
         {
           "title": "Sized for the work",
           "description": "20.5-25 tyres under the largest machine in the LX Series, where the smaller LX loaders would be at the edge of their class."
+        },
+        {
+          "title": "One-Year Free Warranty",
+          "description": "This LOAD-X machine is covered by Burki & Company's free warranty for one year from the official purchase date, subject to the warranty terms."
         }
       ],
       "relatedEquipmentSlugs": [
@@ -2154,6 +2170,10 @@ export const content: ContentSnapshot = {
         {
           "title": "Attachment-ready hydraulics",
           "description": "Plumbed for a hydraulic breaker with auxiliary lines and a proportional electric control handle. Quick coupler optional."
+        },
+        {
+          "title": "One-Year Free Warranty",
+          "description": "This Xinyuan machine is covered by Burki & Company's free warranty for one year from the official purchase date, subject to the warranty terms."
         }
       ],
       "relatedEquipmentSlugs": [
@@ -2529,6 +2549,10 @@ export const content: ContentSnapshot = {
         {
           "title": "Dual-camera monitoring",
           "description": "Front and rear cameras with enlarged mirrors, cutting the blind spots that matter on a busy site."
+        },
+        {
+          "title": "One-Year Free Warranty",
+          "description": "This Xinyuan machine is covered by Burki & Company's free warranty for one year from the official purchase date, subject to the warranty terms."
         }
       ],
       "relatedEquipmentSlugs": [
@@ -2904,6 +2928,10 @@ export const content: ContentSnapshot = {
         {
           "title": "Dual-camera monitoring",
           "description": "Front and rear cameras with enlarged mirrors, cutting the blind spots that matter on a busy site."
+        },
+        {
+          "title": "One-Year Free Warranty",
+          "description": "This Xinyuan machine is covered by Burki & Company's free warranty for one year from the official purchase date, subject to the warranty terms."
         }
       ],
       "relatedEquipmentSlugs": [
@@ -3283,6 +3311,10 @@ export const content: ContentSnapshot = {
         {
           "title": "Dual-camera monitoring",
           "description": "Front and rear cameras with enlarged mirrors, cutting the blind spots that matter on a busy site."
+        },
+        {
+          "title": "One-Year Free Warranty",
+          "description": "This Xinyuan machine is covered by Burki & Company's free warranty for one year from the official purchase date, subject to the warranty terms."
         }
       ],
       "relatedEquipmentSlugs": [
@@ -3673,6 +3705,10 @@ export const content: ContentSnapshot = {
         {
           "title": "Attachment-ready hydraulics",
           "description": "Plumbed for a hydraulic breaker with auxiliary lines and a proportional electric control handle. Quick coupler optional."
+        },
+        {
+          "title": "One-Year Free Warranty",
+          "description": "This Xinyuan machine is covered by Burki & Company's free warranty for one year from the official purchase date, subject to the warranty terms."
         }
       ],
       "relatedEquipmentSlugs": [
@@ -4052,6 +4088,10 @@ export const content: ContentSnapshot = {
         {
           "title": "Dual-camera monitoring",
           "description": "Front and rear cameras with enlarged mirrors, cutting the blind spots that matter on a busy site."
+        },
+        {
+          "title": "One-Year Free Warranty",
+          "description": "This Xinyuan machine is covered by Burki & Company's free warranty for one year from the official purchase date, subject to the warranty terms."
         }
       ],
       "relatedEquipmentSlugs": [
@@ -4410,6 +4450,10 @@ export const content: ContentSnapshot = {
         {
           "title": "Dual-camera monitoring",
           "description": "Front and rear cameras with enlarged mirrors, cutting the blind spots that matter on a busy site."
+        },
+        {
+          "title": "One-Year Free Warranty",
+          "description": "This Xinyuan machine is covered by Burki & Company's free warranty for one year from the official purchase date, subject to the warranty terms."
         }
       ],
       "relatedEquipmentSlugs": [
@@ -4785,6 +4829,10 @@ export const content: ContentSnapshot = {
         {
           "title": "Dual-camera monitoring",
           "description": "Front and rear cameras with enlarged mirrors, cutting the blind spots that matter on a busy site."
+        },
+        {
+          "title": "One-Year Free Warranty",
+          "description": "This Xinyuan machine is covered by Burki & Company's free warranty for one year from the official purchase date, subject to the warranty terms."
         }
       ],
       "relatedEquipmentSlugs": [
@@ -5212,6 +5260,10 @@ export const content: ContentSnapshot = {
         {
           "title": "Attachment-ready hydraulics",
           "description": "Plumbed for a hydraulic breaker with auxiliary lines and a proportional electric control handle. Quick coupler optional."
+        },
+        {
+          "title": "One-Year Free Warranty",
+          "description": "This Xinyuan machine is covered by Burki & Company's free warranty for one year from the official purchase date, subject to the warranty terms."
         }
       ],
       "relatedEquipmentSlugs": [
@@ -5614,6 +5666,10 @@ export const content: ContentSnapshot = {
         {
           "title": "Long endurance",
           "description": "310 litres of fuel and 360 mm of ground clearance, for full days on rough, spread-out sites."
+        },
+        {
+          "title": "One-Year Free Warranty",
+          "description": "This Xinyuan machine is covered by Burki & Company's free warranty for one year from the official purchase date, subject to the warranty terms."
         }
       ],
       "relatedEquipmentSlugs": [
@@ -6560,11 +6616,11 @@ export const content: ContentSnapshot = {
     },
     {
       "id": "sv-05",
-      "slug": "xinyuan-warranty",
-      "name": "Half-Year Free Warranty",
-      "description": "Burki & Company provides timely warranty support for Xinyuan wheeled excavators through the nearest available service team, helping owners keep their machines working with confidence.",
+      "slug": "one-year-warranty",
+      "name": "One-Year Free Warranty",
+      "description": "Burki & Company provides timely warranty support for Xinyuan wheeled excavators and LOAD-X wheel loaders through the nearest available service team, helping owners keep their machines working with confidence.",
       "points": [
-        "Free on-site maintenance for eligible faults during normal use for six months from the official purchase date",
+        "Free on-site maintenance for eligible faults during normal use for one year from the official purchase date",
         "Warranty eligibility verified against the official purchase invoice",
         "Confirmed product-quality faults repaired by Burki & Company under the warranty terms"
       ],

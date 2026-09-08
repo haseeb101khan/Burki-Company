@@ -31,7 +31,7 @@ import { routes } from "@/lib/routes";
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "Equipment consultation, parts support, maintenance, after-sales support and Xinyuan wheeled-excavator warranty service from Burki & Company.",
+    "Equipment consultation, parts support, maintenance, after-sales support and one-year warranty service for Xinyuan and LOAD-X equipment from Burki & Company.",
 };
 
 export default async function ServicesPage() {
