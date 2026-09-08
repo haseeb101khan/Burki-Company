@@ -95,7 +95,7 @@ export const content: ContentSnapshot = {
     {
       "id": "cat-01",
       "slug": "excavators",
-      "name": "Excavators",
+      "name": "Xinyuan Excavators",
       "description": "Tracked and wheeled excavators for bulk earthmoving, trenching, foundation work and demolition, from compact site machines to quarry-duty units.",
       "image": {
         "src": "/images/cat-excavators.webp",
@@ -106,8 +106,8 @@ export const content: ContentSnapshot = {
     {
       "id": "cat-02",
       "slug": "wheel-loaders",
-      "name": "Wheel Loaders",
-      "shortName": "Loaders",
+      "name": "LOAD-X Wheel Loaders",
+      "shortName": "LOAD-X Wheel Loaders",
       "description": "Front-end loaders for stockpile handling, truck loading and site logistics — the workhorse of aggregate yards, batching plants and road projects.",
       "image": {
         "src": "/images/cat-wheel-loaders.webp",
@@ -118,7 +118,8 @@ export const content: ContentSnapshot = {
     {
       "id": "cat-03",
       "slug": "backhoe-loaders",
-      "name": "Backhoe Loaders",
+      "name": "XCMG Wheel Loaders",
+      "shortName": "XCMG Wheel Loaders",
       "description": "Loaders for utilities, municipal work and confined urban sites, where a full-size machine cannot turn.",
       "image": {
         "src": "/images/xcmg-zl50gn-side.webp",
@@ -602,7 +603,7 @@ export const content: ContentSnapshot = {
       "isPlaceholder": false,
       "order": 2,
       "brandSlug": "load-x",
-      "categoryName": "Wheel Loaders",
+      "categoryName": "LOAD-X Wheel Loaders",
       "videos": []
     },
     {
@@ -857,7 +858,7 @@ export const content: ContentSnapshot = {
       "isPlaceholder": true,
       "order": 3,
       "brandSlug": "load-x",
-      "categoryName": "Wheel Loaders",
+      "categoryName": "LOAD-X Wheel Loaders",
       "videos": []
     },
     {
@@ -1197,7 +1198,7 @@ export const content: ContentSnapshot = {
       "isPlaceholder": false,
       "order": 4,
       "brandSlug": "load-x",
-      "categoryName": "Wheel Loaders",
+      "categoryName": "LOAD-X Wheel Loaders",
       "videos": []
     },
     {
@@ -1385,7 +1386,7 @@ export const content: ContentSnapshot = {
       "isPlaceholder": false,
       "order": 5,
       "brandSlug": "load-x",
-      "categoryName": "Wheel Loaders",
+      "categoryName": "LOAD-X Wheel Loaders",
       "videos": []
     },
     {
@@ -1513,7 +1514,7 @@ export const content: ContentSnapshot = {
       "isPlaceholder": false,
       "order": 5,
       "brandSlug": "xcmg",
-      "categoryName": "Backhoe Loaders",
+      "categoryName": "XCMG Wheel Loaders",
       "videos": []
     },
     {
@@ -1641,7 +1642,7 @@ export const content: ContentSnapshot = {
       "isPlaceholder": false,
       "order": 6,
       "brandSlug": "xcmg",
-      "categoryName": "Backhoe Loaders",
+      "categoryName": "XCMG Wheel Loaders",
       "videos": []
     },
     {
@@ -1769,7 +1770,7 @@ export const content: ContentSnapshot = {
       "isPlaceholder": false,
       "order": 7,
       "brandSlug": "xcmg",
-      "categoryName": "Backhoe Loaders",
+      "categoryName": "XCMG Wheel Loaders",
       "videos": []
     },
     {
@@ -2164,7 +2165,7 @@ export const content: ContentSnapshot = {
       "isPlaceholder": false,
       "order": 1,
       "brandSlug": "xinyuan",
-      "categoryName": "Excavators"
+      "categoryName": "Xinyuan Excavators"
     },
     {
       "id": "eq-xy-c70",
@@ -2539,7 +2540,7 @@ export const content: ContentSnapshot = {
       "isPlaceholder": false,
       "order": 2,
       "brandSlug": "xinyuan",
-      "categoryName": "Excavators"
+      "categoryName": "Xinyuan Excavators"
     },
     {
       "id": "eq-xy-c75",
@@ -2914,7 +2915,7 @@ export const content: ContentSnapshot = {
       "isPlaceholder": false,
       "order": 3,
       "brandSlug": "xinyuan",
-      "categoryName": "Excavators"
+      "categoryName": "Xinyuan Excavators"
     },
     {
       "id": "eq-xy-c80",
@@ -3293,7 +3294,7 @@ export const content: ContentSnapshot = {
       "isPlaceholder": false,
       "order": 4,
       "brandSlug": "xinyuan",
-      "categoryName": "Excavators"
+      "categoryName": "Xinyuan Excavators"
     },
     {
       "id": "eq-xy-c95",
@@ -3683,7 +3684,7 @@ export const content: ContentSnapshot = {
       "isPlaceholder": false,
       "order": 5,
       "brandSlug": "xinyuan",
-      "categoryName": "Excavators"
+      "categoryName": "Xinyuan Excavators"
     },
     {
       "id": "eq-xy-c105",
@@ -4062,7 +4063,7 @@ export const content: ContentSnapshot = {
       "isPlaceholder": false,
       "order": 6,
       "brandSlug": "xinyuan",
-      "categoryName": "Excavators"
+      "categoryName": "Xinyuan Excavators"
     },
     {
       "id": "eq-xy-c115",
@@ -4420,7 +4421,7 @@ export const content: ContentSnapshot = {
       "isPlaceholder": false,
       "order": 7,
       "brandSlug": "xinyuan",
-      "categoryName": "Excavators"
+      "categoryName": "Xinyuan Excavators"
     },
     {
       "id": "eq-xy-c120",
@@ -4795,7 +4796,7 @@ export const content: ContentSnapshot = {
       "isPlaceholder": false,
       "order": 8,
       "brandSlug": "xinyuan",
-      "categoryName": "Excavators"
+      "categoryName": "Xinyuan Excavators"
     },
     {
       "id": "eq-xy-c130",
@@ -5222,7 +5223,7 @@ export const content: ContentSnapshot = {
       "isPlaceholder": false,
       "order": 9,
       "brandSlug": "xinyuan",
-      "categoryName": "Excavators"
+      "categoryName": "Xinyuan Excavators"
     },
     {
       "id": "eq-xy-c150",
@@ -5624,7 +5625,7 @@ export const content: ContentSnapshot = {
       "isPlaceholder": false,
       "order": 10,
       "brandSlug": "xinyuan",
-      "categoryName": "Excavators"
+      "categoryName": "Xinyuan Excavators"
     }
   ],
   "parts": [
@@ -6743,54 +6744,41 @@ export const content: ContentSnapshot = {
     {
       "id": "nw-01",
       "platform": "facebook",
-      "caption": "Our Karachi head office on the Super Highway — sales, parts and service from one place.",
+      "caption": "AKB Company CEO Haji Allah Yar visits Xinyuan's Karachi head office, inspects the machines and selects the C150W.",
       "date": null,
       "image": {
-        "src": "/images/banner-company.jpg",
-        "alt": "The Burki & Company premises in Karachi"
+        "src": "/images/link1 image news.jpeg",
+        "alt": "Haji Allah Yar visiting the Xinyuan Karachi head office"
       },
-      "href": "https://www.facebook.com/share/1HhWiZ7kUQ/",
-      "isPlaceholder": true,
+      "href": "https://www.facebook.com/share/r/1Dau2MxRad/?mibextid=wwXIfr",
+      "isPlaceholder": false,
       "order": 1
     },
     {
       "id": "nw-02",
-      "platform": "tiktok",
-      "caption": "Authorised Xinyuan dealers — the C Series wheeled excavator range, imported and supported directly.",
+      "platform": "facebook",
+      "caption": "A heavy-equipment veteran from Nawabshah shares his assessment of the Xinyuan wheeled excavator's performance, power, operation and parts.",
       "date": null,
       "image": {
-        "src": "/images/xinyuan/gallery/c120-1.jpg",
-        "alt": "A Xinyuan C120 wheeled excavator"
+        "src": "/images/load-x/link2 image news.PNG",
+        "alt": "An experienced operator reviewing a Xinyuan wheeled excavator"
       },
-      "href": "https://www.tiktok.com/@burkicompanyofficial/video/7611448807062015233",
+      "href": "https://www.facebook.com/share/v/1EmdAokLmF/?mibextid=wwXIfr",
       "isPlaceholder": false,
       "order": 2
     },
     {
       "id": "nw-03",
-      "platform": "tiktok",
-      "caption": "The LOAD-X LX-926 wheel loader — a 4.5 tonne machine for yards and sites a full-size loader cannot turn in.",
+      "platform": "facebook",
+      "caption": "A customer shares his experience with the LOAD-X LX-936 wheel loader delivered by Burki & Company.",
       "date": null,
       "image": {
-        "src": "/brands/Load-x/lx926/lx-926-1.jpg",
-        "alt": "A LOAD-X LX-926 wheel loader"
+        "src": "/images/link3 imagenews.jpeg",
+        "alt": "A customer with his LOAD-X LX-936 wheel loader"
       },
-      "href": "https://www.tiktok.com/@burkicompanyofficial/video/7677577812387106068",
+      "href": "https://www.facebook.com/share/v/1ES8kCw5NK/?mibextid=wwXIfr",
       "isPlaceholder": false,
       "order": 3
-    },
-    {
-      "id": "nw-04",
-      "platform": "instagram",
-      "caption": "A customer on the LX-936 wheel loader he took delivery of from Burki & Company.",
-      "date": null,
-      "image": {
-        "src": "/brands/Load-x/lx936/lx-936-1.jpg",
-        "alt": "A LOAD-X LX-936 wheel loader"
-      },
-      "href": "https://www.instagram.com/burki_andcompany/reel/DcRDGb8COTy/",
-      "isPlaceholder": false,
-      "order": 4
     }
   ],
   "companyInfo": {

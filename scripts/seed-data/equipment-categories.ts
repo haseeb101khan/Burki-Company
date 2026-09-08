@@ -9,7 +9,7 @@ export const equipmentCategories: EquipmentCategory[] = [
   {
     id: "cat-01",
     slug: "excavators",
-    name: "Excavators",
+    name: "Xinyuan Excavators",
     description:
       "Tracked and wheeled excavators for bulk earthmoving, trenching, foundation work and demolition, from compact site machines to quarry-duty units.",
     image: { src: "/images/cat-excavators.webp", alt: "Xinyuan wheeled excavator on a city street, boom lowered" },
@@ -18,8 +18,8 @@ export const equipmentCategories: EquipmentCategory[] = [
   {
     id: "cat-02",
     slug: "wheel-loaders",
-    name: "Wheel Loaders",
-    shortName: "Loaders",
+    name: "LOAD-X Wheel Loaders",
+    shortName: "LOAD-X Wheel Loaders",
     description:
       "Front-end loaders for stockpile handling, truck loading and site logistics — the workhorse of aggregate yards, batching plants and road projects.",
     image: { src: "/images/cat-wheel-loaders.webp", alt: "Wheel loader with its bucket lowered on a yard" },
@@ -28,24 +28,8 @@ export const equipmentCategories: EquipmentCategory[] = [
   {
     id: "cat-03",
     slug: "backhoe-loaders",
-    name: "Backhoe Loaders",
-    /*
-     * WHAT IS FILED HERE, AND THE ONE THING TO KNOW ABOUT IT.
-     *
-     * On the client's instruction this category holds the three XCMG machines —
-     * LW300FN, LW500FN and ZL50GN — and the tile shows the ZL50GN. All three
-     * are WHEEL loaders: front bucket, no rear boom, and XCMG file them under
-     * Wheel Loader on their own product pages, which is where their
-     * specifications here came from.
-     *
-     * So the description below no longer claims a rear backhoe. It described
-     * "loader at the front, backhoe at the rear" while listing three machines
-     * that have no backhoe, which is a straightforward falsehood on a page that
-     * sells on specifications. The category NAME still says Backhoe Loaders and
-     * only the client can settle that — either these move back to Wheel Loaders
-     * beside the LOAD-X machines, or the category is renamed to match what is
-     * in it.
-     */
+    name: "XCMG Wheel Loaders",
+    shortName: "XCMG Wheel Loaders",
     description:
       "Loaders for utilities, municipal work and confined urban sites, where a full-size machine cannot turn.",
     image: {
