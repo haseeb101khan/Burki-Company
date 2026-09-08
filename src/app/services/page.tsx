@@ -11,8 +11,8 @@ import { routes } from "@/lib/routes";
 /**
  * SERVICES — one page, every service on it.
  *
- * NOT A CATEGORY INDEX. Four services, each of which is a paragraph and three
- * lines, would make four detail pages carrying about a screen of copy each and
+ * NOT A CATEGORY INDEX. Five services, each of which is a paragraph and three
+ * lines, would make five detail pages carrying about a screen of copy each and
  * an index whose only job is to link to them. On a single page a visitor
  * reading "what do you actually do after I buy the machine" gets the whole
  * answer by scrolling, which is the question this page exists to answer. If the
@@ -31,7 +31,7 @@ import { routes } from "@/lib/routes";
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "Equipment consultation, parts support, maintenance and repair, and after-sales support from Burki & Company.",
+    "Equipment consultation, parts support, maintenance, after-sales support and Xinyuan wheeled-excavator warranty service from Burki & Company.",
 };
 
 export default async function ServicesPage() {

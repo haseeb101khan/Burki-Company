@@ -6557,6 +6557,18 @@ export const content: ContentSnapshot = {
         "Direct contact for ongoing technical questions"
       ],
       "order": 4
+    },
+    {
+      "id": "sv-05",
+      "slug": "xinyuan-warranty",
+      "name": "Half-Year Free Warranty",
+      "description": "Burki & Company provides timely warranty support for Xinyuan wheeled excavators through the nearest available service team, helping owners keep their machines working with confidence.",
+      "points": [
+        "Free on-site maintenance for eligible faults during normal use for six months from the official purchase date",
+        "Warranty eligibility verified against the official purchase invoice",
+        "Confirmed product-quality faults repaired by Burki & Company under the warranty terms"
+      ],
+      "order": 5
     }
   ],
   "partners": [
@@ -6863,6 +6875,12 @@ export const content: ContentSnapshot = {
         "platform": "tiktok",
         "label": "TikTok",
         "href": "https://www.tiktok.com/@burkicompanyofficial"
+      },
+      {
+        "id": "so-04",
+        "platform": "youtube",
+        "label": "YouTube",
+        "href": "https://www.youtube.com/@FaridBurki-m4v"
       }
     ],
     "contactIsPlaceholder": false,

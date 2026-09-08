@@ -88,7 +88,7 @@ export function NewsStrip({
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={`Burki & Company on ${social.label}`}
-                    className="flex h-10 w-10 items-center justify-center rounded-[3px] border border-steel-200 text-base text-navy-700 transition-all duration-300 hover:border-navy-800 hover:bg-navy-800 hover:text-white"
+                    className="flex h-14 w-14 items-center justify-center rounded-[3px] border border-steel-200 text-3xl text-navy-700 transition-all duration-300 hover:border-navy-800 hover:bg-navy-800 hover:text-white"
                   >
                     <Icon />
                   </a>

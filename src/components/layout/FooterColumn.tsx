@@ -50,7 +50,7 @@ export function FooterColumn({
           aria-controls={panelId}
           className={cn(
             "flex w-full items-center justify-between gap-4 py-4 text-left",
-            "font-display text-[0.6875rem] font-semibold uppercase tracking-[0.2em] text-amber-500",
+            "font-display text-[0.875rem] font-bold uppercase tracking-[0.14em] text-amber-500",
             "focus-visible:outline-2 focus-visible:outline-amber-500 focus-visible:-outline-offset-2",
             /* Once the column is open for good, the heading is a heading: no
                pointer, no chevron, nothing that offers a toggle that does
@@ -83,7 +83,7 @@ export function FooterColumn({
               <li key={`${title}-${link.href}-${link.label}`}>
                 <Link
                   href={link.href}
-                  className="text-[0.875rem] text-white/60 transition-colors hover:text-white"
+                  className="text-base font-semibold text-white/70 transition-colors hover:text-white"
                 >
                   {link.label}
                 </Link>

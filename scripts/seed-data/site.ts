@@ -74,11 +74,7 @@ export const siteConfig: SiteConfig = {
     src: null,
     poster: "/images/band-about.jpg",
   },
-  /*
-   * The client's own accounts. LinkedIn and YouTube were placeholder entries
-   * pointing at "#" and are gone - an icon that goes nowhere is worse than an
-   * icon that is not there. Add them back when those accounts exist.
-   */
+  /* The client's confirmed social accounts. */
   socials: [
     {
       id: "so-01",
@@ -97,6 +93,12 @@ export const siteConfig: SiteConfig = {
       platform: "tiktok",
       label: "TikTok",
       href: "https://www.tiktok.com/@burkicompanyofficial",
+    },
+    {
+      id: "so-04",
+      platform: "youtube",
+      label: "YouTube",
+      href: "https://www.youtube.com/@FaridBurki-m4v",
     },
   ],
   contactIsPlaceholder: false,
@@ -317,5 +319,18 @@ export const services: Service[] = [
       "Direct contact for ongoing technical questions",
     ],
     order: 4,
+  },
+  {
+    id: "sv-05",
+    slug: "xinyuan-warranty",
+    name: "Half-Year Free Warranty",
+    description:
+      "Burki & Company provides timely warranty support for Xinyuan wheeled excavators through the nearest available service team, helping owners keep their machines working with confidence.",
+    points: [
+      "Free on-site maintenance for eligible faults during normal use for six months from the official purchase date",
+      "Warranty eligibility verified against the official purchase invoice",
+      "Confirmed product-quality faults repaired by Burki & Company under the warranty terms",
+    ],
+    order: 5,
   },
 ];

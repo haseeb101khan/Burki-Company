@@ -33,11 +33,11 @@ export async function Footer() {
           {/* ------------------------------------------------ brand block */}
           <div className="max-w-sm">
             <Logo variant="white" width={190} />
-            <p className="mt-6 text-[0.9375rem] leading-relaxed text-white/60">
+            <p className="mt-6 text-[1.0625rem] font-semibold leading-relaxed text-white/75">
               {site.tagline}
             </p>
 
-            <div className="mt-7 space-y-3 text-[0.875rem] text-white/60">
+            <div className="mt-7 space-y-4 text-[0.9375rem] font-semibold text-white/75">
               <p className="flex items-start gap-3">
                 <MapPinIcon className="mt-0.5 shrink-0 text-base text-amber-500" />
                 <span>
@@ -50,7 +50,7 @@ export async function Footer() {
               <p className="flex items-center gap-3">
                 <WhatsAppIcon className="shrink-0 text-base text-amber-500" />
                 <span>
-                  <span className="block text-[0.6875rem] font-semibold uppercase text-white/40">
+                  <span className="block text-[0.75rem] font-bold uppercase text-white/55">
                     WhatsApp
                   </span>
                   <a
@@ -66,7 +66,7 @@ export async function Footer() {
               <p className="flex items-center gap-3">
                 <PhoneIcon className="shrink-0 text-base text-amber-500" />
                 <span>
-                  <span className="block text-[0.6875rem] font-semibold uppercase text-white/40">
+                  <span className="block text-[0.75rem] font-bold uppercase text-white/55">
                     Helpline
                   </span>
                   <a
@@ -105,7 +105,7 @@ export async function Footer() {
                        destination a window handle back to this page. */
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex h-9 w-9 items-center justify-center rounded-[3px] border border-white/15 text-base text-white/70 transition-all duration-300 hover:border-amber-500 hover:bg-amber-500 hover:text-navy-900"
+                    className="flex h-16 w-16 items-center justify-center rounded-[3px] border border-white/20 text-5xl text-white/80 transition-all duration-300 hover:border-amber-500 hover:bg-amber-500 hover:text-navy-900"
                   >
                     <SocialIcon />
                   </a>
@@ -130,7 +130,7 @@ export async function Footer() {
             <FooterColumn
               title="Equipment"
               links={[
-                ...categories.slice(0, 7).map((c) => ({
+                ...categories.slice(0, 3).map((c) => ({
                   label: c.name,
                   href: routes.category(c),
                 })),
@@ -164,7 +164,7 @@ export async function Footer() {
 
       {/* ------------------------------------------------------- bottom bar */}
       <div className="border-t border-white/10">
-        <Container className="flex flex-col gap-3 py-6 text-[0.75rem] text-white/45 md:flex-row md:items-center md:justify-between">
+        <Container className="flex flex-col gap-3 py-6 text-[0.875rem] font-semibold text-white/60 md:flex-row md:items-center md:justify-between">
           <p>
             &copy; {year} {site.legalName}. All rights reserved.
           </p>

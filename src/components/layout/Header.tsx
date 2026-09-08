@@ -68,6 +68,7 @@ export async function Header({ overlay = false }: { overlay?: boolean } = {}) {
   };
 
   const nav: NavItem[] = [
+    { label: "Home", href: "/" },
     {
       label: "Equipment",
       href: routes.equipment(),
