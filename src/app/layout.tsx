@@ -4,6 +4,7 @@ import { MotionProvider } from "@/components/MotionProvider";
 import { CompareBar } from "@/components/compare/CompareBar";
 import { CompareProvider } from "@/components/compare/CompareProvider";
 import { QuickActions } from "@/components/layout/QuickActions";
+import { ScrollToTop } from "@/components/layout/ScrollToTop";
 import { getEquipment, getSiteConfig } from "@/lib/data";
 import { routes } from "@/lib/routes";
 import { siteUrl } from "@/lib/site";
@@ -62,10 +63,15 @@ export default async function RootLayout({
   }));
 
   return (
-    <html lang="en" className={`${barlowCondensed.variable} ${inter.variable}`}>
+    <html
+      lang="en"
+      data-scroll-behavior="smooth"
+      className={`${barlowCondensed.variable} ${inter.variable}`}
+    >
       <body className="min-h-screen bg-white text-ink antialiased">
         <MotionProvider>
           <CompareProvider machines={machines}>
+            <ScrollToTop />
             {children}
             <QuickActions whatsapp={site.whatsapp} />
             <CompareBar />
